@@ -1,0 +1,56 @@
+targets:
+  $default:
+    builders:
+      envied_generator:envied:
+        enabled: true
+        generate_for:
+          - lib/core/env/*.dart
+
+      riverpod_generator:
+        enabled: true
+        generate_for:
+          - lib/**/*.dart
+
+      freezed:
+        enabled: true
+        generate_for:
+          - lib/features/**/models/*.dart
+          - lib/features/**/entities/*.dart
+          - lib/features/**/providers/*.dart
+          - lib/core/errors/*.dart
+          - lib/core/network/response/*.dart
+        options:
+          # Freezed 选项
+          union_key: type # 联合类型的键名，默认为 'runtimeType'，这里自定义为 'type' 以匹配后端 API
+          union_value_case: pascal # 联合类型值的命名风格 (PascalCase)
+
+      json_serializable:
+        enabled: true
+        generate_for:
+          - lib/features/**/models/*.dart
+          - lib/features/**/entities/*.dart
+          - lib/core/network/response/*.dart
+        options:
+          # JSON 序列化选项
+          checked: true # 在反序列化时检查类型，抛出更友好的异常
+          explicit_to_json: true # 嵌套对象生成显式的 toJson 调用
+          field_rename: snake # 字段命名策略：snake_case (例如 userName -> user_name)
+          include_if_null: false #生成的 JSON 中不包含 null 值字段
+
+      drift_dev:
+        enabled: true
+        generate_for:
+          - lib/core/services/*.dart
+        options:
+          store_date_time_values_as_text: true # 将 DateTime 存储为文本 (ISO-8601)，而不是 Unix 时间戳
+
+      retrofit_generator:
+        enabled: true
+        generate_for:
+          - lib/core/network/*.dart
+          - lib/features/**/datasources/*.dart
+
+      go_router_builder:
+        enabled: true
+        generate_for:
+          - lib/routes/*.dart

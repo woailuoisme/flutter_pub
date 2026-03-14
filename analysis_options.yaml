@@ -1,0 +1,81 @@
+# 此文件配置分析器，用于静态分析 Dart 代码以检查错误、警告和 lint 问题。
+#
+# 分析器识别的问题会显示在支持 Dart 的 IDE 用户界面中
+# (https://dart.dev/tools#ides-and-editors)。
+# 也可以通过运行 `flutter analyze` 从命令行调用分析器。
+
+# 下一行激活了一组推荐用于 Flutter 应用、包和插件的 lint 规则，
+# 旨在鼓励良好的编码实践。
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.config.dart"
+    - "**/*.gr.dart"
+    - "lib/generated/**" # 针对 i18n 生成的代码
+  errors:
+    # 忽略无效的注解目标警告 (通常用于 freezed/json_serializable 等代码生成库)
+    invalid_annotation_target: ignore
+    # 忽略未使用的字段警告 (建议在发布前清理)
+    unused_field: ignore
+    # 忽略未使用的局部变量警告 (建议在发布前清理)
+    unused_local_variable: ignore
+    # 忽略未使用的元素警告 (如私有函数、类等，建议在发布前清理)
+    unused_element: ignore
+  language:
+    # 启用严格类型转换，禁止隐式 dynamic 转换，避免运行时类型错误
+    strict-casts: true
+    # 启用严格类型推断，禁止隐式 dynamic 推断，强制显式声明类型
+    strict-inference: true
+    # 启用严格原始类型，强制指定泛型参数 (例如使用 List<dynamic> 而不是 List)
+    strict-raw-types: true
+
+linter:
+  rules:
+    # 强制使用 package 导入路径，避免相对路径混乱
+    always_use_package_imports: true
+
+    # 禁用相对路径导入建议 (与 always_use_package_imports 冲突)
+    prefer_relative_imports: false
+
+    # 允许自定义 TODO 格式 (覆盖默认的 flutter_style_todos)
+    flutter_style_todos: false
+
+    # 不强制省略局部变量类型，提高代码可读性 (覆盖默认的 omit_local_variable_types)
+    omit_local_variable_types: false
+
+    # 强制声明返回类型，增强类型安全
+    always_declare_return_types: true
+
+    # 强制将构造函数放在类定义的开头，保持代码结构统一
+    sort_constructors_first: true
+
+    # 强制将未命名构造函数放在命名构造函数之前
+    sort_unnamed_constructors_first: true
+
+    # 建议局部变量使用 final，增强代码稳定性
+    prefer_final_locals: true
+
+    # 建议 for-each 循环变量使用 final
+    prefer_final_in_for_each: true
+
+    # 强制使用花括号，避免省略花括号带来的隐患（如著名的 goto fail 错误）
+    curly_braces_in_flow_control_structures: true
+
+    # 强制控制流体换行 (由于启用了强制花括号，此规则可作为补充或按需关闭，这里将其关闭以避免冲突或过度限制)
+    always_put_control_body_on_new_line: false
+
+    # 强制在 override 成员上使用 @override 注解，避免代码重构时漏改
+    annotate_overrides: true
+
+    # 强制将 const 变量放在 final 之前，符合 Dart 风格指南
+    prefer_const_declarations: true
+
+    # 针对 Flutter：建议使用 const 构造函数，提升渲染性能
+    prefer_const_constructors: true
+    prefer_const_constructors_in_immutables: true
+
+    # 确保 async 代码的正确性 (特别是使用 go_router_builder 时)
+    unawaited_futures: true

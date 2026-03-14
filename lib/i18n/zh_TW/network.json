@@ -1,0 +1,27 @@
+{
+  "errors": {
+    "connectionError": "网络连接失败，请检查您的网络设置",
+    "failed": "请求失败，请稍后重试",
+    "unauthorized": "登录凭证已过期，请重新登录",
+    "connectionTimeout": "网络连接超时，请检查您的网络",
+    "sendTimeout": "请求数据发送超时",
+    "receiveTimeout": "响应数据接收超时",
+    "badCertificate": "网络证书验证失败",
+    "cancel": "请求已取消",
+    "unknown": "网络请求异常: ${error}",
+    "retryLater": "请稍后重试",
+    "badRequest": "错误的请求",
+    "forbidden": "拒绝访问",
+    "notFound": "请求的资源不存在",
+    "timeout": "请求超时",
+    "conflict": "服务器状态冲突",
+    "validationFailed": "数据验证失败",
+    "tooManyRequests": "请求过于频繁，请稍后再试",
+    "internalServerError": "服务器内部错误",
+    "badGateway": "网关错误",
+    "serviceUnavailable": "服务不可用",
+    "gatewayTimeout": "网关超时",
+    "serverError": "服务器错误 (${code})",
+    "requestError": "请求错误 (${code})"
+  }
+}

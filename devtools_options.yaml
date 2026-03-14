@@ -1,0 +1,9 @@
+# This file stores settings for Dart & Flutter DevTools.
+# For more information, see: https://docs.flutter.dev/tools/devtools/extensions#configure-extension-enablement-states
+
+# Configure DevTools extension enablement states.
+# This is where you can specify which extensions should be enabled or disabled.
+extensions:
+  # Example: enable the 'provider' extension
+  # - name: provider
+  #   enabled: true

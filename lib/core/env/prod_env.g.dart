@@ -1,0 +1,25 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'prod_env.dart';
+
+// **************************************************************************
+// EnviedGenerator
+// **************************************************************************
+
+// coverage:ignore-file
+// ignore_for_file: type=lint
+// generated_from: .env.prod
+final class _ProdEnv {
+  static const String _baseUrl = 'https://rest.haoxiaoguai.xyz';
+
+  static const String _stripePublishableKey =
+      'pk_test_51K5b84LHzHCCzdgcmAQfSGsl6ik4MawpXrGtWNmvNwKurf9xHk1t3kbBErAc1r87Hzn7rH2inPd63b1qZ7CKYkEN00y0dLoGQ6';
+
+  static const String _sentryDsn =
+      'https://1246d3e8c39b70919447f701f457887e@o4505111003136000.ingest.us.sentry.io/4510961133813760';
+
+  static const bool _debug = false;
+
+  static const String _googleServerClientId =
+      '543085523947-fkkrbe1d4c2b98h59j210r5r5p5g57m5.apps.googleusercontent.com';
+}

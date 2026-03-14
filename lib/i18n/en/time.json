@@ -1,0 +1,6 @@
+{
+  "justNow": "Just now",
+  "minutesAgo": "${minutes} minutes ago",
+  "hoursAgo": "${hours} hours ago",
+  "daysAgo": "${days} days ago"
+}
