@@ -8,7 +8,7 @@ import 'package:lunchbox_hub/features/auth/providers/signin_state.dart';
 import 'package:lunchbox_hub/features/auth/widgets/signin_footer_links.dart';
 import 'package:lunchbox_hub/features/auth/widgets/signin_header.dart';
 import 'package:lunchbox_hub/features/auth/widgets/signin_password_form.dart';
-import 'package:lunchbox_hub/features/auth/widgets/signin_social_signin.dart';
+// import 'package:lunchbox_hub/features/auth/widgets/signin_social_signin.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 import 'package:lunchbox_hub/routes/routes.dart';
 import 'package:toastification/toastification.dart';
@@ -119,12 +119,13 @@ class _SimpleSignInViewState extends ConsumerState<SimpleSignInView> {
                                 ),
                               ),
                               SizedBox(height: 40.h),
-                              SignInSocialSignIn(
-                                colorScheme: colorScheme,
-                                onGoogleSignIn: () =>
-                                    ref.read(signInProvider.notifier).signIn(),
-                              ),
-                              SizedBox(height: 24.h),
+                              // TODO: 三方登陆结构已注释
+                              // SignInSocialSignIn(
+                              //   colorScheme: colorScheme,
+                              //   onGoogleSignIn: () =>
+                              //       ref.read(signInProvider.notifier).signIn(),
+                              // ),
+                              // SizedBox(height: 24.h),
                               SignInFooterLinks(
                                 colorScheme: colorScheme,
                                 onSignUp: () =>

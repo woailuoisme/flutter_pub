@@ -20,6 +20,9 @@ class DevEnv implements AppEnv {
   @EnviedField(varName: 'GOOGLE_SERVER_CLIENT_ID')
   static const String _googleServerClientId = _DevEnv._googleServerClientId;
 
+  @EnviedField(varName: 'USE_TEST_MODE')
+  static const bool _useTestMode = _DevEnv._useTestMode;
+
   @override
   String get baseUrl => _baseUrl;
 
@@ -34,4 +37,7 @@ class DevEnv implements AppEnv {
 
   @override
   String get googleServerClientId => _googleServerClientId;
+
+  @override
+  bool get useTestMode => _useTestMode;
 }

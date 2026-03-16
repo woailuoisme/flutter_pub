@@ -1,0 +1,18 @@
+{
+  "machineList": "Maintenance Management",
+  "faultCount": "Fault Count",
+  "lastFaultAt": "Last Fault Time",
+  "noFaults": "No Faults",
+  "faultList": "Fault Records",
+  "faultType": "Fault Type",
+  "description": "Description",
+  "occurredAt": "Occurred At",
+  "pending": "Pending",
+  "resolved": "Resolved",
+  "statusPending": "Pending",
+  "statusResolved": "Resolved",
+  "noFaultRecords": "No Fault Records",
+  "emptyState": "No Machines",
+  "loadFailed": "Load Failed",
+  "retry": "Retry"
+}

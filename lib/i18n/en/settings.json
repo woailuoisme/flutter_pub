@@ -1,0 +1,31 @@
+{
+  "title": "Settings",
+  "general": "General",
+  "theme": "Theme Mode",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "themeSystem": "System",
+  "language": "Language",
+  "checkUpdate": "Check Update",
+  "clearCache": "Clear Cache",
+  "about": "About",
+  "deviceInfo": "Device Info",
+  "aboutUs": "About Us",
+  "checkingUpdate": "Checking for updates...",
+  "cacheCleared": "Cache cleared",
+  "english": "English",
+  "chinese": "Simplified Chinese",
+  "traditionalChinese": "Traditional Chinese",
+  "themeScheme": "Color Scheme",
+  "schemes": {
+    "shadOrange": "Vibrant Orange (ShadOrange)",
+    "shadGreen": "Natural Green (ShadGreen)",
+    "bahamaBlue": "Bahama Blue (BahamaBlue)",
+    "damask": "Damask Red (Damask)"
+  },
+  "appName": "App Name",
+  "packageName": "Package Name",
+  "versionName": "Version Name",
+  "buildNumber": "Build Number",
+  "copyright": "© 2024 Lunchbox Team"
+}

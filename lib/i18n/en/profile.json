@@ -1,0 +1,63 @@
+{
+  "title": "User Center",
+  "notLoggedIn": "Not Logged In",
+  "editProfile": "Edit Profile",
+  "logout": "Logout",
+  "favoriteDevices": "Favorite Devices",
+  "personalInfo": "Personal Info",
+  "confirmLogout": "Confirm Logout",
+  "confirmLogoutContent": "Are you sure you want to logout?",
+  "clearCacheConfirm": "Are you sure you want to clear all cache data?",
+  "noFavoriteDevices": "No favorite devices",
+  "removeFavorite": "Unfavorite",
+  "removeFavoriteConfirm": "Are you sure you want to unfavorite \"${name}\"?",
+  "appDescription": "A convenient vending machine purchasing application",
+  "version": "Version: ${version}",
+  "wallet": "My Wallet",
+  "coupon": "Coupons",
+  "feedback": "Feedback",
+  "cooperation": "Cooperation",
+  "about": "About Us",
+  "settings": "Settings",
+  "gender": {
+    "male": "Male",
+    "female": "Female",
+    "unknown": "Secret"
+  },
+  "info": {
+    "basic": "Basic Information",
+    "other": "Other Information",
+    "phone": "Phone Number",
+    "gender": "Gender",
+    "birthday": "Birthday",
+    "email": "Email",
+    "notSet": "Not Set"
+  },
+  "avatar": {
+    "clickToChange": "Click to change avatar",
+    "uploading": "Avatar upload feature is under development"
+  },
+  "saveSuccess": "Saved successfully",
+  "saveFailed": "Save failed: ${error}",
+  "saveInfo": "Save Information",
+  "walletBalance": "Wallet Balance",
+  "coin": "Points",
+  "couponCount": "Coupons",
+  "pointsMall": "Points Mall",
+  "walletPage": {
+    "title": "Wallet",
+    "topUp": "Top Up",
+    "balance": "Balance",
+    "selectAmount": "Select Amount",
+    "rule": "Rules",
+    "ruleDesc": "Top up specific packages to get points. Custom amount does not get points.",
+    "customAmount": "Custom Amount",
+    "customAmountHint": "Only for amounts above ¥500",
+    "realPay": "Pay ¥${amount}",
+    "bonus": "Get ${amount} points",
+    "noBonus": "No points",
+    "history": "History",
+    "historyCount": "Total ${count}",
+    "noHistory": "No transaction history"
+  }
+}

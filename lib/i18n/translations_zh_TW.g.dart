@@ -53,11 +53,19 @@ class TranslationsZhTw extends Translations with BaseTranslations<AppLocale, Tra
   @override
   late final _TranslationsCommonZhTw common = _TranslationsCommonZhTw._(_root);
   @override
+  late final _TranslationsInventoryZhTw inventory = _TranslationsInventoryZhTw._(_root);
+  @override
+  late final _TranslationsMachinesZhTw machines = _TranslationsMachinesZhTw._(_root);
+  @override
+  late final _TranslationsMaintenanceZhTw maintenance = _TranslationsMaintenanceZhTw._(_root);
+  @override
   late final _TranslationsNavigationZhTw navigation = _TranslationsNavigationZhTw._(_root);
   @override
   late final _TranslationsNetworkZhTw network = _TranslationsNetworkZhTw._(_root);
   @override
-  late final _TranslationsSplashZhTw splash = _TranslationsSplashZhTw._(_root);
+  late final _TranslationsProfileZhTw profile = _TranslationsProfileZhTw._(_root);
+  @override
+  late final _TranslationsSettingsZhTw settings = _TranslationsSettingsZhTw._(_root);
   @override
   late final _TranslationsTimeZhTw time = _TranslationsTimeZhTw._(_root);
 }
@@ -268,6 +276,136 @@ class _TranslationsCommonZhTw extends TranslationsCommonZhCn {
   String get warning => TranslationOverrides.string(_root.$meta, 'common.warning', {}) ?? '警告';
 }
 
+// Path: inventory
+class _TranslationsInventoryZhTw extends TranslationsInventoryZhCn {
+  _TranslationsInventoryZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+
+  final TranslationsZhTw _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get machineList => TranslationOverrides.string(_root.$meta, 'inventory.machineList', {}) ?? '補貨管理';
+  @override
+  String get totalSlots => TranslationOverrides.string(_root.$meta, 'inventory.totalSlots', {}) ?? '總貨道';
+  @override
+  String get lowStockSlots => TranslationOverrides.string(_root.$meta, 'inventory.lowStockSlots', {}) ?? '低庫存';
+  @override
+  String get emptySlots => TranslationOverrides.string(_root.$meta, 'inventory.emptySlots', {}) ?? '空貨道';
+  @override
+  String get slotList => TranslationOverrides.string(_root.$meta, 'inventory.slotList', {}) ?? '貨道管理';
+  @override
+  String get slotNumber => TranslationOverrides.string(_root.$meta, 'inventory.slotNumber', {}) ?? '貨道編號';
+  @override
+  String get productName => TranslationOverrides.string(_root.$meta, 'inventory.productName', {}) ?? '商品名稱';
+  @override
+  String get quantity => TranslationOverrides.string(_root.$meta, 'inventory.quantity', {}) ?? '數量';
+  @override
+  String get lowStock => TranslationOverrides.string(_root.$meta, 'inventory.lowStock', {}) ?? '低庫存';
+  @override
+  String get empty => TranslationOverrides.string(_root.$meta, 'inventory.empty', {}) ?? '空貨道';
+  @override
+  String get editQuantity => TranslationOverrides.string(_root.$meta, 'inventory.editQuantity', {}) ?? '編輯數量';
+  @override
+  String get confirm => TranslationOverrides.string(_root.$meta, 'inventory.confirm', {}) ?? '確認';
+  @override
+  String get cancel => TranslationOverrides.string(_root.$meta, 'inventory.cancel', {}) ?? '取消';
+  @override
+  String get updateSuccess => TranslationOverrides.string(_root.$meta, 'inventory.updateSuccess', {}) ?? '更新成功';
+  @override
+  String get updateFailed => TranslationOverrides.string(_root.$meta, 'inventory.updateFailed', {}) ?? '更新失敗';
+  @override
+  String get quantityMustBeNonNegative =>
+      TranslationOverrides.string(_root.$meta, 'inventory.quantityMustBeNonNegative', {}) ?? '數量必須為非負整數';
+  @override
+  String get emptyState => TranslationOverrides.string(_root.$meta, 'inventory.emptyState', {}) ?? '暫無貨道';
+}
+
+// Path: machines
+class _TranslationsMachinesZhTw extends TranslationsMachinesZhCn {
+  _TranslationsMachinesZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+
+  final TranslationsZhTw _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get dashboard => TranslationOverrides.string(_root.$meta, 'machines.dashboard', {}) ?? '營運儀表板';
+  @override
+  String get machineList => TranslationOverrides.string(_root.$meta, 'machines.machineList', {}) ?? '機器列表';
+  @override
+  String get orderList => TranslationOverrides.string(_root.$meta, 'machines.orderList', {}) ?? '訂單記錄';
+  @override
+  String get revenueTrend => TranslationOverrides.string(_root.$meta, 'machines.revenueTrend', {}) ?? '營收趨勢';
+  @override
+  String get orderVolume => TranslationOverrides.string(_root.$meta, 'machines.orderVolume', {}) ?? '訂單量';
+  @override
+  String get productSalesRatio =>
+      TranslationOverrides.string(_root.$meta, 'machines.productSalesRatio', {}) ?? '商品銷售佔比';
+  @override
+  String get machineRevenueComparison =>
+      TranslationOverrides.string(_root.$meta, 'machines.machineRevenueComparison', {}) ?? '機器收益對比';
+  @override
+  String get totalRevenue => TranslationOverrides.string(_root.$meta, 'machines.totalRevenue', {}) ?? '總營收';
+  @override
+  String get totalOrders => TranslationOverrides.string(_root.$meta, 'machines.totalOrders', {}) ?? '總訂單數';
+  @override
+  String get dailyAvgRevenue => TranslationOverrides.string(_root.$meta, 'machines.dailyAvgRevenue', {}) ?? '日均營收';
+  @override
+  String get growthRate => TranslationOverrides.string(_root.$meta, 'machines.growthRate', {}) ?? '環比增長率';
+  @override
+  String get noChartData => TranslationOverrides.string(_root.$meta, 'machines.noChartData', {}) ?? '暫無數據';
+  @override
+  String get loading => TranslationOverrides.string(_root.$meta, 'machines.loading', {}) ?? '載入中';
+  @override
+  String get currencyPrefix => TranslationOverrides.string(_root.$meta, 'machines.currencyPrefix', {}) ?? '¥';
+  @override
+  String get emptyState => TranslationOverrides.string(_root.$meta, 'machines.emptyState', {}) ?? '暫無機器';
+  @override
+  String get emptyOrders => TranslationOverrides.string(_root.$meta, 'machines.emptyOrders', {}) ?? '暫無訂單';
+  @override
+  late final _TranslationsMachinesTimePeriodZhTw timePeriod = _TranslationsMachinesTimePeriodZhTw._(_root);
+}
+
+// Path: maintenance
+class _TranslationsMaintenanceZhTw extends TranslationsMaintenanceZhCn {
+  _TranslationsMaintenanceZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+
+  final TranslationsZhTw _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get machineList => TranslationOverrides.string(_root.$meta, 'maintenance.machineList', {}) ?? '維護管理';
+  @override
+  String get faultCount => TranslationOverrides.string(_root.$meta, 'maintenance.faultCount', {}) ?? '故障次數';
+  @override
+  String get lastFaultAt => TranslationOverrides.string(_root.$meta, 'maintenance.lastFaultAt', {}) ?? '最近故障時間';
+  @override
+  String get noFaults => TranslationOverrides.string(_root.$meta, 'maintenance.noFaults', {}) ?? '無故障';
+  @override
+  String get faultList => TranslationOverrides.string(_root.$meta, 'maintenance.faultList', {}) ?? '故障記錄';
+  @override
+  String get faultType => TranslationOverrides.string(_root.$meta, 'maintenance.faultType', {}) ?? '故障類型';
+  @override
+  String get description => TranslationOverrides.string(_root.$meta, 'maintenance.description', {}) ?? '描述';
+  @override
+  String get occurredAt => TranslationOverrides.string(_root.$meta, 'maintenance.occurredAt', {}) ?? '發生時間';
+  @override
+  String get pending => TranslationOverrides.string(_root.$meta, 'maintenance.pending', {}) ?? '待處理';
+  @override
+  String get resolved => TranslationOverrides.string(_root.$meta, 'maintenance.resolved', {}) ?? '已解決';
+  @override
+  String get statusPending => TranslationOverrides.string(_root.$meta, 'maintenance.statusPending', {}) ?? '待處理';
+  @override
+  String get statusResolved => TranslationOverrides.string(_root.$meta, 'maintenance.statusResolved', {}) ?? '已解決';
+  @override
+  String get noFaultRecords => TranslationOverrides.string(_root.$meta, 'maintenance.noFaultRecords', {}) ?? '暫無故障記錄';
+  @override
+  String get emptyState => TranslationOverrides.string(_root.$meta, 'maintenance.emptyState', {}) ?? '暫無機器';
+  @override
+  String get loadFailed => TranslationOverrides.string(_root.$meta, 'maintenance.loadFailed', {}) ?? '載入失敗';
+  @override
+  String get retry => TranslationOverrides.string(_root.$meta, 'maintenance.retry', {}) ?? '重試';
+}
+
 // Path: navigation
 class _TranslationsNavigationZhTw extends TranslationsNavigationZhCn {
   _TranslationsNavigationZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
@@ -276,11 +414,11 @@ class _TranslationsNavigationZhTw extends TranslationsNavigationZhCn {
 
   // Translations
   @override
-  String get home => TranslationOverrides.string(_root.$meta, 'navigation.home', {}) ?? '首頁';
+  String get machines => TranslationOverrides.string(_root.$meta, 'navigation.machines', {}) ?? '代理';
   @override
-  String get device => TranslationOverrides.string(_root.$meta, 'navigation.device', {}) ?? '設備';
+  String get inventory => TranslationOverrides.string(_root.$meta, 'navigation.inventory', {}) ?? '庫存';
   @override
-  String get orders => TranslationOverrides.string(_root.$meta, 'navigation.orders', {}) ?? '訂單';
+  String get maintenance => TranslationOverrides.string(_root.$meta, 'navigation.maintenance', {}) ?? '維護';
   @override
   String get profile => TranslationOverrides.string(_root.$meta, 'navigation.profile', {}) ?? '我的';
 }
@@ -296,27 +434,131 @@ class _TranslationsNetworkZhTw extends TranslationsNetworkZhCn {
   late final _TranslationsNetworkErrorsZhTw errors = _TranslationsNetworkErrorsZhTw._(_root);
 }
 
-// Path: splash
-class _TranslationsSplashZhTw extends TranslationsSplashZhCn {
-  _TranslationsSplashZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+// Path: profile
+class _TranslationsProfileZhTw extends TranslationsProfileZhCn {
+  _TranslationsProfileZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
   // Translations
   @override
-  String get starting => TranslationOverrides.string(_root.$meta, 'splash.starting', {}) ?? '正在啟動...';
+  String get title => TranslationOverrides.string(_root.$meta, 'profile.title', {}) ?? '用戶中心';
   @override
-  String get checkingServices => TranslationOverrides.string(_root.$meta, 'splash.checkingServices', {}) ?? '檢查服務狀態...';
+  String get notLoggedIn => TranslationOverrides.string(_root.$meta, 'profile.notLoggedIn', {}) ?? '未登入';
   @override
-  String get loadingConfig => TranslationOverrides.string(_root.$meta, 'splash.loadingConfig', {}) ?? '載入配置...';
+  String get editProfile => TranslationOverrides.string(_root.$meta, 'profile.editProfile', {}) ?? '編輯資料';
   @override
-  String get checkingAuth => TranslationOverrides.string(_root.$meta, 'splash.checkingAuth', {}) ?? '檢查登入狀態...';
+  String get logout => TranslationOverrides.string(_root.$meta, 'profile.logout', {}) ?? '登出';
   @override
-  String get preparingData => TranslationOverrides.string(_root.$meta, 'splash.preparingData', {}) ?? '準備數據...';
+  String get favoriteDevices => TranslationOverrides.string(_root.$meta, 'profile.favoriteDevices', {}) ?? '收藏設備';
   @override
-  String get ready => TranslationOverrides.string(_root.$meta, 'splash.ready', {}) ?? '啟動完成';
+  String get personalInfo => TranslationOverrides.string(_root.$meta, 'profile.personalInfo', {}) ?? '個人資訊';
   @override
-  String get failed => TranslationOverrides.string(_root.$meta, 'splash.failed', {}) ?? '啟動失敗';
+  String get confirmLogout => TranslationOverrides.string(_root.$meta, 'profile.confirmLogout', {}) ?? '確認登出';
+  @override
+  String get confirmLogoutContent =>
+      TranslationOverrides.string(_root.$meta, 'profile.confirmLogoutContent', {}) ?? '確定要登出嗎？';
+  @override
+  String get clearCacheConfirm =>
+      TranslationOverrides.string(_root.$meta, 'profile.clearCacheConfirm', {}) ?? '確定要清除所有快取數據嗎？';
+  @override
+  String get noFavoriteDevices => TranslationOverrides.string(_root.$meta, 'profile.noFavoriteDevices', {}) ?? '暫無收藏設備';
+  @override
+  String get removeFavorite => TranslationOverrides.string(_root.$meta, 'profile.removeFavorite', {}) ?? '取消收藏';
+  @override
+  String removeFavoriteConfirm({required Object name}) =>
+      TranslationOverrides.string(_root.$meta, 'profile.removeFavoriteConfirm', {'name': name}) ?? '確定要取消收藏"${name}"嗎？';
+  @override
+  String get appDescription =>
+      TranslationOverrides.string(_root.$meta, 'profile.appDescription', {}) ?? '一個便捷的自動售貨機購買應用';
+  @override
+  String version({required Object version}) =>
+      TranslationOverrides.string(_root.$meta, 'profile.version', {'version': version}) ?? '版本：${version}';
+  @override
+  String get wallet => TranslationOverrides.string(_root.$meta, 'profile.wallet', {}) ?? '我的錢包';
+  @override
+  String get coupon => TranslationOverrides.string(_root.$meta, 'profile.coupon', {}) ?? '優惠券';
+  @override
+  String get feedback => TranslationOverrides.string(_root.$meta, 'profile.feedback', {}) ?? '問題反饋';
+  @override
+  String get cooperation => TranslationOverrides.string(_root.$meta, 'profile.cooperation', {}) ?? '合作商加盟';
+  @override
+  String get about => TranslationOverrides.string(_root.$meta, 'profile.about', {}) ?? '關於我們';
+  @override
+  String get settings => TranslationOverrides.string(_root.$meta, 'profile.settings', {}) ?? '設置';
+  @override
+  late final _TranslationsProfileGenderZhTw gender = _TranslationsProfileGenderZhTw._(_root);
+  @override
+  late final _TranslationsProfileInfoZhTw info = _TranslationsProfileInfoZhTw._(_root);
+  @override
+  late final _TranslationsProfileAvatarZhTw avatar = _TranslationsProfileAvatarZhTw._(_root);
+  @override
+  String get saveSuccess => TranslationOverrides.string(_root.$meta, 'profile.saveSuccess', {}) ?? '保存成功';
+  @override
+  String saveFailed({required Object error}) =>
+      TranslationOverrides.string(_root.$meta, 'profile.saveFailed', {'error': error}) ?? '保存失敗: ${error}';
+  @override
+  String get saveInfo => TranslationOverrides.string(_root.$meta, 'profile.saveInfo', {}) ?? '保存信息';
+  @override
+  String get walletBalance => TranslationOverrides.string(_root.$meta, 'profile.walletBalance', {}) ?? '錢包餘額';
+  @override
+  String get coin => TranslationOverrides.string(_root.$meta, 'profile.coin', {}) ?? '積分';
+  @override
+  String get couponCount => TranslationOverrides.string(_root.$meta, 'profile.couponCount', {}) ?? '優惠券';
+  @override
+  String get pointsMall => TranslationOverrides.string(_root.$meta, 'profile.pointsMall', {}) ?? '積分兌換';
+}
+
+// Path: settings
+class _TranslationsSettingsZhTw extends TranslationsSettingsZhCn {
+  _TranslationsSettingsZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+
+  final TranslationsZhTw _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => TranslationOverrides.string(_root.$meta, 'settings.title', {}) ?? '設定';
+  @override
+  String get general => TranslationOverrides.string(_root.$meta, 'settings.general', {}) ?? '通用';
+  @override
+  String get language => TranslationOverrides.string(_root.$meta, 'settings.language', {}) ?? '語言';
+  @override
+  String get checkUpdate => TranslationOverrides.string(_root.$meta, 'settings.checkUpdate', {}) ?? '檢查更新';
+  @override
+  String get clearCache => TranslationOverrides.string(_root.$meta, 'settings.clearCache', {}) ?? '清除快取';
+  @override
+  String get about => TranslationOverrides.string(_root.$meta, 'settings.about', {}) ?? '關於';
+  @override
+  String get deviceInfo => TranslationOverrides.string(_root.$meta, 'settings.deviceInfo', {}) ?? '設備資訊';
+  @override
+  String get aboutUs => TranslationOverrides.string(_root.$meta, 'settings.aboutUs', {}) ?? '關於我們';
+  @override
+  String get checkingUpdate => TranslationOverrides.string(_root.$meta, 'settings.checkingUpdate', {}) ?? '正在檢查更新...';
+  @override
+  String get cacheCleared => TranslationOverrides.string(_root.$meta, 'settings.cacheCleared', {}) ?? '快取已清除';
+  @override
+  String get english => TranslationOverrides.string(_root.$meta, 'settings.english', {}) ?? '英語';
+  @override
+  String get chinese => TranslationOverrides.string(_root.$meta, 'settings.chinese', {}) ?? '簡體中文';
+  @override
+  String get traditionalChinese =>
+      TranslationOverrides.string(_root.$meta, 'settings.traditionalChinese', {}) ?? '繁體中文';
+  @override
+  String get theme => TranslationOverrides.string(_root.$meta, 'settings.theme', {}) ?? '主題模式';
+  @override
+  String get themeScheme => TranslationOverrides.string(_root.$meta, 'settings.themeScheme', {}) ?? '主題配色';
+  @override
+  late final _TranslationsSettingsSchemesZhTw schemes = _TranslationsSettingsSchemesZhTw._(_root);
+  @override
+  String get appName => TranslationOverrides.string(_root.$meta, 'settings.appName', {}) ?? '應用名稱';
+  @override
+  String get packageName => TranslationOverrides.string(_root.$meta, 'settings.packageName', {}) ?? '包名';
+  @override
+  String get versionName => TranslationOverrides.string(_root.$meta, 'settings.versionName', {}) ?? '版本號';
+  @override
+  String get buildNumber => TranslationOverrides.string(_root.$meta, 'settings.buildNumber', {}) ?? '構建號';
+  @override
+  String get copyright => TranslationOverrides.string(_root.$meta, 'settings.copyright', {}) ?? '© 2024 Lunchbox Team';
 }
 
 // Path: time
@@ -337,6 +579,25 @@ class _TranslationsTimeZhTw extends TranslationsTimeZhCn {
   @override
   String daysAgo({required Object days}) =>
       TranslationOverrides.string(_root.$meta, 'time.daysAgo', {'days': days}) ?? '${days} 天前';
+}
+
+// Path: machines.timePeriod
+class _TranslationsMachinesTimePeriodZhTw extends TranslationsMachinesTimePeriodZhCn {
+  _TranslationsMachinesTimePeriodZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+
+  final TranslationsZhTw _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get day => TranslationOverrides.string(_root.$meta, 'machines.timePeriod.day', {}) ?? '日';
+  @override
+  String get week => TranslationOverrides.string(_root.$meta, 'machines.timePeriod.week', {}) ?? '週';
+  @override
+  String get month => TranslationOverrides.string(_root.$meta, 'machines.timePeriod.month', {}) ?? '月';
+  @override
+  String get quarter => TranslationOverrides.string(_root.$meta, 'machines.timePeriod.quarter', {}) ?? '季度';
+  @override
+  String get year => TranslationOverrides.string(_root.$meta, 'machines.timePeriod.year', {}) ?? '年';
 }
 
 // Path: network.errors
@@ -404,6 +665,77 @@ class _TranslationsNetworkErrorsZhTw extends TranslationsNetworkErrorsZhCn {
   @override
   String requestError({required Object code}) =>
       TranslationOverrides.string(_root.$meta, 'network.errors.requestError', {'code': code}) ?? '请求错误 (${code})';
+}
+
+// Path: profile.gender
+class _TranslationsProfileGenderZhTw extends TranslationsProfileGenderZhCn {
+  _TranslationsProfileGenderZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+
+  final TranslationsZhTw _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get male => TranslationOverrides.string(_root.$meta, 'profile.gender.male', {}) ?? '男';
+  @override
+  String get female => TranslationOverrides.string(_root.$meta, 'profile.gender.female', {}) ?? '女';
+  @override
+  String get unknown => TranslationOverrides.string(_root.$meta, 'profile.gender.unknown', {}) ?? '保密';
+}
+
+// Path: profile.info
+class _TranslationsProfileInfoZhTw extends TranslationsProfileInfoZhCn {
+  _TranslationsProfileInfoZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+
+  final TranslationsZhTw _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get basic => TranslationOverrides.string(_root.$meta, 'profile.info.basic', {}) ?? '基本信息';
+  @override
+  String get other => TranslationOverrides.string(_root.$meta, 'profile.info.other', {}) ?? '其他信息';
+  @override
+  String get phone => TranslationOverrides.string(_root.$meta, 'profile.info.phone', {}) ?? '手機號';
+  @override
+  String get gender => TranslationOverrides.string(_root.$meta, 'profile.info.gender', {}) ?? '性別';
+  @override
+  String get birthday => TranslationOverrides.string(_root.$meta, 'profile.info.birthday', {}) ?? '生日';
+  @override
+  String get email => TranslationOverrides.string(_root.$meta, 'profile.info.email', {}) ?? '郵箱';
+  @override
+  String get notSet => TranslationOverrides.string(_root.$meta, 'profile.info.notSet', {}) ?? '未設置';
+}
+
+// Path: profile.avatar
+class _TranslationsProfileAvatarZhTw extends TranslationsProfileAvatarZhCn {
+  _TranslationsProfileAvatarZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+
+  final TranslationsZhTw _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get clickToChange => TranslationOverrides.string(_root.$meta, 'profile.avatar.clickToChange', {}) ?? '點擊更換頭像';
+  @override
+  String get uploading => TranslationOverrides.string(_root.$meta, 'profile.avatar.uploading', {}) ?? '頭像上傳功能開發中';
+}
+
+// Path: settings.schemes
+class _TranslationsSettingsSchemesZhTw extends TranslationsSettingsSchemesZhCn {
+  _TranslationsSettingsSchemesZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+
+  final TranslationsZhTw _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get shadOrange =>
+      TranslationOverrides.string(_root.$meta, 'settings.schemes.shadOrange', {}) ?? '活力橙 (ShadOrange)';
+  @override
+  String get shadGreen =>
+      TranslationOverrides.string(_root.$meta, 'settings.schemes.shadGreen', {}) ?? '自然綠 (ShadGreen)';
+  @override
+  String get bahamaBlue =>
+      TranslationOverrides.string(_root.$meta, 'settings.schemes.bahamaBlue', {}) ?? '巴哈馬藍 (BahamaBlue)';
+  @override
+  String get damask => TranslationOverrides.string(_root.$meta, 'settings.schemes.damask', {}) ?? '錦緞紅 (Damask)';
 }
 
 /// The flat map containing all translations for locale <zh-TW>.
@@ -535,9 +867,69 @@ extension on TranslationsZhTw {
             }) ??
             '驗證錯誤：${message} (${errors})',
       'common.warning' => TranslationOverrides.string(_root.$meta, 'common.warning', {}) ?? '警告',
-      'navigation.home' => TranslationOverrides.string(_root.$meta, 'navigation.home', {}) ?? '首頁',
-      'navigation.device' => TranslationOverrides.string(_root.$meta, 'navigation.device', {}) ?? '設備',
-      'navigation.orders' => TranslationOverrides.string(_root.$meta, 'navigation.orders', {}) ?? '訂單',
+      'inventory.machineList' => TranslationOverrides.string(_root.$meta, 'inventory.machineList', {}) ?? '補貨管理',
+      'inventory.totalSlots' => TranslationOverrides.string(_root.$meta, 'inventory.totalSlots', {}) ?? '總貨道',
+      'inventory.lowStockSlots' => TranslationOverrides.string(_root.$meta, 'inventory.lowStockSlots', {}) ?? '低庫存',
+      'inventory.emptySlots' => TranslationOverrides.string(_root.$meta, 'inventory.emptySlots', {}) ?? '空貨道',
+      'inventory.slotList' => TranslationOverrides.string(_root.$meta, 'inventory.slotList', {}) ?? '貨道管理',
+      'inventory.slotNumber' => TranslationOverrides.string(_root.$meta, 'inventory.slotNumber', {}) ?? '貨道編號',
+      'inventory.productName' => TranslationOverrides.string(_root.$meta, 'inventory.productName', {}) ?? '商品名稱',
+      'inventory.quantity' => TranslationOverrides.string(_root.$meta, 'inventory.quantity', {}) ?? '數量',
+      'inventory.lowStock' => TranslationOverrides.string(_root.$meta, 'inventory.lowStock', {}) ?? '低庫存',
+      'inventory.empty' => TranslationOverrides.string(_root.$meta, 'inventory.empty', {}) ?? '空貨道',
+      'inventory.editQuantity' => TranslationOverrides.string(_root.$meta, 'inventory.editQuantity', {}) ?? '編輯數量',
+      'inventory.confirm' => TranslationOverrides.string(_root.$meta, 'inventory.confirm', {}) ?? '確認',
+      'inventory.cancel' => TranslationOverrides.string(_root.$meta, 'inventory.cancel', {}) ?? '取消',
+      'inventory.updateSuccess' => TranslationOverrides.string(_root.$meta, 'inventory.updateSuccess', {}) ?? '更新成功',
+      'inventory.updateFailed' => TranslationOverrides.string(_root.$meta, 'inventory.updateFailed', {}) ?? '更新失敗',
+      'inventory.quantityMustBeNonNegative' =>
+        TranslationOverrides.string(_root.$meta, 'inventory.quantityMustBeNonNegative', {}) ?? '數量必須為非負整數',
+      'inventory.emptyState' => TranslationOverrides.string(_root.$meta, 'inventory.emptyState', {}) ?? '暫無貨道',
+      'machines.dashboard' => TranslationOverrides.string(_root.$meta, 'machines.dashboard', {}) ?? '營運儀表板',
+      'machines.machineList' => TranslationOverrides.string(_root.$meta, 'machines.machineList', {}) ?? '機器列表',
+      'machines.orderList' => TranslationOverrides.string(_root.$meta, 'machines.orderList', {}) ?? '訂單記錄',
+      'machines.revenueTrend' => TranslationOverrides.string(_root.$meta, 'machines.revenueTrend', {}) ?? '營收趨勢',
+      'machines.orderVolume' => TranslationOverrides.string(_root.$meta, 'machines.orderVolume', {}) ?? '訂單量',
+      'machines.productSalesRatio' =>
+        TranslationOverrides.string(_root.$meta, 'machines.productSalesRatio', {}) ?? '商品銷售佔比',
+      'machines.machineRevenueComparison' =>
+        TranslationOverrides.string(_root.$meta, 'machines.machineRevenueComparison', {}) ?? '機器收益對比',
+      'machines.totalRevenue' => TranslationOverrides.string(_root.$meta, 'machines.totalRevenue', {}) ?? '總營收',
+      'machines.totalOrders' => TranslationOverrides.string(_root.$meta, 'machines.totalOrders', {}) ?? '總訂單數',
+      'machines.dailyAvgRevenue' => TranslationOverrides.string(_root.$meta, 'machines.dailyAvgRevenue', {}) ?? '日均營收',
+      'machines.growthRate' => TranslationOverrides.string(_root.$meta, 'machines.growthRate', {}) ?? '環比增長率',
+      'machines.noChartData' => TranslationOverrides.string(_root.$meta, 'machines.noChartData', {}) ?? '暫無數據',
+      'machines.loading' => TranslationOverrides.string(_root.$meta, 'machines.loading', {}) ?? '載入中',
+      'machines.currencyPrefix' => TranslationOverrides.string(_root.$meta, 'machines.currencyPrefix', {}) ?? '¥',
+      'machines.emptyState' => TranslationOverrides.string(_root.$meta, 'machines.emptyState', {}) ?? '暫無機器',
+      'machines.emptyOrders' => TranslationOverrides.string(_root.$meta, 'machines.emptyOrders', {}) ?? '暫無訂單',
+      'machines.timePeriod.day' => TranslationOverrides.string(_root.$meta, 'machines.timePeriod.day', {}) ?? '日',
+      'machines.timePeriod.week' => TranslationOverrides.string(_root.$meta, 'machines.timePeriod.week', {}) ?? '週',
+      'machines.timePeriod.month' => TranslationOverrides.string(_root.$meta, 'machines.timePeriod.month', {}) ?? '月',
+      'machines.timePeriod.quarter' =>
+        TranslationOverrides.string(_root.$meta, 'machines.timePeriod.quarter', {}) ?? '季度',
+      'machines.timePeriod.year' => TranslationOverrides.string(_root.$meta, 'machines.timePeriod.year', {}) ?? '年',
+      'maintenance.machineList' => TranslationOverrides.string(_root.$meta, 'maintenance.machineList', {}) ?? '維護管理',
+      'maintenance.faultCount' => TranslationOverrides.string(_root.$meta, 'maintenance.faultCount', {}) ?? '故障次數',
+      'maintenance.lastFaultAt' => TranslationOverrides.string(_root.$meta, 'maintenance.lastFaultAt', {}) ?? '最近故障時間',
+      'maintenance.noFaults' => TranslationOverrides.string(_root.$meta, 'maintenance.noFaults', {}) ?? '無故障',
+      'maintenance.faultList' => TranslationOverrides.string(_root.$meta, 'maintenance.faultList', {}) ?? '故障記錄',
+      'maintenance.faultType' => TranslationOverrides.string(_root.$meta, 'maintenance.faultType', {}) ?? '故障類型',
+      'maintenance.description' => TranslationOverrides.string(_root.$meta, 'maintenance.description', {}) ?? '描述',
+      'maintenance.occurredAt' => TranslationOverrides.string(_root.$meta, 'maintenance.occurredAt', {}) ?? '發生時間',
+      'maintenance.pending' => TranslationOverrides.string(_root.$meta, 'maintenance.pending', {}) ?? '待處理',
+      'maintenance.resolved' => TranslationOverrides.string(_root.$meta, 'maintenance.resolved', {}) ?? '已解決',
+      'maintenance.statusPending' => TranslationOverrides.string(_root.$meta, 'maintenance.statusPending', {}) ?? '待處理',
+      'maintenance.statusResolved' =>
+        TranslationOverrides.string(_root.$meta, 'maintenance.statusResolved', {}) ?? '已解決',
+      'maintenance.noFaultRecords' =>
+        TranslationOverrides.string(_root.$meta, 'maintenance.noFaultRecords', {}) ?? '暫無故障記錄',
+      'maintenance.emptyState' => TranslationOverrides.string(_root.$meta, 'maintenance.emptyState', {}) ?? '暫無機器',
+      'maintenance.loadFailed' => TranslationOverrides.string(_root.$meta, 'maintenance.loadFailed', {}) ?? '載入失敗',
+      'maintenance.retry' => TranslationOverrides.string(_root.$meta, 'maintenance.retry', {}) ?? '重試',
+      'navigation.machines' => TranslationOverrides.string(_root.$meta, 'navigation.machines', {}) ?? '代理',
+      'navigation.inventory' => TranslationOverrides.string(_root.$meta, 'navigation.inventory', {}) ?? '庫存',
+      'navigation.maintenance' => TranslationOverrides.string(_root.$meta, 'navigation.maintenance', {}) ?? '維護',
       'navigation.profile' => TranslationOverrides.string(_root.$meta, 'navigation.profile', {}) ?? '我的',
       'network.errors.connectionError' =>
         TranslationOverrides.string(_root.$meta, 'network.errors.connectionError', {}) ?? '网络连接失败，请检查您的网络设置',
@@ -583,14 +975,89 @@ extension on TranslationsZhTw {
       'network.errors.requestError' =>
         ({required Object code}) =>
             TranslationOverrides.string(_root.$meta, 'network.errors.requestError', {'code': code}) ?? '请求错误 (${code})',
-      'splash.starting' => TranslationOverrides.string(_root.$meta, 'splash.starting', {}) ?? '正在啟動...',
-      'splash.checkingServices' =>
-        TranslationOverrides.string(_root.$meta, 'splash.checkingServices', {}) ?? '檢查服務狀態...',
-      'splash.loadingConfig' => TranslationOverrides.string(_root.$meta, 'splash.loadingConfig', {}) ?? '載入配置...',
-      'splash.checkingAuth' => TranslationOverrides.string(_root.$meta, 'splash.checkingAuth', {}) ?? '檢查登入狀態...',
-      'splash.preparingData' => TranslationOverrides.string(_root.$meta, 'splash.preparingData', {}) ?? '準備數據...',
-      'splash.ready' => TranslationOverrides.string(_root.$meta, 'splash.ready', {}) ?? '啟動完成',
-      'splash.failed' => TranslationOverrides.string(_root.$meta, 'splash.failed', {}) ?? '啟動失敗',
+      'profile.title' => TranslationOverrides.string(_root.$meta, 'profile.title', {}) ?? '用戶中心',
+      'profile.notLoggedIn' => TranslationOverrides.string(_root.$meta, 'profile.notLoggedIn', {}) ?? '未登入',
+      'profile.editProfile' => TranslationOverrides.string(_root.$meta, 'profile.editProfile', {}) ?? '編輯資料',
+      'profile.logout' => TranslationOverrides.string(_root.$meta, 'profile.logout', {}) ?? '登出',
+      'profile.favoriteDevices' => TranslationOverrides.string(_root.$meta, 'profile.favoriteDevices', {}) ?? '收藏設備',
+      'profile.personalInfo' => TranslationOverrides.string(_root.$meta, 'profile.personalInfo', {}) ?? '個人資訊',
+      'profile.confirmLogout' => TranslationOverrides.string(_root.$meta, 'profile.confirmLogout', {}) ?? '確認登出',
+      'profile.confirmLogoutContent' =>
+        TranslationOverrides.string(_root.$meta, 'profile.confirmLogoutContent', {}) ?? '確定要登出嗎？',
+      'profile.clearCacheConfirm' =>
+        TranslationOverrides.string(_root.$meta, 'profile.clearCacheConfirm', {}) ?? '確定要清除所有快取數據嗎？',
+      'profile.noFavoriteDevices' =>
+        TranslationOverrides.string(_root.$meta, 'profile.noFavoriteDevices', {}) ?? '暫無收藏設備',
+      'profile.removeFavorite' => TranslationOverrides.string(_root.$meta, 'profile.removeFavorite', {}) ?? '取消收藏',
+      'profile.removeFavoriteConfirm' =>
+        ({required Object name}) =>
+            TranslationOverrides.string(_root.$meta, 'profile.removeFavoriteConfirm', {'name': name}) ??
+            '確定要取消收藏"${name}"嗎？',
+      'profile.appDescription' =>
+        TranslationOverrides.string(_root.$meta, 'profile.appDescription', {}) ?? '一個便捷的自動售貨機購買應用',
+      'profile.version' =>
+        ({required Object version}) =>
+            TranslationOverrides.string(_root.$meta, 'profile.version', {'version': version}) ?? '版本：${version}',
+      'profile.wallet' => TranslationOverrides.string(_root.$meta, 'profile.wallet', {}) ?? '我的錢包',
+      'profile.coupon' => TranslationOverrides.string(_root.$meta, 'profile.coupon', {}) ?? '優惠券',
+      'profile.feedback' => TranslationOverrides.string(_root.$meta, 'profile.feedback', {}) ?? '問題反饋',
+      'profile.cooperation' => TranslationOverrides.string(_root.$meta, 'profile.cooperation', {}) ?? '合作商加盟',
+      'profile.about' => TranslationOverrides.string(_root.$meta, 'profile.about', {}) ?? '關於我們',
+      'profile.settings' => TranslationOverrides.string(_root.$meta, 'profile.settings', {}) ?? '設置',
+      'profile.gender.male' => TranslationOverrides.string(_root.$meta, 'profile.gender.male', {}) ?? '男',
+      'profile.gender.female' => TranslationOverrides.string(_root.$meta, 'profile.gender.female', {}) ?? '女',
+      'profile.gender.unknown' => TranslationOverrides.string(_root.$meta, 'profile.gender.unknown', {}) ?? '保密',
+      'profile.info.basic' => TranslationOverrides.string(_root.$meta, 'profile.info.basic', {}) ?? '基本信息',
+      'profile.info.other' => TranslationOverrides.string(_root.$meta, 'profile.info.other', {}) ?? '其他信息',
+      'profile.info.phone' => TranslationOverrides.string(_root.$meta, 'profile.info.phone', {}) ?? '手機號',
+      'profile.info.gender' => TranslationOverrides.string(_root.$meta, 'profile.info.gender', {}) ?? '性別',
+      'profile.info.birthday' => TranslationOverrides.string(_root.$meta, 'profile.info.birthday', {}) ?? '生日',
+      'profile.info.email' => TranslationOverrides.string(_root.$meta, 'profile.info.email', {}) ?? '郵箱',
+      'profile.info.notSet' => TranslationOverrides.string(_root.$meta, 'profile.info.notSet', {}) ?? '未設置',
+      'profile.avatar.clickToChange' =>
+        TranslationOverrides.string(_root.$meta, 'profile.avatar.clickToChange', {}) ?? '點擊更換頭像',
+      'profile.avatar.uploading' =>
+        TranslationOverrides.string(_root.$meta, 'profile.avatar.uploading', {}) ?? '頭像上傳功能開發中',
+      'profile.saveSuccess' => TranslationOverrides.string(_root.$meta, 'profile.saveSuccess', {}) ?? '保存成功',
+      'profile.saveFailed' =>
+        ({required Object error}) =>
+            TranslationOverrides.string(_root.$meta, 'profile.saveFailed', {'error': error}) ?? '保存失敗: ${error}',
+      'profile.saveInfo' => TranslationOverrides.string(_root.$meta, 'profile.saveInfo', {}) ?? '保存信息',
+      'profile.walletBalance' => TranslationOverrides.string(_root.$meta, 'profile.walletBalance', {}) ?? '錢包餘額',
+      'profile.coin' => TranslationOverrides.string(_root.$meta, 'profile.coin', {}) ?? '積分',
+      'profile.couponCount' => TranslationOverrides.string(_root.$meta, 'profile.couponCount', {}) ?? '優惠券',
+      'profile.pointsMall' => TranslationOverrides.string(_root.$meta, 'profile.pointsMall', {}) ?? '積分兌換',
+      'settings.title' => TranslationOverrides.string(_root.$meta, 'settings.title', {}) ?? '設定',
+      'settings.general' => TranslationOverrides.string(_root.$meta, 'settings.general', {}) ?? '通用',
+      'settings.language' => TranslationOverrides.string(_root.$meta, 'settings.language', {}) ?? '語言',
+      'settings.checkUpdate' => TranslationOverrides.string(_root.$meta, 'settings.checkUpdate', {}) ?? '檢查更新',
+      'settings.clearCache' => TranslationOverrides.string(_root.$meta, 'settings.clearCache', {}) ?? '清除快取',
+      'settings.about' => TranslationOverrides.string(_root.$meta, 'settings.about', {}) ?? '關於',
+      'settings.deviceInfo' => TranslationOverrides.string(_root.$meta, 'settings.deviceInfo', {}) ?? '設備資訊',
+      'settings.aboutUs' => TranslationOverrides.string(_root.$meta, 'settings.aboutUs', {}) ?? '關於我們',
+      'settings.checkingUpdate' =>
+        TranslationOverrides.string(_root.$meta, 'settings.checkingUpdate', {}) ?? '正在檢查更新...',
+      'settings.cacheCleared' => TranslationOverrides.string(_root.$meta, 'settings.cacheCleared', {}) ?? '快取已清除',
+      'settings.english' => TranslationOverrides.string(_root.$meta, 'settings.english', {}) ?? '英語',
+      'settings.chinese' => TranslationOverrides.string(_root.$meta, 'settings.chinese', {}) ?? '簡體中文',
+      'settings.traditionalChinese' =>
+        TranslationOverrides.string(_root.$meta, 'settings.traditionalChinese', {}) ?? '繁體中文',
+      'settings.theme' => TranslationOverrides.string(_root.$meta, 'settings.theme', {}) ?? '主題模式',
+      'settings.themeScheme' => TranslationOverrides.string(_root.$meta, 'settings.themeScheme', {}) ?? '主題配色',
+      'settings.schemes.shadOrange' =>
+        TranslationOverrides.string(_root.$meta, 'settings.schemes.shadOrange', {}) ?? '活力橙 (ShadOrange)',
+      'settings.schemes.shadGreen' =>
+        TranslationOverrides.string(_root.$meta, 'settings.schemes.shadGreen', {}) ?? '自然綠 (ShadGreen)',
+      'settings.schemes.bahamaBlue' =>
+        TranslationOverrides.string(_root.$meta, 'settings.schemes.bahamaBlue', {}) ?? '巴哈馬藍 (BahamaBlue)',
+      'settings.schemes.damask' =>
+        TranslationOverrides.string(_root.$meta, 'settings.schemes.damask', {}) ?? '錦緞紅 (Damask)',
+      'settings.appName' => TranslationOverrides.string(_root.$meta, 'settings.appName', {}) ?? '應用名稱',
+      'settings.packageName' => TranslationOverrides.string(_root.$meta, 'settings.packageName', {}) ?? '包名',
+      'settings.versionName' => TranslationOverrides.string(_root.$meta, 'settings.versionName', {}) ?? '版本號',
+      'settings.buildNumber' => TranslationOverrides.string(_root.$meta, 'settings.buildNumber', {}) ?? '構建號',
+      'settings.copyright' =>
+        TranslationOverrides.string(_root.$meta, 'settings.copyright', {}) ?? '© 2024 Lunchbox Team',
       'time.justNow' => TranslationOverrides.string(_root.$meta, 'time.justNow', {}) ?? '剛剛',
       'time.minutesAgo' =>
         ({required Object minutes}) =>

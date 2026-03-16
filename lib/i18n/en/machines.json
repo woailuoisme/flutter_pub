@@ -1,0 +1,25 @@
+{
+  "dashboard": "Dashboard",
+  "machineList": "Machine List",
+  "orderList": "Order Records",
+  "revenueTrend": "Revenue Trend",
+  "orderVolume": "Order Volume",
+  "productSalesRatio": "Product Sales Ratio",
+  "machineRevenueComparison": "Machine Revenue Comparison",
+  "totalRevenue": "Total Revenue",
+  "totalOrders": "Total Orders",
+  "dailyAvgRevenue": "Daily Avg Revenue",
+  "growthRate": "Growth Rate",
+  "noChartData": "No Data",
+  "loading": "Loading",
+  "currencyPrefix": "¥",
+  "emptyState": "No machines",
+  "emptyOrders": "No orders",
+  "timePeriod": {
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "quarter": "Quarter",
+    "year": "Year"
+  }
+}

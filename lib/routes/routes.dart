@@ -2,20 +2,91 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lunchbox_hub/core/utils/page_transition_page.dart';
 import 'package:lunchbox_hub/features/auth/auth.dart';
-import 'package:lunchbox_hub/features/splash/splash.dart';
+import 'package:lunchbox_hub/features/inventory/screens/stocker_machine_list_screen.dart';
+import 'package:lunchbox_hub/features/inventory/screens/stocker_slot_list_screen.dart';
+import 'package:lunchbox_hub/features/agent/screens/agent_dashboard_screen.dart';
+import 'package:lunchbox_hub/features/agent/screens/agent_machine_detail_screen.dart';
+import 'package:lunchbox_hub/features/agent/screens/agent_machine_list_screen.dart';
+import 'package:lunchbox_hub/features/agent/screens/agent_order_list_screen.dart';
+import 'package:lunchbox_hub/features/maintenance/screens/maintainer_fault_list_screen.dart';
+import 'package:lunchbox_hub/features/maintenance/screens/maintainer_machine_list_screen.dart';
 
+import 'package:lunchbox_hub/features/profile/screens/profile_view.dart';
+import 'package:lunchbox_hub/core/widgets/gnav_scaffold.dart';
 import 'package:lunchbox_hub/routes/app_routes.dart';
 import 'package:page_transition/page_transition.dart';
 
 part 'routes.g.dart';
 
-// 启动页面
-@TypedGoRoute<SplashRoute>(path: AppRoutes.splash)
-class SplashRoute extends GoRouteData with $SplashRoute {
-  const SplashRoute();
+// -----------------------------------------------------------------------------
+// Shell Route (Bottom Navigation)
+// -----------------------------------------------------------------------------
+
+@TypedStatefulShellRoute<MainShellRouteData>(
+  branches: <TypedStatefulShellBranch<StatefulShellBranchData>>[
+    TypedStatefulShellBranch<MachineBranchData>(
+      routes: <TypedRoute<RouteData>>[
+        TypedGoRoute<AgentDashboardRoute>(path: AppRoutes.agentDashboard),
+      ],
+    ),
+    TypedStatefulShellBranch<InventoryBranchData>(
+      routes: <TypedRoute<RouteData>>[
+        TypedGoRoute<StockerMachineListRoute>(
+          path: AppRoutes.stockerMachines,
+          routes: [
+            TypedGoRoute<StockerSlotListRoute>(
+              path: ':machineId/${AppRoutes.stockerSlots}',
+            ),
+          ],
+        ),
+      ],
+    ),
+    TypedStatefulShellBranch<MaintenanceBranchData>(
+      routes: <TypedRoute<RouteData>>[
+        TypedGoRoute<MaintainerMachineListRoute>(
+          path: AppRoutes.maintainerMachines,
+          routes: [
+            TypedGoRoute<MaintainerFaultListRoute>(
+              path: ':machineId/${AppRoutes.maintainerFaults}',
+            ),
+          ],
+        ),
+      ],
+    ),
+    TypedStatefulShellBranch<ProfileBranchData>(
+      routes: <TypedRoute<RouteData>>[
+        TypedGoRoute<ProfileRoute>(path: AppRoutes.profile),
+      ],
+    ),
+  ],
+)
+class MainShellRouteData extends StatefulShellRouteData {
+  const MainShellRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const SplashView();
+  Widget builder(
+    BuildContext context,
+    GoRouterState state,
+    StatefulNavigationShell navigationShell,
+  ) {
+    return GNavScaffold(navigationShell: navigationShell);
+  }
+}
+
+class MachineBranchData extends StatefulShellBranchData {
+  const MachineBranchData();
+}
+
+class InventoryBranchData extends StatefulShellBranchData {
+  const InventoryBranchData();
+}
+
+class MaintenanceBranchData extends StatefulShellBranchData {
+  const MaintenanceBranchData();
+}
+
+class ProfileBranchData extends StatefulShellBranchData {
+  const ProfileBranchData();
 }
 
 // 认证相关路由
@@ -78,4 +149,102 @@ class ResetPasswordRoute extends GoRouteData with $ResetPasswordRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const ResetPasswordView();
+}
+
+// 代理商：仪表盘（登录后默认落地页）
+class AgentDashboardRoute extends GoRouteData with $AgentDashboardRoute {
+  const AgentDashboardRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AgentDashboardScreen();
+}
+
+// 代理商：机器列表（含子路由：订单列表 + 机器详情图表）
+@TypedGoRoute<AgentMachineListRoute>(
+  path: AppRoutes.agentMachines,
+  routes: [
+    TypedGoRoute<AgentOrderListRoute>(
+      path: ':machineId/${AppRoutes.agentOrders}',
+    ),
+    TypedGoRoute<AgentMachineDetailRoute>(
+      path: ':machineId/${AppRoutes.agentMachineDetail}',
+    ),
+  ],
+)
+class AgentMachineListRoute extends GoRouteData with $AgentMachineListRoute {
+  const AgentMachineListRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AgentMachineListScreen();
+}
+
+class AgentOrderListRoute extends GoRouteData with $AgentOrderListRoute {
+  const AgentOrderListRoute({required this.machineId});
+
+  final String machineId;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      AgentOrderListScreen(machineId: machineId);
+}
+
+class AgentMachineDetailRoute extends GoRouteData
+    with $AgentMachineDetailRoute {
+  const AgentMachineDetailRoute({required this.machineId});
+
+  final String machineId;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      AgentMachineDetailScreen(machineId: machineId);
+}
+
+class StockerMachineListRoute extends GoRouteData
+    with $StockerMachineListRoute {
+  const StockerMachineListRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const StockerMachineListScreen();
+}
+
+class StockerSlotListRoute extends GoRouteData with $StockerSlotListRoute {
+  const StockerSlotListRoute({required this.machineId});
+
+  final String machineId;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      StockerSlotListScreen(machineId: machineId);
+}
+
+// 维护员：机器列表（含子路由：故障记录列表）
+class MaintainerMachineListRoute extends GoRouteData
+    with $MaintainerMachineListRoute {
+  const MaintainerMachineListRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const MaintainerMachineListScreen();
+}
+
+class ProfileRoute extends GoRouteData with $ProfileRoute {
+  const ProfileRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ProfileView();
+}
+
+class MaintainerFaultListRoute extends GoRouteData
+    with $MaintainerFaultListRoute {
+  const MaintainerFaultListRoute({required this.machineId});
+
+  final String machineId;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      MaintainerFaultListScreen(machineId: machineId);
 }

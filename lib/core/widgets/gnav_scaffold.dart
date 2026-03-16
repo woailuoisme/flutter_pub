@@ -44,9 +44,12 @@ class GNavScaffold extends StatelessWidget {
               tabBackgroundColor: colorScheme.primary.withValues(alpha: .1),
               color: colorScheme.onSurfaceVariant,
               tabs: [
-                GButton(icon: Symbols.garage_home, text: t.navigation.home),
-                GButton(icon: Symbols.hard_drive_2, text: t.navigation.device),
-                GButton(icon: Symbols.order_approve, text: t.navigation.orders),
+                GButton(icon: Symbols.garage_home, text: t.navigation.machines),
+                GButton(
+                  icon: Symbols.inventory_2,
+                  text: t.navigation.inventory,
+                ),
+                GButton(icon: Symbols.build, text: t.navigation.maintenance),
                 GButton(
                   icon: Symbols.person_outline,
                   text: t.navigation.profile,

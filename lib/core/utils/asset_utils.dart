@@ -123,10 +123,6 @@ class AssetUtils {
   static Future<void> precacheImages(BuildContext context) async {
     final imagesToCache = [
       AppAssets.logo,
-      AppAssets.splashBackground,
-      AppAssets.onboarding1,
-      AppAssets.onboarding2,
-      AppAssets.onboarding3,
       // 添加其他需要预加载的图片
     ];
 

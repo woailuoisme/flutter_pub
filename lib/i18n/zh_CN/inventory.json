@@ -1,0 +1,19 @@
+{
+  "machineList": "补货管理",
+  "totalSlots": "总货道",
+  "lowStockSlots": "低库存",
+  "emptySlots": "空货道",
+  "slotList": "货道管理",
+  "slotNumber": "货道编号",
+  "productName": "商品名称",
+  "quantity": "数量",
+  "lowStock": "低库存",
+  "empty": "空货道",
+  "editQuantity": "编辑数量",
+  "confirm": "确认",
+  "cancel": "取消",
+  "updateSuccess": "更新成功",
+  "updateFailed": "更新失败",
+  "quantityMustBeNonNegative": "数量必须为非负整数",
+  "emptyState": "暂无货道"
+}

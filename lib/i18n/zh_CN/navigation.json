@@ -1,6 +1,6 @@
 {
-  "home": "首页",
-  "device": "设备",
-  "orders": "订单",
+  "machines": "代理",
+  "inventory": "库存",
+  "maintenance": "运维",
   "profile": "我的"
 }

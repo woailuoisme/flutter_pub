@@ -1,6 +1,6 @@
 {
-  "home": "首頁",
-  "device": "設備",
-  "orders": "訂單",
+  "machines": "代理",
+  "inventory": "庫存",
+  "maintenance": "維護",
   "profile": "我的"
 }

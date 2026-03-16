@@ -1,19 +1,31 @@
 #!/bin/bash
 
-# Simplified GitHub Secrets Setup Script
-# Compatible with macOS default Bash (3.2)
+# ==============================================================================
+# Script: setup_github_secrets.sh
+# Description: Sync environment files to GitHub Secrets using GitHub CLI
+# ==============================================================================
+
 set -e
 
-# Color definitions
-GREEN='\033[0;32m'
-RED='\033[0;31m'
-NC='\033[0m'
-
-# Check for gh cli
-if ! command -v gh &>/dev/null; then
-    echo -e "${RED}Error: Please install GitHub CLI (brew install gh)${NC}"
-    exit 1
+# Load helper functions (utils.sh)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -f "$SCRIPT_DIR/utils.sh" ]; then
+    source "$SCRIPT_DIR/utils.sh"
+else
+    PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+    if [ -f "$PROJECT_ROOT/scripts/utils.sh" ]; then
+        source "$PROJECT_ROOT/scripts/utils.sh"
+    else
+        echo "Error: utils.sh not found."
+        exit 1
+    fi
 fi
+
+# Ensure running in project root
+cd "$PROJECT_ROOT"
+
+# Check for GitHub CLI dependency
+require_cmd "gh"
 
 # Define environment files as pairs: "SECRET_NAME:FILE_PATH"
 SECRETS=(
@@ -21,19 +33,19 @@ SECRETS=(
     "ENV_PROD:.env.prod"
 )
 
-echo -e "${GREEN}Syncing environment files to GitHub Secrets...${NC}"
+log_info "Syncing environment files to GitHub Secrets..."
 
 for ENTRY in "${SECRETS[@]}"; do
     NAME="${ENTRY%%:*}"
     FILE="${ENTRY#*:}"
     
     if [[ -f "$FILE" ]]; then
-        echo "Setting $NAME from $FILE..."
+        log_info "Setting secret $NAME from $FILE..."
         gh secret set "$NAME" < "$FILE"
-        echo -e "${GREEN}Successfully set $NAME${NC}"
+        log_success "Successfully updated secret: $NAME"
     else
-        echo -e "${RED}Skipped: File $FILE not found${NC}"
+        log_warning "Skipped: File $FILE not found"
     fi
 done
 
-echo -e "${GREEN}Sync complete!${NC}"
+log_success "GitHub Secrets synchronization complete!"

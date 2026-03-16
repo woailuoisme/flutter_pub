@@ -22,4 +22,6 @@ final class _ProdEnv {
 
   static const String _googleServerClientId =
       '543085523947-fkkrbe1d4c2b98h59j210r5r5p5g57m5.apps.googleusercontent.com';
+
+  static const bool _useTestMode = false;
 }

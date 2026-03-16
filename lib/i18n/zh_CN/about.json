@@ -1,0 +1,21 @@
+{
+  "title": "关于我们",
+  "contactTitle": "联系我们",
+  "customerServiceHotline": "客服热线",
+  "customerServiceNumber": "400-123-4567",
+  "companyAddress": "公司地址",
+  "addressDetails": "北京市朝阳区详细地址",
+  "featuresTitle": "特色功能",
+  "feature1Title": "快速便捷",
+  "feature1Desc": "一键点餐",
+  "feature2Title": "安全可靠",
+  "feature2Desc": "多重保护",
+  "feature3Title": "准时送达",
+  "feature3Desc": "超时赔付",
+  "feature4Title": "品质优选",
+  "feature4Desc": "严选好店",
+  "policyTitle": "政策与协议",
+  "userAgreementAndPrivacy": "用户协议和隐私政策",
+  "viewDetails": "查看详情",
+  "shareWithFriends": "分享给朋友"
+}

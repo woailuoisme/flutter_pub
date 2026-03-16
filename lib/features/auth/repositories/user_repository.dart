@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:lunchbox_hub/core/constants/app_constants.dart';
 
 import 'package:lunchbox_hub/core/services/services.dart';
 import 'package:lunchbox_hub/features/auth/datasources/auth_rest_client.dart';
@@ -31,24 +32,29 @@ class UserRepository {
     required String password,
   }) async {
     final response = await _client.login({
-      'nickname': username,
+      'name': username,
       'password': password,
     });
 
     if (response.success && response.data != null) {
       final data = response.data!;
       final token = data.token;
-      final userId = data.id.toString();
+      final userId = data.name ?? username;
       final user = UserModel(
         id: userId,
-        username: data.telephone ?? username,
-        phone: data.telephone,
-        nickname: data.telephone ?? username,
-        registeredAt: data.createdAt ?? '',
+        username: data.name ?? username,
+        nickname: data.name ?? username,
+        registeredAt: data.createAt ?? '',
+        avatar: data.avatar,
       );
+
+      final permissions = data.roles.map((e) => e.name.nameString).toList();
+      final role = permissions.isNotEmpty ? permissions.first : 'ops';
 
       _saveUserInfo(user);
       _saveToken(token);
+      _saveUserRole(role);
+      _saveUserPermissions(permissions.isNotEmpty ? permissions : ['ops']);
       return user;
     }
     throw response.message;
@@ -71,17 +77,22 @@ class UserRepository {
     if (response.success && response.data != null) {
       final data = response.data!;
       final token = data.token;
-      final userId = data.id.toString();
+      final userId = data.name ?? email;
       final user = UserModel(
         id: userId,
-        username: data.telephone ?? email,
-        phone: data.telephone,
-        nickname: data.telephone ?? email,
-        registeredAt: data.createdAt ?? '',
+        username: data.name ?? email,
+        nickname: data.name ?? email,
+        registeredAt: data.createAt ?? '',
+        avatar: data.avatar,
       );
+
+      final permissions = data.roles.map((e) => e.name.nameString).toList();
+      final role = permissions.isNotEmpty ? permissions.first : 'ops';
 
       _saveUserInfo(user);
       _saveToken(token);
+      _saveUserRole(role);
+      _saveUserPermissions(permissions.isNotEmpty ? permissions : ['ops']);
       return user;
     }
     throw response.message;
@@ -114,6 +125,14 @@ class UserRepository {
 
   void _saveToken(String token) {
     _storage.write(tokenStorageKey, token);
+  }
+
+  void _saveUserRole(String role) {
+    _storage.write(AppConstants.keyUserRole, role);
+  }
+
+  void _saveUserPermissions(List<String> permissions) {
+    _storage.write(AppConstants.keyUserPermissions, permissions);
   }
 
   void _clearUserInfo() {

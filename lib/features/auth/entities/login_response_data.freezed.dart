@@ -13,14 +13,286 @@ part of 'login_response_data.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
+mixin _$UserRole {
+
+/// 角色名称
+ UserRoleType get name;/// 角色描述
+ String? get summary;
+/// Create a copy of UserRole
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UserRoleCopyWith<UserRole> get copyWith => _$UserRoleCopyWithImpl<UserRole>(this as UserRole, _$identity);
+
+  /// Serializes this UserRole to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserRole&&(identical(other.name, name) || other.name == name)&&(identical(other.summary, summary) || other.summary == summary));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,summary);
+
+@override
+String toString() {
+  return 'UserRole(name: $name, summary: $summary)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $UserRoleCopyWith<$Res>  {
+  factory $UserRoleCopyWith(UserRole value, $Res Function(UserRole) _then) = _$UserRoleCopyWithImpl;
+@useResult
+$Res call({
+ UserRoleType name, String? summary
+});
+
+
+
+
+}
+/// @nodoc
+class _$UserRoleCopyWithImpl<$Res>
+    implements $UserRoleCopyWith<$Res> {
+  _$UserRoleCopyWithImpl(this._self, this._then);
+
+  final UserRole _self;
+  final $Res Function(UserRole) _then;
+
+/// Create a copy of UserRole
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? summary = freezed,}) {
+  return _then(_self.copyWith(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as UserRoleType,summary: freezed == summary ? _self.summary : summary // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [UserRole].
+extension UserRolePatterns on UserRole {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserRole value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _UserRole() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserRole value)  $default,){
+final _that = this;
+switch (_that) {
+case _UserRole():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserRole value)?  $default,){
+final _that = this;
+switch (_that) {
+case _UserRole() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( UserRoleType name,  String? summary)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _UserRole() when $default != null:
+return $default(_that.name,_that.summary);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( UserRoleType name,  String? summary)  $default,) {final _that = this;
+switch (_that) {
+case _UserRole():
+return $default(_that.name,_that.summary);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( UserRoleType name,  String? summary)?  $default,) {final _that = this;
+switch (_that) {
+case _UserRole() when $default != null:
+return $default(_that.name,_that.summary);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _UserRole implements UserRole {
+  const _UserRole({required this.name, this.summary});
+  factory _UserRole.fromJson(Map<String, dynamic> json) => _$UserRoleFromJson(json);
+
+/// 角色名称
+@override final  UserRoleType name;
+/// 角色描述
+@override final  String? summary;
+
+/// Create a copy of UserRole
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UserRoleCopyWith<_UserRole> get copyWith => __$UserRoleCopyWithImpl<_UserRole>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$UserRoleToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserRole&&(identical(other.name, name) || other.name == name)&&(identical(other.summary, summary) || other.summary == summary));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,summary);
+
+@override
+String toString() {
+  return 'UserRole(name: $name, summary: $summary)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UserRoleCopyWith<$Res> implements $UserRoleCopyWith<$Res> {
+  factory _$UserRoleCopyWith(_UserRole value, $Res Function(_UserRole) _then) = __$UserRoleCopyWithImpl;
+@override @useResult
+$Res call({
+ UserRoleType name, String? summary
+});
+
+
+
+
+}
+/// @nodoc
+class __$UserRoleCopyWithImpl<$Res>
+    implements _$UserRoleCopyWith<$Res> {
+  __$UserRoleCopyWithImpl(this._self, this._then);
+
+  final _UserRole _self;
+  final $Res Function(_UserRole) _then;
+
+/// Create a copy of UserRole
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? summary = freezed,}) {
+  return _then(_UserRole(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as UserRoleType,summary: freezed == summary ? _self.summary : summary // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$LoginResponseData {
 
-/// 用户ID
- int get id;/// 手机号
- String? get telephone;/// 认证 Token
- String get token;/// 过期时长（字符串形式，如 "20160 minutes"）
-@JsonKey(name: 'expires_in') String? get expiresIn;/// 创建时间
-@JsonKey(name: 'created_at') String? get createdAt;/// 过期时间
+/// 认证 Token
+ String get token;/// Token 类型 (例如: bearer)
+@JsonKey(name: 'token_type') String? get tokenType;/// 管理员名称
+ String? get name;/// 头像地址
+ String? get avatar;/// 角色列表
+ List<UserRole> get roles;/// 过期时长（字符串形式，如 "20160 minutes"）
+@JsonKey(name: 'expires_in') String? get expiresIn;/// 创建时间 (注意后端返回的是 create_at 而不是 created_at)
+@JsonKey(name: 'create_at') String? get createAt;/// 过期时间
 @JsonKey(name: 'expires_at') String? get expiresAt;
 /// Create a copy of LoginResponseData
 /// with the given fields replaced by the non-null parameter values.
@@ -34,16 +306,16 @@ $LoginResponseDataCopyWith<LoginResponseData> get copyWith => _$LoginResponseDat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginResponseData&&(identical(other.id, id) || other.id == id)&&(identical(other.telephone, telephone) || other.telephone == telephone)&&(identical(other.token, token) || other.token == token)&&(identical(other.expiresIn, expiresIn) || other.expiresIn == expiresIn)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginResponseData&&(identical(other.token, token) || other.token == token)&&(identical(other.tokenType, tokenType) || other.tokenType == tokenType)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&const DeepCollectionEquality().equals(other.roles, roles)&&(identical(other.expiresIn, expiresIn) || other.expiresIn == expiresIn)&&(identical(other.createAt, createAt) || other.createAt == createAt)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,telephone,token,expiresIn,createdAt,expiresAt);
+int get hashCode => Object.hash(runtimeType,token,tokenType,name,avatar,const DeepCollectionEquality().hash(roles),expiresIn,createAt,expiresAt);
 
 @override
 String toString() {
-  return 'LoginResponseData(id: $id, telephone: $telephone, token: $token, expiresIn: $expiresIn, createdAt: $createdAt, expiresAt: $expiresAt)';
+  return 'LoginResponseData(token: $token, tokenType: $tokenType, name: $name, avatar: $avatar, roles: $roles, expiresIn: $expiresIn, createAt: $createAt, expiresAt: $expiresAt)';
 }
 
 
@@ -54,7 +326,7 @@ abstract mixin class $LoginResponseDataCopyWith<$Res>  {
   factory $LoginResponseDataCopyWith(LoginResponseData value, $Res Function(LoginResponseData) _then) = _$LoginResponseDataCopyWithImpl;
 @useResult
 $Res call({
- int id, String? telephone, String token,@JsonKey(name: 'expires_in') String? expiresIn,@JsonKey(name: 'created_at') String? createdAt,@JsonKey(name: 'expires_at') String? expiresAt
+ String token,@JsonKey(name: 'token_type') String? tokenType, String? name, String? avatar, List<UserRole> roles,@JsonKey(name: 'expires_in') String? expiresIn,@JsonKey(name: 'create_at') String? createAt,@JsonKey(name: 'expires_at') String? expiresAt
 });
 
 
@@ -71,13 +343,15 @@ class _$LoginResponseDataCopyWithImpl<$Res>
 
 /// Create a copy of LoginResponseData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? telephone = freezed,Object? token = null,Object? expiresIn = freezed,Object? createdAt = freezed,Object? expiresAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? token = null,Object? tokenType = freezed,Object? name = freezed,Object? avatar = freezed,Object? roles = null,Object? expiresIn = freezed,Object? createAt = freezed,Object? expiresAt = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,telephone: freezed == telephone ? _self.telephone : telephone // ignore: cast_nullable_to_non_nullable
-as String?,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as String,expiresIn: freezed == expiresIn ? _self.expiresIn : expiresIn // ignore: cast_nullable_to_non_nullable
-as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,tokenType: freezed == tokenType ? _self.tokenType : tokenType // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String?,roles: null == roles ? _self.roles : roles // ignore: cast_nullable_to_non_nullable
+as List<UserRole>,expiresIn: freezed == expiresIn ? _self.expiresIn : expiresIn // ignore: cast_nullable_to_non_nullable
+as String?,createAt: freezed == createAt ? _self.createAt : createAt // ignore: cast_nullable_to_non_nullable
 as String?,expiresAt: freezed == expiresAt ? _self.expiresAt : expiresAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -161,10 +435,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? telephone,  String token, @JsonKey(name: 'expires_in')  String? expiresIn, @JsonKey(name: 'created_at')  String? createdAt, @JsonKey(name: 'expires_at')  String? expiresAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String token, @JsonKey(name: 'token_type')  String? tokenType,  String? name,  String? avatar,  List<UserRole> roles, @JsonKey(name: 'expires_in')  String? expiresIn, @JsonKey(name: 'create_at')  String? createAt, @JsonKey(name: 'expires_at')  String? expiresAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LoginResponseData() when $default != null:
-return $default(_that.id,_that.telephone,_that.token,_that.expiresIn,_that.createdAt,_that.expiresAt);case _:
+return $default(_that.token,_that.tokenType,_that.name,_that.avatar,_that.roles,_that.expiresIn,_that.createAt,_that.expiresAt);case _:
   return orElse();
 
 }
@@ -182,10 +456,10 @@ return $default(_that.id,_that.telephone,_that.token,_that.expiresIn,_that.creat
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? telephone,  String token, @JsonKey(name: 'expires_in')  String? expiresIn, @JsonKey(name: 'created_at')  String? createdAt, @JsonKey(name: 'expires_at')  String? expiresAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String token, @JsonKey(name: 'token_type')  String? tokenType,  String? name,  String? avatar,  List<UserRole> roles, @JsonKey(name: 'expires_in')  String? expiresIn, @JsonKey(name: 'create_at')  String? createAt, @JsonKey(name: 'expires_at')  String? expiresAt)  $default,) {final _that = this;
 switch (_that) {
 case _LoginResponseData():
-return $default(_that.id,_that.telephone,_that.token,_that.expiresIn,_that.createdAt,_that.expiresAt);}
+return $default(_that.token,_that.tokenType,_that.name,_that.avatar,_that.roles,_that.expiresIn,_that.createAt,_that.expiresAt);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -199,10 +473,10 @@ return $default(_that.id,_that.telephone,_that.token,_that.expiresIn,_that.creat
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? telephone,  String token, @JsonKey(name: 'expires_in')  String? expiresIn, @JsonKey(name: 'created_at')  String? createdAt, @JsonKey(name: 'expires_at')  String? expiresAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String token, @JsonKey(name: 'token_type')  String? tokenType,  String? name,  String? avatar,  List<UserRole> roles, @JsonKey(name: 'expires_in')  String? expiresIn, @JsonKey(name: 'create_at')  String? createAt, @JsonKey(name: 'expires_at')  String? expiresAt)?  $default,) {final _that = this;
 switch (_that) {
 case _LoginResponseData() when $default != null:
-return $default(_that.id,_that.telephone,_that.token,_that.expiresIn,_that.createdAt,_that.expiresAt);case _:
+return $default(_that.token,_that.tokenType,_that.name,_that.avatar,_that.roles,_that.expiresIn,_that.createAt,_that.expiresAt);case _:
   return null;
 
 }
@@ -214,19 +488,30 @@ return $default(_that.id,_that.telephone,_that.token,_that.expiresIn,_that.creat
 @JsonSerializable()
 
 class _LoginResponseData implements LoginResponseData {
-  const _LoginResponseData({required this.id, this.telephone, required this.token, @JsonKey(name: 'expires_in') this.expiresIn, @JsonKey(name: 'created_at') this.createdAt, @JsonKey(name: 'expires_at') this.expiresAt});
+  const _LoginResponseData({required this.token, @JsonKey(name: 'token_type') this.tokenType, this.name, this.avatar, final  List<UserRole> roles = const [], @JsonKey(name: 'expires_in') this.expiresIn, @JsonKey(name: 'create_at') this.createAt, @JsonKey(name: 'expires_at') this.expiresAt}): _roles = roles;
   factory _LoginResponseData.fromJson(Map<String, dynamic> json) => _$LoginResponseDataFromJson(json);
 
-/// 用户ID
-@override final  int id;
-/// 手机号
-@override final  String? telephone;
 /// 认证 Token
 @override final  String token;
+/// Token 类型 (例如: bearer)
+@override@JsonKey(name: 'token_type') final  String? tokenType;
+/// 管理员名称
+@override final  String? name;
+/// 头像地址
+@override final  String? avatar;
+/// 角色列表
+ final  List<UserRole> _roles;
+/// 角色列表
+@override@JsonKey() List<UserRole> get roles {
+  if (_roles is EqualUnmodifiableListView) return _roles;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_roles);
+}
+
 /// 过期时长（字符串形式，如 "20160 minutes"）
 @override@JsonKey(name: 'expires_in') final  String? expiresIn;
-/// 创建时间
-@override@JsonKey(name: 'created_at') final  String? createdAt;
+/// 创建时间 (注意后端返回的是 create_at 而不是 created_at)
+@override@JsonKey(name: 'create_at') final  String? createAt;
 /// 过期时间
 @override@JsonKey(name: 'expires_at') final  String? expiresAt;
 
@@ -243,16 +528,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginResponseData&&(identical(other.id, id) || other.id == id)&&(identical(other.telephone, telephone) || other.telephone == telephone)&&(identical(other.token, token) || other.token == token)&&(identical(other.expiresIn, expiresIn) || other.expiresIn == expiresIn)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginResponseData&&(identical(other.token, token) || other.token == token)&&(identical(other.tokenType, tokenType) || other.tokenType == tokenType)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&const DeepCollectionEquality().equals(other._roles, _roles)&&(identical(other.expiresIn, expiresIn) || other.expiresIn == expiresIn)&&(identical(other.createAt, createAt) || other.createAt == createAt)&&(identical(other.expiresAt, expiresAt) || other.expiresAt == expiresAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,telephone,token,expiresIn,createdAt,expiresAt);
+int get hashCode => Object.hash(runtimeType,token,tokenType,name,avatar,const DeepCollectionEquality().hash(_roles),expiresIn,createAt,expiresAt);
 
 @override
 String toString() {
-  return 'LoginResponseData(id: $id, telephone: $telephone, token: $token, expiresIn: $expiresIn, createdAt: $createdAt, expiresAt: $expiresAt)';
+  return 'LoginResponseData(token: $token, tokenType: $tokenType, name: $name, avatar: $avatar, roles: $roles, expiresIn: $expiresIn, createAt: $createAt, expiresAt: $expiresAt)';
 }
 
 
@@ -263,7 +548,7 @@ abstract mixin class _$LoginResponseDataCopyWith<$Res> implements $LoginResponse
   factory _$LoginResponseDataCopyWith(_LoginResponseData value, $Res Function(_LoginResponseData) _then) = __$LoginResponseDataCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String? telephone, String token,@JsonKey(name: 'expires_in') String? expiresIn,@JsonKey(name: 'created_at') String? createdAt,@JsonKey(name: 'expires_at') String? expiresAt
+ String token,@JsonKey(name: 'token_type') String? tokenType, String? name, String? avatar, List<UserRole> roles,@JsonKey(name: 'expires_in') String? expiresIn,@JsonKey(name: 'create_at') String? createAt,@JsonKey(name: 'expires_at') String? expiresAt
 });
 
 
@@ -280,13 +565,15 @@ class __$LoginResponseDataCopyWithImpl<$Res>
 
 /// Create a copy of LoginResponseData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? telephone = freezed,Object? token = null,Object? expiresIn = freezed,Object? createdAt = freezed,Object? expiresAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? token = null,Object? tokenType = freezed,Object? name = freezed,Object? avatar = freezed,Object? roles = null,Object? expiresIn = freezed,Object? createAt = freezed,Object? expiresAt = freezed,}) {
   return _then(_LoginResponseData(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,telephone: freezed == telephone ? _self.telephone : telephone // ignore: cast_nullable_to_non_nullable
-as String?,token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
-as String,expiresIn: freezed == expiresIn ? _self.expiresIn : expiresIn // ignore: cast_nullable_to_non_nullable
-as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,tokenType: freezed == tokenType ? _self.tokenType : tokenType // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String?,roles: null == roles ? _self._roles : roles // ignore: cast_nullable_to_non_nullable
+as List<UserRole>,expiresIn: freezed == expiresIn ? _self.expiresIn : expiresIn // ignore: cast_nullable_to_non_nullable
+as String?,createAt: freezed == createAt ? _self.createAt : createAt // ignore: cast_nullable_to_non_nullable
 as String?,expiresAt: freezed == expiresAt ? _self.expiresAt : expiresAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

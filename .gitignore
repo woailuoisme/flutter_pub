@@ -37,7 +37,11 @@ migrate_working_dir/
 /.kiro
 /.trae
 /.agents
-
+/.agent
+/.agent-task-slugs
+/.codex
+/.gemini
+/.specify
 # Symbolication related
 app.*.symbols
 

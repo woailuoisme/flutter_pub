@@ -4,7 +4,7 @@ import 'package:lunchbox_hub/core/env/app_env.dart';
 class AppConstants {
   // API 配置
   static const bool dioDebug = true;
-  static const bool useTestMode = true; // 是否启用测试模式（跳过服务器验证）
+  static bool get useTestMode => AppEnvConfig.current.useTestMode; // 从环境变量读取
   static String get baseUrl => AppEnvConfig.current.baseUrl;
   static const String appName = 'Lunchbox';
   static const Duration connectTimeout = Duration(seconds: 30);
@@ -16,10 +16,10 @@ class AppConstants {
   // 存储键
   static const String keyAuthToken = 'auth_token';
   static const String keyUserId = 'user_id';
+  static const String keyUserRole = 'user_role';
   static const String keyUserPermissions = 'user_permissions';
   static const String keySelectedCity = 'selected_city';
   static const String keyCart = 'cart';
-  static const String keyIsFirstLaunch = 'is_first_launch';
 
   // 缓存配置
   static const Duration cacheExpiration = Duration(hours: 24);

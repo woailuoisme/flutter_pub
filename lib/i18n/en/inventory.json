@@ -1,0 +1,19 @@
+{
+  "machineList": "Restocking Management",
+  "totalSlots": "Total Slots",
+  "lowStockSlots": "Low Stock",
+  "emptySlots": "Empty Slots",
+  "slotList": "Slot Management",
+  "slotNumber": "Slot Number",
+  "productName": "Product Name",
+  "quantity": "Quantity",
+  "lowStock": "Low Stock",
+  "empty": "Empty Slot",
+  "editQuantity": "Edit Quantity",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
+  "updateSuccess": "Update Successful",
+  "updateFailed": "Update Failed",
+  "quantityMustBeNonNegative": "Quantity must be a non-negative integer",
+  "emptyState": "No Slots"
+}

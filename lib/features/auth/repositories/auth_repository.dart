@@ -26,23 +26,36 @@ class AuthRepository {
     required String password,
   }) async {
     final response = await _remoteDataSource.login({
-      'nickname': username,
+      'name': username,
       'password': password,
     });
 
     if (response.success && response.data != null) {
       final data = response.data!;
       final token = data.token;
-      final userId = data.id.toString();
+      // 由于新响应中没有 id，我们暂时使用 name 作为 id
+      final userId = data.name ?? username;
+      final permissions = data.roles.map((e) => e.name.nameString).toList();
+
       final user = UserModel(
         id: userId,
-        username: data.telephone ?? username,
-        phone: data.telephone,
-        nickname: data.telephone ?? username,
-        registeredAt: data.createdAt ?? '',
+        username: data.name ?? username,
+        nickname: data.name ?? username,
+        registeredAt: data.createAt ?? '',
+        avatar: data.avatar,
       );
 
-      await _writeSession(token: token, userId: userId, permissions: ['user']);
+      final role = permissions.isNotEmpty ? permissions.first : 'ops';
+      LoggerUtils.d(
+        'AuthRepository: Saving session - role=$role, permissions=$permissions',
+      );
+
+      await _writeSession(
+        token: token,
+        userId: userId,
+        userRole: role,
+        permissions: permissions.isNotEmpty ? permissions : ['ops'],
+      );
 
       LoggerUtils.i(
         'AuthRepository: Login successful for user: ${user.username}',
@@ -66,16 +79,23 @@ class AuthRepository {
     if (response.success && response.data != null) {
       final data = response.data!;
       final token = data.token;
-      final userId = data.id.toString();
+      final userId = data.name ?? email;
+      final permissions = data.roles.map((e) => e.name.nameString).toList();
+
       final user = UserModel(
         id: userId,
-        username: data.telephone ?? email,
-        phone: data.telephone,
-        nickname: data.telephone ?? email,
-        registeredAt: data.createdAt ?? '',
+        username: data.name ?? email,
+        nickname: data.name ?? email,
+        registeredAt: data.createAt ?? '',
+        avatar: data.avatar,
       );
 
-      await _writeSession(token: token, userId: userId, permissions: ['user']);
+      await _writeSession(
+        token: token,
+        userId: userId,
+        userRole: permissions.isNotEmpty ? permissions.first : 'ops',
+        permissions: permissions.isNotEmpty ? permissions : ['ops'],
+      );
 
       LoggerUtils.i(
         'AuthRepository: Registration successful for user: ${user.username}',
@@ -128,11 +148,13 @@ class AuthRepository {
     final token = data['token'] as String;
     final user = UserModel.fromJson(data['user'] as Map<String, dynamic>);
 
+    final permissions =
+        (data['permissions'] as List<dynamic>?)?.cast<String>() ?? ['ops'];
     _writeSession(
       token: token,
       userId: user.id,
-      permissions:
-          (data['permissions'] as List<dynamic>?)?.cast<String>() ?? ['user'],
+      userRole: permissions.first,
+      permissions: permissions,
     );
 
     LoggerUtils.i('AuthRepository: $logMessage for user: ${user.username}');
@@ -142,12 +164,12 @@ class AuthRepository {
   Future<void> _writeSession({
     required String token,
     required String userId,
+    required String userRole,
     required List<String> permissions,
   }) async {
     await _storageService.write(AppConstants.keyAuthToken, token);
     await _storageService.write(AppConstants.keyUserId, userId);
+    await _storageService.write(AppConstants.keyUserRole, userRole);
     await _storageService.write(AppConstants.keyUserPermissions, permissions);
-    // 登录成功后，确保下次启动不再进入引导页
-    await _storageService.write(AppConstants.keyIsFirstLaunch, false);
   }
 }

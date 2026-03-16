@@ -1,0 +1,25 @@
+{
+  "dashboard": "營運儀表板",
+  "machineList": "機器列表",
+  "orderList": "訂單記錄",
+  "revenueTrend": "營收趨勢",
+  "orderVolume": "訂單量",
+  "productSalesRatio": "商品銷售佔比",
+  "machineRevenueComparison": "機器收益對比",
+  "totalRevenue": "總營收",
+  "totalOrders": "總訂單數",
+  "dailyAvgRevenue": "日均營收",
+  "growthRate": "環比增長率",
+  "noChartData": "暫無數據",
+  "loading": "載入中",
+  "currencyPrefix": "¥",
+  "emptyState": "暫無機器",
+  "emptyOrders": "暫無訂單",
+  "timePeriod": {
+    "day": "日",
+    "week": "週",
+    "month": "月",
+    "quarter": "季度",
+    "year": "年"
+  }
+}

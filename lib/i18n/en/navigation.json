@@ -1,6 +1,6 @@
 {
-  "home": "Home",
-  "device": "Devices",
-  "orders": "Orders",
+  "machines": "Agent",
+  "inventory": "Inventory",
+  "maintenance": "Maintenance",
   "profile": "Profile"
 }

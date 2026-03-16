@@ -1,0 +1,18 @@
+{
+  "machineList": "维护管理",
+  "faultCount": "故障次数",
+  "lastFaultAt": "最近故障时间",
+  "noFaults": "无故障",
+  "faultList": "故障记录",
+  "faultType": "故障类型",
+  "description": "描述",
+  "occurredAt": "发生时间",
+  "pending": "待处理",
+  "resolved": "已解决",
+  "statusPending": "待处理",
+  "statusResolved": "已解决",
+  "noFaultRecords": "暂无故障记录",
+  "emptyState": "暂无机器",
+  "loadFailed": "加载失败",
+  "retry": "重试"
+}

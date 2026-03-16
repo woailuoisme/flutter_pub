@@ -19,7 +19,7 @@ abstract class AuthRemoteDataSource {
   factory AuthRemoteDataSource(Dio dio, {String baseUrl}) =
       _AuthRemoteDataSource;
 
-  @POST('/api/v1/auth/user_login')
+  @POST('/api/v1/admin/auth/login')
   Future<ApiResponse<LoginResponseData>> login(
     @Body() Map<String, dynamic> body,
   );

@@ -1,0 +1,25 @@
+{
+  "dashboard": "运营仪表盘",
+  "machineList": "机器列表",
+  "orderList": "订单记录",
+  "revenueTrend": "营收趋势",
+  "orderVolume": "订单量",
+  "productSalesRatio": "商品销售占比",
+  "machineRevenueComparison": "机器收益对比",
+  "totalRevenue": "总营收",
+  "totalOrders": "总订单数",
+  "dailyAvgRevenue": "日均营收",
+  "growthRate": "环比增长率",
+  "noChartData": "暂无数据",
+  "loading": "加载中",
+  "currencyPrefix": "¥",
+  "emptyState": "暂无机器",
+  "emptyOrders": "暂无订单",
+  "timePeriod": {
+    "day": "日",
+    "week": "周",
+    "month": "月",
+    "quarter": "季度",
+    "year": "年"
+  }
+}

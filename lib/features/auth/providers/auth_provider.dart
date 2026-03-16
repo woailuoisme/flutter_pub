@@ -18,6 +18,10 @@ class Auth extends _$Auth {
       await repo.login(username: username, password: password);
       return true;
     });
+    // 强制触发一次同步，确保监听者感知到状态变化
+    if (state.hasValue && state.value == true) {
+      state = const AsyncValue.data(true);
+    }
   }
 
   Future<void> register({

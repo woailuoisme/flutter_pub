@@ -9,6 +9,7 @@ abstract class AppEnv {
   String get sentryDsn;
   String get googleServerClientId;
   bool get debug;
+  bool get useTestMode;
 }
 
 class AppEnvConfig {
