@@ -38,5 +38,7 @@
   "validationErrorWithDetails": "验证错误：${message} (${errors})",
   "selectAll": "全选",
   "deselectAll": "取消全选",
-  "warning": "警告"
+  "warning": "警告",
+  "welcomeBack": "欢迎回来",
+  "notifications": "消息通知"
 }

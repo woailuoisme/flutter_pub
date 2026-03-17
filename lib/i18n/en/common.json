@@ -36,5 +36,7 @@
   "unauthorized": "Unauthorized, please login again",
   "validationError": "Validation Error: ${message}",
   "validationErrorWithDetails": "Validation Error: ${message} (${errors})",
-  "warning": "Warning"
+  "warning": "Warning",
+  "welcomeBack": "Welcome Back",
+  "notifications": "Notifications"
 }

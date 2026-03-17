@@ -21,5 +21,7 @@
     "month": "Month",
     "quarter": "Quarter",
     "year": "Year"
-  }
+  },
+  "total": "Total",
+  "orders": "Orders"
 }

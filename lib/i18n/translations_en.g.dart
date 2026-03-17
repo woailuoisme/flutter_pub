@@ -303,6 +303,10 @@ class _TranslationsCommonEn extends TranslationsCommonZhCn {
       'Validation Error: ${message} (${errors})';
   @override
   String get warning => TranslationOverrides.string(_root.$meta, 'common.warning', {}) ?? 'Warning';
+  @override
+  String get welcomeBack => TranslationOverrides.string(_root.$meta, 'common.welcomeBack', {}) ?? 'Welcome Back';
+  @override
+  String get notifications => TranslationOverrides.string(_root.$meta, 'common.notifications', {}) ?? 'Notifications';
 }
 
 // Path: inventory
@@ -396,6 +400,10 @@ class _TranslationsMachinesEn extends TranslationsMachinesZhCn {
   String get emptyOrders => TranslationOverrides.string(_root.$meta, 'machines.emptyOrders', {}) ?? 'No orders';
   @override
   late final _TranslationsMachinesTimePeriodEn timePeriod = _TranslationsMachinesTimePeriodEn._(_root);
+  @override
+  String get total => TranslationOverrides.string(_root.$meta, 'machines.total', {}) ?? 'Total';
+  @override
+  String get orders => TranslationOverrides.string(_root.$meta, 'machines.orders', {}) ?? 'Orders';
 }
 
 // Path: maintenance
@@ -999,6 +1007,8 @@ extension on TranslationsEn {
             }) ??
             'Validation Error: ${message} (${errors})',
       'common.warning' => TranslationOverrides.string(_root.$meta, 'common.warning', {}) ?? 'Warning',
+      'common.welcomeBack' => TranslationOverrides.string(_root.$meta, 'common.welcomeBack', {}) ?? 'Welcome Back',
+      'common.notifications' => TranslationOverrides.string(_root.$meta, 'common.notifications', {}) ?? 'Notifications',
       'inventory.machineList' =>
         TranslationOverrides.string(_root.$meta, 'inventory.machineList', {}) ?? 'Restocking Management',
       'inventory.totalSlots' => TranslationOverrides.string(_root.$meta, 'inventory.totalSlots', {}) ?? 'Total Slots',
@@ -1053,6 +1063,8 @@ extension on TranslationsEn {
       'machines.timePeriod.quarter' =>
         TranslationOverrides.string(_root.$meta, 'machines.timePeriod.quarter', {}) ?? 'Quarter',
       'machines.timePeriod.year' => TranslationOverrides.string(_root.$meta, 'machines.timePeriod.year', {}) ?? 'Year',
+      'machines.total' => TranslationOverrides.string(_root.$meta, 'machines.total', {}) ?? 'Total',
+      'machines.orders' => TranslationOverrides.string(_root.$meta, 'machines.orders', {}) ?? 'Orders',
       'maintenance.machineList' =>
         TranslationOverrides.string(_root.$meta, 'maintenance.machineList', {}) ?? 'Maintenance Management',
       'maintenance.faultCount' =>

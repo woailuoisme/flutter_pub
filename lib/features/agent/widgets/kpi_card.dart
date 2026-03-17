@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
+import 'package:lunchbox_hub/core/widgets/card_widgets/premium_card.dart';
 import 'package:lunchbox_hub/features/agent/entities/revenue_stats_model.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class KpiCard extends StatelessWidget {
   const KpiCard({super.key, required this.stats});
@@ -16,30 +20,42 @@ class KpiCard extends StatelessWidget {
       _KpiItem(
         label: t.machines.totalRevenue,
         value: '${t.machines.currencyPrefix}${stats.totalRevenue}',
+        icon: Symbols.payments,
       ),
-      _KpiItem(label: t.machines.totalOrders, value: '${stats.totalOrders}'),
+      _KpiItem(
+        label: t.machines.totalOrders,
+        value: '${stats.totalOrders}',
+        icon: Symbols.shopping_basket,
+      ),
       _KpiItem(
         label: t.machines.dailyAvgRevenue,
         value: '${t.machines.currencyPrefix}${stats.dailyAvgRevenue}',
+        icon: Symbols.analytics,
       ),
       _KpiItem(
         label: t.machines.growthRate,
         value: '${growthRate.abs().toStringAsFixed(1)}%',
         growthRate: growthRate,
         showArrow: true,
+        icon: Symbols.trending_up,
       ),
     ];
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+      padding: EdgeInsets.symmetric(
+        horizontal: AppDesignTokens.spacingM,
+        vertical: AppDesignTokens.spacingS,
+      ),
       child: GridView.count(
         crossAxisCount: 2,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        crossAxisSpacing: 12.w,
-        mainAxisSpacing: 12.h,
-        childAspectRatio: 1.6,
-        children: items.map((item) => _KpiCardItem(item: item)).toList(),
+        crossAxisSpacing: AppDesignTokens.spacingS,
+        mainAxisSpacing: AppDesignTokens.spacingS,
+        childAspectRatio: 1.4,
+        children: items.asMap().entries.map((entry) {
+          return _KpiCardItem(item: entry.value, index: entry.key);
+        }).toList(),
       ),
     );
   }
@@ -49,20 +65,23 @@ class _KpiItem {
   const _KpiItem({
     required this.label,
     required this.value,
+    required this.icon,
     this.growthRate,
     this.showArrow = false,
   });
 
   final String label;
   final String value;
+  final IconData icon;
   final double? growthRate;
   final bool showArrow;
 }
 
 class _KpiCardItem extends StatelessWidget {
-  const _KpiCardItem({required this.item});
+  const _KpiCardItem({required this.item, required this.index});
 
   final _KpiItem item;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -72,46 +91,92 @@ class _KpiCardItem extends StatelessWidget {
     Widget? arrowWidget;
     if (item.showArrow && item.growthRate != null && item.growthRate != 0) {
       final isPositive = item.growthRate! > 0;
-      arrowWidget = Icon(
-        isPositive ? Icons.arrow_upward_rounded : Icons.arrow_downward_rounded,
-        size: 16.sp,
-        color: isPositive ? Colors.green : Colors.red,
-      );
-    }
+      final statusColor = isPositive
+          ? AppDesignTokens.success
+          : AppDesignTokens.error;
 
-    return Card(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
+      arrowWidget = Container(
+        padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+        decoration: BoxDecoration(
+          color: statusColor.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(AppDesignTokens.radiusS),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              item.label,
-              style: theme.textTheme.labelSmall?.copyWith(
-                color: colorScheme.onSurfaceVariant,
-              ),
+            Icon(
+              isPositive ? Symbols.trending_up : Symbols.trending_down,
+              size: 12.sp,
+              color: statusColor,
+              weight: 600,
             ),
-            SizedBox(height: 6.h),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Text(
-                    item.value,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: colorScheme.onSurface,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                ?arrowWidget,
-              ],
+            SizedBox(width: 2.w),
+            Text(
+              '${item.growthRate!.abs().toStringAsFixed(1)}%',
+              style: TextStyle(
+                fontSize: 10.sp,
+                fontWeight: FontWeight.bold,
+                color: statusColor,
+              ),
             ),
           ],
         ),
+      );
+    }
+
+    return PremiumCard(
+      padding: EdgeInsets.all(AppDesignTokens.spacingM),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.all(6.w),
+                decoration: BoxDecoration(
+                  color: colorScheme.primary.withValues(alpha: 0.08),
+                  borderRadius: BorderRadius.circular(AppDesignTokens.radiusS),
+                ),
+                child: Icon(
+                  item.icon,
+                  size: 18.sp,
+                  color: colorScheme.primary,
+                  weight: 400,
+                ),
+              ),
+              ?arrowWidget,
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                item.label,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              SizedBox(height: 4.h),
+              Text(
+                    item.value,
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: colorScheme.onSurface,
+                      letterSpacing: -0.8,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  )
+                  .animate()
+                  .fadeIn(delay: (100 * index).ms)
+                  .slideX(begin: 0.1, end: 0),
+            ],
+          ),
+        ],
       ),
     );
   }

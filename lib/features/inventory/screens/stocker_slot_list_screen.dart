@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
+import 'package:lunchbox_hub/core/widgets/card_widgets/premium_card.dart';
 import 'package:lunchbox_hub/core/widgets/empty_widget.dart';
 import 'package:lunchbox_hub/features/inventory/providers/slot_list_provider.dart';
 import 'package:lunchbox_hub/features/inventory/providers/slot_update_provider.dart';
@@ -25,6 +26,8 @@ class StockerSlotListScreen extends ConsumerStatefulWidget {
 class _StockerSlotListScreenState extends ConsumerState<StockerSlotListScreen> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     final slotsAsync = ref.watch(slotListProvider(widget.machineId));
 
     ref.listen(slotUpdateProvider, (previous, next) {
@@ -33,7 +36,7 @@ class _StockerSlotListScreenState extends ConsumerState<StockerSlotListScreen> {
         toastification.show(
           context: context,
           type: ToastificationType.success,
-          style: ToastificationStyle.fillColored,
+          style: ToastificationStyle.minimal,
           alignment: Alignment.topCenter,
           title: Text(t.inventory.updateSuccess),
           autoCloseDuration: const Duration(seconds: 3),
@@ -43,7 +46,7 @@ class _StockerSlotListScreenState extends ConsumerState<StockerSlotListScreen> {
         toastification.show(
           context: context,
           type: ToastificationType.error,
-          style: ToastificationStyle.fillColored,
+          style: ToastificationStyle.minimal,
           alignment: Alignment.topCenter,
           title: Text(t.inventory.updateFailed),
           description: next.errorMessage != null
@@ -55,17 +58,20 @@ class _StockerSlotListScreenState extends ConsumerState<StockerSlotListScreen> {
     });
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.inventory.slotList)),
+      backgroundColor: colorScheme.surface,
+      appBar: AppBar(
+        title: Text(t.inventory.slotList),
+        centerTitle: true,
+        backgroundColor: colorScheme.surface,
+        scrolledUnderElevation: 0,
+      ),
       body: slotsAsync.when(
         loading: () => _buildSkeleton(),
         error: (error, _) => Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                t.common.loadFailed,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
+              Text(t.common.loadFailed, style: theme.textTheme.bodyLarge),
               SizedBox(height: 12.h),
               FilledButton.tonal(
                 onPressed: () =>
@@ -79,30 +85,38 @@ class _StockerSlotListScreenState extends ConsumerState<StockerSlotListScreen> {
           if (slots.isEmpty) {
             return EmptyWidget(message: t.inventory.emptyState);
           }
-          return ListView.builder(
-            itemCount: slots.length,
-            itemBuilder: (context, index) {
-              final slot = slots[index];
-              return Slidable(
-                key: ValueKey(slot.id),
-                endActionPane: ActionPane(
-                  motion: const DrawerMotion(),
-                  children: [
-                    SlidableAction(
-                      onPressed: (_) => showDialog<void>(
-                        context: context,
-                        builder: (_) => SlotQuantityEditDialog(slot: slot),
-                      ),
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                      icon: Icons.edit,
-                      label: t.inventory.editQuantity,
-                    ),
-                  ],
-                ),
-                child: SlotListItem(slot: slot),
-              );
+          return RefreshIndicator(
+            onRefresh: () async {
+              ref.invalidate(slotListProvider(widget.machineId));
+              return ref.read(slotListProvider(widget.machineId).future);
             },
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(vertical: AppDesignTokens.spacingS),
+              itemCount: slots.length,
+              itemBuilder: (context, index) {
+                final slot = slots[index];
+                return SlotListItem(
+                  slot: slot,
+                  onEdit: () {
+                    showDialog<void>(
+                      context: context,
+                      builder: (context) => SlotQuantityEditDialog(
+                        slot: slot,
+                        onConfirm: (quantity) {
+                          ref
+                              .read(slotUpdateProvider.notifier)
+                              .updateQuantity(
+                                machineId: widget.machineId,
+                                slotId: slot.id,
+                                quantity: quantity,
+                              );
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           );
         },
       ),
@@ -112,13 +126,31 @@ class _StockerSlotListScreenState extends ConsumerState<StockerSlotListScreen> {
   Widget _buildSkeleton() {
     return Skeletonizer(
       child: ListView.builder(
-        itemCount: 8,
-        itemBuilder: (context, index) => ListTile(
-          leading: CircleAvatar(
-            child: Container(width: 24.w, height: 14.h, color: Colors.grey),
+        itemCount: 10,
+        padding: EdgeInsets.symmetric(vertical: AppDesignTokens.spacingS),
+        itemBuilder: (context, index) => PremiumCard(
+          margin: EdgeInsets.symmetric(
+            horizontal: AppDesignTokens.spacingM,
+            vertical: AppDesignTokens.spacingXS,
           ),
-          title: Container(width: 120.w, height: 14.h, color: Colors.grey),
-          trailing: Container(width: 30.w, height: 18.h, color: Colors.grey),
+          padding: EdgeInsets.all(AppDesignTokens.spacingM),
+          child: Row(
+            children: [
+              Container(width: 44.w, height: 44.w, color: Colors.grey),
+              SizedBox(width: AppDesignTokens.spacingM),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(width: 120.w, height: 16.h, color: Colors.grey),
+                    SizedBox(height: 4.h),
+                    Container(width: 80.w, height: 10.h, color: Colors.grey),
+                  ],
+                ),
+              ),
+              Container(width: 40.w, height: 30.h, color: Colors.grey),
+            ],
+          ),
         ),
       ),
     );

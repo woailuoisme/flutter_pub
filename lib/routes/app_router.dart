@@ -62,7 +62,9 @@ GoRouter goRouter(Ref ref) {
 
       // 登录成功后根据角色重定向
       if (isLoggedIn && isAuthRoute) {
-        LoggerUtils.d('GoRouter Redirect: SUCCESS -> [TEMP] Skipping role check, defaulting to agent dashboard');
+        LoggerUtils.d(
+          'GoRouter Redirect: SUCCESS -> [TEMP] Skipping role check, defaulting to agent dashboard',
+        );
         return const AgentDashboardRoute().location;
       }
 

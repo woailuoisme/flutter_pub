@@ -1,7 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
+import 'package:lunchbox_hub/core/widgets/card_widgets/premium_card.dart';
 import 'package:lunchbox_hub/features/agent/entities/revenue_stats_model.dart';
+import 'package:lunchbox_hub/i18n/translations.g.dart';
 
 class OrderBarChart extends StatelessWidget {
   const OrderBarChart({super.key, required this.data});
@@ -10,112 +13,152 @@ class OrderBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     if (data.isEmpty) {
-      return SizedBox(
-        height: 200.h,
-        child: Center(
-          child: Text(
-            '暂无数据',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
+      return PremiumCard(
+        margin: EdgeInsets.symmetric(horizontal: AppDesignTokens.spacingM),
+        child: SizedBox(
+          height: 200.h,
+          child: Center(
+            child: Text(
+              t.common.noData,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
             ),
           ),
         ),
       );
     }
 
-    final primary = Theme.of(context).colorScheme.primary;
+    final primary = colorScheme.primary;
     final maxY = data.map((p) => p.value).reduce((a, b) => a > b ? a : b);
 
-    return SizedBox(
-      height: 200.h,
+    return PremiumCard(
+      margin: EdgeInsets.symmetric(horizontal: AppDesignTokens.spacingM),
       child: Padding(
-        padding: EdgeInsets.only(right: 16.w, top: 8.h),
-        child: BarChart(
-          BarChartData(
-            maxY: maxY * 1.2,
-            gridData: FlGridData(
-              show: true,
-              drawVerticalLine: false,
-              getDrawingHorizontalLine: (value) => FlLine(
-                color: Theme.of(
-                  context,
-                ).colorScheme.outlineVariant.withValues(alpha: 0.5),
-                strokeWidth: 1,
-              ),
-            ),
-            borderData: FlBorderData(show: false),
-            titlesData: FlTitlesData(
-              leftTitles: const AxisTitles(
-                sideTitles: SideTitles(showTitles: false),
-              ),
-              rightTitles: const AxisTitles(
-                sideTitles: SideTitles(showTitles: false),
-              ),
-              topTitles: const AxisTitles(
-                sideTitles: SideTitles(showTitles: false),
-              ),
-              bottomTitles: AxisTitles(
-                sideTitles: SideTitles(
-                  showTitles: true,
-                  reservedSize: 28.h,
-                  getTitlesWidget: (value, meta) {
-                    final index = value.toInt();
-                    if (index < 0 || index >= data.length) {
-                      return const SizedBox.shrink();
-                    }
-                    // Show every nth label to avoid crowding
-                    final step = (data.length / 4).ceil().clamp(1, data.length);
-                    if (index % step != 0 && index != data.length - 1) {
-                      return const SizedBox.shrink();
-                    }
-                    return Padding(
-                      padding: EdgeInsets.only(top: 4.h),
-                      child: Text(
-                        data[index].label,
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
+        padding: EdgeInsets.fromLTRB(
+          AppDesignTokens.spacingM,
+          AppDesignTokens.spacingL,
+          AppDesignTokens.spacingM,
+          AppDesignTokens.spacingM,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 200.h,
+              child: BarChart(
+                BarChartData(
+                  maxY: maxY * 1.2,
+                  gridData: FlGridData(
+                    show: true,
+                    drawVerticalLine: false,
+                    getDrawingHorizontalLine: (value) => FlLine(
+                      color: colorScheme.outlineVariant.withValues(alpha: 0.3),
+                      strokeWidth: 1,
+                      dashArray: [5, 5],
+                    ),
+                  ),
+                  borderData: FlBorderData(show: false),
+                  titlesData: FlTitlesData(
+                    leftTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                    rightTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                    topTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                    bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 32.h,
+                        getTitlesWidget: (value, meta) {
+                          final index = value.toInt();
+                          if (index < 0 || index >= data.length) {
+                            return const SizedBox.shrink();
+                          }
+                          // Show every nth label to avoid crowding
+                          final step = (data.length / 4).ceil().clamp(
+                            1,
+                            data.length,
+                          );
+                          if (index % step != 0 && index != data.length - 1) {
+                            return const SizedBox.shrink();
+                          }
+                          return Padding(
+                            padding: EdgeInsets.only(top: 8.h),
+                            child: Text(
+                              data[index].label,
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                fontSize: 10.sp,
+                                color: colorScheme.onSurfaceVariant.withValues(
+                                  alpha: 0.6,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
+                    ),
+                  ),
+                  barTouchData: BarTouchData(
+                    touchTooltipData: BarTouchTooltipData(
+                      getTooltipColor: (_) =>
+                          colorScheme.surfaceContainerHighest,
+                      tooltipBorderRadius: BorderRadius.circular(
+                        AppDesignTokens.radiusS,
+                      ),
+                      getTooltipItem: (group, groupIndex, rod, rodIndex) =>
+                          BarTooltipItem(
+                            '${rod.toY.toInt()} ${t.machines.orders}',
+                            theme.textTheme.labelMedium!.copyWith(
+                              color: colorScheme.onSurfaceVariant,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                    ),
+                  ),
+                  barGroups: data
+                      .asMap()
+                      .entries
+                      .map(
+                        (e) => BarChartGroupData(
+                          x: e.key,
+                          barRods: [
+                            BarChartRodData(
+                              toY: e.value.value,
+                              gradient: LinearGradient(
+                                colors: [
+                                  primary,
+                                  primary.withValues(alpha: 0.7),
+                                ],
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                              ),
+                              width: (220.w / data.length).clamp(4.0, 16.0),
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(AppDesignTokens.radiusS),
+                              ),
+                              backDrawRodData: BackgroundBarChartRodData(
+                                show: true,
+                                toY: maxY * 1.2,
+                                color: colorScheme.surfaceContainerHighest
+                                    .withValues(alpha: 0.3),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
             ),
-            barTouchData: BarTouchData(
-              touchTooltipData: BarTouchTooltipData(
-                getTooltipItem: (group, groupIndex, rod, rodIndex) =>
-                    BarTooltipItem(
-                      '${rod.toY.toInt()} 单',
-                      TextStyle(
-                        color: Colors.white,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-              ),
-            ),
-            barGroups: data
-                .asMap()
-                .entries
-                .map(
-                  (e) => BarChartGroupData(
-                    x: e.key,
-                    barRods: [
-                      BarChartRodData(
-                        toY: e.value.value,
-                        color: primary,
-                        width: (280.w / data.length).clamp(4.0, 24.0),
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(4.r),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-                .toList(),
-          ),
+          ],
         ),
       ),
     );

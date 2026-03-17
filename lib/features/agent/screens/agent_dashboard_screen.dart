@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/features/agent/providers/agent_dashboard_provider.dart';
 import 'package:lunchbox_hub/features/agent/providers/agent_dashboard_state.dart';
 import 'package:lunchbox_hub/features/agent/widgets/kpi_card.dart';
@@ -9,9 +10,11 @@ import 'package:lunchbox_hub/features/agent/widgets/order_bar_chart.dart';
 import 'package:lunchbox_hub/features/agent/widgets/product_pie_chart.dart';
 import 'package:lunchbox_hub/features/agent/widgets/revenue_line_chart.dart';
 import 'package:lunchbox_hub/features/agent/widgets/time_period_selector.dart';
+import 'package:lunchbox_hub/features/agent/widgets/welcome_header.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 import 'package:lunchbox_hub/routes/routes.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:toastification/toastification.dart';
 
 class AgentDashboardScreen extends ConsumerStatefulWidget {
   const AgentDashboardScreen({super.key});
@@ -26,7 +29,20 @@ class _AgentDashboardScreenState extends ConsumerState<AgentDashboardScreen> {
   void initState() {
     super.initState();
     Future.microtask(
-      () => ref.read(agentDashboardProvider.notifier).loadStats(),
+      () => ref.read(agentDashboardProvider.notifier).loadStats().then((_) {
+        _showSuccessToast();
+      }),
+    );
+  }
+
+  void _showSuccessToast() {
+    toastification.show(
+      context: context,
+      type: ToastificationType.success,
+      style: ToastificationStyle.minimal,
+      title: Text(t.common.success),
+      description: Text('${t.machines.dashboard} ${t.common.refresh}'),
+      autoCloseDuration: const Duration(seconds: 3),
     );
   }
 
@@ -39,6 +55,8 @@ class _AgentDashboardScreenState extends ConsumerState<AgentDashboardScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(t.machines.dashboard),
+        elevation: 0,
+        scrolledUnderElevation: 0,
         actions: [
           IconButton(
             icon: const Icon(Icons.list_alt_rounded),
@@ -47,21 +65,27 @@ class _AgentDashboardScreenState extends ConsumerState<AgentDashboardScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TimePeriodSelector(
-              selected: dashboardState.selectedPeriod,
-              onChanged: (period) => ref
-                  .read(agentDashboardProvider.notifier)
-                  .changePeriod(period),
-            ),
-            Skeletonizer(
-              enabled: isLoading,
-              child: _buildContent(context, dashboardState),
-            ),
-          ],
+      body: Skeletonizer(
+        enabled: isLoading,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const WelcomeHeader(),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppDesignTokens.spacingM,
+                ),
+                child: TimePeriodSelector(
+                  selected: dashboardState.selectedPeriod,
+                  onChanged: (period) => ref
+                      .read(agentDashboardProvider.notifier)
+                      .changePeriod(period),
+                ),
+              ),
+              _buildContent(context, dashboardState),
+            ],
+          ),
         ),
       ),
     );
@@ -72,27 +96,33 @@ class _AgentDashboardScreenState extends ConsumerState<AgentDashboardScreen> {
     AgentDashboardState dashboardState,
   ) {
     final stats = dashboardState.stats?.value;
-    if (stats == null) {
+    if (stats == null && dashboardState.stats is! AsyncLoading) {
       return const SizedBox.shrink();
     }
+
+    // Dummy data for skeletonizer if stats is null
+    final displayStats = stats ?? dashboardState.stats?.value;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        KpiCard(stats: stats),
+        if (displayStats != null) KpiCard(stats: displayStats),
         _SectionTitle(title: t.machines.revenueTrend),
-        RevenueTrendLineChart(data: stats.revenueTrend),
+        if (displayStats != null)
+          RevenueTrendLineChart(data: displayStats.revenueTrend),
         _SectionTitle(title: t.machines.orderVolume),
-        OrderBarChart(data: stats.orderTrend),
+        if (displayStats != null) OrderBarChart(data: displayStats.orderTrend),
         _SectionTitle(title: t.machines.productSalesRatio),
-        ProductPieChart(data: stats.productSales),
+        if (displayStats != null)
+          ProductPieChart(data: displayStats.productSales),
         _SectionTitle(title: t.machines.machineRevenueComparison),
-        MachineComparisonBarChart(
-          data: stats.machineRevenues,
-          onMachineTap: (id) =>
-              AgentMachineDetailRoute(machineId: id).go(context),
-        ),
-        SizedBox(height: 24.h),
+        if (displayStats != null)
+          MachineComparisonBarChart(
+            data: displayStats.machineRevenues,
+            onMachineTap: (id) =>
+                AgentMachineDetailRoute(machineId: id).go(context),
+          ),
+        SizedBox(height: 32.h),
       ],
     );
   }
@@ -106,12 +136,18 @@ class _SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 4.h),
+      padding: EdgeInsets.fromLTRB(
+        AppDesignTokens.spacingM,
+        AppDesignTokens.spacingL,
+        AppDesignTokens.spacingM,
+        AppDesignTokens.spacingXS,
+      ),
       child: Text(
         title,
-        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-          fontWeight: FontWeight.w600,
-          color: Theme.of(context).colorScheme.onSurface,
+        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+          fontWeight: FontWeight.w900,
+          color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.8),
+          letterSpacing: 2.0,
         ),
       ),
     );

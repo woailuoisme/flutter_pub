@@ -363,6 +363,10 @@ class _TranslationsMachinesZhTw extends TranslationsMachinesZhCn {
   String get emptyOrders => TranslationOverrides.string(_root.$meta, 'machines.emptyOrders', {}) ?? '暫無訂單';
   @override
   late final _TranslationsMachinesTimePeriodZhTw timePeriod = _TranslationsMachinesTimePeriodZhTw._(_root);
+  @override
+  String get total => TranslationOverrides.string(_root.$meta, 'machines.total', {}) ?? '合計';
+  @override
+  String get orders => TranslationOverrides.string(_root.$meta, 'machines.orders', {}) ?? '單';
 }
 
 // Path: maintenance
@@ -909,6 +913,8 @@ extension on TranslationsZhTw {
       'machines.timePeriod.quarter' =>
         TranslationOverrides.string(_root.$meta, 'machines.timePeriod.quarter', {}) ?? '季度',
       'machines.timePeriod.year' => TranslationOverrides.string(_root.$meta, 'machines.timePeriod.year', {}) ?? '年',
+      'machines.total' => TranslationOverrides.string(_root.$meta, 'machines.total', {}) ?? '合計',
+      'machines.orders' => TranslationOverrides.string(_root.$meta, 'machines.orders', {}) ?? '單',
       'maintenance.machineList' => TranslationOverrides.string(_root.$meta, 'maintenance.machineList', {}) ?? '維護管理',
       'maintenance.faultCount' => TranslationOverrides.string(_root.$meta, 'maintenance.faultCount', {}) ?? '故障次數',
       'maintenance.lastFaultAt' => TranslationOverrides.string(_root.$meta, 'maintenance.lastFaultAt', {}) ?? '最近故障時間',

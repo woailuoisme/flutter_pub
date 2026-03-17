@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/core/widgets/empty_widget.dart';
 import 'package:lunchbox_hub/features/maintenance/entities/fault_record_model.dart';
 import 'package:lunchbox_hub/features/maintenance/repositories/maintenance_repository.dart';
@@ -42,14 +43,24 @@ class _MaintainerFaultListScreenState
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Scaffold(
-      appBar: AppBar(title: Text(t.maintenance.faultList)),
+      backgroundColor: colorScheme.surface,
+      appBar: AppBar(
+        title: Text(t.maintenance.faultList),
+        centerTitle: true,
+        backgroundColor: colorScheme.surface,
+        scrolledUnderElevation: 0,
+      ),
       body: PagingListener(
         controller: _pagingController,
         builder: (context, state, fetchNextPage) =>
             PagedListView<int, FaultRecordModel>(
               state: state,
               fetchNextPage: fetchNextPage,
+              padding: EdgeInsets.symmetric(vertical: AppDesignTokens.spacingS),
               builderDelegate: PagedChildBuilderDelegate<FaultRecordModel>(
                 itemBuilder: (context, fault, index) =>
                     FaultRecordListItem(fault: fault),
@@ -57,12 +68,22 @@ class _MaintainerFaultListScreenState
                     EmptyWidget(message: t.maintenance.noFaultRecords),
                 newPageErrorIndicatorBuilder: (_) => Center(
                   child: Padding(
-                    padding: EdgeInsets.all(16.w),
-                    child: Text(
-                      t.maintenance.loadFailed,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
+                    padding: EdgeInsets.all(AppDesignTokens.spacingM),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          t.maintenance.loadFailed,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                        SizedBox(height: 12.h),
+                        FilledButton.tonal(
+                          onPressed: () => fetchNextPage(),
+                          child: Text(t.common.retry),
+                        ),
+                      ],
                     ),
                   ),
                 ),

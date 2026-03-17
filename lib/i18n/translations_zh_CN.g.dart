@@ -427,6 +427,12 @@ class TranslationsCommonZhCn {
 
   /// zh-CN: '警告'
   String get warning => TranslationOverrides.string(_root.$meta, 'common.warning', {}) ?? '警告';
+
+  /// zh-CN: '欢迎回来'
+  String get welcomeBack => TranslationOverrides.string(_root.$meta, 'common.welcomeBack', {}) ?? '欢迎回来';
+
+  /// zh-CN: '消息通知'
+  String get notifications => TranslationOverrides.string(_root.$meta, 'common.notifications', {}) ?? '消息通知';
 }
 
 // Path: device_info
@@ -612,6 +618,12 @@ class TranslationsMachinesZhCn {
   String get emptyOrders => TranslationOverrides.string(_root.$meta, 'machines.emptyOrders', {}) ?? '暂无订单';
 
   late final TranslationsMachinesTimePeriodZhCn timePeriod = TranslationsMachinesTimePeriodZhCn.internal(_root);
+
+  /// zh-CN: '合计'
+  String get total => TranslationOverrides.string(_root.$meta, 'machines.total', {}) ?? '合计';
+
+  /// zh-CN: '单'
+  String get orders => TranslationOverrides.string(_root.$meta, 'machines.orders', {}) ?? '单';
 }
 
 // Path: maintenance
@@ -1394,6 +1406,8 @@ extension on Translations {
       'common.selectAll' => TranslationOverrides.string(_root.$meta, 'common.selectAll', {}) ?? '全选',
       'common.deselectAll' => TranslationOverrides.string(_root.$meta, 'common.deselectAll', {}) ?? '取消全选',
       'common.warning' => TranslationOverrides.string(_root.$meta, 'common.warning', {}) ?? '警告',
+      'common.welcomeBack' => TranslationOverrides.string(_root.$meta, 'common.welcomeBack', {}) ?? '欢迎回来',
+      'common.notifications' => TranslationOverrides.string(_root.$meta, 'common.notifications', {}) ?? '消息通知',
       'device_info.title' => TranslationOverrides.string(_root.$meta, 'device_info.title', {}) ?? '设备信息',
       'device_info.browser' => TranslationOverrides.string(_root.$meta, 'device_info.browser', {}) ?? '浏览器',
       'device_info.platform' => TranslationOverrides.string(_root.$meta, 'device_info.platform', {}) ?? '平台',
@@ -1455,6 +1469,8 @@ extension on Translations {
       'machines.timePeriod.quarter' =>
         TranslationOverrides.string(_root.$meta, 'machines.timePeriod.quarter', {}) ?? '季度',
       'machines.timePeriod.year' => TranslationOverrides.string(_root.$meta, 'machines.timePeriod.year', {}) ?? '年',
+      'machines.total' => TranslationOverrides.string(_root.$meta, 'machines.total', {}) ?? '合计',
+      'machines.orders' => TranslationOverrides.string(_root.$meta, 'machines.orders', {}) ?? '单',
       'maintenance.machineList' => TranslationOverrides.string(_root.$meta, 'maintenance.machineList', {}) ?? '维护管理',
       'maintenance.faultCount' => TranslationOverrides.string(_root.$meta, 'maintenance.faultCount', {}) ?? '故障次数',
       'maintenance.lastFaultAt' => TranslationOverrides.string(_root.$meta, 'maintenance.lastFaultAt', {}) ?? '最近故障时间',
