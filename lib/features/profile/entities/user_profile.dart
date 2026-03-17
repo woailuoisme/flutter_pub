@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:lunchbox_hub/features/auth/entities/login_response_data.dart';
 
 part 'user_profile.freezed.dart';
 part 'user_profile.g.dart';
@@ -10,56 +11,32 @@ sealed class UserProfile with _$UserProfile {
     /// 用户ID
     required int id,
 
-    /// 微信 OpenID
-    String? openid,
+    /// 管理员名称
+    required String name,
 
-    /// 昵称
-    required String nickname,
-
-    /// 头像
-    String? avatar,
-
-    /// 优惠券数量
-    @JsonKey(name: 'user_coupon_count') required int userCouponCount,
-
-    /// 余额
-    required String balance,
-
-    /// 积分
-    required String integral,
-
-    /// 抽奖次数
-    @JsonKey(name: 'lottery_count') required int lotteryCount,
+    /// 手机号
+    String? mobile,
 
     /// 邮箱
     String? email,
 
-    /// 真实姓名
-    @JsonKey(name: 'real_name') String? realName,
+    /// 头像
+    String? avatar,
 
-    /// 手机号
-    String? telephone,
+    /// 角色列表
+    @Default([]) List<UserRole> roles,
 
-    /// 生日
-    String? birthday,
+    /// 是否激活
+    @JsonKey(name: 'is_active') required bool isActive,
 
-    /// 性别
-    required String gender,
+    /// 最后登录时间
+    @JsonKey(name: 'last_login_at') String? lastLoginAt,
 
-    /// 语言
-    required String language,
+    /// 创建时间
+    @JsonKey(name: 'created_at') String? createdAt,
 
-    /// 国家
-    String? country,
-
-    /// 省份
-    String? province,
-
-    /// 城市
-    String? city,
-
-    /// 角色
-    required String role,
+    /// 更新时间
+    @JsonKey(name: 'updated_at') String? updatedAt,
   }) = _UserProfile;
 
   /// 从JSON映射创建 UserProfile 实例

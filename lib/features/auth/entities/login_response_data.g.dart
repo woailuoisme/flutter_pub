@@ -27,6 +27,7 @@ const _$UserRoleTypeEnumMap = {
   UserRoleType.agent: 'agent',
   UserRoleType.operator: 'operator',
   UserRoleType.ops: 'ops',
+  UserRoleType.editor: 'editor',
 };
 
 _LoginResponseData _$LoginResponseDataFromJson(Map<String, dynamic> json) =>

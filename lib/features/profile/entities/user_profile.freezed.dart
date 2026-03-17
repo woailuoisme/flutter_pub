@@ -16,24 +16,16 @@ T _$identity<T>(T value) => value;
 mixin _$UserProfile {
 
 /// 用户ID
- int get id;/// 微信 OpenID
- String? get openid;/// 昵称
- String get nickname;/// 头像
- String? get avatar;/// 优惠券数量
-@JsonKey(name: 'user_coupon_count') int get userCouponCount;/// 余额
- String get balance;/// 积分
- String get integral;/// 抽奖次数
-@JsonKey(name: 'lottery_count') int get lotteryCount;/// 邮箱
- String? get email;/// 真实姓名
-@JsonKey(name: 'real_name') String? get realName;/// 手机号
- String? get telephone;/// 生日
- String? get birthday;/// 性别
- String get gender;/// 语言
- String get language;/// 国家
- String? get country;/// 省份
- String? get province;/// 城市
- String? get city;/// 角色
- String get role;
+ int get id;/// 管理员名称
+ String get name;/// 手机号
+ String? get mobile;/// 邮箱
+ String? get email;/// 头像
+ String? get avatar;/// 角色列表
+ List<UserRole> get roles;/// 是否激活
+@JsonKey(name: 'is_active') bool get isActive;/// 最后登录时间
+@JsonKey(name: 'last_login_at') String? get lastLoginAt;/// 创建时间
+@JsonKey(name: 'created_at') String? get createdAt;/// 更新时间
+@JsonKey(name: 'updated_at') String? get updatedAt;
 /// Create a copy of UserProfile
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46,16 +38,16 @@ $UserProfileCopyWith<UserProfile> get copyWith => _$UserProfileCopyWithImpl<User
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserProfile&&(identical(other.id, id) || other.id == id)&&(identical(other.openid, openid) || other.openid == openid)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.userCouponCount, userCouponCount) || other.userCouponCount == userCouponCount)&&(identical(other.balance, balance) || other.balance == balance)&&(identical(other.integral, integral) || other.integral == integral)&&(identical(other.lotteryCount, lotteryCount) || other.lotteryCount == lotteryCount)&&(identical(other.email, email) || other.email == email)&&(identical(other.realName, realName) || other.realName == realName)&&(identical(other.telephone, telephone) || other.telephone == telephone)&&(identical(other.birthday, birthday) || other.birthday == birthday)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.language, language) || other.language == language)&&(identical(other.country, country) || other.country == country)&&(identical(other.province, province) || other.province == province)&&(identical(other.city, city) || other.city == city)&&(identical(other.role, role) || other.role == role));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserProfile&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.mobile, mobile) || other.mobile == mobile)&&(identical(other.email, email) || other.email == email)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&const DeepCollectionEquality().equals(other.roles, roles)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.lastLoginAt, lastLoginAt) || other.lastLoginAt == lastLoginAt)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,openid,nickname,avatar,userCouponCount,balance,integral,lotteryCount,email,realName,telephone,birthday,gender,language,country,province,city,role);
+int get hashCode => Object.hash(runtimeType,id,name,mobile,email,avatar,const DeepCollectionEquality().hash(roles),isActive,lastLoginAt,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'UserProfile(id: $id, openid: $openid, nickname: $nickname, avatar: $avatar, userCouponCount: $userCouponCount, balance: $balance, integral: $integral, lotteryCount: $lotteryCount, email: $email, realName: $realName, telephone: $telephone, birthday: $birthday, gender: $gender, language: $language, country: $country, province: $province, city: $city, role: $role)';
+  return 'UserProfile(id: $id, name: $name, mobile: $mobile, email: $email, avatar: $avatar, roles: $roles, isActive: $isActive, lastLoginAt: $lastLoginAt, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -66,7 +58,7 @@ abstract mixin class $UserProfileCopyWith<$Res>  {
   factory $UserProfileCopyWith(UserProfile value, $Res Function(UserProfile) _then) = _$UserProfileCopyWithImpl;
 @useResult
 $Res call({
- int id, String? openid, String nickname, String? avatar,@JsonKey(name: 'user_coupon_count') int userCouponCount, String balance, String integral,@JsonKey(name: 'lottery_count') int lotteryCount, String? email,@JsonKey(name: 'real_name') String? realName, String? telephone, String? birthday, String gender, String language, String? country, String? province, String? city, String role
+ int id, String name, String? mobile, String? email, String? avatar, List<UserRole> roles,@JsonKey(name: 'is_active') bool isActive,@JsonKey(name: 'last_login_at') String? lastLoginAt,@JsonKey(name: 'created_at') String? createdAt,@JsonKey(name: 'updated_at') String? updatedAt
 });
 
 
@@ -83,27 +75,19 @@ class _$UserProfileCopyWithImpl<$Res>
 
 /// Create a copy of UserProfile
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? openid = freezed,Object? nickname = null,Object? avatar = freezed,Object? userCouponCount = null,Object? balance = null,Object? integral = null,Object? lotteryCount = null,Object? email = freezed,Object? realName = freezed,Object? telephone = freezed,Object? birthday = freezed,Object? gender = null,Object? language = null,Object? country = freezed,Object? province = freezed,Object? city = freezed,Object? role = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? mobile = freezed,Object? email = freezed,Object? avatar = freezed,Object? roles = null,Object? isActive = null,Object? lastLoginAt = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,openid: freezed == openid ? _self.openid : openid // ignore: cast_nullable_to_non_nullable
-as String?,nickname: null == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
-as String,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
-as String?,userCouponCount: null == userCouponCount ? _self.userCouponCount : userCouponCount // ignore: cast_nullable_to_non_nullable
-as int,balance: null == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
-as String,integral: null == integral ? _self.integral : integral // ignore: cast_nullable_to_non_nullable
-as String,lotteryCount: null == lotteryCount ? _self.lotteryCount : lotteryCount // ignore: cast_nullable_to_non_nullable
-as int,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String?,realName: freezed == realName ? _self.realName : realName // ignore: cast_nullable_to_non_nullable
-as String?,telephone: freezed == telephone ? _self.telephone : telephone // ignore: cast_nullable_to_non_nullable
-as String?,birthday: freezed == birthday ? _self.birthday : birthday // ignore: cast_nullable_to_non_nullable
-as String?,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as String,language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
-as String?,province: freezed == province ? _self.province : province // ignore: cast_nullable_to_non_nullable
-as String?,city: freezed == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
-as String?,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as String,
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,mobile: freezed == mobile ? _self.mobile : mobile // ignore: cast_nullable_to_non_nullable
+as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String?,roles: null == roles ? _self.roles : roles // ignore: cast_nullable_to_non_nullable
+as List<UserRole>,isActive: null == isActive ? _self.isActive : isActive // ignore: cast_nullable_to_non_nullable
+as bool,lastLoginAt: freezed == lastLoginAt ? _self.lastLoginAt : lastLoginAt // ignore: cast_nullable_to_non_nullable
+as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -185,10 +169,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? openid,  String nickname,  String? avatar, @JsonKey(name: 'user_coupon_count')  int userCouponCount,  String balance,  String integral, @JsonKey(name: 'lottery_count')  int lotteryCount,  String? email, @JsonKey(name: 'real_name')  String? realName,  String? telephone,  String? birthday,  String gender,  String language,  String? country,  String? province,  String? city,  String role)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  String? mobile,  String? email,  String? avatar,  List<UserRole> roles, @JsonKey(name: 'is_active')  bool isActive, @JsonKey(name: 'last_login_at')  String? lastLoginAt, @JsonKey(name: 'created_at')  String? createdAt, @JsonKey(name: 'updated_at')  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserProfile() when $default != null:
-return $default(_that.id,_that.openid,_that.nickname,_that.avatar,_that.userCouponCount,_that.balance,_that.integral,_that.lotteryCount,_that.email,_that.realName,_that.telephone,_that.birthday,_that.gender,_that.language,_that.country,_that.province,_that.city,_that.role);case _:
+return $default(_that.id,_that.name,_that.mobile,_that.email,_that.avatar,_that.roles,_that.isActive,_that.lastLoginAt,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -206,10 +190,10 @@ return $default(_that.id,_that.openid,_that.nickname,_that.avatar,_that.userCoup
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? openid,  String nickname,  String? avatar, @JsonKey(name: 'user_coupon_count')  int userCouponCount,  String balance,  String integral, @JsonKey(name: 'lottery_count')  int lotteryCount,  String? email, @JsonKey(name: 'real_name')  String? realName,  String? telephone,  String? birthday,  String gender,  String language,  String? country,  String? province,  String? city,  String role)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  String? mobile,  String? email,  String? avatar,  List<UserRole> roles, @JsonKey(name: 'is_active')  bool isActive, @JsonKey(name: 'last_login_at')  String? lastLoginAt, @JsonKey(name: 'created_at')  String? createdAt, @JsonKey(name: 'updated_at')  String? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _UserProfile():
-return $default(_that.id,_that.openid,_that.nickname,_that.avatar,_that.userCouponCount,_that.balance,_that.integral,_that.lotteryCount,_that.email,_that.realName,_that.telephone,_that.birthday,_that.gender,_that.language,_that.country,_that.province,_that.city,_that.role);}
+return $default(_that.id,_that.name,_that.mobile,_that.email,_that.avatar,_that.roles,_that.isActive,_that.lastLoginAt,_that.createdAt,_that.updatedAt);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -223,10 +207,10 @@ return $default(_that.id,_that.openid,_that.nickname,_that.avatar,_that.userCoup
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? openid,  String nickname,  String? avatar, @JsonKey(name: 'user_coupon_count')  int userCouponCount,  String balance,  String integral, @JsonKey(name: 'lottery_count')  int lotteryCount,  String? email, @JsonKey(name: 'real_name')  String? realName,  String? telephone,  String? birthday,  String gender,  String language,  String? country,  String? province,  String? city,  String role)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  String? mobile,  String? email,  String? avatar,  List<UserRole> roles, @JsonKey(name: 'is_active')  bool isActive, @JsonKey(name: 'last_login_at')  String? lastLoginAt, @JsonKey(name: 'created_at')  String? createdAt, @JsonKey(name: 'updated_at')  String? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _UserProfile() when $default != null:
-return $default(_that.id,_that.openid,_that.nickname,_that.avatar,_that.userCouponCount,_that.balance,_that.integral,_that.lotteryCount,_that.email,_that.realName,_that.telephone,_that.birthday,_that.gender,_that.language,_that.country,_that.province,_that.city,_that.role);case _:
+return $default(_that.id,_that.name,_that.mobile,_that.email,_that.avatar,_that.roles,_that.isActive,_that.lastLoginAt,_that.createdAt,_that.updatedAt);case _:
   return null;
 
 }
@@ -238,45 +222,36 @@ return $default(_that.id,_that.openid,_that.nickname,_that.avatar,_that.userCoup
 @JsonSerializable()
 
 class _UserProfile implements UserProfile {
-  const _UserProfile({required this.id, this.openid, required this.nickname, this.avatar, @JsonKey(name: 'user_coupon_count') required this.userCouponCount, required this.balance, required this.integral, @JsonKey(name: 'lottery_count') required this.lotteryCount, this.email, @JsonKey(name: 'real_name') this.realName, this.telephone, this.birthday, required this.gender, required this.language, this.country, this.province, this.city, required this.role});
+  const _UserProfile({required this.id, required this.name, this.mobile, this.email, this.avatar, final  List<UserRole> roles = const [], @JsonKey(name: 'is_active') required this.isActive, @JsonKey(name: 'last_login_at') this.lastLoginAt, @JsonKey(name: 'created_at') this.createdAt, @JsonKey(name: 'updated_at') this.updatedAt}): _roles = roles;
   factory _UserProfile.fromJson(Map<String, dynamic> json) => _$UserProfileFromJson(json);
 
 /// 用户ID
 @override final  int id;
-/// 微信 OpenID
-@override final  String? openid;
-/// 昵称
-@override final  String nickname;
-/// 头像
-@override final  String? avatar;
-/// 优惠券数量
-@override@JsonKey(name: 'user_coupon_count') final  int userCouponCount;
-/// 余额
-@override final  String balance;
-/// 积分
-@override final  String integral;
-/// 抽奖次数
-@override@JsonKey(name: 'lottery_count') final  int lotteryCount;
+/// 管理员名称
+@override final  String name;
+/// 手机号
+@override final  String? mobile;
 /// 邮箱
 @override final  String? email;
-/// 真实姓名
-@override@JsonKey(name: 'real_name') final  String? realName;
-/// 手机号
-@override final  String? telephone;
-/// 生日
-@override final  String? birthday;
-/// 性别
-@override final  String gender;
-/// 语言
-@override final  String language;
-/// 国家
-@override final  String? country;
-/// 省份
-@override final  String? province;
-/// 城市
-@override final  String? city;
-/// 角色
-@override final  String role;
+/// 头像
+@override final  String? avatar;
+/// 角色列表
+ final  List<UserRole> _roles;
+/// 角色列表
+@override@JsonKey() List<UserRole> get roles {
+  if (_roles is EqualUnmodifiableListView) return _roles;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_roles);
+}
+
+/// 是否激活
+@override@JsonKey(name: 'is_active') final  bool isActive;
+/// 最后登录时间
+@override@JsonKey(name: 'last_login_at') final  String? lastLoginAt;
+/// 创建时间
+@override@JsonKey(name: 'created_at') final  String? createdAt;
+/// 更新时间
+@override@JsonKey(name: 'updated_at') final  String? updatedAt;
 
 /// Create a copy of UserProfile
 /// with the given fields replaced by the non-null parameter values.
@@ -291,16 +266,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserProfile&&(identical(other.id, id) || other.id == id)&&(identical(other.openid, openid) || other.openid == openid)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.userCouponCount, userCouponCount) || other.userCouponCount == userCouponCount)&&(identical(other.balance, balance) || other.balance == balance)&&(identical(other.integral, integral) || other.integral == integral)&&(identical(other.lotteryCount, lotteryCount) || other.lotteryCount == lotteryCount)&&(identical(other.email, email) || other.email == email)&&(identical(other.realName, realName) || other.realName == realName)&&(identical(other.telephone, telephone) || other.telephone == telephone)&&(identical(other.birthday, birthday) || other.birthday == birthday)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.language, language) || other.language == language)&&(identical(other.country, country) || other.country == country)&&(identical(other.province, province) || other.province == province)&&(identical(other.city, city) || other.city == city)&&(identical(other.role, role) || other.role == role));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserProfile&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.mobile, mobile) || other.mobile == mobile)&&(identical(other.email, email) || other.email == email)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&const DeepCollectionEquality().equals(other._roles, _roles)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.lastLoginAt, lastLoginAt) || other.lastLoginAt == lastLoginAt)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,openid,nickname,avatar,userCouponCount,balance,integral,lotteryCount,email,realName,telephone,birthday,gender,language,country,province,city,role);
+int get hashCode => Object.hash(runtimeType,id,name,mobile,email,avatar,const DeepCollectionEquality().hash(_roles),isActive,lastLoginAt,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'UserProfile(id: $id, openid: $openid, nickname: $nickname, avatar: $avatar, userCouponCount: $userCouponCount, balance: $balance, integral: $integral, lotteryCount: $lotteryCount, email: $email, realName: $realName, telephone: $telephone, birthday: $birthday, gender: $gender, language: $language, country: $country, province: $province, city: $city, role: $role)';
+  return 'UserProfile(id: $id, name: $name, mobile: $mobile, email: $email, avatar: $avatar, roles: $roles, isActive: $isActive, lastLoginAt: $lastLoginAt, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -311,7 +286,7 @@ abstract mixin class _$UserProfileCopyWith<$Res> implements $UserProfileCopyWith
   factory _$UserProfileCopyWith(_UserProfile value, $Res Function(_UserProfile) _then) = __$UserProfileCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String? openid, String nickname, String? avatar,@JsonKey(name: 'user_coupon_count') int userCouponCount, String balance, String integral,@JsonKey(name: 'lottery_count') int lotteryCount, String? email,@JsonKey(name: 'real_name') String? realName, String? telephone, String? birthday, String gender, String language, String? country, String? province, String? city, String role
+ int id, String name, String? mobile, String? email, String? avatar, List<UserRole> roles,@JsonKey(name: 'is_active') bool isActive,@JsonKey(name: 'last_login_at') String? lastLoginAt,@JsonKey(name: 'created_at') String? createdAt,@JsonKey(name: 'updated_at') String? updatedAt
 });
 
 
@@ -328,27 +303,19 @@ class __$UserProfileCopyWithImpl<$Res>
 
 /// Create a copy of UserProfile
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? openid = freezed,Object? nickname = null,Object? avatar = freezed,Object? userCouponCount = null,Object? balance = null,Object? integral = null,Object? lotteryCount = null,Object? email = freezed,Object? realName = freezed,Object? telephone = freezed,Object? birthday = freezed,Object? gender = null,Object? language = null,Object? country = freezed,Object? province = freezed,Object? city = freezed,Object? role = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? mobile = freezed,Object? email = freezed,Object? avatar = freezed,Object? roles = null,Object? isActive = null,Object? lastLoginAt = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_UserProfile(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,openid: freezed == openid ? _self.openid : openid // ignore: cast_nullable_to_non_nullable
-as String?,nickname: null == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
-as String,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
-as String?,userCouponCount: null == userCouponCount ? _self.userCouponCount : userCouponCount // ignore: cast_nullable_to_non_nullable
-as int,balance: null == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
-as String,integral: null == integral ? _self.integral : integral // ignore: cast_nullable_to_non_nullable
-as String,lotteryCount: null == lotteryCount ? _self.lotteryCount : lotteryCount // ignore: cast_nullable_to_non_nullable
-as int,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String?,realName: freezed == realName ? _self.realName : realName // ignore: cast_nullable_to_non_nullable
-as String?,telephone: freezed == telephone ? _self.telephone : telephone // ignore: cast_nullable_to_non_nullable
-as String?,birthday: freezed == birthday ? _self.birthday : birthday // ignore: cast_nullable_to_non_nullable
-as String?,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as String,language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
-as String?,province: freezed == province ? _self.province : province // ignore: cast_nullable_to_non_nullable
-as String?,city: freezed == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
-as String?,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as String,
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,mobile: freezed == mobile ? _self.mobile : mobile // ignore: cast_nullable_to_non_nullable
+as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String?,roles: null == roles ? _self._roles : roles // ignore: cast_nullable_to_non_nullable
+as List<UserRole>,isActive: null == isActive ? _self.isActive : isActive // ignore: cast_nullable_to_non_nullable
+as bool,lastLoginAt: freezed == lastLoginAt ? _self.lastLoginAt : lastLoginAt // ignore: cast_nullable_to_non_nullable
+as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

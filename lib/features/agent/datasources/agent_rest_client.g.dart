@@ -29,7 +29,7 @@ class _AgentRestClient implements AgentRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/agent/machines',
+            '/api/v2/admin/agent/machines',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -73,7 +73,7 @@ class _AgentRestClient implements AgentRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/agent/machines/${machineId}/orders',
+            '/api/v2/admin/agent/machines/${machineId}/orders',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -111,7 +111,7 @@ class _AgentRestClient implements AgentRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/agent/dashboard/stats',
+            '/api/v2/admin/agent/dashboard/stats',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -144,7 +144,7 @@ class _AgentRestClient implements AgentRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/agent/machines/${machineId}/stats',
+            '/api/v2/admin/agent/machines/${machineId}/stats',
             queryParameters: queryParameters,
             data: _data,
           )

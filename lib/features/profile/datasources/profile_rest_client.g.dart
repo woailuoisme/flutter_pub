@@ -29,7 +29,7 @@ class _ProfileRestClient implements ProfileRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/auth/me',
+            '/api/v2/admin/auth/me',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -59,7 +59,7 @@ class _ProfileRestClient implements ProfileRestClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/admin/auth/logout',
+            '/api/v2/admin/auth/logout',
             queryParameters: queryParameters,
             data: _data,
           )

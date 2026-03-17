@@ -32,7 +32,7 @@ class _AuthRemoteDataSource implements AuthRemoteDataSource {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/admin/auth/login',
+            '/api/v2/admin/auth/login',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -63,7 +63,7 @@ class _AuthRemoteDataSource implements AuthRemoteDataSource {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/auth/password/reset',
+            '/api/v2/admin/auth/password/reset',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -94,7 +94,7 @@ class _AuthRemoteDataSource implements AuthRemoteDataSource {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/auth/${provider}/token',
+            '/api/v2/admin/auth/${provider}/token',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -127,7 +127,7 @@ class _AuthRemoteDataSource implements AuthRemoteDataSource {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/auth/register',
+            '/api/v2/admin/auth/register',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -157,7 +157,7 @@ class _AuthRemoteDataSource implements AuthRemoteDataSource {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/auth/refresh',
+            '/api/v2/admin/auth/refresh',
             queryParameters: queryParameters,
             data: _data,
           )

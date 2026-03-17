@@ -29,7 +29,7 @@ class _InventoryRestClient implements InventoryRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/stocker/machines',
+            '/api/v2/admin/stocker/machines',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -66,7 +66,7 @@ class _InventoryRestClient implements InventoryRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/stocker/machines/${machineId}/slots',
+            '/api/v2/admin/stocker/machines/${machineId}/slots',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -107,7 +107,7 @@ class _InventoryRestClient implements InventoryRestClient {
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/stocker/machines/${machineId}/slots/${slotId}',
+            '/api/v2/admin/stocker/machines/${machineId}/slots/${slotId}',
             queryParameters: queryParameters,
             data: _data,
           )

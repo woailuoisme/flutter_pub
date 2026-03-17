@@ -30,7 +30,7 @@ class _MaintenanceRestClient implements MaintenanceRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/maintainer/machines',
+            '/api/v2/admin/maintainer/machines',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -75,7 +75,7 @@ class _MaintenanceRestClient implements MaintenanceRestClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/maintainer/machines/${machineId}/faults',
+            '/api/v2/admin/maintainer/machines/${machineId}/faults',
             queryParameters: queryParameters,
             data: _data,
           )

@@ -18,10 +18,10 @@ abstract class ProfileRestClient {
   factory ProfileRestClient(Dio dio, {String baseUrl}) = _ProfileRestClient;
 
   /// 获取用户个人信息
-  @GET('/api/v1/auth/me')
+  @GET('/api/v2/admin/auth/me')
   Future<ApiResponse<UserProfile>> getProfile();
 
   /// 用户登出
-  @POST('/api/v1/admin/auth/logout')
+  @POST('/api/v2/admin/auth/logout')
   Future<ApiResponse<void>> logout();
 }

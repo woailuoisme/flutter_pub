@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lunchbox_hub/features/profile/providers/profile_provider.dart';
 import 'package:lunchbox_hub/core/services/dialog_service.dart';
+import 'package:lunchbox_hub/features/profile/providers/profile_provider.dart';
 import 'package:lunchbox_hub/features/profile/widgets/profile_header.dart';
 import 'package:lunchbox_hub/features/profile/widgets/profile_menu_tile.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
@@ -33,10 +33,7 @@ class ProfileView extends ConsumerWidget {
               child: Skeletonizer(
                 enabled: isLoading,
                 child: ProfileHeader(
-                  username: user?.nickname ?? '...',
-                  walletBalance: user?.balance ?? '0.00',
-                  points: user?.integral ?? '0',
-                  coupons: user?.userCouponCount.toString() ?? '0',
+                  username: user?.name ?? '...',
                   avatarUrl: user?.avatar,
                   onLogout: () => _handleLogout(context, ref),
                 ),
@@ -44,9 +41,7 @@ class ProfileView extends ConsumerWidget {
             ),
 
             // 功能列表菜单
-            SliverToBoxAdapter(
-              child: _buildMenuSection(context, ref, user?.balance),
-            ),
+            SliverToBoxAdapter(child: _buildMenuSection(context, ref)),
 
             SliverToBoxAdapter(child: SizedBox(height: 40.h)),
           ],
@@ -56,40 +51,12 @@ class ProfileView extends ConsumerWidget {
   }
 
   /// 构建功能列表菜单
-  Widget _buildMenuSection(
-    BuildContext context,
-    WidgetRef ref,
-    String? balance,
-  ) {
+  Widget _buildMenuSection(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     return ColoredBox(
       color: theme.cardColor,
       child: Column(
         children: [
-          // 资产与权益
-          ProfileMenuTile(
-            icon: Symbols.account_balance_wallet,
-            title: t.profile.wallet,
-            trailingText: balance ?? '0.00',
-            trailingColor: theme.colorScheme.primary,
-            onTap: () {},
-          ),
-          ProfileMenuTile(
-            icon: Symbols.card_giftcard,
-            title: t.welcome_gift.title,
-            onTap: () {},
-          ),
-          ProfileMenuTile(
-            icon: Symbols.airplane_ticket,
-            title: t.profile.coupon,
-            onTap: () {},
-          ),
-          ProfileMenuTile(
-            icon: Symbols.stars,
-            title: t.profile.pointsMall,
-            onTap: () {},
-          ),
-
           // 个人相关
           ProfileMenuTile(
             icon: Symbols.person,
@@ -97,12 +64,6 @@ class ProfileView extends ConsumerWidget {
             onTap: () {},
           ),
 
-          // 服务与合作
-          ProfileMenuTile(
-            icon: Symbols.handshake,
-            title: t.profile.cooperation,
-            onTap: () {},
-          ),
           ProfileMenuTile(
             icon: Symbols.help,
             title: t.profile.feedback,

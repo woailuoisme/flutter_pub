@@ -19,25 +19,25 @@ abstract class AuthRemoteDataSource {
   factory AuthRemoteDataSource(Dio dio, {String baseUrl}) =
       _AuthRemoteDataSource;
 
-  @POST('/api/v1/admin/auth/login')
+  @POST('/api/v2/admin/auth/login')
   Future<ApiResponse<LoginResponseData>> login(
     @Body() Map<String, dynamic> body,
   );
 
-  @POST('/api/v1/auth/password/reset')
+  @POST('/api/v2/admin/auth/password/reset')
   Future<ApiResponse<void>> resetPassword(@Body() Map<String, dynamic> body);
 
-  @POST('/api/v1/auth/{provider}/token')
+  @POST('/api/v2/admin/auth/{provider}/token')
   Future<ApiResponse<LoginResponseData>> socialLogin(
     @Path('provider') String provider,
     @Body() Map<String, dynamic> body,
   );
 
-  @POST('/api/v1/auth/register')
+  @POST('/api/v2/admin/auth/register')
   Future<ApiResponse<LoginResponseData>> register(
     @Body() Map<String, dynamic> body,
   );
 
-  @POST('/api/v1/auth/refresh')
+  @POST('/api/v2/admin/auth/refresh')
   Future<ApiResponse<RefreshTokenResponseData>> refresh();
 }

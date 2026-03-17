@@ -19,11 +19,11 @@ abstract class MaintenanceRestClient {
       _MaintenanceRestClient;
 
   /// 获取维护员负责的机器列表（含维修统计）
-  @GET('/api/v1/maintainer/machines')
+  @GET('/api/v2/admin/maintainer/machines')
   Future<ApiResponse<List<MaintainerMachineModel>>> getMaintainerMachines();
 
   /// 获取指定机器的故障记录列表（倒序分页）
-  @GET('/api/v1/maintainer/machines/{machineId}/faults')
+  @GET('/api/v2/admin/maintainer/machines/{machineId}/faults')
   Future<ApiResponse<List<FaultRecordModel>>> getMachineFaults(
     @Path('machineId') String machineId,
     @Query('page') int page,

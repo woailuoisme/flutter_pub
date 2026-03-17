@@ -29,12 +29,7 @@ class ProfileNotifier extends _$ProfileNotifier {
   }
 
   /// 更新用户信息
-  Future<void> updateUserInfo({
-    String? nickname,
-    String? avatar,
-    String? gender,
-    DateTime? birthday,
-  }) async {
+  Future<void> updateUserInfo({String? name, String? avatar}) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final currentUser = state.value?.currentUser;
@@ -43,10 +38,8 @@ class ProfileNotifier extends _$ProfileNotifier {
       final repository = ref.read(profileRepositoryProvider.notifier);
       final updatedUser = await repository.updateUserInfo(
         currentUser: currentUser,
-        nickname: nickname,
+        name: name,
         avatar: avatar,
-        gender: gender,
-        birthday: birthday,
       );
 
       LoggerUtils.i('ProfileNotifier: User info updated');

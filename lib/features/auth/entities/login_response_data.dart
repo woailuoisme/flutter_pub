@@ -16,13 +16,18 @@ enum UserRoleType {
 
   /// 运维员
   @JsonValue('ops')
-  ops;
+  ops,
+
+  /// 编辑员
+  @JsonValue('editor')
+  editor;
 
   /// 获取角色显示名称
   String get label => switch (this) {
     agent => '代理商',
     operator => '补货员',
     ops => '运维员',
+    editor => '编辑员',
   };
 
   /// 获取用于路由匹配的名称
@@ -30,6 +35,7 @@ enum UserRoleType {
     agent => 'agent',
     operator => 'operator',
     ops => 'ops',
+    editor => 'editor',
   };
 }
 

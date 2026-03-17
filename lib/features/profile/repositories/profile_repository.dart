@@ -23,20 +23,16 @@ class ProfileRepository extends _$ProfileRepository {
   /// 更新用户个人资料
   Future<UserProfile> updateUserInfo({
     required UserProfile currentUser,
-    String? nickname,
+    String? name,
     String? avatar,
-    String? gender,
-    DateTime? birthday,
   }) async {
     // 这里如果 API 还没有更新接口，暂时保持原样或抛出未实现
     // 如果 profile_rest_client.dart 有更新接口可以调用
     await Future<void>.delayed(const Duration(milliseconds: 500));
 
     return currentUser.copyWith(
-      nickname: nickname ?? currentUser.nickname,
+      name: name ?? currentUser.name,
       avatar: avatar ?? currentUser.avatar,
-      gender: gender ?? currentUser.gender,
-      // UserProfile 目前没有 birthday 字段，如果需要可以添加
     );
   }
 }
