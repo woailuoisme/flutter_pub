@@ -35,7 +35,7 @@ final class NotificationNotifierProvider
 }
 
 String _$notificationNotifierHash() =>
-    r'1b3d1cf6710210a2d9078cbbb50be24ba5c60c12';
+    r'a28ad796c324be905cd1a413246aee5b4cda3f78';
 
 abstract class _$NotificationNotifier
     extends $StreamNotifier<List<NotificationModel>> {
