@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 
 /// 个人信息卡片组件
 /// 用于对个人信息进行分组展示，带有一个标题指示器
@@ -16,28 +17,20 @@ class ProfileInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
       decoration: BoxDecoration(
-        color: isDark ? theme.cardColor : Colors.white,
-        borderRadius: BorderRadius.circular(24.r),
-        boxShadow: [
-          BoxShadow(
-            color: theme.shadowColor.withValues(alpha: isDark ? 0.3 : 0.04),
-            blurRadius: 20,
-            spreadRadius: 0,
-            offset: const Offset(0, 8),
-          ),
-        ],
+        color: theme.cardColor,
+        borderRadius: BorderRadius.circular(AppDesignTokens.radiusL),
+        boxShadow: AppDesignTokens.shadowSoft(context),
         border: Border.all(
-          color: theme.dividerColor.withValues(alpha: 0.05),
+          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.3),
           width: 0.5,
         ),
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(24.r),
+        borderRadius: BorderRadius.circular(AppDesignTokens.radiusL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -49,15 +42,10 @@ class ProfileInfoCard extends StatelessWidget {
                     width: 4.w,
                     height: 18.h,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          theme.colorScheme.primary,
-                          theme.colorScheme.primary.withValues(alpha: 0.6),
-                        ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
+                      gradient: AppDesignTokens.primaryGradient(context),
+                      borderRadius: BorderRadius.circular(
+                        AppDesignTokens.radiusS,
                       ),
-                      borderRadius: BorderRadius.circular(4.r),
                     ),
                   ),
                   SizedBox(width: 12.w),

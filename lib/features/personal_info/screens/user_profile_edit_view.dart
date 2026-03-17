@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/features/personal_info/providers/personal_info_provider.dart';
 import 'package:lunchbox_hub/features/profile/providers/profile_provider.dart';
 import 'package:lunchbox_hub/features/personal_info/widgets/profile_avatar_edit.dart';
@@ -15,6 +16,7 @@ import 'package:lunchbox_hub/features/personal_info/widgets/profile_edit_dialog.
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:toastification/toastification.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 /// 个人信息编辑视图
 class ProfileEditView extends ConsumerStatefulWidget {
@@ -110,16 +112,20 @@ class _ProfileEditViewState extends ConsumerState<ProfileEditView> {
     final isUpdating = updateState is AsyncLoading;
 
     return Scaffold(
-      backgroundColor: theme.scaffoldBackgroundColor,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(t.profile.personalInfo),
+        title: Text(
+          t.profile.personalInfo,
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ).animate().fadeIn(duration: 400.ms).slideX(begin: -0.1),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.8),
+        backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.7),
         flexibleSpace: ClipRect(
           child: BackdropFilter(
-            filter: ui.ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            filter: ui.ImageFilter.blur(sigmaX: 15, sigmaY: 15),
             child: Container(color: Colors.transparent),
           ),
         ),
@@ -127,106 +133,127 @@ class _ProfileEditViewState extends ConsumerState<ProfileEditView> {
       ),
       body: user == null
           ? const Center(child: CircularProgressIndicator())
-          : Stack(
-              children: [
-                // 顶部背景渐变
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: 250.h,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          theme.colorScheme.primaryContainer.withValues(
-                            alpha: 0.5,
-                          ),
-                          theme.colorScheme.surface.withValues(alpha: 0),
+          : Container(
+              decoration: BoxDecoration(
+                gradient: AppDesignTokens.surfaceGradient(context),
+              ),
+              child: Stack(
+                children: [
+                  // 顶部氛围装饰
+                  Positioned(
+                    top: -100.h,
+                    right: -100.w,
+                    child: Container(
+                      width: 300.w,
+                      height: 300.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: RadialGradient(
+                          colors: [
+                            theme.colorScheme.primary.withValues(alpha: 0.1),
+                            theme.colorScheme.primary.withValues(alpha: 0),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // 主滚动区域
+                  Positioned.fill(
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).padding.top + 56.h,
+                        bottom: 120.h,
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 20.h),
+                          ProfileAvatarEdit(
+                                avatarUrl:
+                                    user.avatar ??
+                                    'https://picsum.photos/seed/user/200',
+                                localImage: _selectedAvatarFile,
+                                changeLabel: t.profile.avatar.clickToChange,
+                                isLoading: isUpdating,
+                                onTap: _pickImage,
+                              )
+                              .animate()
+                              .fade(duration: 400.ms)
+                              .scale(
+                                begin: const Offset(0.9, 0.9),
+                                curve: Curves.easeOutBack,
+                              ),
+                          SizedBox(height: 32.h),
+
+                          // 基本信息
+                          ProfileInfoCard(
+                                title: t.profile.info.basic,
+                                children: [
+                                  ProfileInfoTile(
+                                    icon: Symbols.person,
+                                    label: t.auth.nickname,
+                                    value: _nicknameController.text.isEmpty
+                                        ? t.profile.info.notSet
+                                        : _nicknameController.text,
+                                    onTap: () =>
+                                        _showEditNicknameDialog(context),
+                                  ),
+                                  _buildDivider(context),
+                                  ProfileInfoTile(
+                                    icon: Symbols.phone_android,
+                                    label: t.profile.info.phone,
+                                    value: _phoneController.text.isEmpty
+                                        ? t.profile.info.notSet
+                                        : _maskPhone(_phoneController.text),
+                                    onTap: () => _showEditPhoneDialog(context),
+                                  ),
+                                ],
+                              )
+                              .animate()
+                              .fadeIn(delay: 100.ms)
+                              .slideY(begin: 0.1, curve: Curves.easeOut),
+
+                          // 更多信息
+                          ProfileInfoCard(
+                                title: t.profile.info.other,
+                                children: [
+                                  ProfileInfoTile(
+                                    icon: Symbols.mail,
+                                    label: t.profile.info.email,
+                                    value:
+                                        (user.email == null ||
+                                            user.email!.isEmpty)
+                                        ? t.profile.info.notSet
+                                        : user.email!,
+                                    isEditable: false,
+                                  ),
+                                ],
+                              )
+                              .animate()
+                              .fadeIn(delay: 200.ms)
+                              .slideY(begin: 0.1, curve: Curves.easeOut),
                         ],
                       ),
                     ),
                   ),
-                ),
 
-                // 主滚动区域
-                Positioned.fill(
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).padding.top + 56.h,
-                      bottom: 110.h,
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20.h),
-                        ProfileAvatarEdit(
-                          avatarUrl:
-                              user.avatar ??
-                              'https://picsum.photos/seed/user/200',
-                          localImage: _selectedAvatarFile,
-                          changeLabel: t.profile.avatar.clickToChange,
-                          isLoading: isUpdating,
-                          onTap: _pickImage,
-                        ),
-                        SizedBox(height: 32.h),
-
-                        // 基本信息
-                        ProfileInfoCard(
-                          title: t.profile.info.basic,
-                          children: [
-                            ProfileInfoTile(
-                              icon: Symbols.person,
-                              label: t.auth.nickname,
-                              value: _nicknameController.text.isEmpty
-                                  ? t.profile.info.notSet
-                                  : _nicknameController.text,
-                              onTap: () => _showEditNicknameDialog(context),
-                            ),
-                            _buildDivider(context),
-                            ProfileInfoTile(
-                              icon: Symbols.phone_android,
-                              label: t.profile.info.phone,
-                              value: _phoneController.text.isEmpty
-                                  ? t.profile.info.notSet
-                                  : _maskPhone(_phoneController.text),
-                              onTap: () => _showEditPhoneDialog(context),
-                            ),
-                          ],
-                        ),
-
-                        // 更多信息
-                        ProfileInfoCard(
-                          title: t.profile.info.other,
-                          children: [
-                            ProfileInfoTile(
-                              icon: Symbols.mail,
-                              label: t.profile.info.email,
-                              value: (user.email == null || user.email!.isEmpty)
-                                  ? t.profile.info.notSet
-                                  : user.email!,
-                              isEditable: false,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                  // 底部固定保存按钮
+                  Positioned(
+                    left: 16.w,
+                    right: 16.w,
+                    bottom: 24.h + MediaQuery.of(context).padding.bottom,
+                    child:
+                        ProfileEditSaveButton(
+                              onPressed: _saveProfile,
+                              isLoading: isUpdating,
+                            )
+                            .animate()
+                            .fadeIn(delay: 300.ms)
+                            .slideY(begin: 0.5, curve: Curves.easeOutBack),
                   ),
-                ),
-
-                // 底部固定保存按钮
-                Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  child: ProfileEditSaveButton(
-                    onPressed: _saveProfile,
-                    isLoading: isUpdating,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
     );
   }

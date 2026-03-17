@@ -32,6 +32,7 @@ class MaintainerMachineCard extends StatelessWidget {
         vertical: AppDesignTokens.spacingS,
       ),
       padding: EdgeInsets.all(AppDesignTokens.spacingM),
+      glass: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -74,57 +75,14 @@ class MaintainerMachineCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Container(
-                        width: 10.w,
-                        height: 10.w,
-                        decoration: BoxDecoration(
-                          color: statusColor,
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: statusColor.withValues(alpha: 0.4),
-                              blurRadius: 8,
-                              spreadRadius: 2,
-                            ),
-                          ],
-                        ),
-                      )
-                      .animate(onPlay: (controller) => controller.repeat())
-                      .scale(
-                        duration: 1200.ms,
-                        begin: const Offset(1, 1),
-                        end: const Offset(1.3, 1.3),
-                        curve: Curves.easeInOut,
-                      )
-                      .then()
-                      .scale(
-                        duration: 1200.ms,
-                        begin: const Offset(1.3, 1.3),
-                        end: const Offset(1, 1),
-                        curve: Curves.easeInOut,
-                      ),
-                  SizedBox(height: 4.h),
-                  Text(
-                    statusText,
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: statusColor,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.0,
-                      fontSize: 10.sp,
-                    ),
-                  ),
-                ],
-              ),
+              _buildStatusIndicator(context, statusColor, statusText),
             ],
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: AppDesignTokens.spacingM),
             child: Divider(
               height: 1,
-              color: colorScheme.outlineVariant.withValues(alpha: 0.3),
+              color: colorScheme.outlineVariant.withValues(alpha: 0.2),
             ),
           ),
           Row(
@@ -153,6 +111,63 @@ class MaintainerMachineCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildStatusIndicator(
+    BuildContext context,
+    Color statusColor,
+    String statusText,
+  ) {
+    final theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Container(
+              width: 8.w,
+              height: 8.w,
+              decoration: BoxDecoration(
+                color: statusColor,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: statusColor.withValues(alpha: 0.4),
+                    blurRadius: 10,
+                    spreadRadius: 2,
+                  ),
+                ],
+              ),
+            )
+            .animate(onPlay: (controller) => controller.repeat(reverse: true))
+            .scale(
+              duration: 800.ms,
+              begin: const Offset(1, 1),
+              end: const Offset(1.4, 1.4),
+              curve: Curves.easeInOut,
+            )
+            .boxShadow(
+              duration: 800.ms,
+              begin: BoxShadow(
+                color: statusColor.withValues(alpha: 0.2),
+                blurRadius: 4,
+              ),
+              end: BoxShadow(
+                color: statusColor.withValues(alpha: 0.6),
+                blurRadius: 12,
+                spreadRadius: 4,
+              ),
+            ),
+        SizedBox(height: 6.h),
+        Text(
+          statusText,
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: statusColor,
+            fontWeight: FontWeight.w900,
+            letterSpacing: 1.2,
+            fontSize: 9.sp,
+          ),
+        ),
+      ],
     );
   }
 

@@ -8,8 +8,11 @@ import 'package:lunchbox_hub/features/profile/widgets/profile_header.dart';
 import 'package:lunchbox_hub/features/profile/widgets/profile_menu_tile.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 import 'package:lunchbox_hub/routes/app_routes.dart';
+import 'package:lunchbox_hub/routes/routes.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 
 /// 用户中心视图 (我的)
 class ProfileView extends ConsumerWidget {
@@ -23,28 +26,37 @@ class ProfileView extends ConsumerWidget {
     final isLoading = profileState.isLoading;
 
     return Scaffold(
-      backgroundColor: theme.scaffoldBackgroundColor,
-      body: RefreshIndicator(
-        onRefresh: () => ref.read(profileProvider.notifier).loadUserInfo(),
-        child: CustomScrollView(
-          slivers: [
-            // 红色渐变背景头部
-            SliverToBoxAdapter(
-              child: Skeletonizer(
-                enabled: isLoading,
-                child: ProfileHeader(
-                  username: user?.name ?? '...',
-                  avatarUrl: user?.avatar,
-                  onLogout: () => _handleLogout(context, ref),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: AppDesignTokens.surfaceGradient(context),
+        ),
+        child: RefreshIndicator(
+          onRefresh: () => ref.read(profileProvider.notifier).loadUserInfo(),
+          child: CustomScrollView(
+            slivers: [
+              // 红色渐变背景头部
+              SliverToBoxAdapter(
+                child: Skeletonizer(
+                  enabled: isLoading,
+                  child: ProfileHeader(
+                    username: user?.name ?? '...',
+                    avatarUrl: user?.avatar,
+                    onLogout: () => _handleLogout(context, ref),
+                  ),
                 ),
               ),
-            ),
 
-            // 功能列表菜单
-            SliverToBoxAdapter(child: _buildMenuSection(context, ref)),
+              // 功能列表菜单
+              SliverPadding(
+                padding: EdgeInsets.only(top: 12.h),
+                sliver: SliverToBoxAdapter(
+                  child: _buildMenuSection(context, ref),
+                ),
+              ),
 
-            SliverToBoxAdapter(child: SizedBox(height: 40.h)),
-          ],
+              SliverToBoxAdapter(child: SizedBox(height: 40.h)),
+            ],
+          ),
         ),
       ),
     );
@@ -52,38 +64,42 @@ class ProfileView extends ConsumerWidget {
 
   /// 构建功能列表菜单
   Widget _buildMenuSection(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    return ColoredBox(
-      color: theme.cardColor,
-      child: Column(
-        children: [
-          // 个人相关
-          ProfileMenuTile(
-            icon: Symbols.person,
-            title: t.profile.personalInfo,
-            onTap: () {},
-          ),
+    return Column(
+      children:
+          [
+                // 个人相关
+                ProfileMenuTile(
+                  icon: Symbols.person,
+                  title: t.profile.personalInfo,
+                  onTap: () async => await context.push(
+                    '${AppRoutes.profile}/${AppRoutes.personalInfo}',
+                  ),
+                ),
 
-          ProfileMenuTile(
-            icon: Symbols.help,
-            title: t.profile.feedback,
-            onTap: () {},
-          ),
+                ProfileMenuTile(
+                  icon: Symbols.help,
+                  title: t.profile.feedback,
+                  onTap: () async => await context.push(
+                    '${AppRoutes.profile}/${AppRoutes.feedback}',
+                  ),
+                ),
 
-          ProfileMenuTile(
-            icon: Symbols.settings,
-            title: t.profile.settings,
-            onTap: () async => await context.push(AppRoutes.settings),
-          ),
-          ProfileMenuTile(
-            icon: Symbols.info,
-            title: t.profile.about,
-            onTap: () async =>
-                await context.push('${AppRoutes.settings}/${AppRoutes.about}'),
-            showDivider: false,
-          ),
-        ],
-      ),
+                ProfileMenuTile(
+                  icon: Symbols.settings,
+                  title: t.profile.settings,
+                  onTap: () async => const SettingsRoute().push<void>(context),
+                ),
+
+                ProfileMenuTile(
+                  icon: Symbols.info,
+                  title: t.profile.about,
+                  onTap: () async => const AboutUsRoute().push<void>(context),
+                  showDivider: false,
+                ),
+              ]
+              .animate(interval: 50.ms)
+              .fadeIn(duration: 400.ms, delay: 200.ms)
+              .slideX(begin: 0.05, end: 0),
     );
   }
 

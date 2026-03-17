@@ -1,567 +1,82 @@
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:lunchbox_hub/core/providers/locale_provider.dart';
-import 'package:lunchbox_hub/core/theme/theme_provider.dart';
-import 'package:lunchbox_hub/features/settings/providers/settings_provider.dart';
-import 'package:lunchbox_hub/i18n/translations.g.dart';
-import 'package:lunchbox_hub/routes/app_routes.dart';
-import 'package:lunchbox_hub/features/settings/widgets/settings_item.dart';
-import 'package:lunchbox_hub/features/settings/widgets/settings_section_card.dart';
-import 'package:lunchbox_hub/features/settings/widgets/settings_section_header.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:lunchbox_hub/core/env/app_env.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
+import 'package:lunchbox_hub/features/settings/widgets/settings_sections.dart';
+import 'package:lunchbox_hub/i18n/translations.g.dart';
 import 'package:upgrader/upgrader.dart';
 
+/// 设置页面
+///
+/// 提供主题、语言、应用信息及调试工具的配置与查看
 class SettingsView extends ConsumerWidget {
   const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final packageInfoAsync = ref.watch(fetchPackageInfoProvider);
-    final currentLocale = ref.watch(localeProvider);
-    final themeState = ref.watch(themeProvider);
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
     return UpgradeAlert(
       child: Scaffold(
-        backgroundColor: colorScheme.surface,
-        appBar: AppBar(
-          title: Text(
-            t.settings.title,
-            style: theme.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: AppDesignTokens.surfaceGradient(context),
           ),
-          centerTitle: true,
-          backgroundColor: colorScheme.surface,
-          elevation: 0,
-        ),
-        body: ListView(
-          padding: EdgeInsets.symmetric(vertical: 16.h),
-          children:
-              [
-                    SettingsSectionHeader(title: t.settings.general),
-                    SettingsSectionCard(
-                      children: [
-                        SettingsItem(
-                          icon: Symbols.colors,
-                          iconColor: colorScheme.primary,
-                          title: t.settings.themeScheme,
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Container(
-                                width: 16.w,
-                                height: 16.w,
-                                decoration: BoxDecoration(
-                                  color: _getSchemeColor(themeState.scheme),
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              SizedBox(width: 8.w),
-                              Icon(
-                                Symbols.arrow_forward_ios,
-                                size: 14.sp,
-                                color: colorScheme.outline,
-                              ),
-                            ],
-                          ),
-                          onTap: () => _showSchemePicker(
-                            context,
-                            ref,
-                            themeState.scheme,
-                          ),
-                        ),
-                        SettingsItem(
-                          icon: Symbols.palette,
-                          iconColor: colorScheme.primary,
-                          title: t.settings.theme,
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                _getThemeModeName(themeState.mode),
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  color: colorScheme.onSurfaceVariant,
-                                ),
-                              ),
-                              SizedBox(width: 8.w),
-                              Icon(
-                                Symbols.arrow_forward_ios,
-                                size: 14.sp,
-                                color: colorScheme.outline,
-                              ),
-                            ],
-                          ),
-                          onTap: () =>
-                              _showThemePicker(context, ref, themeState.mode),
-                        ),
-                        SettingsItem(
-                          icon: Symbols.language,
-                          iconColor: colorScheme.primary,
-                          title: t.settings.language,
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                _getLocaleName(currentLocale),
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  color: colorScheme.onSurfaceVariant,
-                                ),
-                              ),
-                              SizedBox(width: 8.w),
-                              Icon(
-                                Symbols.arrow_forward_ios,
-                                size: 14.sp,
-                                color: colorScheme.outline,
-                              ),
-                            ],
-                          ),
-                          onTap: () =>
-                              _showLanguagePicker(context, ref, currentLocale),
-                        ),
-                        SettingsItem(
-                          icon: Symbols.system_update,
-                          iconColor: colorScheme.primary,
-                          title: t.settings.checkUpdate,
-                          trailing: packageInfoAsync.when(
-                            data: (PackageInfo info) => Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  'v${info.version}',
-                                  style: theme.textTheme.bodyMedium?.copyWith(
-                                    color: colorScheme.onSurfaceVariant,
-                                  ),
-                                ),
-                                SizedBox(width: 8.w),
-                                Icon(
-                                  Symbols.arrow_forward_ios,
-                                  size: 14.sp,
-                                  color: colorScheme.outline,
-                                ),
-                              ],
-                            ),
-                            loading: () => SizedBox(
-                              width: 14.w,
-                              height: 14.w,
-                              child: const CircularProgressIndicator(
-                                strokeWidth: 2,
-                              ),
-                            ),
-                            error: (_, stack) => Icon(
-                              Symbols.arrow_forward_ios,
-                              size: 14.sp,
-                              color: colorScheme.outline,
-                            ),
-                          ),
-                          onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(t.settings.checkingUpdate),
-                                duration: const Duration(seconds: 1),
-                              ),
-                            );
-                          },
-                        ),
-                        SettingsItem(
-                          icon: Symbols.cleaning_services,
-                          iconColor: colorScheme.primary,
-                          title: t.settings.clearCache,
-                          showDivider: false,
-                          onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(t.settings.cacheCleared),
-                                duration: const Duration(seconds: 1),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 24.h),
-                    SettingsSectionHeader(title: t.settings.about),
-                    SettingsSectionCard(
-                      children: [
-                        SettingsItem(
-                          icon: Symbols.perm_device_information,
-                          iconColor: colorScheme.primary,
-                          title: t.settings.deviceInfo,
-                          trailing: Icon(
-                            Symbols.arrow_forward_ios,
-                            size: 14.sp,
-                            color: colorScheme.outline,
-                          ),
-                          onTap: () => context.push(
-                            '${AppRoutes.settings}/${AppRoutes.deviceInfo}',
-                          ),
-                        ),
-                        SettingsItem(
-                          icon: Symbols.info,
-                          iconColor: colorScheme.primary,
-                          title: t.settings.aboutUs,
-                          showDivider: false,
-                          trailing: Icon(
-                            Symbols.arrow_forward_ios,
-                            size: 14.sp,
-                            color: colorScheme.outline,
-                          ),
-                          onTap: () => context.push(
-                            '${AppRoutes.settings}/${AppRoutes.about}',
-                          ),
-                        ),
-                        if (AppEnvConfig.current.debug)
-                          SettingsItem(
-                            icon: Symbols.bug_report,
-                            iconColor: colorScheme.error,
-                            title: 'Debug Tools',
-                            showDivider: false,
-                            trailing: Icon(
-                              Symbols.arrow_forward_ios,
-                              size: 14.sp,
-                              color: colorScheme.outline,
-                            ),
-                            onTap: () => context.push(
-                              '${AppRoutes.settings}/${AppRoutes.debug}',
-                            ),
-                          ),
-                      ],
-                    ),
-                    SizedBox(height: 32.h),
-                    SizedBox(height: 20.h),
-                  ]
-                  .animate(interval: 50.ms)
-                  .fadeIn(duration: 400.ms)
-                  .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
+          child: const Column(
+            children: [
+              _SettingsAppBar(),
+              Expanded(child: _SettingsList()),
+            ],
+          ),
         ),
       ),
     );
   }
+}
 
-  String _getThemeModeName(ThemeMode mode) {
-    switch (mode) {
-      case ThemeMode.light:
-        return t.settings.themeLight;
-      case ThemeMode.dark:
-        return t.settings.themeDark;
-      case ThemeMode.system:
-        return t.settings.themeSystem;
-    }
-  }
+/// 内部组件：设置页顶部导航栏
+class _SettingsAppBar extends StatelessWidget {
+  const _SettingsAppBar();
 
-  void _showThemePicker(
-    BuildContext context,
-    WidgetRef ref,
-    ThemeMode currentMode,
-  ) {
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    showModalBottomSheet<void>(
-      context: context,
-      backgroundColor: colorScheme.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+    return AppBar(
+      title: Text(
+        t.settings.title,
+        style: theme.textTheme.titleLarge?.copyWith(
+          fontWeight: FontWeight.w600,
+        ),
       ),
-      builder: (context) {
-        return SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(height: 8.h),
-              Container(
-                width: 40.w,
-                height: 4.h,
-                decoration: BoxDecoration(
-                  color: colorScheme.outlineVariant,
-                  borderRadius: BorderRadius.circular(2.r),
-                ),
-              ),
-              SizedBox(height: 16.h),
-              ListTile(
-                title: Text(
-                  t.settings.themeSystem,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-                leading: const Icon(Symbols.brightness_auto),
-                trailing: currentMode == ThemeMode.system
-                    ? Icon(Symbols.check, color: colorScheme.primary)
-                    : null,
-                onTap: () async {
-                  await ref
-                      .read(themeProvider.notifier)
-                      .setThemeMode(ThemeMode.system);
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-              ListTile(
-                title: Text(
-                  t.settings.themeLight,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-                leading: const Icon(Symbols.light_mode),
-                trailing: currentMode == ThemeMode.light
-                    ? Icon(Symbols.check, color: colorScheme.primary)
-                    : null,
-                onTap: () async {
-                  await ref
-                      .read(themeProvider.notifier)
-                      .setThemeMode(ThemeMode.light);
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-              ListTile(
-                title: Text(
-                  t.settings.themeDark,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-                leading: const Icon(Symbols.dark_mode),
-                trailing: currentMode == ThemeMode.dark
-                    ? Icon(Symbols.check, color: colorScheme.primary)
-                    : null,
-                onTap: () async {
-                  await ref
-                      .read(themeProvider.notifier)
-                      .setThemeMode(ThemeMode.dark);
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-              SizedBox(height: 16.h),
-            ],
-          ),
-        );
-      },
+      centerTitle: true,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
     );
   }
+}
 
-  void _showSchemePicker(
-    BuildContext context,
-    WidgetRef ref,
-    FlexScheme currentScheme,
-  ) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    const List<FlexScheme> schemes = [
-      FlexScheme.shadOrange,
-      FlexScheme.shadGreen,
-      FlexScheme.bahamaBlue,
-      FlexScheme.damask,
-    ];
+/// 内部组件：设置列表容器
+class _SettingsList extends StatelessWidget {
+  const _SettingsList();
 
-    showModalBottomSheet<void>(
-      context: context,
-      backgroundColor: colorScheme.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
-      ),
-      builder: (context) {
-        return SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(height: 8.h),
-              Container(
-                width: 40.w,
-                height: 4.h,
-                decoration: BoxDecoration(
-                  color: colorScheme.outlineVariant,
-                  borderRadius: BorderRadius.circular(2.r),
-                ),
-              ),
-              SizedBox(height: 16.h),
-              ...schemes.map((scheme) {
-                return ListTile(
-                  title: Text(
-                    _getSchemeName(scheme),
-                    style: const TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                  leading: Container(
-                    width: 24.w,
-                    height: 24.w,
-                    decoration: BoxDecoration(
-                      color: _getSchemeColor(scheme),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  trailing: currentScheme == scheme
-                      ? Icon(Symbols.check, color: colorScheme.primary)
-                      : null,
-                  onTap: () async {
-                    await ref.read(themeProvider.notifier).setScheme(scheme);
-                    if (context.mounted) {
-                      Navigator.pop(context);
-                    }
-                  },
-                );
-              }),
-              SizedBox(height: 16.h),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  Color _getSchemeColor(FlexScheme scheme) {
-    if (scheme == FlexScheme.materialBaseline) {
-      return Colors.deepPurple;
-    }
-    return FlexColor.schemes[scheme]?.light.primary ?? Colors.deepPurple;
-  }
-
-  String _getSchemeName(FlexScheme scheme) {
-    switch (scheme) {
-      case FlexScheme.shadOrange:
-        return t.settings.schemes.shadOrange;
-      case FlexScheme.shadGreen:
-        return t.settings.schemes.shadGreen;
-      case FlexScheme.bahamaBlue:
-        return t.settings.schemes.bahamaBlue;
-      case FlexScheme.damask:
-        return t.settings.schemes.damask;
-      default:
-        return scheme.name;
-    }
-  }
-
-  String _getLocaleName(AppLocale? locale) {
-    if (locale == null) {
-      return t.settings.themeSystem;
-    }
-    switch (locale) {
-      case AppLocale.en:
-        return t.settings.english;
-      case AppLocale.zhCn:
-        return t.settings.chinese;
-      case AppLocale.zhTw:
-        return t.settings.traditionalChinese;
-    }
-  }
-
-  void _showLanguagePicker(
-    BuildContext context,
-    WidgetRef ref,
-    AppLocale? currentLocale,
-  ) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    showModalBottomSheet<void>(
-      context: context,
-      backgroundColor: colorScheme.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
-      ),
-      builder: (context) {
-        return SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(height: 8.h),
-              Container(
-                width: 40.w,
-                height: 4.h,
-                decoration: BoxDecoration(
-                  color: colorScheme.outlineVariant,
-                  borderRadius: BorderRadius.circular(2.r),
-                ),
-              ),
-              SizedBox(height: 16.h),
-              ListTile(
-                title: Text(
-                  t.settings.themeSystem,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-                leading: const Icon(Symbols.smartphone),
-                trailing: currentLocale == null
-                    ? Icon(Symbols.check, color: colorScheme.primary)
-                    : null,
-                onTap: () async {
-                  await ref.read(localeProvider.notifier).setLocale(null);
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-              ListTile(
-                title: Text(
-                  t.settings.english,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-                leading: Text(
-                  '🇺🇸',
-                  style: TextStyle(fontSize: 24.sp),
-                ), // 简单使用emoji
-                trailing: currentLocale == AppLocale.en
-                    ? Icon(Symbols.check, color: colorScheme.primary)
-                    : null,
-                onTap: () async {
-                  await ref
-                      .read(localeProvider.notifier)
-                      .setLocale(AppLocale.en);
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-              ListTile(
-                title: Text(
-                  t.settings.chinese,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-                leading: Text(
-                  '🇨🇳',
-                  style: TextStyle(fontSize: 24.sp),
-                ), // 简单使用emoji
-                trailing: currentLocale == AppLocale.zhCn
-                    ? Icon(Symbols.check, color: colorScheme.primary)
-                    : null,
-                onTap: () async {
-                  await ref
-                      .read(localeProvider.notifier)
-                      .setLocale(AppLocale.zhCn);
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-              ListTile(
-                title: Text(
-                  t.settings.traditionalChinese,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-                leading: Text(
-                  '🇭🇰',
-                  style: TextStyle(fontSize: 24.sp),
-                ), // 简单使用emoji
-                trailing: currentLocale == AppLocale.zhTw
-                    ? Icon(Symbols.check, color: colorScheme.primary)
-                    : null,
-                onTap: () async {
-                  await ref
-                      .read(localeProvider.notifier)
-                      .setLocale(AppLocale.zhTw);
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-              SizedBox(height: 16.h),
-            ],
-          ),
-        );
-      },
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: EdgeInsets.symmetric(vertical: 16.h),
+      children:
+          [
+                const GeneralSection(),
+                SizedBox(height: 24.h),
+                const AboutSection(),
+                if (AppEnvConfig.current.debug) ...[
+                  SizedBox(height: 24.h),
+                  const DebugSection(),
+                ],
+                SizedBox(height: 52.h),
+              ]
+              .animate(interval: 50.ms)
+              .fadeIn(duration: 400.ms)
+              .slideY(begin: 0.1, end: 0, curve: Curves.easeOutQuad),
     );
   }
 }

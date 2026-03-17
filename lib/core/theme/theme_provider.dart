@@ -35,53 +35,41 @@ class ThemeNotifier extends _$ThemeNotifier {
 
   ThemeData get lightTheme {
     return FlexThemeData.light(
+      // Using FlexColorScheme built-in FlexScheme enum based colors
       scheme: state.scheme,
-      surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
-      blendLevel: 7,
+      // Component theme configurations for light mode.
       subThemesData: const FlexSubThemesData(
         interactionEffects: true,
         tintedDisabledControls: true,
-        useM2StyleDividerInM3: false,
+        useM2StyleDividerInM3: true,
         inputDecoratorIsFilled: true,
         inputDecoratorBorderType: FlexInputBorderType.outline,
         alignedDropdown: true,
         navigationRailUseIndicator: true,
-        adaptiveRemoveElevationTint: FlexAdaptive.all(),
-        adaptiveElevationShadowsBack: FlexAdaptive.all(),
-        adaptiveAppBarScrollUnderOff: FlexAdaptive.all(),
-        buttonPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        cardRadius: 16,
       ),
+      // Direct ThemeData properties.
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      useMaterial3: true,
-      swapColors: true,
       cupertinoOverrideTheme: const CupertinoThemeData(applyThemeToAll: true),
     );
   }
 
   ThemeData get darkTheme {
     return FlexThemeData.dark(
+      // Using FlexColorScheme built-in FlexScheme enum based colors.
       scheme: state.scheme,
-      surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
-      blendLevel: 13,
+      // Component theme configurations for dark mode.
       subThemesData: const FlexSubThemesData(
         interactionEffects: true,
         tintedDisabledControls: true,
         blendOnColors: true,
-        useM2StyleDividerInM3: false,
+        useM2StyleDividerInM3: true,
         inputDecoratorIsFilled: true,
         inputDecoratorBorderType: FlexInputBorderType.outline,
         alignedDropdown: true,
         navigationRailUseIndicator: true,
-        adaptiveRemoveElevationTint: FlexAdaptive.all(),
-        adaptiveElevationShadowsBack: FlexAdaptive.all(),
-        adaptiveAppBarScrollUnderOff: FlexAdaptive.all(),
-        buttonPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        cardRadius: 16,
       ),
+      // Direct ThemeData properties.
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      useMaterial3: true,
-      swapColors: true,
       cupertinoOverrideTheme: const CupertinoThemeData(applyThemeToAll: true),
     );
   }

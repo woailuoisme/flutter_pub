@@ -8,6 +8,8 @@ abstract class AppEnv {
 
   String get sentryDsn;
   String get googleServerClientId;
+  String get gotifyBaseUrl;
+  String get gotifyClientToken;
   bool get debug;
   bool get useTestMode;
 }

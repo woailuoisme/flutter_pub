@@ -66,6 +66,10 @@ _RevenueStatsModel _$RevenueStatsModelFromJson(Map<String, dynamic> json) =>
             'growth_rate',
             (v) => (v as num?)?.toDouble() ?? 0.0,
           ),
+          totalMachines: $checkedConvert(
+            'total_machines',
+            (v) => (v as num?)?.toInt() ?? 0,
+          ),
           revenueTrend: $checkedConvert(
             'revenue_trend',
             (v) =>
@@ -119,6 +123,7 @@ _RevenueStatsModel _$RevenueStatsModelFromJson(Map<String, dynamic> json) =>
         'totalOrders': 'total_orders',
         'dailyAvgRevenue': 'daily_avg_revenue',
         'growthRate': 'growth_rate',
+        'totalMachines': 'total_machines',
         'revenueTrend': 'revenue_trend',
         'orderTrend': 'order_trend',
         'productSales': 'product_sales',
@@ -133,6 +138,7 @@ Map<String, dynamic> _$RevenueStatsModelToJson(
   'total_orders': instance.totalOrders,
   'daily_avg_revenue': instance.dailyAvgRevenue,
   'growth_rate': instance.growthRate,
+  'total_machines': instance.totalMachines,
   'revenue_trend': instance.revenueTrend.map((e) => e.toJson()).toList(),
   'order_trend': instance.orderTrend.map((e) => e.toJson()).toList(),
   'product_sales': instance.productSales.map((e) => e.toJson()).toList(),

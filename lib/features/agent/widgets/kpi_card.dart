@@ -5,6 +5,7 @@ import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/core/widgets/card_widgets/premium_card.dart';
 import 'package:lunchbox_hub/features/agent/entities/revenue_stats_model.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
+import 'package:lunchbox_hub/routes/routes.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class KpiCard extends StatelessWidget {
@@ -31,13 +32,14 @@ class KpiCard extends StatelessWidget {
         label: t.machines.dailyAvgRevenue,
         value: '${t.machines.currencyPrefix}${stats.dailyAvgRevenue}',
         icon: Symbols.analytics,
-      ),
-      _KpiItem(
-        label: t.machines.growthRate,
-        value: '${growthRate.abs().toStringAsFixed(1)}%',
         growthRate: growthRate,
         showArrow: true,
-        icon: Symbols.trending_up,
+      ),
+      _KpiItem(
+        label: t.machines.totalMachines,
+        value: '${stats.totalMachines}',
+        icon: Symbols.devices,
+        onTap: (context) => const AgentMachineListRoute().push<void>(context),
       ),
     ];
 
@@ -68,6 +70,7 @@ class _KpiItem {
     required this.icon,
     this.growthRate,
     this.showArrow = false,
+    this.onTap,
   });
 
   final String label;
@@ -75,6 +78,7 @@ class _KpiItem {
   final IconData icon;
   final double? growthRate;
   final bool showArrow;
+  final void Function(BuildContext)? onTap;
 }
 
 class _KpiCardItem extends StatelessWidget {
@@ -113,70 +117,72 @@ class _KpiCardItem extends StatelessWidget {
             SizedBox(width: 2.w),
             Text(
               '${item.growthRate!.abs().toStringAsFixed(1)}%',
-              style: TextStyle(
-                fontSize: 10.sp,
-                fontWeight: FontWeight.bold,
-                color: statusColor,
-              ),
+              style: TextStyle(fontSize: 15.sp, color: statusColor),
             ),
           ],
         ),
       );
     }
 
-    return PremiumCard(
-      padding: EdgeInsets.all(AppDesignTokens.spacingM),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.all(6.w),
-                decoration: BoxDecoration(
-                  color: colorScheme.primary.withValues(alpha: 0.08),
-                  borderRadius: BorderRadius.circular(AppDesignTokens.radiusS),
-                ),
-                child: Icon(
-                  item.icon,
-                  size: 18.sp,
-                  color: colorScheme.primary,
-                  weight: 400,
-                ),
-              ),
-              ?arrowWidget,
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                item.label,
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(height: 4.h),
-              Text(
-                    item.value,
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: colorScheme.onSurface,
-                      letterSpacing: -0.8,
+    return InkWell(
+      onTap: item.onTap != null ? () => item.onTap!(context) : null,
+      borderRadius: BorderRadius.circular(AppDesignTokens.radiusL),
+      child: PremiumCard(
+        padding: EdgeInsets.all(AppDesignTokens.spacingM),
+        glass: true,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(6.w),
+                  decoration: BoxDecoration(
+                    color: colorScheme.primary.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(
+                      AppDesignTokens.radiusS,
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  )
-                  .animate()
-                  .fadeIn(delay: (100 * index).ms)
-                  .slideX(begin: 0.1, end: 0),
-            ],
-          ),
-        ],
+                  ),
+                  child: Icon(
+                    item.icon,
+                    size: 18.sp,
+                    color: colorScheme.primary,
+                  ),
+                ),
+                ?arrowWidget,
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.label,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.7),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(height: 4.h),
+                Text(
+                      item.value,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: colorScheme.onSurface,
+                        letterSpacing: -0.8,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    )
+                    .animate()
+                    .fadeIn(delay: (100 * index).ms)
+                    .slideX(begin: 0.1, end: 0),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

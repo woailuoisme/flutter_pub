@@ -23,6 +23,12 @@ class DevEnv implements AppEnv {
   @EnviedField(varName: 'USE_TEST_MODE')
   static const bool _useTestMode = _DevEnv._useTestMode;
 
+  @EnviedField(varName: 'GOTIFY_BASE_URL', defaultValue: '')
+  static const String _gotifyBaseUrl = _DevEnv._gotifyBaseUrl;
+
+  @EnviedField(varName: 'GOTIFY_CLIENT_TOKEN', defaultValue: '')
+  static const String _gotifyClientToken = _DevEnv._gotifyClientToken;
+
   @override
   String get baseUrl => _baseUrl;
 
@@ -40,4 +46,10 @@ class DevEnv implements AppEnv {
 
   @override
   bool get useTestMode => _useTestMode;
+
+  @override
+  String get gotifyBaseUrl => _gotifyBaseUrl;
+
+  @override
+  String get gotifyClientToken => _gotifyClientToken;
 }

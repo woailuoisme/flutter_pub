@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/features/auth/providers/forgot_password_provider.dart';
 import 'package:lunchbox_hub/features/auth/providers/forgot_password_state.dart';
 import 'package:lunchbox_hub/features/auth/widgets/forgot_password_button.dart';
@@ -81,7 +82,7 @@ class _ForgotPasswordViewState extends ConsumerState<ForgotPasswordView> {
     });
 
     return Scaffold(
-      backgroundColor: colorScheme.surface,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -90,41 +91,46 @@ class _ForgotPasswordViewState extends ConsumerState<ForgotPasswordView> {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: FormBuilder(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(height: 24.h),
-                ForgotPasswordHeader(colorScheme: colorScheme),
-                SizedBox(height: 32.h),
-                ForgotPasswordForm(
-                  colorScheme: colorScheme,
-                  onIdentifierChanged: (val) => ref
-                      .read(forgotPasswordProvider.notifier)
-                      .identifierChanged(val),
-                  onOldPasswordChanged: (val) => ref
-                      .read(forgotPasswordProvider.notifier)
-                      .oldPasswordChanged(val),
-                  onNewPasswordChanged: (val) => ref
-                      .read(forgotPasswordProvider.notifier)
-                      .newPasswordChanged(val),
-                  onConfirmPasswordChanged: (val) => ref
-                      .read(forgotPasswordProvider.notifier)
-                      .confirmPasswordChanged(val),
-                  onSubmit: _handleResetPassword,
-                ),
-                SizedBox(height: 40.h),
-                ForgotPasswordButton(
-                  colorScheme: colorScheme,
-                  isLoading: state.status.isInProgress,
-                  onPressed: _handleResetPassword,
-                ),
-              ],
-            ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1, end: 0),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: AppDesignTokens.surfaceGradient(context),
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: FormBuilder(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(height: 56.h),
+                  ForgotPasswordHeader(colorScheme: colorScheme),
+                  SizedBox(height: 32.h),
+                  ForgotPasswordForm(
+                    colorScheme: colorScheme,
+                    onIdentifierChanged: (val) => ref
+                        .read(forgotPasswordProvider.notifier)
+                        .identifierChanged(val),
+                    onOldPasswordChanged: (val) => ref
+                        .read(forgotPasswordProvider.notifier)
+                        .oldPasswordChanged(val),
+                    onNewPasswordChanged: (val) => ref
+                        .read(forgotPasswordProvider.notifier)
+                        .newPasswordChanged(val),
+                    onConfirmPasswordChanged: (val) => ref
+                        .read(forgotPasswordProvider.notifier)
+                        .confirmPasswordChanged(val),
+                    onSubmit: _handleResetPassword,
+                  ),
+                  SizedBox(height: 40.h),
+                  ForgotPasswordButton(
+                    colorScheme: colorScheme,
+                    isLoading: state.status.isInProgress,
+                    onPressed: _handleResetPassword,
+                  ),
+                ],
+              ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.1, end: 0),
+            ),
           ),
         ),
       ),

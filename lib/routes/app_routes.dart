@@ -9,6 +9,10 @@ class AppRoutes {
   static const String forgotPassword = '/forgot-password';
   static const String resetPassword = '/reset-password';
   static const String profile = '/profile';
+  static const String notifications = '/notifications';
+  static const String personalInfo =
+      'personal-info'; // 子路由: /profile/personal-info
+  static const String feedback = 'feedback'; // 子路由: /profile/feedback
 
   // 设置相关
   static const String settings = '/settings';

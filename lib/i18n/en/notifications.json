@@ -1,0 +1,12 @@
+{
+  "title": "Notifications",
+  "markAllRead": "Mark all as read",
+  "empty": "No notifications",
+  "unread": "Unread",
+  "read": "Read",
+  "priority": {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  }
+}

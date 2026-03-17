@@ -10,6 +10,7 @@
   "totalOrders": "总订单数",
   "dailyAvgRevenue": "日均营收",
   "growthRate": "环比增长率",
+  "totalMachines": "总设备数量",
   "noChartData": "暂无数据",
   "loading": "加载中",
   "currencyPrefix": "¥",

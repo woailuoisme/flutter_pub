@@ -53,6 +53,8 @@ class TranslationsZhTw extends Translations with BaseTranslations<AppLocale, Tra
   @override
   late final _TranslationsCommonZhTw common = _TranslationsCommonZhTw._(_root);
   @override
+  late final _TranslationsFeedbackZhTw feedback = _TranslationsFeedbackZhTw._(_root);
+  @override
   late final _TranslationsInventoryZhTw inventory = _TranslationsInventoryZhTw._(_root);
   @override
   late final _TranslationsMachinesZhTw machines = _TranslationsMachinesZhTw._(_root);
@@ -62,6 +64,8 @@ class TranslationsZhTw extends Translations with BaseTranslations<AppLocale, Tra
   late final _TranslationsNavigationZhTw navigation = _TranslationsNavigationZhTw._(_root);
   @override
   late final _TranslationsNetworkZhTw network = _TranslationsNetworkZhTw._(_root);
+  @override
+  late final _TranslationsNotificationsZhTw notifications = _TranslationsNotificationsZhTw._(_root);
   @override
   late final _TranslationsProfileZhTw profile = _TranslationsProfileZhTw._(_root);
   @override
@@ -276,6 +280,55 @@ class _TranslationsCommonZhTw extends TranslationsCommonZhCn {
   String get warning => TranslationOverrides.string(_root.$meta, 'common.warning', {}) ?? '警告';
 }
 
+// Path: feedback
+class _TranslationsFeedbackZhTw extends TranslationsFeedbackZhCn {
+  _TranslationsFeedbackZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+
+  final TranslationsZhTw _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => TranslationOverrides.string(_root.$meta, 'feedback.title', {}) ?? '問題反饋';
+  @override
+  String get subtitle => TranslationOverrides.string(_root.$meta, 'feedback.subtitle', {}) ?? '您的反饋是我們進步的動力';
+  @override
+  String get selectType => TranslationOverrides.string(_root.$meta, 'feedback.selectType', {}) ?? '選擇反饋類型';
+  @override
+  String get errorReport => TranslationOverrides.string(_root.$meta, 'feedback.errorReport', {}) ?? '錯誤報告';
+  @override
+  String get suggestion => TranslationOverrides.string(_root.$meta, 'feedback.suggestion', {}) ?? '建議';
+  @override
+  String get complaint => TranslationOverrides.string(_root.$meta, 'feedback.complaint', {}) ?? '投訴';
+  @override
+  String get other => TranslationOverrides.string(_root.$meta, 'feedback.other', {}) ?? '其他';
+  @override
+  String get description => TranslationOverrides.string(_root.$meta, 'feedback.description', {}) ?? '問題描述';
+  @override
+  String get titleHint => TranslationOverrides.string(_root.$meta, 'feedback.titleHint', {}) ?? '請輸入問題標題 (必填)';
+  @override
+  String get contentHint =>
+      TranslationOverrides.string(_root.$meta, 'feedback.contentHint', {}) ?? '請詳細描述您遇到的問題或建議 (必填)';
+  @override
+  String get uploadScreenshot =>
+      TranslationOverrides.string(_root.$meta, 'feedback.uploadScreenshot', {}) ?? '上傳截圖 (可選)';
+  @override
+  String get addImage => TranslationOverrides.string(_root.$meta, 'feedback.addImage', {}) ?? '添加圖片';
+  @override
+  String get uploadLimitHint =>
+      TranslationOverrides.string(_root.$meta, 'feedback.uploadLimitHint', {}) ?? '最多可上傳3張圖片，每張不超過2MB，支持jpg、png格式';
+  @override
+  String get contactOptional => TranslationOverrides.string(_root.$meta, 'feedback.contactOptional', {}) ?? '聯繫方式 (可選)';
+  @override
+  String get contactInputHint =>
+      TranslationOverrides.string(_root.$meta, 'feedback.contactInputHint', {}) ?? '請輸入您的手機號或郵箱，方便我們聯繫您';
+  @override
+  String get submit => TranslationOverrides.string(_root.$meta, 'feedback.submit', {}) ?? '提交反饋';
+  @override
+  String get submitSuccess => TranslationOverrides.string(_root.$meta, 'feedback.submitSuccess', {}) ?? '反饋提交成功，感謝您的支持';
+  @override
+  String get submitFailed => TranslationOverrides.string(_root.$meta, 'feedback.submitFailed', {}) ?? '反饋提交失敗，請稍後重試';
+}
+
 // Path: inventory
 class _TranslationsInventoryZhTw extends TranslationsInventoryZhCn {
   _TranslationsInventoryZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
@@ -351,6 +404,8 @@ class _TranslationsMachinesZhTw extends TranslationsMachinesZhCn {
   String get dailyAvgRevenue => TranslationOverrides.string(_root.$meta, 'machines.dailyAvgRevenue', {}) ?? '日均營收';
   @override
   String get growthRate => TranslationOverrides.string(_root.$meta, 'machines.growthRate', {}) ?? '環比增長率';
+  @override
+  String get totalMachines => TranslationOverrides.string(_root.$meta, 'machines.totalMachines', {}) ?? '總設備數量';
   @override
   String get noChartData => TranslationOverrides.string(_root.$meta, 'machines.noChartData', {}) ?? '暫無數據';
   @override
@@ -436,6 +491,27 @@ class _TranslationsNetworkZhTw extends TranslationsNetworkZhCn {
   // Translations
   @override
   late final _TranslationsNetworkErrorsZhTw errors = _TranslationsNetworkErrorsZhTw._(_root);
+}
+
+// Path: notifications
+class _TranslationsNotificationsZhTw extends TranslationsNotificationsZhCn {
+  _TranslationsNotificationsZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+
+  final TranslationsZhTw _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => TranslationOverrides.string(_root.$meta, 'notifications.title', {}) ?? '消息通知';
+  @override
+  String get markAllRead => TranslationOverrides.string(_root.$meta, 'notifications.markAllRead', {}) ?? '全部標記为已讀';
+  @override
+  String get empty => TranslationOverrides.string(_root.$meta, 'notifications.empty', {}) ?? '暫無通知';
+  @override
+  String get unread => TranslationOverrides.string(_root.$meta, 'notifications.unread', {}) ?? '未讀消息';
+  @override
+  String get read => TranslationOverrides.string(_root.$meta, 'notifications.read', {}) ?? '已讀消息';
+  @override
+  late final _TranslationsNotificationsPriorityZhTw priority = _TranslationsNotificationsPriorityZhTw._(_root);
 }
 
 // Path: profile
@@ -671,6 +747,21 @@ class _TranslationsNetworkErrorsZhTw extends TranslationsNetworkErrorsZhCn {
       TranslationOverrides.string(_root.$meta, 'network.errors.requestError', {'code': code}) ?? '请求错误 (${code})';
 }
 
+// Path: notifications.priority
+class _TranslationsNotificationsPriorityZhTw extends TranslationsNotificationsPriorityZhCn {
+  _TranslationsNotificationsPriorityZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+
+  final TranslationsZhTw _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get high => TranslationOverrides.string(_root.$meta, 'notifications.priority.high', {}) ?? '高優先級';
+  @override
+  String get medium => TranslationOverrides.string(_root.$meta, 'notifications.priority.medium', {}) ?? '普通';
+  @override
+  String get low => TranslationOverrides.string(_root.$meta, 'notifications.priority.low', {}) ?? '低優先級';
+}
+
 // Path: profile.gender
 class _TranslationsProfileGenderZhTw extends TranslationsProfileGenderZhCn {
   _TranslationsProfileGenderZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
@@ -871,6 +962,31 @@ extension on TranslationsZhTw {
             }) ??
             '驗證錯誤：${message} (${errors})',
       'common.warning' => TranslationOverrides.string(_root.$meta, 'common.warning', {}) ?? '警告',
+      'feedback.title' => TranslationOverrides.string(_root.$meta, 'feedback.title', {}) ?? '問題反饋',
+      'feedback.subtitle' => TranslationOverrides.string(_root.$meta, 'feedback.subtitle', {}) ?? '您的反饋是我們進步的動力',
+      'feedback.selectType' => TranslationOverrides.string(_root.$meta, 'feedback.selectType', {}) ?? '選擇反饋類型',
+      'feedback.errorReport' => TranslationOverrides.string(_root.$meta, 'feedback.errorReport', {}) ?? '錯誤報告',
+      'feedback.suggestion' => TranslationOverrides.string(_root.$meta, 'feedback.suggestion', {}) ?? '建議',
+      'feedback.complaint' => TranslationOverrides.string(_root.$meta, 'feedback.complaint', {}) ?? '投訴',
+      'feedback.other' => TranslationOverrides.string(_root.$meta, 'feedback.other', {}) ?? '其他',
+      'feedback.description' => TranslationOverrides.string(_root.$meta, 'feedback.description', {}) ?? '問題描述',
+      'feedback.titleHint' => TranslationOverrides.string(_root.$meta, 'feedback.titleHint', {}) ?? '請輸入問題標題 (必填)',
+      'feedback.contentHint' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.contentHint', {}) ?? '請詳細描述您遇到的問題或建議 (必填)',
+      'feedback.uploadScreenshot' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.uploadScreenshot', {}) ?? '上傳截圖 (可選)',
+      'feedback.addImage' => TranslationOverrides.string(_root.$meta, 'feedback.addImage', {}) ?? '添加圖片',
+      'feedback.uploadLimitHint' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.uploadLimitHint', {}) ?? '最多可上傳3張圖片，每張不超過2MB，支持jpg、png格式',
+      'feedback.contactOptional' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.contactOptional', {}) ?? '聯繫方式 (可選)',
+      'feedback.contactInputHint' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.contactInputHint', {}) ?? '請輸入您的手機號或郵箱，方便我們聯繫您',
+      'feedback.submit' => TranslationOverrides.string(_root.$meta, 'feedback.submit', {}) ?? '提交反饋',
+      'feedback.submitSuccess' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.submitSuccess', {}) ?? '反饋提交成功，感謝您的支持',
+      'feedback.submitFailed' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.submitFailed', {}) ?? '反饋提交失敗，請稍後重試',
       'inventory.machineList' => TranslationOverrides.string(_root.$meta, 'inventory.machineList', {}) ?? '補貨管理',
       'inventory.totalSlots' => TranslationOverrides.string(_root.$meta, 'inventory.totalSlots', {}) ?? '總貨道',
       'inventory.lowStockSlots' => TranslationOverrides.string(_root.$meta, 'inventory.lowStockSlots', {}) ?? '低庫存',
@@ -902,6 +1018,7 @@ extension on TranslationsZhTw {
       'machines.totalOrders' => TranslationOverrides.string(_root.$meta, 'machines.totalOrders', {}) ?? '總訂單數',
       'machines.dailyAvgRevenue' => TranslationOverrides.string(_root.$meta, 'machines.dailyAvgRevenue', {}) ?? '日均營收',
       'machines.growthRate' => TranslationOverrides.string(_root.$meta, 'machines.growthRate', {}) ?? '環比增長率',
+      'machines.totalMachines' => TranslationOverrides.string(_root.$meta, 'machines.totalMachines', {}) ?? '總設備數量',
       'machines.noChartData' => TranslationOverrides.string(_root.$meta, 'machines.noChartData', {}) ?? '暫無數據',
       'machines.loading' => TranslationOverrides.string(_root.$meta, 'machines.loading', {}) ?? '載入中',
       'machines.currencyPrefix' => TranslationOverrides.string(_root.$meta, 'machines.currencyPrefix', {}) ?? '¥',
@@ -981,6 +1098,18 @@ extension on TranslationsZhTw {
       'network.errors.requestError' =>
         ({required Object code}) =>
             TranslationOverrides.string(_root.$meta, 'network.errors.requestError', {'code': code}) ?? '请求错误 (${code})',
+      'notifications.title' => TranslationOverrides.string(_root.$meta, 'notifications.title', {}) ?? '消息通知',
+      'notifications.markAllRead' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.markAllRead', {}) ?? '全部標記为已讀',
+      'notifications.empty' => TranslationOverrides.string(_root.$meta, 'notifications.empty', {}) ?? '暫無通知',
+      'notifications.unread' => TranslationOverrides.string(_root.$meta, 'notifications.unread', {}) ?? '未讀消息',
+      'notifications.read' => TranslationOverrides.string(_root.$meta, 'notifications.read', {}) ?? '已讀消息',
+      'notifications.priority.high' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.priority.high', {}) ?? '高優先級',
+      'notifications.priority.medium' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.priority.medium', {}) ?? '普通',
+      'notifications.priority.low' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.priority.low', {}) ?? '低優先級',
       'profile.title' => TranslationOverrides.string(_root.$meta, 'profile.title', {}) ?? '用戶中心',
       'profile.notLoggedIn' => TranslationOverrides.string(_root.$meta, 'profile.notLoggedIn', {}) ?? '未登入',
       'profile.editProfile' => TranslationOverrides.string(_root.$meta, 'profile.editProfile', {}) ?? '編輯資料',

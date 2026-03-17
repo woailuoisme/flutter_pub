@@ -29,15 +29,26 @@ class FaultStatusBadge extends StatelessWidget {
           Container(
             width: 6.w,
             height: 6.w,
-            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+            decoration: BoxDecoration(
+              color: color,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: color.withValues(alpha: 0.4),
+                  blurRadius: 6,
+                  spreadRadius: 1,
+                ),
+              ],
+            ),
           ),
           SizedBox(width: 6.w),
           Text(
             label,
             style: theme.textTheme.labelSmall?.copyWith(
               color: color,
-              fontWeight: FontWeight.bold,
-              fontSize: 10.sp,
+              fontWeight: FontWeight.w900,
+              fontSize: 9.sp,
+              letterSpacing: 0.5,
             ),
           ),
         ],

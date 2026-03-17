@@ -33,6 +33,7 @@ class StockerMachineCard extends StatelessWidget {
     }
 
     return PremiumCard(
+      glass: true,
       onTap: onTap,
       margin: EdgeInsets.symmetric(
         horizontal: AppDesignTokens.spacingM,

@@ -52,11 +52,13 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final TranslationsAuthZhCn auth = TranslationsAuthZhCn.internal(_root);
   late final TranslationsCommonZhCn common = TranslationsCommonZhCn.internal(_root);
   late final TranslationsDeviceInfoZhCn device_info = TranslationsDeviceInfoZhCn.internal(_root);
+  late final TranslationsFeedbackZhCn feedback = TranslationsFeedbackZhCn.internal(_root);
   late final TranslationsInventoryZhCn inventory = TranslationsInventoryZhCn.internal(_root);
   late final TranslationsMachinesZhCn machines = TranslationsMachinesZhCn.internal(_root);
   late final TranslationsMaintenanceZhCn maintenance = TranslationsMaintenanceZhCn.internal(_root);
   late final TranslationsNavigationZhCn navigation = TranslationsNavigationZhCn.internal(_root);
   late final TranslationsNetworkZhCn network = TranslationsNetworkZhCn.internal(_root);
+  late final TranslationsNotificationsZhCn notifications = TranslationsNotificationsZhCn.internal(_root);
   late final TranslationsProfileZhCn profile = TranslationsProfileZhCn.internal(_root);
   late final TranslationsSettingsZhCn settings = TranslationsSettingsZhCn.internal(_root);
   late final TranslationsTimeZhCn time = TranslationsTimeZhCn.internal(_root);
@@ -498,6 +500,73 @@ class TranslationsDeviceInfoZhCn {
   String get uniqueId => TranslationOverrides.string(_root.$meta, 'device_info.uniqueId', {}) ?? '唯一标识符';
 }
 
+// Path: feedback
+class TranslationsFeedbackZhCn {
+  TranslationsFeedbackZhCn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// zh-CN: '问题反馈'
+  String get title => TranslationOverrides.string(_root.$meta, 'feedback.title', {}) ?? '问题反馈';
+
+  /// zh-CN: '您的反馈是我们进步的动力'
+  String get subtitle => TranslationOverrides.string(_root.$meta, 'feedback.subtitle', {}) ?? '您的反馈是我们进步的动力';
+
+  /// zh-CN: '选择反馈类型'
+  String get selectType => TranslationOverrides.string(_root.$meta, 'feedback.selectType', {}) ?? '选择反馈类型';
+
+  /// zh-CN: '错误报告'
+  String get errorReport => TranslationOverrides.string(_root.$meta, 'feedback.errorReport', {}) ?? '错误报告';
+
+  /// zh-CN: '建议'
+  String get suggestion => TranslationOverrides.string(_root.$meta, 'feedback.suggestion', {}) ?? '建议';
+
+  /// zh-CN: '投诉'
+  String get complaint => TranslationOverrides.string(_root.$meta, 'feedback.complaint', {}) ?? '投诉';
+
+  /// zh-CN: '其他'
+  String get other => TranslationOverrides.string(_root.$meta, 'feedback.other', {}) ?? '其他';
+
+  /// zh-CN: '问题描述'
+  String get description => TranslationOverrides.string(_root.$meta, 'feedback.description', {}) ?? '问题描述';
+
+  /// zh-CN: '请输入问题标题 (必填)'
+  String get titleHint => TranslationOverrides.string(_root.$meta, 'feedback.titleHint', {}) ?? '请输入问题标题 (必填)';
+
+  /// zh-CN: '请详细描述您遇到的问题或建议 (必填)'
+  String get contentHint =>
+      TranslationOverrides.string(_root.$meta, 'feedback.contentHint', {}) ?? '请详细描述您遇到的问题或建议 (必填)';
+
+  /// zh-CN: '上传截图 (可选)'
+  String get uploadScreenshot =>
+      TranslationOverrides.string(_root.$meta, 'feedback.uploadScreenshot', {}) ?? '上传截图 (可选)';
+
+  /// zh-CN: '添加图片'
+  String get addImage => TranslationOverrides.string(_root.$meta, 'feedback.addImage', {}) ?? '添加图片';
+
+  /// zh-CN: '最多可上传3张图片，每张不超过2MB，支持jpg、png格式'
+  String get uploadLimitHint =>
+      TranslationOverrides.string(_root.$meta, 'feedback.uploadLimitHint', {}) ?? '最多可上传3张图片，每张不超过2MB，支持jpg、png格式';
+
+  /// zh-CN: '联系方式 (可选)'
+  String get contactOptional => TranslationOverrides.string(_root.$meta, 'feedback.contactOptional', {}) ?? '联系方式 (可选)';
+
+  /// zh-CN: '请输入您的手机号或邮箱，方便我们联系您'
+  String get contactInputHint =>
+      TranslationOverrides.string(_root.$meta, 'feedback.contactInputHint', {}) ?? '请输入您的手机号或邮箱，方便我们联系您';
+
+  /// zh-CN: '提交反馈'
+  String get submit => TranslationOverrides.string(_root.$meta, 'feedback.submit', {}) ?? '提交反馈';
+
+  /// zh-CN: '反馈提交成功，感谢您的支持'
+  String get submitSuccess => TranslationOverrides.string(_root.$meta, 'feedback.submitSuccess', {}) ?? '反馈提交成功，感谢您的支持';
+
+  /// zh-CN: '反馈提交失败，请稍后重试'
+  String get submitFailed => TranslationOverrides.string(_root.$meta, 'feedback.submitFailed', {}) ?? '反馈提交失败，请稍后重试';
+}
+
 // Path: inventory
 class TranslationsInventoryZhCn {
   TranslationsInventoryZhCn.internal(this._root);
@@ -601,6 +670,9 @@ class TranslationsMachinesZhCn {
 
   /// zh-CN: '环比增长率'
   String get growthRate => TranslationOverrides.string(_root.$meta, 'machines.growthRate', {}) ?? '环比增长率';
+
+  /// zh-CN: '总设备数量'
+  String get totalMachines => TranslationOverrides.string(_root.$meta, 'machines.totalMachines', {}) ?? '总设备数量';
 
   /// zh-CN: '暂无数据'
   String get noChartData => TranslationOverrides.string(_root.$meta, 'machines.noChartData', {}) ?? '暂无数据';
@@ -712,6 +784,32 @@ class TranslationsNetworkZhCn {
 
   // Translations
   late final TranslationsNetworkErrorsZhCn errors = TranslationsNetworkErrorsZhCn.internal(_root);
+}
+
+// Path: notifications
+class TranslationsNotificationsZhCn {
+  TranslationsNotificationsZhCn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// zh-CN: '消息通知'
+  String get title => TranslationOverrides.string(_root.$meta, 'notifications.title', {}) ?? '消息通知';
+
+  /// zh-CN: '全部标记为已读'
+  String get markAllRead => TranslationOverrides.string(_root.$meta, 'notifications.markAllRead', {}) ?? '全部标记为已读';
+
+  /// zh-CN: '暂无通知'
+  String get empty => TranslationOverrides.string(_root.$meta, 'notifications.empty', {}) ?? '暂无通知';
+
+  /// zh-CN: '未读消息'
+  String get unread => TranslationOverrides.string(_root.$meta, 'notifications.unread', {}) ?? '未读消息';
+
+  /// zh-CN: '已读消息'
+  String get read => TranslationOverrides.string(_root.$meta, 'notifications.read', {}) ?? '已读消息';
+
+  late final TranslationsNotificationsPriorityZhCn priority = TranslationsNotificationsPriorityZhCn.internal(_root);
 }
 
 // Path: profile
@@ -1045,6 +1143,24 @@ class TranslationsNetworkErrorsZhCn {
   /// zh-CN: '请求错误 (${code})'
   String requestError({required Object code}) =>
       TranslationOverrides.string(_root.$meta, 'network.errors.requestError', {'code': code}) ?? '请求错误 (${code})';
+}
+
+// Path: notifications.priority
+class TranslationsNotificationsPriorityZhCn {
+  TranslationsNotificationsPriorityZhCn.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// zh-CN: '高优先级'
+  String get high => TranslationOverrides.string(_root.$meta, 'notifications.priority.high', {}) ?? '高优先级';
+
+  /// zh-CN: '普通'
+  String get medium => TranslationOverrides.string(_root.$meta, 'notifications.priority.medium', {}) ?? '普通';
+
+  /// zh-CN: '低优先级'
+  String get low => TranslationOverrides.string(_root.$meta, 'notifications.priority.low', {}) ?? '低优先级';
 }
 
 // Path: profile.gender
@@ -1427,6 +1543,31 @@ extension on Translations {
       'device_info.systemName' => TranslationOverrides.string(_root.$meta, 'device_info.systemName', {}) ?? '系统名称',
       'device_info.machine' => TranslationOverrides.string(_root.$meta, 'device_info.machine', {}) ?? '机器型号',
       'device_info.uniqueId' => TranslationOverrides.string(_root.$meta, 'device_info.uniqueId', {}) ?? '唯一标识符',
+      'feedback.title' => TranslationOverrides.string(_root.$meta, 'feedback.title', {}) ?? '问题反馈',
+      'feedback.subtitle' => TranslationOverrides.string(_root.$meta, 'feedback.subtitle', {}) ?? '您的反馈是我们进步的动力',
+      'feedback.selectType' => TranslationOverrides.string(_root.$meta, 'feedback.selectType', {}) ?? '选择反馈类型',
+      'feedback.errorReport' => TranslationOverrides.string(_root.$meta, 'feedback.errorReport', {}) ?? '错误报告',
+      'feedback.suggestion' => TranslationOverrides.string(_root.$meta, 'feedback.suggestion', {}) ?? '建议',
+      'feedback.complaint' => TranslationOverrides.string(_root.$meta, 'feedback.complaint', {}) ?? '投诉',
+      'feedback.other' => TranslationOverrides.string(_root.$meta, 'feedback.other', {}) ?? '其他',
+      'feedback.description' => TranslationOverrides.string(_root.$meta, 'feedback.description', {}) ?? '问题描述',
+      'feedback.titleHint' => TranslationOverrides.string(_root.$meta, 'feedback.titleHint', {}) ?? '请输入问题标题 (必填)',
+      'feedback.contentHint' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.contentHint', {}) ?? '请详细描述您遇到的问题或建议 (必填)',
+      'feedback.uploadScreenshot' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.uploadScreenshot', {}) ?? '上传截图 (可选)',
+      'feedback.addImage' => TranslationOverrides.string(_root.$meta, 'feedback.addImage', {}) ?? '添加图片',
+      'feedback.uploadLimitHint' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.uploadLimitHint', {}) ?? '最多可上传3张图片，每张不超过2MB，支持jpg、png格式',
+      'feedback.contactOptional' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.contactOptional', {}) ?? '联系方式 (可选)',
+      'feedback.contactInputHint' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.contactInputHint', {}) ?? '请输入您的手机号或邮箱，方便我们联系您',
+      'feedback.submit' => TranslationOverrides.string(_root.$meta, 'feedback.submit', {}) ?? '提交反馈',
+      'feedback.submitSuccess' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.submitSuccess', {}) ?? '反馈提交成功，感谢您的支持',
+      'feedback.submitFailed' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.submitFailed', {}) ?? '反馈提交失败，请稍后重试',
       'inventory.machineList' => TranslationOverrides.string(_root.$meta, 'inventory.machineList', {}) ?? '补货管理',
       'inventory.totalSlots' => TranslationOverrides.string(_root.$meta, 'inventory.totalSlots', {}) ?? '总货道',
       'inventory.lowStockSlots' => TranslationOverrides.string(_root.$meta, 'inventory.lowStockSlots', {}) ?? '低库存',
@@ -1458,6 +1599,7 @@ extension on Translations {
       'machines.totalOrders' => TranslationOverrides.string(_root.$meta, 'machines.totalOrders', {}) ?? '总订单数',
       'machines.dailyAvgRevenue' => TranslationOverrides.string(_root.$meta, 'machines.dailyAvgRevenue', {}) ?? '日均营收',
       'machines.growthRate' => TranslationOverrides.string(_root.$meta, 'machines.growthRate', {}) ?? '环比增长率',
+      'machines.totalMachines' => TranslationOverrides.string(_root.$meta, 'machines.totalMachines', {}) ?? '总设备数量',
       'machines.noChartData' => TranslationOverrides.string(_root.$meta, 'machines.noChartData', {}) ?? '暂无数据',
       'machines.loading' => TranslationOverrides.string(_root.$meta, 'machines.loading', {}) ?? '加载中',
       'machines.currencyPrefix' => TranslationOverrides.string(_root.$meta, 'machines.currencyPrefix', {}) ?? '¥',
@@ -1537,6 +1679,18 @@ extension on Translations {
       'network.errors.requestError' =>
         ({required Object code}) =>
             TranslationOverrides.string(_root.$meta, 'network.errors.requestError', {'code': code}) ?? '请求错误 (${code})',
+      'notifications.title' => TranslationOverrides.string(_root.$meta, 'notifications.title', {}) ?? '消息通知',
+      'notifications.markAllRead' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.markAllRead', {}) ?? '全部标记为已读',
+      'notifications.empty' => TranslationOverrides.string(_root.$meta, 'notifications.empty', {}) ?? '暂无通知',
+      'notifications.unread' => TranslationOverrides.string(_root.$meta, 'notifications.unread', {}) ?? '未读消息',
+      'notifications.read' => TranslationOverrides.string(_root.$meta, 'notifications.read', {}) ?? '已读消息',
+      'notifications.priority.high' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.priority.high', {}) ?? '高优先级',
+      'notifications.priority.medium' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.priority.medium', {}) ?? '普通',
+      'notifications.priority.low' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.priority.low', {}) ?? '低优先级',
       'profile.title' => TranslationOverrides.string(_root.$meta, 'profile.title', {}) ?? '个人中心',
       'profile.notLoggedIn' => TranslationOverrides.string(_root.$meta, 'profile.notLoggedIn', {}) ?? '未登录',
       'profile.editProfile' => TranslationOverrides.string(_root.$meta, 'profile.editProfile', {}) ?? '编辑资料',

@@ -540,7 +540,7 @@ as double,
 /// @nodoc
 mixin _$RevenueStatsModel {
 
-@JsonKey(name: 'total_revenue') String get totalRevenue;@JsonKey(name: 'total_orders') int get totalOrders;@JsonKey(name: 'daily_avg_revenue') String get dailyAvgRevenue;@JsonKey(name: 'growth_rate') double get growthRate;@JsonKey(name: 'revenue_trend') List<TimeSeriesPoint> get revenueTrend;@JsonKey(name: 'order_trend') List<TimeSeriesPoint> get orderTrend;@JsonKey(name: 'product_sales') List<ProductSalesModel> get productSales;@JsonKey(name: 'machine_revenues') List<MachineRevenuePoint> get machineRevenues;
+@JsonKey(name: 'total_revenue') String get totalRevenue;@JsonKey(name: 'total_orders') int get totalOrders;@JsonKey(name: 'daily_avg_revenue') String get dailyAvgRevenue;@JsonKey(name: 'growth_rate') double get growthRate;@JsonKey(name: 'total_machines') int get totalMachines;@JsonKey(name: 'revenue_trend') List<TimeSeriesPoint> get revenueTrend;@JsonKey(name: 'order_trend') List<TimeSeriesPoint> get orderTrend;@JsonKey(name: 'product_sales') List<ProductSalesModel> get productSales;@JsonKey(name: 'machine_revenues') List<MachineRevenuePoint> get machineRevenues;
 /// Create a copy of RevenueStatsModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -553,16 +553,16 @@ $RevenueStatsModelCopyWith<RevenueStatsModel> get copyWith => _$RevenueStatsMode
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RevenueStatsModel&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.dailyAvgRevenue, dailyAvgRevenue) || other.dailyAvgRevenue == dailyAvgRevenue)&&(identical(other.growthRate, growthRate) || other.growthRate == growthRate)&&const DeepCollectionEquality().equals(other.revenueTrend, revenueTrend)&&const DeepCollectionEquality().equals(other.orderTrend, orderTrend)&&const DeepCollectionEquality().equals(other.productSales, productSales)&&const DeepCollectionEquality().equals(other.machineRevenues, machineRevenues));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RevenueStatsModel&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.dailyAvgRevenue, dailyAvgRevenue) || other.dailyAvgRevenue == dailyAvgRevenue)&&(identical(other.growthRate, growthRate) || other.growthRate == growthRate)&&(identical(other.totalMachines, totalMachines) || other.totalMachines == totalMachines)&&const DeepCollectionEquality().equals(other.revenueTrend, revenueTrend)&&const DeepCollectionEquality().equals(other.orderTrend, orderTrend)&&const DeepCollectionEquality().equals(other.productSales, productSales)&&const DeepCollectionEquality().equals(other.machineRevenues, machineRevenues));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,totalRevenue,totalOrders,dailyAvgRevenue,growthRate,const DeepCollectionEquality().hash(revenueTrend),const DeepCollectionEquality().hash(orderTrend),const DeepCollectionEquality().hash(productSales),const DeepCollectionEquality().hash(machineRevenues));
+int get hashCode => Object.hash(runtimeType,totalRevenue,totalOrders,dailyAvgRevenue,growthRate,totalMachines,const DeepCollectionEquality().hash(revenueTrend),const DeepCollectionEquality().hash(orderTrend),const DeepCollectionEquality().hash(productSales),const DeepCollectionEquality().hash(machineRevenues));
 
 @override
 String toString() {
-  return 'RevenueStatsModel(totalRevenue: $totalRevenue, totalOrders: $totalOrders, dailyAvgRevenue: $dailyAvgRevenue, growthRate: $growthRate, revenueTrend: $revenueTrend, orderTrend: $orderTrend, productSales: $productSales, machineRevenues: $machineRevenues)';
+  return 'RevenueStatsModel(totalRevenue: $totalRevenue, totalOrders: $totalOrders, dailyAvgRevenue: $dailyAvgRevenue, growthRate: $growthRate, totalMachines: $totalMachines, revenueTrend: $revenueTrend, orderTrend: $orderTrend, productSales: $productSales, machineRevenues: $machineRevenues)';
 }
 
 
@@ -573,7 +573,7 @@ abstract mixin class $RevenueStatsModelCopyWith<$Res>  {
   factory $RevenueStatsModelCopyWith(RevenueStatsModel value, $Res Function(RevenueStatsModel) _then) = _$RevenueStatsModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'total_revenue') String totalRevenue,@JsonKey(name: 'total_orders') int totalOrders,@JsonKey(name: 'daily_avg_revenue') String dailyAvgRevenue,@JsonKey(name: 'growth_rate') double growthRate,@JsonKey(name: 'revenue_trend') List<TimeSeriesPoint> revenueTrend,@JsonKey(name: 'order_trend') List<TimeSeriesPoint> orderTrend,@JsonKey(name: 'product_sales') List<ProductSalesModel> productSales,@JsonKey(name: 'machine_revenues') List<MachineRevenuePoint> machineRevenues
+@JsonKey(name: 'total_revenue') String totalRevenue,@JsonKey(name: 'total_orders') int totalOrders,@JsonKey(name: 'daily_avg_revenue') String dailyAvgRevenue,@JsonKey(name: 'growth_rate') double growthRate,@JsonKey(name: 'total_machines') int totalMachines,@JsonKey(name: 'revenue_trend') List<TimeSeriesPoint> revenueTrend,@JsonKey(name: 'order_trend') List<TimeSeriesPoint> orderTrend,@JsonKey(name: 'product_sales') List<ProductSalesModel> productSales,@JsonKey(name: 'machine_revenues') List<MachineRevenuePoint> machineRevenues
 });
 
 
@@ -590,13 +590,14 @@ class _$RevenueStatsModelCopyWithImpl<$Res>
 
 /// Create a copy of RevenueStatsModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? totalRevenue = null,Object? totalOrders = null,Object? dailyAvgRevenue = null,Object? growthRate = null,Object? revenueTrend = null,Object? orderTrend = null,Object? productSales = null,Object? machineRevenues = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? totalRevenue = null,Object? totalOrders = null,Object? dailyAvgRevenue = null,Object? growthRate = null,Object? totalMachines = null,Object? revenueTrend = null,Object? orderTrend = null,Object? productSales = null,Object? machineRevenues = null,}) {
   return _then(_self.copyWith(
 totalRevenue: null == totalRevenue ? _self.totalRevenue : totalRevenue // ignore: cast_nullable_to_non_nullable
 as String,totalOrders: null == totalOrders ? _self.totalOrders : totalOrders // ignore: cast_nullable_to_non_nullable
 as int,dailyAvgRevenue: null == dailyAvgRevenue ? _self.dailyAvgRevenue : dailyAvgRevenue // ignore: cast_nullable_to_non_nullable
 as String,growthRate: null == growthRate ? _self.growthRate : growthRate // ignore: cast_nullable_to_non_nullable
-as double,revenueTrend: null == revenueTrend ? _self.revenueTrend : revenueTrend // ignore: cast_nullable_to_non_nullable
+as double,totalMachines: null == totalMachines ? _self.totalMachines : totalMachines // ignore: cast_nullable_to_non_nullable
+as int,revenueTrend: null == revenueTrend ? _self.revenueTrend : revenueTrend // ignore: cast_nullable_to_non_nullable
 as List<TimeSeriesPoint>,orderTrend: null == orderTrend ? _self.orderTrend : orderTrend // ignore: cast_nullable_to_non_nullable
 as List<TimeSeriesPoint>,productSales: null == productSales ? _self.productSales : productSales // ignore: cast_nullable_to_non_nullable
 as List<ProductSalesModel>,machineRevenues: null == machineRevenues ? _self.machineRevenues : machineRevenues // ignore: cast_nullable_to_non_nullable
@@ -682,10 +683,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'total_revenue')  String totalRevenue, @JsonKey(name: 'total_orders')  int totalOrders, @JsonKey(name: 'daily_avg_revenue')  String dailyAvgRevenue, @JsonKey(name: 'growth_rate')  double growthRate, @JsonKey(name: 'revenue_trend')  List<TimeSeriesPoint> revenueTrend, @JsonKey(name: 'order_trend')  List<TimeSeriesPoint> orderTrend, @JsonKey(name: 'product_sales')  List<ProductSalesModel> productSales, @JsonKey(name: 'machine_revenues')  List<MachineRevenuePoint> machineRevenues)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'total_revenue')  String totalRevenue, @JsonKey(name: 'total_orders')  int totalOrders, @JsonKey(name: 'daily_avg_revenue')  String dailyAvgRevenue, @JsonKey(name: 'growth_rate')  double growthRate, @JsonKey(name: 'total_machines')  int totalMachines, @JsonKey(name: 'revenue_trend')  List<TimeSeriesPoint> revenueTrend, @JsonKey(name: 'order_trend')  List<TimeSeriesPoint> orderTrend, @JsonKey(name: 'product_sales')  List<ProductSalesModel> productSales, @JsonKey(name: 'machine_revenues')  List<MachineRevenuePoint> machineRevenues)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RevenueStatsModel() when $default != null:
-return $default(_that.totalRevenue,_that.totalOrders,_that.dailyAvgRevenue,_that.growthRate,_that.revenueTrend,_that.orderTrend,_that.productSales,_that.machineRevenues);case _:
+return $default(_that.totalRevenue,_that.totalOrders,_that.dailyAvgRevenue,_that.growthRate,_that.totalMachines,_that.revenueTrend,_that.orderTrend,_that.productSales,_that.machineRevenues);case _:
   return orElse();
 
 }
@@ -703,10 +704,10 @@ return $default(_that.totalRevenue,_that.totalOrders,_that.dailyAvgRevenue,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'total_revenue')  String totalRevenue, @JsonKey(name: 'total_orders')  int totalOrders, @JsonKey(name: 'daily_avg_revenue')  String dailyAvgRevenue, @JsonKey(name: 'growth_rate')  double growthRate, @JsonKey(name: 'revenue_trend')  List<TimeSeriesPoint> revenueTrend, @JsonKey(name: 'order_trend')  List<TimeSeriesPoint> orderTrend, @JsonKey(name: 'product_sales')  List<ProductSalesModel> productSales, @JsonKey(name: 'machine_revenues')  List<MachineRevenuePoint> machineRevenues)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'total_revenue')  String totalRevenue, @JsonKey(name: 'total_orders')  int totalOrders, @JsonKey(name: 'daily_avg_revenue')  String dailyAvgRevenue, @JsonKey(name: 'growth_rate')  double growthRate, @JsonKey(name: 'total_machines')  int totalMachines, @JsonKey(name: 'revenue_trend')  List<TimeSeriesPoint> revenueTrend, @JsonKey(name: 'order_trend')  List<TimeSeriesPoint> orderTrend, @JsonKey(name: 'product_sales')  List<ProductSalesModel> productSales, @JsonKey(name: 'machine_revenues')  List<MachineRevenuePoint> machineRevenues)  $default,) {final _that = this;
 switch (_that) {
 case _RevenueStatsModel():
-return $default(_that.totalRevenue,_that.totalOrders,_that.dailyAvgRevenue,_that.growthRate,_that.revenueTrend,_that.orderTrend,_that.productSales,_that.machineRevenues);}
+return $default(_that.totalRevenue,_that.totalOrders,_that.dailyAvgRevenue,_that.growthRate,_that.totalMachines,_that.revenueTrend,_that.orderTrend,_that.productSales,_that.machineRevenues);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -720,10 +721,10 @@ return $default(_that.totalRevenue,_that.totalOrders,_that.dailyAvgRevenue,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'total_revenue')  String totalRevenue, @JsonKey(name: 'total_orders')  int totalOrders, @JsonKey(name: 'daily_avg_revenue')  String dailyAvgRevenue, @JsonKey(name: 'growth_rate')  double growthRate, @JsonKey(name: 'revenue_trend')  List<TimeSeriesPoint> revenueTrend, @JsonKey(name: 'order_trend')  List<TimeSeriesPoint> orderTrend, @JsonKey(name: 'product_sales')  List<ProductSalesModel> productSales, @JsonKey(name: 'machine_revenues')  List<MachineRevenuePoint> machineRevenues)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'total_revenue')  String totalRevenue, @JsonKey(name: 'total_orders')  int totalOrders, @JsonKey(name: 'daily_avg_revenue')  String dailyAvgRevenue, @JsonKey(name: 'growth_rate')  double growthRate, @JsonKey(name: 'total_machines')  int totalMachines, @JsonKey(name: 'revenue_trend')  List<TimeSeriesPoint> revenueTrend, @JsonKey(name: 'order_trend')  List<TimeSeriesPoint> orderTrend, @JsonKey(name: 'product_sales')  List<ProductSalesModel> productSales, @JsonKey(name: 'machine_revenues')  List<MachineRevenuePoint> machineRevenues)?  $default,) {final _that = this;
 switch (_that) {
 case _RevenueStatsModel() when $default != null:
-return $default(_that.totalRevenue,_that.totalOrders,_that.dailyAvgRevenue,_that.growthRate,_that.revenueTrend,_that.orderTrend,_that.productSales,_that.machineRevenues);case _:
+return $default(_that.totalRevenue,_that.totalOrders,_that.dailyAvgRevenue,_that.growthRate,_that.totalMachines,_that.revenueTrend,_that.orderTrend,_that.productSales,_that.machineRevenues);case _:
   return null;
 
 }
@@ -735,13 +736,14 @@ return $default(_that.totalRevenue,_that.totalOrders,_that.dailyAvgRevenue,_that
 @JsonSerializable()
 
 class _RevenueStatsModel implements RevenueStatsModel {
-  const _RevenueStatsModel({@JsonKey(name: 'total_revenue') this.totalRevenue = '0.00', @JsonKey(name: 'total_orders') this.totalOrders = 0, @JsonKey(name: 'daily_avg_revenue') this.dailyAvgRevenue = '0.00', @JsonKey(name: 'growth_rate') this.growthRate = 0.0, @JsonKey(name: 'revenue_trend') final  List<TimeSeriesPoint> revenueTrend = const [], @JsonKey(name: 'order_trend') final  List<TimeSeriesPoint> orderTrend = const [], @JsonKey(name: 'product_sales') final  List<ProductSalesModel> productSales = const [], @JsonKey(name: 'machine_revenues') final  List<MachineRevenuePoint> machineRevenues = const []}): _revenueTrend = revenueTrend,_orderTrend = orderTrend,_productSales = productSales,_machineRevenues = machineRevenues;
+  const _RevenueStatsModel({@JsonKey(name: 'total_revenue') this.totalRevenue = '0.00', @JsonKey(name: 'total_orders') this.totalOrders = 0, @JsonKey(name: 'daily_avg_revenue') this.dailyAvgRevenue = '0.00', @JsonKey(name: 'growth_rate') this.growthRate = 0.0, @JsonKey(name: 'total_machines') this.totalMachines = 0, @JsonKey(name: 'revenue_trend') final  List<TimeSeriesPoint> revenueTrend = const [], @JsonKey(name: 'order_trend') final  List<TimeSeriesPoint> orderTrend = const [], @JsonKey(name: 'product_sales') final  List<ProductSalesModel> productSales = const [], @JsonKey(name: 'machine_revenues') final  List<MachineRevenuePoint> machineRevenues = const []}): _revenueTrend = revenueTrend,_orderTrend = orderTrend,_productSales = productSales,_machineRevenues = machineRevenues;
   factory _RevenueStatsModel.fromJson(Map<String, dynamic> json) => _$RevenueStatsModelFromJson(json);
 
 @override@JsonKey(name: 'total_revenue') final  String totalRevenue;
 @override@JsonKey(name: 'total_orders') final  int totalOrders;
 @override@JsonKey(name: 'daily_avg_revenue') final  String dailyAvgRevenue;
 @override@JsonKey(name: 'growth_rate') final  double growthRate;
+@override@JsonKey(name: 'total_machines') final  int totalMachines;
  final  List<TimeSeriesPoint> _revenueTrend;
 @override@JsonKey(name: 'revenue_trend') List<TimeSeriesPoint> get revenueTrend {
   if (_revenueTrend is EqualUnmodifiableListView) return _revenueTrend;
@@ -784,16 +786,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RevenueStatsModel&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.dailyAvgRevenue, dailyAvgRevenue) || other.dailyAvgRevenue == dailyAvgRevenue)&&(identical(other.growthRate, growthRate) || other.growthRate == growthRate)&&const DeepCollectionEquality().equals(other._revenueTrend, _revenueTrend)&&const DeepCollectionEquality().equals(other._orderTrend, _orderTrend)&&const DeepCollectionEquality().equals(other._productSales, _productSales)&&const DeepCollectionEquality().equals(other._machineRevenues, _machineRevenues));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RevenueStatsModel&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.dailyAvgRevenue, dailyAvgRevenue) || other.dailyAvgRevenue == dailyAvgRevenue)&&(identical(other.growthRate, growthRate) || other.growthRate == growthRate)&&(identical(other.totalMachines, totalMachines) || other.totalMachines == totalMachines)&&const DeepCollectionEquality().equals(other._revenueTrend, _revenueTrend)&&const DeepCollectionEquality().equals(other._orderTrend, _orderTrend)&&const DeepCollectionEquality().equals(other._productSales, _productSales)&&const DeepCollectionEquality().equals(other._machineRevenues, _machineRevenues));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,totalRevenue,totalOrders,dailyAvgRevenue,growthRate,const DeepCollectionEquality().hash(_revenueTrend),const DeepCollectionEquality().hash(_orderTrend),const DeepCollectionEquality().hash(_productSales),const DeepCollectionEquality().hash(_machineRevenues));
+int get hashCode => Object.hash(runtimeType,totalRevenue,totalOrders,dailyAvgRevenue,growthRate,totalMachines,const DeepCollectionEquality().hash(_revenueTrend),const DeepCollectionEquality().hash(_orderTrend),const DeepCollectionEquality().hash(_productSales),const DeepCollectionEquality().hash(_machineRevenues));
 
 @override
 String toString() {
-  return 'RevenueStatsModel(totalRevenue: $totalRevenue, totalOrders: $totalOrders, dailyAvgRevenue: $dailyAvgRevenue, growthRate: $growthRate, revenueTrend: $revenueTrend, orderTrend: $orderTrend, productSales: $productSales, machineRevenues: $machineRevenues)';
+  return 'RevenueStatsModel(totalRevenue: $totalRevenue, totalOrders: $totalOrders, dailyAvgRevenue: $dailyAvgRevenue, growthRate: $growthRate, totalMachines: $totalMachines, revenueTrend: $revenueTrend, orderTrend: $orderTrend, productSales: $productSales, machineRevenues: $machineRevenues)';
 }
 
 
@@ -804,7 +806,7 @@ abstract mixin class _$RevenueStatsModelCopyWith<$Res> implements $RevenueStatsM
   factory _$RevenueStatsModelCopyWith(_RevenueStatsModel value, $Res Function(_RevenueStatsModel) _then) = __$RevenueStatsModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'total_revenue') String totalRevenue,@JsonKey(name: 'total_orders') int totalOrders,@JsonKey(name: 'daily_avg_revenue') String dailyAvgRevenue,@JsonKey(name: 'growth_rate') double growthRate,@JsonKey(name: 'revenue_trend') List<TimeSeriesPoint> revenueTrend,@JsonKey(name: 'order_trend') List<TimeSeriesPoint> orderTrend,@JsonKey(name: 'product_sales') List<ProductSalesModel> productSales,@JsonKey(name: 'machine_revenues') List<MachineRevenuePoint> machineRevenues
+@JsonKey(name: 'total_revenue') String totalRevenue,@JsonKey(name: 'total_orders') int totalOrders,@JsonKey(name: 'daily_avg_revenue') String dailyAvgRevenue,@JsonKey(name: 'growth_rate') double growthRate,@JsonKey(name: 'total_machines') int totalMachines,@JsonKey(name: 'revenue_trend') List<TimeSeriesPoint> revenueTrend,@JsonKey(name: 'order_trend') List<TimeSeriesPoint> orderTrend,@JsonKey(name: 'product_sales') List<ProductSalesModel> productSales,@JsonKey(name: 'machine_revenues') List<MachineRevenuePoint> machineRevenues
 });
 
 
@@ -821,13 +823,14 @@ class __$RevenueStatsModelCopyWithImpl<$Res>
 
 /// Create a copy of RevenueStatsModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? totalRevenue = null,Object? totalOrders = null,Object? dailyAvgRevenue = null,Object? growthRate = null,Object? revenueTrend = null,Object? orderTrend = null,Object? productSales = null,Object? machineRevenues = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? totalRevenue = null,Object? totalOrders = null,Object? dailyAvgRevenue = null,Object? growthRate = null,Object? totalMachines = null,Object? revenueTrend = null,Object? orderTrend = null,Object? productSales = null,Object? machineRevenues = null,}) {
   return _then(_RevenueStatsModel(
 totalRevenue: null == totalRevenue ? _self.totalRevenue : totalRevenue // ignore: cast_nullable_to_non_nullable
 as String,totalOrders: null == totalOrders ? _self.totalOrders : totalOrders // ignore: cast_nullable_to_non_nullable
 as int,dailyAvgRevenue: null == dailyAvgRevenue ? _self.dailyAvgRevenue : dailyAvgRevenue // ignore: cast_nullable_to_non_nullable
 as String,growthRate: null == growthRate ? _self.growthRate : growthRate // ignore: cast_nullable_to_non_nullable
-as double,revenueTrend: null == revenueTrend ? _self._revenueTrend : revenueTrend // ignore: cast_nullable_to_non_nullable
+as double,totalMachines: null == totalMachines ? _self.totalMachines : totalMachines // ignore: cast_nullable_to_non_nullable
+as int,revenueTrend: null == revenueTrend ? _self._revenueTrend : revenueTrend // ignore: cast_nullable_to_non_nullable
 as List<TimeSeriesPoint>,orderTrend: null == orderTrend ? _self._orderTrend : orderTrend // ignore: cast_nullable_to_non_nullable
 as List<TimeSeriesPoint>,productSales: null == productSales ? _self._productSales : productSales // ignore: cast_nullable_to_non_nullable
 as List<ProductSalesModel>,machineRevenues: null == machineRevenues ? _self._machineRevenues : machineRevenues // ignore: cast_nullable_to_non_nullable

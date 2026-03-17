@@ -24,4 +24,8 @@ final class _ProdEnv {
       '543085523947-fkkrbe1d4c2b98h59j210r5r5p5g57m5.apps.googleusercontent.com';
 
   static const bool _useTestMode = false;
+
+  static const String _gotifyBaseUrl = '';
+
+  static const String _gotifyClientToken = '';
 }

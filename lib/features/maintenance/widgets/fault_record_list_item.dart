@@ -23,24 +23,33 @@ class FaultRecordListItem extends StatelessWidget {
         vertical: AppDesignTokens.spacingXS,
       ),
       padding: EdgeInsets.all(AppDesignTokens.spacingM),
+      glass: true,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.all(10.w),
+            padding: EdgeInsets.all(12.w),
             decoration: BoxDecoration(
               color:
                   (isPending ? AppDesignTokens.error : AppDesignTokens.success)
-                      .withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(AppDesignTokens.radiusS),
+                      .withValues(alpha: 0.08),
+              borderRadius: BorderRadius.circular(AppDesignTokens.radiusM),
+              border: Border.all(
+                color:
+                    (isPending
+                            ? AppDesignTokens.error
+                            : AppDesignTokens.success)
+                        .withValues(alpha: 0.1),
+                width: 1,
+              ),
             ),
             child: Icon(
               isPending ? Symbols.warning : Symbols.check_circle,
               color: isPending
                   ? AppDesignTokens.error
                   : AppDesignTokens.success,
-              size: 24.sp,
-              weight: 500,
+              size: 22.sp,
+              weight: 600,
             ),
           ),
           SizedBox(width: AppDesignTokens.spacingM),

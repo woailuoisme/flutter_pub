@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
@@ -51,39 +52,79 @@ class _AgentDashboardScreenState extends ConsumerState<AgentDashboardScreen> {
     final dashboardState = ref.watch(agentDashboardProvider);
     final statsAsync = dashboardState.stats;
     final isLoading = statsAsync is AsyncLoading;
+    final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.machines.dashboard),
-        elevation: 0,
-        scrolledUnderElevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.list_alt_rounded),
-            tooltip: t.machines.machineList,
-            onPressed: () => const AgentMachineListRoute().go(context),
-          ),
-        ],
-      ),
-      body: Skeletonizer(
-        enabled: isLoading,
-        child: SingleChildScrollView(
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: AppDesignTokens.surfaceGradient(context),
+        ),
+        child: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const WelcomeHeader(),
+              const WelcomeHeader()
+                  .animate()
+                  .fadeIn(duration: 600.ms)
+                  .slideY(begin: -0.2, end: 0),
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: AppDesignTokens.spacingM,
+                  vertical: AppDesignTokens.spacingS,
                 ),
-                child: TimePeriodSelector(
-                  selected: dashboardState.selectedPeriod,
-                  onChanged: (period) => ref
-                      .read(agentDashboardProvider.notifier)
-                      .changePeriod(period),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        t.machines.dashboard,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.list_alt_rounded),
+                      tooltip: t.machines.machineList,
+                      onPressed: () =>
+                          const AgentMachineListRoute().push<void>(context),
+                    ),
+                  ],
+                ),
+              ).animate().fadeIn(delay: 200.ms).slideX(begin: -0.1, end: 0),
+              Expanded(
+                child: Skeletonizer(
+                  enabled: isLoading,
+                  child: RefreshIndicator(
+                    onRefresh: () =>
+                        ref.read(agentDashboardProvider.notifier).loadStats(),
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: AppDesignTokens.spacingM,
+                                ),
+                                child: TimePeriodSelector(
+                                  selected: dashboardState.selectedPeriod,
+                                  onChanged: (period) => ref
+                                      .read(agentDashboardProvider.notifier)
+                                      .changePeriod(period),
+                                ),
+                              )
+                              .animate()
+                              .fadeIn(delay: 100.ms)
+                              .slideX(begin: -0.05),
+                          _buildContent(context, dashboardState),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              _buildContent(context, dashboardState),
             ],
           ),
         ),
@@ -109,19 +150,32 @@ class _AgentDashboardScreenState extends ConsumerState<AgentDashboardScreen> {
         if (displayStats != null) KpiCard(stats: displayStats),
         _SectionTitle(title: t.machines.revenueTrend),
         if (displayStats != null)
-          RevenueTrendLineChart(data: displayStats.revenueTrend),
+          RevenueTrendLineChart(data: displayStats.revenueTrend)
+              .animate()
+              .fadeIn(delay: 200.ms)
+              .scale(begin: const Offset(0.95, 0.95)),
         _SectionTitle(title: t.machines.orderVolume),
-        if (displayStats != null) OrderBarChart(data: displayStats.orderTrend),
+        if (displayStats != null)
+          OrderBarChart(data: displayStats.orderTrend)
+              .animate()
+              .fadeIn(delay: 300.ms)
+              .scale(begin: const Offset(0.95, 0.95)),
         _SectionTitle(title: t.machines.productSalesRatio),
         if (displayStats != null)
-          ProductPieChart(data: displayStats.productSales),
+          ProductPieChart(data: displayStats.productSales)
+              .animate()
+              .fadeIn(delay: 400.ms)
+              .scale(begin: const Offset(0.95, 0.95)),
         _SectionTitle(title: t.machines.machineRevenueComparison),
         if (displayStats != null)
           MachineComparisonBarChart(
-            data: displayStats.machineRevenues,
-            onMachineTap: (id) =>
-                AgentMachineDetailRoute(machineId: id).go(context),
-          ),
+                data: displayStats.machineRevenues,
+                onMachineTap: (id) =>
+                    AgentMachineDetailRoute(machineId: id).go(context),
+              )
+              .animate()
+              .fadeIn(delay: 500.ms)
+              .scale(begin: const Offset(0.95, 0.95)),
         SizedBox(height: 32.h),
       ],
     );

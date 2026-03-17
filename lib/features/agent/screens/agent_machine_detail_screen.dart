@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/features/agent/providers/agent_dashboard_state.dart';
 import 'package:lunchbox_hub/features/agent/providers/agent_machine_detail_provider.dart';
 import 'package:lunchbox_hub/features/agent/widgets/kpi_card.dart';
@@ -8,6 +10,7 @@ import 'package:lunchbox_hub/features/agent/widgets/order_bar_chart.dart';
 import 'package:lunchbox_hub/features/agent/widgets/product_pie_chart.dart';
 import 'package:lunchbox_hub/features/agent/widgets/revenue_line_chart.dart';
 import 'package:lunchbox_hub/features/agent/widgets/time_period_selector.dart';
+import 'package:lunchbox_hub/i18n/translations.g.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class AgentMachineDetailScreen extends ConsumerStatefulWidget {
@@ -38,22 +41,42 @@ class _AgentMachineDetailScreenState
     final isLoading = detailState.stats is AsyncLoading;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('机器详情')),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TimePeriodSelector(
-              selected: detailState.selectedPeriod,
-              onChanged: (period) => ref
-                  .read(agentMachineDetailProvider(widget.machineId).notifier)
-                  .changePeriod(period),
-            ),
-            Skeletonizer(
-              enabled: isLoading,
-              child: _buildContent(context, detailState),
-            ),
-          ],
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: Text(t.machines.dashboard),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+      ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: AppDesignTokens.surfaceGradient(context),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).padding.top + kToolbarHeight,
+              ),
+              TimePeriodSelector(
+                selected: detailState.selectedPeriod,
+                onChanged: (period) => ref
+                    .read(agentMachineDetailProvider(widget.machineId).notifier)
+                    .changePeriod(period),
+              ),
+              Skeletonizer(
+                enabled: isLoading,
+                child: _buildContent(
+                  context,
+                  detailState,
+                ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1, end: 0),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -69,11 +92,11 @@ class _AgentMachineDetailScreenState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         KpiCard(stats: stats),
-        const _SectionTitle(title: '营收趋势'),
+        _SectionTitle(title: t.machines.revenueTrend),
         RevenueTrendLineChart(data: stats.revenueTrend),
-        const _SectionTitle(title: '订单量'),
+        _SectionTitle(title: t.machines.orderVolume),
         OrderBarChart(data: stats.orderTrend),
-        const _SectionTitle(title: '商品销售占比'),
+        _SectionTitle(title: t.machines.productSalesRatio),
         ProductPieChart(data: stats.productSales),
         SizedBox(height: 24.h),
       ],

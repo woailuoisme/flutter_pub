@@ -3,140 +3,111 @@
 part of 'database_service.dart';
 
 // ignore_for_file: type=lint
-class $CartItemsTable extends CartItems
-    with TableInfo<$CartItemsTable, CartItem> {
+class $NotificationsTable extends Notifications
+    with TableInfo<$NotificationsTable, Notification> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $CartItemsTable(this.attachedDatabase, [this._alias]);
+  $NotificationsTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
     'id',
     aliasedName,
     false,
-    hasAutoIncrement: true,
     type: DriftSqlType.int,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'PRIMARY KEY AUTOINCREMENT',
-    ),
   );
-  static const VerificationMeta _deviceIdMeta = const VerificationMeta(
-    'deviceId',
-  );
+  static const VerificationMeta _appIdMeta = const VerificationMeta('appId');
   @override
-  late final GeneratedColumn<String> deviceId = GeneratedColumn<String>(
-    'device_id',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _productIdMeta = const VerificationMeta(
-    'productId',
-  );
-  @override
-  late final GeneratedColumn<String> productId = GeneratedColumn<String>(
-    'product_id',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _productDataMeta = const VerificationMeta(
-    'productData',
-  );
-  @override
-  late final GeneratedColumn<String> productData = GeneratedColumn<String>(
-    'product_data',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _quantityMeta = const VerificationMeta(
-    'quantity',
-  );
-  @override
-  late final GeneratedColumn<int> quantity = GeneratedColumn<int>(
-    'quantity',
+  late final GeneratedColumn<int> appId = GeneratedColumn<int>(
+    'app_id',
     aliasedName,
     false,
     type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultValue: const Constant(1),
+    requiredDuringInsert: true,
   );
-  static const VerificationMeta _attributesMeta = const VerificationMeta(
-    'attributes',
+  static const VerificationMeta _messageMeta = const VerificationMeta(
+    'message',
   );
   @override
-  late final GeneratedColumn<String> attributes = GeneratedColumn<String>(
-    'attributes',
+  late final GeneratedColumn<String> message = GeneratedColumn<String>(
+    'message',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _priorityMeta = const VerificationMeta(
+    'priority',
+  );
+  @override
+  late final GeneratedColumn<int> priority = GeneratedColumn<int>(
+    'priority',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<DateTime> date = GeneratedColumn<DateTime>(
+    'date',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _extrasMeta = const VerificationMeta('extras');
+  @override
+  late final GeneratedColumn<String> extras = GeneratedColumn<String>(
+    'extras',
     aliasedName,
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
-  static const VerificationMeta _isSelectedMeta = const VerificationMeta(
-    'isSelected',
-  );
+  static const VerificationMeta _isReadMeta = const VerificationMeta('isRead');
   @override
-  late final GeneratedColumn<bool> isSelected = GeneratedColumn<bool>(
-    'is_selected',
+  late final GeneratedColumn<bool> isRead = GeneratedColumn<bool>(
+    'is_read',
     aliasedName,
     false,
     type: DriftSqlType.bool,
     requiredDuringInsert: false,
     defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("is_selected" IN (0, 1))',
+      'CHECK ("is_read" IN (0, 1))',
     ),
-    defaultValue: const Constant(true),
-  );
-  static const VerificationMeta _createdAtMeta = const VerificationMeta(
-    'createdAt',
-  );
-  @override
-  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
-    'created_at',
-    aliasedName,
-    false,
-    type: DriftSqlType.dateTime,
-    requiredDuringInsert: false,
-    defaultValue: currentDateAndTime,
-  );
-  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
-    'updatedAt',
-  );
-  @override
-  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
-    'updated_at',
-    aliasedName,
-    false,
-    type: DriftSqlType.dateTime,
-    requiredDuringInsert: false,
-    defaultValue: currentDateAndTime,
+    defaultValue: const Constant(false),
   );
   @override
   List<GeneratedColumn> get $columns => [
     id,
-    deviceId,
-    productId,
-    productData,
-    quantity,
-    attributes,
-    isSelected,
-    createdAt,
-    updatedAt,
+    appId,
+    message,
+    title,
+    priority,
+    date,
+    extras,
+    isRead,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'cart_items';
+  static const String $name = 'notifications';
   @override
   VerificationContext validateIntegrity(
-    Insertable<CartItem> instance, {
+    Insertable<Notification> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -144,61 +115,56 @@ class $CartItemsTable extends CartItems
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
-    if (data.containsKey('device_id')) {
+    if (data.containsKey('app_id')) {
       context.handle(
-        _deviceIdMeta,
-        deviceId.isAcceptableOrUnknown(data['device_id']!, _deviceIdMeta),
+        _appIdMeta,
+        appId.isAcceptableOrUnknown(data['app_id']!, _appIdMeta),
       );
     } else if (isInserting) {
-      context.missing(_deviceIdMeta);
+      context.missing(_appIdMeta);
     }
-    if (data.containsKey('product_id')) {
+    if (data.containsKey('message')) {
       context.handle(
-        _productIdMeta,
-        productId.isAcceptableOrUnknown(data['product_id']!, _productIdMeta),
+        _messageMeta,
+        message.isAcceptableOrUnknown(data['message']!, _messageMeta),
       );
     } else if (isInserting) {
-      context.missing(_productIdMeta);
+      context.missing(_messageMeta);
     }
-    if (data.containsKey('product_data')) {
+    if (data.containsKey('title')) {
       context.handle(
-        _productDataMeta,
-        productData.isAcceptableOrUnknown(
-          data['product_data']!,
-          _productDataMeta,
-        ),
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
       );
     } else if (isInserting) {
-      context.missing(_productDataMeta);
+      context.missing(_titleMeta);
     }
-    if (data.containsKey('quantity')) {
+    if (data.containsKey('priority')) {
       context.handle(
-        _quantityMeta,
-        quantity.isAcceptableOrUnknown(data['quantity']!, _quantityMeta),
+        _priorityMeta,
+        priority.isAcceptableOrUnknown(data['priority']!, _priorityMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_priorityMeta);
+    }
+    if (data.containsKey('date')) {
+      context.handle(
+        _dateMeta,
+        date.isAcceptableOrUnknown(data['date']!, _dateMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dateMeta);
+    }
+    if (data.containsKey('extras')) {
+      context.handle(
+        _extrasMeta,
+        extras.isAcceptableOrUnknown(data['extras']!, _extrasMeta),
       );
     }
-    if (data.containsKey('attributes')) {
+    if (data.containsKey('is_read')) {
       context.handle(
-        _attributesMeta,
-        attributes.isAcceptableOrUnknown(data['attributes']!, _attributesMeta),
-      );
-    }
-    if (data.containsKey('is_selected')) {
-      context.handle(
-        _isSelectedMeta,
-        isSelected.isAcceptableOrUnknown(data['is_selected']!, _isSelectedMeta),
-      );
-    }
-    if (data.containsKey('created_at')) {
-      context.handle(
-        _createdAtMeta,
-        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
-      );
-    }
-    if (data.containsKey('updated_at')) {
-      context.handle(
-        _updatedAtMeta,
-        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+        _isReadMeta,
+        isRead.isAcceptableOrUnknown(data['is_read']!, _isReadMeta),
       );
     }
     return context;
@@ -207,123 +173,114 @@ class $CartItemsTable extends CartItems
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  CartItem map(Map<String, dynamic> data, {String? tablePrefix}) {
+  Notification map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return CartItem(
+    return Notification(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}id'],
       )!,
-      deviceId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}device_id'],
-      )!,
-      productId: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}product_id'],
-      )!,
-      productData: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}product_data'],
-      )!,
-      quantity: attachedDatabase.typeMapping.read(
+      appId: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
-        data['${effectivePrefix}quantity'],
+        data['${effectivePrefix}app_id'],
       )!,
-      attributes: attachedDatabase.typeMapping.read(
+      message: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
-        data['${effectivePrefix}attributes'],
+        data['${effectivePrefix}message'],
+      )!,
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      )!,
+      priority: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}priority'],
+      )!,
+      date: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}date'],
+      )!,
+      extras: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}extras'],
       ),
-      isSelected: attachedDatabase.typeMapping.read(
+      isRead: attachedDatabase.typeMapping.read(
         DriftSqlType.bool,
-        data['${effectivePrefix}is_selected'],
-      )!,
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-      updatedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}updated_at'],
+        data['${effectivePrefix}is_read'],
       )!,
     );
   }
 
   @override
-  $CartItemsTable createAlias(String alias) {
-    return $CartItemsTable(attachedDatabase, alias);
+  $NotificationsTable createAlias(String alias) {
+    return $NotificationsTable(attachedDatabase, alias);
   }
 }
 
-class CartItem extends DataClass implements Insertable<CartItem> {
+class Notification extends DataClass implements Insertable<Notification> {
   final int id;
-  final String deviceId;
-  final String productId;
-  final String productData;
-  final int quantity;
-  final String? attributes;
-  final bool isSelected;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  const CartItem({
+  final int appId;
+  final String message;
+  final String title;
+  final int priority;
+  final DateTime date;
+  final String? extras;
+  final bool isRead;
+  const Notification({
     required this.id,
-    required this.deviceId,
-    required this.productId,
-    required this.productData,
-    required this.quantity,
-    this.attributes,
-    required this.isSelected,
-    required this.createdAt,
-    required this.updatedAt,
+    required this.appId,
+    required this.message,
+    required this.title,
+    required this.priority,
+    required this.date,
+    this.extras,
+    required this.isRead,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
-    map['device_id'] = Variable<String>(deviceId);
-    map['product_id'] = Variable<String>(productId);
-    map['product_data'] = Variable<String>(productData);
-    map['quantity'] = Variable<int>(quantity);
-    if (!nullToAbsent || attributes != null) {
-      map['attributes'] = Variable<String>(attributes);
+    map['app_id'] = Variable<int>(appId);
+    map['message'] = Variable<String>(message);
+    map['title'] = Variable<String>(title);
+    map['priority'] = Variable<int>(priority);
+    map['date'] = Variable<DateTime>(date);
+    if (!nullToAbsent || extras != null) {
+      map['extras'] = Variable<String>(extras);
     }
-    map['is_selected'] = Variable<bool>(isSelected);
-    map['created_at'] = Variable<DateTime>(createdAt);
-    map['updated_at'] = Variable<DateTime>(updatedAt);
+    map['is_read'] = Variable<bool>(isRead);
     return map;
   }
 
-  CartItemsCompanion toCompanion(bool nullToAbsent) {
-    return CartItemsCompanion(
+  NotificationsCompanion toCompanion(bool nullToAbsent) {
+    return NotificationsCompanion(
       id: Value(id),
-      deviceId: Value(deviceId),
-      productId: Value(productId),
-      productData: Value(productData),
-      quantity: Value(quantity),
-      attributes: attributes == null && nullToAbsent
+      appId: Value(appId),
+      message: Value(message),
+      title: Value(title),
+      priority: Value(priority),
+      date: Value(date),
+      extras: extras == null && nullToAbsent
           ? const Value.absent()
-          : Value(attributes),
-      isSelected: Value(isSelected),
-      createdAt: Value(createdAt),
-      updatedAt: Value(updatedAt),
+          : Value(extras),
+      isRead: Value(isRead),
     );
   }
 
-  factory CartItem.fromJson(
+  factory Notification.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return CartItem(
+    return Notification(
       id: serializer.fromJson<int>(json['id']),
-      deviceId: serializer.fromJson<String>(json['deviceId']),
-      productId: serializer.fromJson<String>(json['productId']),
-      productData: serializer.fromJson<String>(json['productData']),
-      quantity: serializer.fromJson<int>(json['quantity']),
-      attributes: serializer.fromJson<String?>(json['attributes']),
-      isSelected: serializer.fromJson<bool>(json['isSelected']),
-      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
-      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      appId: serializer.fromJson<int>(json['appId']),
+      message: serializer.fromJson<String>(json['message']),
+      title: serializer.fromJson<String>(json['title']),
+      priority: serializer.fromJson<int>(json['priority']),
+      date: serializer.fromJson<DateTime>(json['date']),
+      extras: serializer.fromJson<String?>(json['extras']),
+      isRead: serializer.fromJson<bool>(json['isRead']),
     );
   }
   @override
@@ -331,180 +288,154 @@ class CartItem extends DataClass implements Insertable<CartItem> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
-      'deviceId': serializer.toJson<String>(deviceId),
-      'productId': serializer.toJson<String>(productId),
-      'productData': serializer.toJson<String>(productData),
-      'quantity': serializer.toJson<int>(quantity),
-      'attributes': serializer.toJson<String?>(attributes),
-      'isSelected': serializer.toJson<bool>(isSelected),
-      'createdAt': serializer.toJson<DateTime>(createdAt),
-      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'appId': serializer.toJson<int>(appId),
+      'message': serializer.toJson<String>(message),
+      'title': serializer.toJson<String>(title),
+      'priority': serializer.toJson<int>(priority),
+      'date': serializer.toJson<DateTime>(date),
+      'extras': serializer.toJson<String?>(extras),
+      'isRead': serializer.toJson<bool>(isRead),
     };
   }
 
-  CartItem copyWith({
+  Notification copyWith({
     int? id,
-    String? deviceId,
-    String? productId,
-    String? productData,
-    int? quantity,
-    Value<String?> attributes = const Value.absent(),
-    bool? isSelected,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  }) => CartItem(
+    int? appId,
+    String? message,
+    String? title,
+    int? priority,
+    DateTime? date,
+    Value<String?> extras = const Value.absent(),
+    bool? isRead,
+  }) => Notification(
     id: id ?? this.id,
-    deviceId: deviceId ?? this.deviceId,
-    productId: productId ?? this.productId,
-    productData: productData ?? this.productData,
-    quantity: quantity ?? this.quantity,
-    attributes: attributes.present ? attributes.value : this.attributes,
-    isSelected: isSelected ?? this.isSelected,
-    createdAt: createdAt ?? this.createdAt,
-    updatedAt: updatedAt ?? this.updatedAt,
+    appId: appId ?? this.appId,
+    message: message ?? this.message,
+    title: title ?? this.title,
+    priority: priority ?? this.priority,
+    date: date ?? this.date,
+    extras: extras.present ? extras.value : this.extras,
+    isRead: isRead ?? this.isRead,
   );
-  CartItem copyWithCompanion(CartItemsCompanion data) {
-    return CartItem(
+  Notification copyWithCompanion(NotificationsCompanion data) {
+    return Notification(
       id: data.id.present ? data.id.value : this.id,
-      deviceId: data.deviceId.present ? data.deviceId.value : this.deviceId,
-      productId: data.productId.present ? data.productId.value : this.productId,
-      productData: data.productData.present
-          ? data.productData.value
-          : this.productData,
-      quantity: data.quantity.present ? data.quantity.value : this.quantity,
-      attributes: data.attributes.present
-          ? data.attributes.value
-          : this.attributes,
-      isSelected: data.isSelected.present
-          ? data.isSelected.value
-          : this.isSelected,
-      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
-      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      appId: data.appId.present ? data.appId.value : this.appId,
+      message: data.message.present ? data.message.value : this.message,
+      title: data.title.present ? data.title.value : this.title,
+      priority: data.priority.present ? data.priority.value : this.priority,
+      date: data.date.present ? data.date.value : this.date,
+      extras: data.extras.present ? data.extras.value : this.extras,
+      isRead: data.isRead.present ? data.isRead.value : this.isRead,
     );
   }
 
   @override
   String toString() {
-    return (StringBuffer('CartItem(')
+    return (StringBuffer('Notification(')
           ..write('id: $id, ')
-          ..write('deviceId: $deviceId, ')
-          ..write('productId: $productId, ')
-          ..write('productData: $productData, ')
-          ..write('quantity: $quantity, ')
-          ..write('attributes: $attributes, ')
-          ..write('isSelected: $isSelected, ')
-          ..write('createdAt: $createdAt, ')
-          ..write('updatedAt: $updatedAt')
+          ..write('appId: $appId, ')
+          ..write('message: $message, ')
+          ..write('title: $title, ')
+          ..write('priority: $priority, ')
+          ..write('date: $date, ')
+          ..write('extras: $extras, ')
+          ..write('isRead: $isRead')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
-    id,
-    deviceId,
-    productId,
-    productData,
-    quantity,
-    attributes,
-    isSelected,
-    createdAt,
-    updatedAt,
-  );
+  int get hashCode =>
+      Object.hash(id, appId, message, title, priority, date, extras, isRead);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is CartItem &&
+      (other is Notification &&
           other.id == this.id &&
-          other.deviceId == this.deviceId &&
-          other.productId == this.productId &&
-          other.productData == this.productData &&
-          other.quantity == this.quantity &&
-          other.attributes == this.attributes &&
-          other.isSelected == this.isSelected &&
-          other.createdAt == this.createdAt &&
-          other.updatedAt == this.updatedAt);
+          other.appId == this.appId &&
+          other.message == this.message &&
+          other.title == this.title &&
+          other.priority == this.priority &&
+          other.date == this.date &&
+          other.extras == this.extras &&
+          other.isRead == this.isRead);
 }
 
-class CartItemsCompanion extends UpdateCompanion<CartItem> {
+class NotificationsCompanion extends UpdateCompanion<Notification> {
   final Value<int> id;
-  final Value<String> deviceId;
-  final Value<String> productId;
-  final Value<String> productData;
-  final Value<int> quantity;
-  final Value<String?> attributes;
-  final Value<bool> isSelected;
-  final Value<DateTime> createdAt;
-  final Value<DateTime> updatedAt;
-  const CartItemsCompanion({
+  final Value<int> appId;
+  final Value<String> message;
+  final Value<String> title;
+  final Value<int> priority;
+  final Value<DateTime> date;
+  final Value<String?> extras;
+  final Value<bool> isRead;
+  const NotificationsCompanion({
     this.id = const Value.absent(),
-    this.deviceId = const Value.absent(),
-    this.productId = const Value.absent(),
-    this.productData = const Value.absent(),
-    this.quantity = const Value.absent(),
-    this.attributes = const Value.absent(),
-    this.isSelected = const Value.absent(),
-    this.createdAt = const Value.absent(),
-    this.updatedAt = const Value.absent(),
+    this.appId = const Value.absent(),
+    this.message = const Value.absent(),
+    this.title = const Value.absent(),
+    this.priority = const Value.absent(),
+    this.date = const Value.absent(),
+    this.extras = const Value.absent(),
+    this.isRead = const Value.absent(),
   });
-  CartItemsCompanion.insert({
+  NotificationsCompanion.insert({
     this.id = const Value.absent(),
-    required String deviceId,
-    required String productId,
-    required String productData,
-    this.quantity = const Value.absent(),
-    this.attributes = const Value.absent(),
-    this.isSelected = const Value.absent(),
-    this.createdAt = const Value.absent(),
-    this.updatedAt = const Value.absent(),
-  }) : deviceId = Value(deviceId),
-       productId = Value(productId),
-       productData = Value(productData);
-  static Insertable<CartItem> custom({
+    required int appId,
+    required String message,
+    required String title,
+    required int priority,
+    required DateTime date,
+    this.extras = const Value.absent(),
+    this.isRead = const Value.absent(),
+  }) : appId = Value(appId),
+       message = Value(message),
+       title = Value(title),
+       priority = Value(priority),
+       date = Value(date);
+  static Insertable<Notification> custom({
     Expression<int>? id,
-    Expression<String>? deviceId,
-    Expression<String>? productId,
-    Expression<String>? productData,
-    Expression<int>? quantity,
-    Expression<String>? attributes,
-    Expression<bool>? isSelected,
-    Expression<DateTime>? createdAt,
-    Expression<DateTime>? updatedAt,
+    Expression<int>? appId,
+    Expression<String>? message,
+    Expression<String>? title,
+    Expression<int>? priority,
+    Expression<DateTime>? date,
+    Expression<String>? extras,
+    Expression<bool>? isRead,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
-      if (deviceId != null) 'device_id': deviceId,
-      if (productId != null) 'product_id': productId,
-      if (productData != null) 'product_data': productData,
-      if (quantity != null) 'quantity': quantity,
-      if (attributes != null) 'attributes': attributes,
-      if (isSelected != null) 'is_selected': isSelected,
-      if (createdAt != null) 'created_at': createdAt,
-      if (updatedAt != null) 'updated_at': updatedAt,
+      if (appId != null) 'app_id': appId,
+      if (message != null) 'message': message,
+      if (title != null) 'title': title,
+      if (priority != null) 'priority': priority,
+      if (date != null) 'date': date,
+      if (extras != null) 'extras': extras,
+      if (isRead != null) 'is_read': isRead,
     });
   }
 
-  CartItemsCompanion copyWith({
+  NotificationsCompanion copyWith({
     Value<int>? id,
-    Value<String>? deviceId,
-    Value<String>? productId,
-    Value<String>? productData,
-    Value<int>? quantity,
-    Value<String?>? attributes,
-    Value<bool>? isSelected,
-    Value<DateTime>? createdAt,
-    Value<DateTime>? updatedAt,
+    Value<int>? appId,
+    Value<String>? message,
+    Value<String>? title,
+    Value<int>? priority,
+    Value<DateTime>? date,
+    Value<String?>? extras,
+    Value<bool>? isRead,
   }) {
-    return CartItemsCompanion(
+    return NotificationsCompanion(
       id: id ?? this.id,
-      deviceId: deviceId ?? this.deviceId,
-      productId: productId ?? this.productId,
-      productData: productData ?? this.productData,
-      quantity: quantity ?? this.quantity,
-      attributes: attributes ?? this.attributes,
-      isSelected: isSelected ?? this.isSelected,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
+      appId: appId ?? this.appId,
+      message: message ?? this.message,
+      title: title ?? this.title,
+      priority: priority ?? this.priority,
+      date: date ?? this.date,
+      extras: extras ?? this.extras,
+      isRead: isRead ?? this.isRead,
     );
   }
 
@@ -514,45 +445,41 @@ class CartItemsCompanion extends UpdateCompanion<CartItem> {
     if (id.present) {
       map['id'] = Variable<int>(id.value);
     }
-    if (deviceId.present) {
-      map['device_id'] = Variable<String>(deviceId.value);
+    if (appId.present) {
+      map['app_id'] = Variable<int>(appId.value);
     }
-    if (productId.present) {
-      map['product_id'] = Variable<String>(productId.value);
+    if (message.present) {
+      map['message'] = Variable<String>(message.value);
     }
-    if (productData.present) {
-      map['product_data'] = Variable<String>(productData.value);
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
     }
-    if (quantity.present) {
-      map['quantity'] = Variable<int>(quantity.value);
+    if (priority.present) {
+      map['priority'] = Variable<int>(priority.value);
     }
-    if (attributes.present) {
-      map['attributes'] = Variable<String>(attributes.value);
+    if (date.present) {
+      map['date'] = Variable<DateTime>(date.value);
     }
-    if (isSelected.present) {
-      map['is_selected'] = Variable<bool>(isSelected.value);
+    if (extras.present) {
+      map['extras'] = Variable<String>(extras.value);
     }
-    if (createdAt.present) {
-      map['created_at'] = Variable<DateTime>(createdAt.value);
-    }
-    if (updatedAt.present) {
-      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    if (isRead.present) {
+      map['is_read'] = Variable<bool>(isRead.value);
     }
     return map;
   }
 
   @override
   String toString() {
-    return (StringBuffer('CartItemsCompanion(')
+    return (StringBuffer('NotificationsCompanion(')
           ..write('id: $id, ')
-          ..write('deviceId: $deviceId, ')
-          ..write('productId: $productId, ')
-          ..write('productData: $productData, ')
-          ..write('quantity: $quantity, ')
-          ..write('attributes: $attributes, ')
-          ..write('isSelected: $isSelected, ')
-          ..write('createdAt: $createdAt, ')
-          ..write('updatedAt: $updatedAt')
+          ..write('appId: $appId, ')
+          ..write('message: $message, ')
+          ..write('title: $title, ')
+          ..write('priority: $priority, ')
+          ..write('date: $date, ')
+          ..write('extras: $extras, ')
+          ..write('isRead: $isRead')
           ..write(')'))
         .toString();
   }
@@ -561,45 +488,43 @@ class CartItemsCompanion extends UpdateCompanion<CartItem> {
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
-  late final $CartItemsTable cartItems = $CartItemsTable(this);
+  late final $NotificationsTable notifications = $NotificationsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [cartItems];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [notifications];
   @override
   DriftDatabaseOptions get options =>
       const DriftDatabaseOptions(storeDateTimeAsText: true);
 }
 
-typedef $$CartItemsTableCreateCompanionBuilder =
-    CartItemsCompanion Function({
+typedef $$NotificationsTableCreateCompanionBuilder =
+    NotificationsCompanion Function({
       Value<int> id,
-      required String deviceId,
-      required String productId,
-      required String productData,
-      Value<int> quantity,
-      Value<String?> attributes,
-      Value<bool> isSelected,
-      Value<DateTime> createdAt,
-      Value<DateTime> updatedAt,
+      required int appId,
+      required String message,
+      required String title,
+      required int priority,
+      required DateTime date,
+      Value<String?> extras,
+      Value<bool> isRead,
     });
-typedef $$CartItemsTableUpdateCompanionBuilder =
-    CartItemsCompanion Function({
+typedef $$NotificationsTableUpdateCompanionBuilder =
+    NotificationsCompanion Function({
       Value<int> id,
-      Value<String> deviceId,
-      Value<String> productId,
-      Value<String> productData,
-      Value<int> quantity,
-      Value<String?> attributes,
-      Value<bool> isSelected,
-      Value<DateTime> createdAt,
-      Value<DateTime> updatedAt,
+      Value<int> appId,
+      Value<String> message,
+      Value<String> title,
+      Value<int> priority,
+      Value<DateTime> date,
+      Value<String?> extras,
+      Value<bool> isRead,
     });
 
-class $$CartItemsTableFilterComposer
-    extends Composer<_$AppDatabase, $CartItemsTable> {
-  $$CartItemsTableFilterComposer({
+class $$NotificationsTableFilterComposer
+    extends Composer<_$AppDatabase, $NotificationsTable> {
+  $$NotificationsTableFilterComposer({
     required super.$db,
     required super.$table,
     super.joinBuilder,
@@ -611,50 +536,45 @@ class $$CartItemsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get deviceId => $composableBuilder(
-    column: $table.deviceId,
+  ColumnFilters<int> get appId => $composableBuilder(
+    column: $table.appId,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get productId => $composableBuilder(
-    column: $table.productId,
+  ColumnFilters<String> get message => $composableBuilder(
+    column: $table.message,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get productData => $composableBuilder(
-    column: $table.productData,
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<int> get quantity => $composableBuilder(
-    column: $table.quantity,
+  ColumnFilters<int> get priority => $composableBuilder(
+    column: $table.priority,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get attributes => $composableBuilder(
-    column: $table.attributes,
+  ColumnFilters<DateTime> get date => $composableBuilder(
+    column: $table.date,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<bool> get isSelected => $composableBuilder(
-    column: $table.isSelected,
+  ColumnFilters<String> get extras => $composableBuilder(
+    column: $table.extras,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
-    column: $table.updatedAt,
+  ColumnFilters<bool> get isRead => $composableBuilder(
+    column: $table.isRead,
     builder: (column) => ColumnFilters(column),
   );
 }
 
-class $$CartItemsTableOrderingComposer
-    extends Composer<_$AppDatabase, $CartItemsTable> {
-  $$CartItemsTableOrderingComposer({
+class $$NotificationsTableOrderingComposer
+    extends Composer<_$AppDatabase, $NotificationsTable> {
+  $$NotificationsTableOrderingComposer({
     required super.$db,
     required super.$table,
     super.joinBuilder,
@@ -666,50 +586,45 @@ class $$CartItemsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get deviceId => $composableBuilder(
-    column: $table.deviceId,
+  ColumnOrderings<int> get appId => $composableBuilder(
+    column: $table.appId,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get productId => $composableBuilder(
-    column: $table.productId,
+  ColumnOrderings<String> get message => $composableBuilder(
+    column: $table.message,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get productData => $composableBuilder(
-    column: $table.productData,
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<int> get quantity => $composableBuilder(
-    column: $table.quantity,
+  ColumnOrderings<int> get priority => $composableBuilder(
+    column: $table.priority,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get attributes => $composableBuilder(
-    column: $table.attributes,
+  ColumnOrderings<DateTime> get date => $composableBuilder(
+    column: $table.date,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<bool> get isSelected => $composableBuilder(
-    column: $table.isSelected,
+  ColumnOrderings<String> get extras => $composableBuilder(
+    column: $table.extras,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
-    column: $table.updatedAt,
+  ColumnOrderings<bool> get isRead => $composableBuilder(
+    column: $table.isRead,
     builder: (column) => ColumnOrderings(column),
   );
 }
 
-class $$CartItemsTableAnnotationComposer
-    extends Composer<_$AppDatabase, $CartItemsTable> {
-  $$CartItemsTableAnnotationComposer({
+class $$NotificationsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $NotificationsTable> {
+  $$NotificationsTableAnnotationComposer({
     required super.$db,
     required super.$table,
     super.joinBuilder,
@@ -719,106 +634,96 @@ class $$CartItemsTableAnnotationComposer
   GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<String> get deviceId =>
-      $composableBuilder(column: $table.deviceId, builder: (column) => column);
+  GeneratedColumn<int> get appId =>
+      $composableBuilder(column: $table.appId, builder: (column) => column);
 
-  GeneratedColumn<String> get productId =>
-      $composableBuilder(column: $table.productId, builder: (column) => column);
+  GeneratedColumn<String> get message =>
+      $composableBuilder(column: $table.message, builder: (column) => column);
 
-  GeneratedColumn<String> get productData => $composableBuilder(
-    column: $table.productData,
-    builder: (column) => column,
-  );
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
 
-  GeneratedColumn<int> get quantity =>
-      $composableBuilder(column: $table.quantity, builder: (column) => column);
+  GeneratedColumn<int> get priority =>
+      $composableBuilder(column: $table.priority, builder: (column) => column);
 
-  GeneratedColumn<String> get attributes => $composableBuilder(
-    column: $table.attributes,
-    builder: (column) => column,
-  );
+  GeneratedColumn<DateTime> get date =>
+      $composableBuilder(column: $table.date, builder: (column) => column);
 
-  GeneratedColumn<bool> get isSelected => $composableBuilder(
-    column: $table.isSelected,
-    builder: (column) => column,
-  );
+  GeneratedColumn<String> get extras =>
+      $composableBuilder(column: $table.extras, builder: (column) => column);
 
-  GeneratedColumn<DateTime> get createdAt =>
-      $composableBuilder(column: $table.createdAt, builder: (column) => column);
-
-  GeneratedColumn<DateTime> get updatedAt =>
-      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+  GeneratedColumn<bool> get isRead =>
+      $composableBuilder(column: $table.isRead, builder: (column) => column);
 }
 
-class $$CartItemsTableTableManager
+class $$NotificationsTableTableManager
     extends
         RootTableManager<
           _$AppDatabase,
-          $CartItemsTable,
-          CartItem,
-          $$CartItemsTableFilterComposer,
-          $$CartItemsTableOrderingComposer,
-          $$CartItemsTableAnnotationComposer,
-          $$CartItemsTableCreateCompanionBuilder,
-          $$CartItemsTableUpdateCompanionBuilder,
-          (CartItem, BaseReferences<_$AppDatabase, $CartItemsTable, CartItem>),
-          CartItem,
+          $NotificationsTable,
+          Notification,
+          $$NotificationsTableFilterComposer,
+          $$NotificationsTableOrderingComposer,
+          $$NotificationsTableAnnotationComposer,
+          $$NotificationsTableCreateCompanionBuilder,
+          $$NotificationsTableUpdateCompanionBuilder,
+          (
+            Notification,
+            BaseReferences<_$AppDatabase, $NotificationsTable, Notification>,
+          ),
+          Notification,
           PrefetchHooks Function()
         > {
-  $$CartItemsTableTableManager(_$AppDatabase db, $CartItemsTable table)
+  $$NotificationsTableTableManager(_$AppDatabase db, $NotificationsTable table)
     : super(
         TableManagerState(
           db: db,
           table: table,
           createFilteringComposer: () =>
-              $$CartItemsTableFilterComposer($db: db, $table: table),
+              $$NotificationsTableFilterComposer($db: db, $table: table),
           createOrderingComposer: () =>
-              $$CartItemsTableOrderingComposer($db: db, $table: table),
+              $$NotificationsTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
-              $$CartItemsTableAnnotationComposer($db: db, $table: table),
+              $$NotificationsTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
-                Value<String> deviceId = const Value.absent(),
-                Value<String> productId = const Value.absent(),
-                Value<String> productData = const Value.absent(),
-                Value<int> quantity = const Value.absent(),
-                Value<String?> attributes = const Value.absent(),
-                Value<bool> isSelected = const Value.absent(),
-                Value<DateTime> createdAt = const Value.absent(),
-                Value<DateTime> updatedAt = const Value.absent(),
-              }) => CartItemsCompanion(
+                Value<int> appId = const Value.absent(),
+                Value<String> message = const Value.absent(),
+                Value<String> title = const Value.absent(),
+                Value<int> priority = const Value.absent(),
+                Value<DateTime> date = const Value.absent(),
+                Value<String?> extras = const Value.absent(),
+                Value<bool> isRead = const Value.absent(),
+              }) => NotificationsCompanion(
                 id: id,
-                deviceId: deviceId,
-                productId: productId,
-                productData: productData,
-                quantity: quantity,
-                attributes: attributes,
-                isSelected: isSelected,
-                createdAt: createdAt,
-                updatedAt: updatedAt,
+                appId: appId,
+                message: message,
+                title: title,
+                priority: priority,
+                date: date,
+                extras: extras,
+                isRead: isRead,
               ),
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
-                required String deviceId,
-                required String productId,
-                required String productData,
-                Value<int> quantity = const Value.absent(),
-                Value<String?> attributes = const Value.absent(),
-                Value<bool> isSelected = const Value.absent(),
-                Value<DateTime> createdAt = const Value.absent(),
-                Value<DateTime> updatedAt = const Value.absent(),
-              }) => CartItemsCompanion.insert(
+                required int appId,
+                required String message,
+                required String title,
+                required int priority,
+                required DateTime date,
+                Value<String?> extras = const Value.absent(),
+                Value<bool> isRead = const Value.absent(),
+              }) => NotificationsCompanion.insert(
                 id: id,
-                deviceId: deviceId,
-                productId: productId,
-                productData: productData,
-                quantity: quantity,
-                attributes: attributes,
-                isSelected: isSelected,
-                createdAt: createdAt,
-                updatedAt: updatedAt,
+                appId: appId,
+                message: message,
+                title: title,
+                priority: priority,
+                date: date,
+                extras: extras,
+                isRead: isRead,
               ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
@@ -828,26 +733,29 @@ class $$CartItemsTableTableManager
       );
 }
 
-typedef $$CartItemsTableProcessedTableManager =
+typedef $$NotificationsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
-      $CartItemsTable,
-      CartItem,
-      $$CartItemsTableFilterComposer,
-      $$CartItemsTableOrderingComposer,
-      $$CartItemsTableAnnotationComposer,
-      $$CartItemsTableCreateCompanionBuilder,
-      $$CartItemsTableUpdateCompanionBuilder,
-      (CartItem, BaseReferences<_$AppDatabase, $CartItemsTable, CartItem>),
-      CartItem,
+      $NotificationsTable,
+      Notification,
+      $$NotificationsTableFilterComposer,
+      $$NotificationsTableOrderingComposer,
+      $$NotificationsTableAnnotationComposer,
+      $$NotificationsTableCreateCompanionBuilder,
+      $$NotificationsTableUpdateCompanionBuilder,
+      (
+        Notification,
+        BaseReferences<_$AppDatabase, $NotificationsTable, Notification>,
+      ),
+      Notification,
       PrefetchHooks Function()
     >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
   $AppDatabaseManager(this._db);
-  $$CartItemsTableTableManager get cartItems =>
-      $$CartItemsTableTableManager(_db, _db.cartItems);
+  $$NotificationsTableTableManager get notifications =>
+      $$NotificationsTableTableManager(_db, _db.notifications);
 }
 
 // **************************************************************************

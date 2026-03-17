@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 
 /// 个人中心红色渐变头部组件
@@ -22,19 +24,13 @@ class ProfileHeader extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            theme.colorScheme.primary,
-            theme.colorScheme.primary.withValues(alpha: 0.8),
-          ],
-        ),
+        gradient: AppDesignTokens.primaryGradient(context),
+        boxShadow: AppDesignTokens.shadowSoft(context),
       ),
       child: Column(
         children: [
           SizedBox(height: 50.h),
-          // 标题栏
+          // Title Bar with animation
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Row(
@@ -46,74 +42,150 @@ class ProfileHeader extends StatelessWidget {
                     color: theme.colorScheme.onPrimary,
                     fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
+                    letterSpacing: 0.5,
                   ),
                 ),
               ],
             ),
-          ),
+          ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0),
           SizedBox(height: 30.h),
-          // 用户信息
+          // User Info Container with glass-like effect
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: Row(
-              children: [
-                Container(
-                  width: 64.w,
-                  height: 64.w,
-                  clipBehavior: Clip.antiAlias,
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: Container(
+                  padding: EdgeInsets.all(16.w),
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: theme.colorScheme.onPrimary.withValues(alpha: 0.1),
+                    color: theme.colorScheme.onPrimary.withValues(
+                      alpha: AppDesignTokens.glassOpacity,
+                    ),
+                    borderRadius: BorderRadius.circular(
+                      AppDesignTokens.radiusL,
+                    ),
                     border: Border.all(
-                      color: theme.colorScheme.onPrimary.withValues(alpha: 0.5),
-                      width: 2,
+                      color: theme.colorScheme.onPrimary.withValues(alpha: 0.2),
+                      width: 1,
                     ),
                   ),
-                  child: _buildAvatar(avatarUrl),
-                ),
-                SizedBox(width: 16.w),
-                Expanded(
-                  child: Text(
-                    'Hi! $username',
-                    style: TextStyle(
-                      color: theme.colorScheme.onPrimary,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                if (onLogout != null)
-                  InkWell(
-                    onTap: onLogout,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12.w,
-                        vertical: 6.h,
-                      ),
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.onPrimary.withValues(
-                          alpha: 0.2,
-                        ),
-                        borderRadius: BorderRadius.circular(10.r),
-                        border: Border.all(
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 68.w,
+                        height: 68.w,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
                           color: theme.colorScheme.onPrimary.withValues(
-                            alpha: 0.3,
+                            alpha: 0.1,
+                          ),
+                          border: Border.all(
+                            color: theme.colorScheme.onPrimary.withValues(
+                              alpha: 0.5,
+                            ),
+                            width: 2.5,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.1),
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                            ),
+                          ],
+                        ),
+                        child: _buildAvatar(avatarUrl),
+                      ),
+                      SizedBox(width: 16.w),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Hi! $username',
+                              style: TextStyle(
+                                color: theme.colorScheme.onPrimary,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                            SizedBox(height: 4.h),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 8.w,
+                                vertical: 2.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: theme.colorScheme.secondaryContainer
+                                    .withValues(alpha: 0.3),
+                                borderRadius: BorderRadius.circular(
+                                  AppDesignTokens.radiusS,
+                                ),
+                              ),
+                              child: Text(
+                                'PRO MEMBER', // Example tag
+                                style: TextStyle(
+                                  color: theme.colorScheme.onPrimary,
+                                  fontSize: 10.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (onLogout != null)
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: onLogout,
+                            borderRadius: BorderRadius.circular(
+                              AppDesignTokens.radiusM,
+                            ),
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 14.w,
+                                vertical: 8.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: theme.colorScheme.errorContainer
+                                    .withValues(alpha: 0.3),
+                                borderRadius: BorderRadius.circular(
+                                  AppDesignTokens.radiusM,
+                                ),
+                                border: Border.all(
+                                  color: theme.colorScheme.onErrorContainer
+                                      .withValues(alpha: 0.2),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Symbols.logout,
+                                    size: 16.sp,
+                                    color: theme.colorScheme.onPrimary,
+                                  ),
+                                  SizedBox(width: 4.w),
+                                  Text(
+                                    t.common.logout,
+                                    style: TextStyle(
+                                      color: theme.colorScheme.onPrimary,
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                      child: Text(
-                        t.common.logout,
-                        style: TextStyle(
-                          color: theme.colorScheme.onPrimary,
-                          fontSize: 13.sp,
-                        ),
-                      ),
-                    ),
+                    ],
                   ),
-              ],
-            ),
-          ),
-          SizedBox(height: 16.h),
+                ),
+              )
+              .animate()
+              .fadeIn(duration: 500.ms, delay: 100.ms)
+              .slideX(begin: 0.1, end: 0),
+          SizedBox(height: 24.h),
         ],
       ),
     );

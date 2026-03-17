@@ -53,6 +53,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   @override
   late final _TranslationsCommonEn common = _TranslationsCommonEn._(_root);
   @override
+  late final _TranslationsFeedbackEn feedback = _TranslationsFeedbackEn._(_root);
+  @override
   late final _TranslationsInventoryEn inventory = _TranslationsInventoryEn._(_root);
   @override
   late final _TranslationsMachinesEn machines = _TranslationsMachinesEn._(_root);
@@ -62,6 +64,8 @@ class TranslationsEn extends Translations with BaseTranslations<AppLocale, Trans
   late final _TranslationsNavigationEn navigation = _TranslationsNavigationEn._(_root);
   @override
   late final _TranslationsNetworkEn network = _TranslationsNetworkEn._(_root);
+  @override
+  late final _TranslationsNotificationsEn notifications = _TranslationsNotificationsEn._(_root);
   @override
   late final _TranslationsProfileEn profile = _TranslationsProfileEn._(_root);
   @override
@@ -309,6 +313,68 @@ class _TranslationsCommonEn extends TranslationsCommonZhCn {
   String get notifications => TranslationOverrides.string(_root.$meta, 'common.notifications', {}) ?? 'Notifications';
 }
 
+// Path: feedback
+class _TranslationsFeedbackEn extends TranslationsFeedbackZhCn {
+  _TranslationsFeedbackEn._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => TranslationOverrides.string(_root.$meta, 'feedback.title', {}) ?? 'Feedback';
+  @override
+  String get subtitle =>
+      TranslationOverrides.string(_root.$meta, 'feedback.subtitle', {}) ??
+      'Your feedback is our motivation for progress';
+  @override
+  String get selectType =>
+      TranslationOverrides.string(_root.$meta, 'feedback.selectType', {}) ?? 'Select Feedback Type';
+  @override
+  String get errorReport => TranslationOverrides.string(_root.$meta, 'feedback.errorReport', {}) ?? 'Error Report';
+  @override
+  String get suggestion => TranslationOverrides.string(_root.$meta, 'feedback.suggestion', {}) ?? 'Suggestion';
+  @override
+  String get complaint => TranslationOverrides.string(_root.$meta, 'feedback.complaint', {}) ?? 'Complaint';
+  @override
+  String get other => TranslationOverrides.string(_root.$meta, 'feedback.other', {}) ?? 'Other';
+  @override
+  String get description =>
+      TranslationOverrides.string(_root.$meta, 'feedback.description', {}) ?? 'Problem Description';
+  @override
+  String get titleHint =>
+      TranslationOverrides.string(_root.$meta, 'feedback.titleHint', {}) ?? 'Please enter the problem title (Required)';
+  @override
+  String get contentHint =>
+      TranslationOverrides.string(_root.$meta, 'feedback.contentHint', {}) ??
+      'Please describe the problem or suggestion in detail (Required)';
+  @override
+  String get uploadScreenshot =>
+      TranslationOverrides.string(_root.$meta, 'feedback.uploadScreenshot', {}) ?? 'Upload Screenshot (Optional)';
+  @override
+  String get addImage => TranslationOverrides.string(_root.$meta, 'feedback.addImage', {}) ?? 'Add Image';
+  @override
+  String get uploadLimitHint =>
+      TranslationOverrides.string(_root.$meta, 'feedback.uploadLimitHint', {}) ??
+      'Up to 3 images, each not exceeding 2MB, support jpg, png formats';
+  @override
+  String get contactOptional =>
+      TranslationOverrides.string(_root.$meta, 'feedback.contactOptional', {}) ?? 'Contact Information (Optional)';
+  @override
+  String get contactInputHint =>
+      TranslationOverrides.string(_root.$meta, 'feedback.contactInputHint', {}) ??
+      'Please enter your phone number or email for us to contact you';
+  @override
+  String get submit => TranslationOverrides.string(_root.$meta, 'feedback.submit', {}) ?? 'Submit Feedback';
+  @override
+  String get submitSuccess =>
+      TranslationOverrides.string(_root.$meta, 'feedback.submitSuccess', {}) ??
+      'Feedback submitted successfully, thank you for your support';
+  @override
+  String get submitFailed =>
+      TranslationOverrides.string(_root.$meta, 'feedback.submitFailed', {}) ??
+      'Feedback submission failed, please try again later';
+}
+
 // Path: inventory
 class _TranslationsInventoryEn extends TranslationsInventoryZhCn {
   _TranslationsInventoryEn._(TranslationsEn root) : this._root = root, super.internal(root);
@@ -388,6 +454,9 @@ class _TranslationsMachinesEn extends TranslationsMachinesZhCn {
       TranslationOverrides.string(_root.$meta, 'machines.dailyAvgRevenue', {}) ?? 'Daily Avg Revenue';
   @override
   String get growthRate => TranslationOverrides.string(_root.$meta, 'machines.growthRate', {}) ?? 'Growth Rate';
+  @override
+  String get totalMachines =>
+      TranslationOverrides.string(_root.$meta, 'machines.totalMachines', {}) ?? 'Total Machines';
   @override
   String get noChartData => TranslationOverrides.string(_root.$meta, 'machines.noChartData', {}) ?? 'No Data';
   @override
@@ -476,6 +545,28 @@ class _TranslationsNetworkEn extends TranslationsNetworkZhCn {
   // Translations
   @override
   late final _TranslationsNetworkErrorsEn errors = _TranslationsNetworkErrorsEn._(_root);
+}
+
+// Path: notifications
+class _TranslationsNotificationsEn extends TranslationsNotificationsZhCn {
+  _TranslationsNotificationsEn._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => TranslationOverrides.string(_root.$meta, 'notifications.title', {}) ?? 'Notifications';
+  @override
+  String get markAllRead =>
+      TranslationOverrides.string(_root.$meta, 'notifications.markAllRead', {}) ?? 'Mark all as read';
+  @override
+  String get empty => TranslationOverrides.string(_root.$meta, 'notifications.empty', {}) ?? 'No notifications';
+  @override
+  String get unread => TranslationOverrides.string(_root.$meta, 'notifications.unread', {}) ?? 'Unread';
+  @override
+  String get read => TranslationOverrides.string(_root.$meta, 'notifications.read', {}) ?? 'Read';
+  @override
+  late final _TranslationsNotificationsPriorityEn priority = _TranslationsNotificationsPriorityEn._(_root);
 }
 
 // Path: profile
@@ -724,6 +815,21 @@ class _TranslationsNetworkErrorsEn extends TranslationsNetworkErrorsZhCn {
   @override
   String requestError({required Object code}) =>
       TranslationOverrides.string(_root.$meta, 'network.errors.requestError', {'code': code}) ?? '请求错误 (${code})';
+}
+
+// Path: notifications.priority
+class _TranslationsNotificationsPriorityEn extends TranslationsNotificationsPriorityZhCn {
+  _TranslationsNotificationsPriorityEn._(TranslationsEn root) : this._root = root, super.internal(root);
+
+  final TranslationsEn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get high => TranslationOverrides.string(_root.$meta, 'notifications.priority.high', {}) ?? 'High';
+  @override
+  String get medium => TranslationOverrides.string(_root.$meta, 'notifications.priority.medium', {}) ?? 'Medium';
+  @override
+  String get low => TranslationOverrides.string(_root.$meta, 'notifications.priority.low', {}) ?? 'Low';
 }
 
 // Path: profile.gender
@@ -1009,6 +1115,42 @@ extension on TranslationsEn {
       'common.warning' => TranslationOverrides.string(_root.$meta, 'common.warning', {}) ?? 'Warning',
       'common.welcomeBack' => TranslationOverrides.string(_root.$meta, 'common.welcomeBack', {}) ?? 'Welcome Back',
       'common.notifications' => TranslationOverrides.string(_root.$meta, 'common.notifications', {}) ?? 'Notifications',
+      'feedback.title' => TranslationOverrides.string(_root.$meta, 'feedback.title', {}) ?? 'Feedback',
+      'feedback.subtitle' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.subtitle', {}) ??
+            'Your feedback is our motivation for progress',
+      'feedback.selectType' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.selectType', {}) ?? 'Select Feedback Type',
+      'feedback.errorReport' => TranslationOverrides.string(_root.$meta, 'feedback.errorReport', {}) ?? 'Error Report',
+      'feedback.suggestion' => TranslationOverrides.string(_root.$meta, 'feedback.suggestion', {}) ?? 'Suggestion',
+      'feedback.complaint' => TranslationOverrides.string(_root.$meta, 'feedback.complaint', {}) ?? 'Complaint',
+      'feedback.other' => TranslationOverrides.string(_root.$meta, 'feedback.other', {}) ?? 'Other',
+      'feedback.description' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.description', {}) ?? 'Problem Description',
+      'feedback.titleHint' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.titleHint', {}) ??
+            'Please enter the problem title (Required)',
+      'feedback.contentHint' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.contentHint', {}) ??
+            'Please describe the problem or suggestion in detail (Required)',
+      'feedback.uploadScreenshot' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.uploadScreenshot', {}) ?? 'Upload Screenshot (Optional)',
+      'feedback.addImage' => TranslationOverrides.string(_root.$meta, 'feedback.addImage', {}) ?? 'Add Image',
+      'feedback.uploadLimitHint' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.uploadLimitHint', {}) ??
+            'Up to 3 images, each not exceeding 2MB, support jpg, png formats',
+      'feedback.contactOptional' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.contactOptional', {}) ?? 'Contact Information (Optional)',
+      'feedback.contactInputHint' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.contactInputHint', {}) ??
+            'Please enter your phone number or email for us to contact you',
+      'feedback.submit' => TranslationOverrides.string(_root.$meta, 'feedback.submit', {}) ?? 'Submit Feedback',
+      'feedback.submitSuccess' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.submitSuccess', {}) ??
+            'Feedback submitted successfully, thank you for your support',
+      'feedback.submitFailed' =>
+        TranslationOverrides.string(_root.$meta, 'feedback.submitFailed', {}) ??
+            'Feedback submission failed, please try again later',
       'inventory.machineList' =>
         TranslationOverrides.string(_root.$meta, 'inventory.machineList', {}) ?? 'Restocking Management',
       'inventory.totalSlots' => TranslationOverrides.string(_root.$meta, 'inventory.totalSlots', {}) ?? 'Total Slots',
@@ -1051,6 +1193,8 @@ extension on TranslationsEn {
       'machines.dailyAvgRevenue' =>
         TranslationOverrides.string(_root.$meta, 'machines.dailyAvgRevenue', {}) ?? 'Daily Avg Revenue',
       'machines.growthRate' => TranslationOverrides.string(_root.$meta, 'machines.growthRate', {}) ?? 'Growth Rate',
+      'machines.totalMachines' =>
+        TranslationOverrides.string(_root.$meta, 'machines.totalMachines', {}) ?? 'Total Machines',
       'machines.noChartData' => TranslationOverrides.string(_root.$meta, 'machines.noChartData', {}) ?? 'No Data',
       'machines.loading' => TranslationOverrides.string(_root.$meta, 'machines.loading', {}) ?? 'Loading',
       'machines.currencyPrefix' => TranslationOverrides.string(_root.$meta, 'machines.currencyPrefix', {}) ?? '¥',
@@ -1141,6 +1285,19 @@ extension on TranslationsEn {
       'network.errors.requestError' =>
         ({required Object code}) =>
             TranslationOverrides.string(_root.$meta, 'network.errors.requestError', {'code': code}) ?? '请求错误 (${code})',
+      'notifications.title' => TranslationOverrides.string(_root.$meta, 'notifications.title', {}) ?? 'Notifications',
+      'notifications.markAllRead' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.markAllRead', {}) ?? 'Mark all as read',
+      'notifications.empty' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.empty', {}) ?? 'No notifications',
+      'notifications.unread' => TranslationOverrides.string(_root.$meta, 'notifications.unread', {}) ?? 'Unread',
+      'notifications.read' => TranslationOverrides.string(_root.$meta, 'notifications.read', {}) ?? 'Read',
+      'notifications.priority.high' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.priority.high', {}) ?? 'High',
+      'notifications.priority.medium' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.priority.medium', {}) ?? 'Medium',
+      'notifications.priority.low' =>
+        TranslationOverrides.string(_root.$meta, 'notifications.priority.low', {}) ?? 'Low',
       'profile.title' => TranslationOverrides.string(_root.$meta, 'profile.title', {}) ?? 'User Center',
       'profile.notLoggedIn' => TranslationOverrides.string(_root.$meta, 'profile.notLoggedIn', {}) ?? 'Not Logged In',
       'profile.editProfile' => TranslationOverrides.string(_root.$meta, 'profile.editProfile', {}) ?? 'Edit Profile',

@@ -23,6 +23,12 @@ class ProdEnv implements AppEnv {
   @EnviedField(varName: 'USE_TEST_MODE')
   static const bool _useTestMode = _ProdEnv._useTestMode;
 
+  @EnviedField(varName: 'GOTIFY_BASE_URL')
+  static const String _gotifyBaseUrl = _ProdEnv._gotifyBaseUrl;
+
+  @EnviedField(varName: 'GOTIFY_CLIENT_TOKEN')
+  static const String _gotifyClientToken = _ProdEnv._gotifyClientToken;
+
   @override
   String get baseUrl => _baseUrl;
 
@@ -40,4 +46,10 @@ class ProdEnv implements AppEnv {
 
   @override
   bool get useTestMode => _useTestMode;
+
+  @override
+  String get gotifyBaseUrl => _gotifyBaseUrl;
+
+  @override
+  String get gotifyClientToken => _gotifyClientToken;
 }

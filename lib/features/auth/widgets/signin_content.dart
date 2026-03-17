@@ -8,6 +8,7 @@ import 'package:lunchbox_hub/features/auth/widgets/signin_header.dart';
 import 'package:lunchbox_hub/features/auth/widgets/signin_password_form.dart';
 import 'package:lunchbox_hub/features/auth/widgets/signin_social_signin.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 
 class SignInContent extends StatelessWidget {
   const SignInContent({
@@ -53,87 +54,95 @@ class SignInContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
-              child: FormBuilder(
-                key: formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children:
-                      [
-                            SizedBox(height: 48.h),
-                            SignInHeader(colorScheme: colorScheme),
-                            SizedBox(height: 48.h),
-                            SignInPasswordForm(
-                              colorScheme: colorScheme,
-                              username: state.username,
-                              password: state.password,
-                              obscurePassword: obscurePassword,
-                              onUsernameChanged: onUsernameChanged,
-                              onPasswordChanged: onPasswordChanged,
-                              onTogglePasswordVisibility:
-                                  onTogglePasswordVisibility,
-                              onSubmit: onSignIn,
-                            ),
-                            SizedBox(height: 32.h),
-                            SizedBox(
-                              height: 56.h,
-                              child: FilledButton(
-                                onPressed: canSubmit ? onSignIn : null,
-                                style: FilledButton.styleFrom(
-                                  backgroundColor: colorScheme.primary,
-                                  foregroundColor: colorScheme.onPrimary,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16.r),
-                                  ),
-                                  elevation: 0,
-                                ),
-                                child: state.status.isInProgress
-                                    ? SizedBox(
-                                        width: 24.w,
-                                        height: 24.w,
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2,
-                                          color: colorScheme.onPrimary,
-                                        ),
-                                      )
-                                    : Text(
-                                        t.auth.loginButton,
-                                        style: TextStyle(
-                                          fontSize: 18.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
+    final theme = Theme.of(context);
+    return Container(
+      decoration: BoxDecoration(
+        gradient: AppDesignTokens.surfaceGradient(context),
+      ),
+      child: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: FormBuilder(
+                  key: formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children:
+                        [
+                              SizedBox(height: 48.h),
+                              SignInHeader(colorScheme: colorScheme),
+                              SizedBox(height: 48.h),
+                              SignInPasswordForm(
+                                colorScheme: colorScheme,
+                                username: state.username,
+                                password: state.password,
+                                obscurePassword: obscurePassword,
+                                onUsernameChanged: onUsernameChanged,
+                                onPasswordChanged: onPasswordChanged,
+                                onTogglePasswordVisibility:
+                                    onTogglePasswordVisibility,
+                                onSubmit: onSignIn,
                               ),
-                            ),
-                            SizedBox(height: 24.h),
-                            SignInFooterLinks(
-                              colorScheme: colorScheme,
-                              onSignUp: onSignUp,
-                              onForgotPassword: onForgotPassword,
-                            ),
-                            SizedBox(height: 48.h),
-                            SignInSocialSignIn(
-                              colorScheme: colorScheme,
-                              onGoogleSignIn: onGoogleSignIn,
-                            ),
-                            SizedBox(height: 24.h),
-                          ]
-                          .animate(interval: 50.ms)
-                          .fadeIn(duration: 400.ms)
-                          .slideY(begin: 0.1, end: 0),
+                              SizedBox(height: 32.h),
+                              SizedBox(
+                                height: 56.h,
+                                child: FilledButton(
+                                  onPressed: canSubmit ? onSignIn : null,
+                                  style: FilledButton.styleFrom(
+                                    backgroundColor: colorScheme.primary,
+                                    foregroundColor: colorScheme.onPrimary,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                        AppDesignTokens.radiusL,
+                                      ),
+                                    ),
+                                    elevation: 0,
+                                  ),
+                                  child: state.status.isInProgress
+                                      ? SizedBox(
+                                          width: 24.w,
+                                          height: 24.w,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                            color: colorScheme.onPrimary,
+                                          ),
+                                        )
+                                      : Text(
+                                          t.auth.loginButton,
+                                          style: TextStyle(
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                ),
+                              ),
+                              SizedBox(height: 24.h),
+                              SignInFooterLinks(
+                                colorScheme: colorScheme,
+                                onSignUp: onSignUp,
+                                onForgotPassword: onForgotPassword,
+                              ),
+                              SizedBox(height: 48.h),
+                              SignInSocialSignIn(
+                                colorScheme: colorScheme,
+                                onGoogleSignIn: onGoogleSignIn,
+                              ),
+                              SizedBox(height: 24.h),
+                            ]
+                            .animate(interval: 50.ms)
+                            .fadeIn(duration: 400.ms)
+                            .slideY(begin: 0.1, end: 0),
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

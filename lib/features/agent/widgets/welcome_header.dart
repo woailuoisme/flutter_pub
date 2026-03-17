@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
+import 'package:lunchbox_hub/features/notifications/providers/notification_provider.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
+import 'package:lunchbox_hub/routes/routes.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-class WelcomeHeader extends StatelessWidget {
+class WelcomeHeader extends ConsumerWidget {
   const WelcomeHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final unreadCountAsync = ref.watch(unreadNotificationsCountProvider);
 
     return Container(
       padding: EdgeInsets.fromLTRB(
@@ -70,9 +74,11 @@ class WelcomeHeader extends StatelessWidget {
             ),
           ),
           Stack(
+            clipBehavior: Clip.none,
             children: [
               IconButton.filledTonal(
-                onPressed: () {},
+                onPressed: () =>
+                    const NotificationListRoute().push<void>(context),
                 icon: const Icon(Symbols.notifications),
                 tooltip: t.common.notifications,
                 style: IconButton.styleFrom(
@@ -80,12 +86,14 @@ class WelcomeHeader extends StatelessWidget {
                       .withValues(alpha: 0.5),
                 ),
               ),
-              Positioned(
-                    top: 8,
-                    right: 8,
+              unreadCountAsync.when(
+                data: (count) {
+                  if (count == 0) return const SizedBox.shrink();
+                  return Positioned(
+                    top: -2,
+                    right: -2,
                     child: Container(
-                      width: 8,
-                      height: 8,
+                      padding: EdgeInsets.all(4.w),
                       decoration: BoxDecoration(
                         color: AppDesignTokens.error,
                         shape: BoxShape.circle,
@@ -94,20 +102,26 @@ class WelcomeHeader extends StatelessWidget {
                           width: 2,
                         ),
                       ),
+                      constraints: BoxConstraints(
+                        minWidth: 16.w,
+                        minHeight: 16.w,
+                      ),
+                      child: Center(
+                        child: Text(
+                          count > 99 ? '99+' : count.toString(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
-                  )
-                  .animate(onPlay: (controller) => controller.repeat())
-                  .scale(
-                    duration: 1.seconds,
-                    begin: const Offset(1, 1),
-                    end: const Offset(1.2, 1.2),
-                  )
-                  .then()
-                  .scale(
-                    duration: 1.seconds,
-                    begin: const Offset(1.2, 1.2),
-                    end: const Offset(1, 1),
-                  ),
+                  ).animate().scale();
+                },
+                loading: () => const SizedBox.shrink(),
+                error: (_, _) => const SizedBox.shrink(),
+              ),
             ],
           ),
         ],

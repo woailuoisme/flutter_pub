@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
@@ -58,67 +59,79 @@ class _StockerSlotListScreenState extends ConsumerState<StockerSlotListScreen> {
     });
 
     return Scaffold(
-      backgroundColor: colorScheme.surface,
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(t.inventory.slotList),
         centerTitle: true,
-        backgroundColor: colorScheme.surface,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         scrolledUnderElevation: 0,
       ),
-      body: slotsAsync.when(
-        loading: () => _buildSkeleton(),
-        error: (error, _) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(t.common.loadFailed, style: theme.textTheme.bodyLarge),
-              SizedBox(height: 12.h),
-              FilledButton.tonal(
-                onPressed: () =>
-                    ref.invalidate(slotListProvider(widget.machineId)),
-                child: Text(t.common.retry),
-              ),
-            ],
-          ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: AppDesignTokens.surfaceGradient(context),
         ),
-        data: (slots) {
-          if (slots.isEmpty) {
-            return EmptyWidget(message: t.inventory.emptyState);
-          }
-          return RefreshIndicator(
-            onRefresh: () async {
-              ref.invalidate(slotListProvider(widget.machineId));
-              return ref.read(slotListProvider(widget.machineId).future);
-            },
-            child: ListView.builder(
-              padding: EdgeInsets.symmetric(vertical: AppDesignTokens.spacingS),
-              itemCount: slots.length,
-              itemBuilder: (context, index) {
-                final slot = slots[index];
-                return SlotListItem(
-                  slot: slot,
-                  onEdit: () {
-                    showDialog<void>(
-                      context: context,
-                      builder: (context) => SlotQuantityEditDialog(
-                        slot: slot,
-                        onConfirm: (quantity) {
-                          ref
-                              .read(slotUpdateProvider.notifier)
-                              .updateQuantity(
-                                machineId: widget.machineId,
-                                slotId: slot.id,
-                                quantity: quantity,
-                              );
-                        },
-                      ),
-                    );
-                  },
-                );
-              },
+        child: slotsAsync.when(
+          loading: () => _buildSkeleton(),
+          error: (error, _) => Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(t.common.loadFailed, style: theme.textTheme.bodyLarge),
+                SizedBox(height: 12.h),
+                FilledButton.tonal(
+                  onPressed: () =>
+                      ref.invalidate(slotListProvider(widget.machineId)),
+                  child: Text(t.common.retry),
+                ),
+              ],
             ),
-          );
-        },
+          ),
+          data: (slots) {
+            if (slots.isEmpty) {
+              return EmptyWidget(message: t.inventory.emptyState);
+            }
+            return RefreshIndicator(
+              onRefresh: () async {
+                ref.invalidate(slotListProvider(widget.machineId));
+                return ref.read(slotListProvider(widget.machineId).future);
+              },
+              child: ListView.builder(
+                padding: EdgeInsets.symmetric(
+                  vertical: AppDesignTokens.spacingS,
+                ),
+                itemCount: slots.length,
+                itemBuilder: (context, index) {
+                  final slot = slots[index];
+                  return SlotListItem(
+                        slot: slot,
+                        onEdit: () {
+                          showDialog<void>(
+                            context: context,
+                            builder: (context) => SlotQuantityEditDialog(
+                              slot: slot,
+                              onConfirm: (quantity) {
+                                ref
+                                    .read(slotUpdateProvider.notifier)
+                                    .updateQuantity(
+                                      machineId: widget.machineId,
+                                      slotId: slot.id,
+                                      quantity: quantity,
+                                    );
+                              },
+                            ),
+                          );
+                        },
+                      )
+                      .animate(delay: (50 * index).ms)
+                      .fadeIn(duration: 400.ms)
+                      .slideX(begin: 0.1, end: 0);
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }

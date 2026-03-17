@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
@@ -21,77 +22,91 @@ class MaintainerMachineListScreen extends ConsumerWidget {
     final machinesAsync = ref.watch(maintainerMachineListProvider);
 
     return Scaffold(
-      backgroundColor: colorScheme.surface,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const WelcomeHeader(),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: AppDesignTokens.spacingM,
-                vertical: AppDesignTokens.spacingS,
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    t.maintenance.machineList,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: colorScheme.onSurface,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: machinesAsync.when(
-                loading: () => _buildSkeleton(),
-                error: (error, _) => Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        t.common.loadFailed,
-                        style: theme.textTheme.bodyLarge,
-                      ),
-                      SizedBox(height: 12.h),
-                      FilledButton.tonal(
-                        onPressed: () => ref
-                            .read(maintainerMachineListProvider.notifier)
-                            .refresh(),
-                        child: Text(t.common.retry),
-                      ),
-                    ],
-                  ),
+      extendBodyBehindAppBar: true,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: AppDesignTokens.surfaceGradient(context),
+        ),
+        child: SafeArea(
+          child: Column(
+            children: [
+              const WelcomeHeader()
+                  .animate()
+                  .fadeIn(duration: 400.ms)
+                  .slideY(begin: -0.2, curve: Curves.easeOutQuad),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppDesignTokens.spacingM,
+                  vertical: AppDesignTokens.spacingS,
                 ),
-                data: (machines) {
-                  if (machines.isEmpty) {
-                    return EmptyWidget(message: t.maintenance.emptyState);
-                  }
-                  return RefreshIndicator(
-                    onRefresh: () => ref
-                        .read(maintainerMachineListProvider.notifier)
-                        .refresh(),
-                    child: ListView.builder(
-                      padding: EdgeInsets.only(
-                        bottom: AppDesignTokens.spacingL,
+                child: Row(
+                  children: [
+                    Text(
+                      t.maintenance.machineList,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: colorScheme.onSurface,
                       ),
-                      itemCount: machines.length,
-                      itemBuilder: (context, index) {
-                        final machine = machines[index];
-                        return MaintainerMachineCard(
-                          machine: machine,
-                          onTap: () => MaintainerFaultListRoute(
-                            machineId: machine.id,
-                          ).go(context),
-                        );
-                      },
                     ),
-                  );
-                },
+                  ],
+                ).animate().fadeIn(delay: 100.ms).slideX(begin: -0.1),
               ),
-            ),
-          ],
+              Expanded(
+                child: machinesAsync.when(
+                  loading: () => _buildSkeleton(),
+                  error: (error, _) => Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          t.common.loadFailed,
+                          style: theme.textTheme.bodyLarge,
+                        ),
+                        SizedBox(height: 12.h),
+                        FilledButton.tonal(
+                          onPressed: () => ref
+                              .read(maintainerMachineListProvider.notifier)
+                              .refresh(),
+                          child: Text(t.common.retry),
+                        ),
+                      ],
+                    ),
+                  ),
+                  data: (machines) {
+                    if (machines.isEmpty) {
+                      return EmptyWidget(message: t.maintenance.emptyState);
+                    }
+                    return RefreshIndicator(
+                      onRefresh: () => ref
+                          .read(maintainerMachineListProvider.notifier)
+                          .refresh(),
+                      child: ListView.builder(
+                        padding: EdgeInsets.only(
+                          bottom: AppDesignTokens.spacingL,
+                        ),
+                        itemCount: machines.length,
+                        itemBuilder: (context, index) {
+                          final machine = machines[index];
+                          return MaintainerMachineCard(
+                                machine: machine,
+                                onTap: () => MaintainerFaultListRoute(
+                                  machineId: machine.id,
+                                ).go(context),
+                              )
+                              .animate()
+                              .fadeIn(
+                                delay: (100 + (index * 50)).ms,
+                                duration: 400.ms,
+                              )
+                              .slideY(begin: 0.1, curve: Curves.easeOutQuad);
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

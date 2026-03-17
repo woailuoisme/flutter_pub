@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -47,48 +48,64 @@ class _MaintainerFaultListScreenState
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      backgroundColor: colorScheme.surface,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(t.maintenance.faultList),
         centerTitle: true,
-        backgroundColor: colorScheme.surface,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         scrolledUnderElevation: 0,
       ),
-      body: PagingListener(
-        controller: _pagingController,
-        builder: (context, state, fetchNextPage) =>
-            PagedListView<int, FaultRecordModel>(
-              state: state,
-              fetchNextPage: fetchNextPage,
-              padding: EdgeInsets.symmetric(vertical: AppDesignTokens.spacingS),
-              builderDelegate: PagedChildBuilderDelegate<FaultRecordModel>(
-                itemBuilder: (context, fault, index) =>
-                    FaultRecordListItem(fault: fault),
-                noItemsFoundIndicatorBuilder: (_) =>
-                    EmptyWidget(message: t.maintenance.noFaultRecords),
-                newPageErrorIndicatorBuilder: (_) => Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(AppDesignTokens.spacingM),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          t.maintenance.loadFailed,
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: colorScheme.onSurfaceVariant,
-                          ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: AppDesignTokens.surfaceGradient(context),
+        ),
+        child: SafeArea(
+          child: PagingListener(
+            controller: _pagingController,
+            builder: (context, state, fetchNextPage) =>
+                PagedListView<int, FaultRecordModel>(
+                  state: state,
+                  fetchNextPage: fetchNextPage,
+                  padding: EdgeInsets.symmetric(
+                    vertical: AppDesignTokens.spacingS,
+                  ),
+                  builderDelegate: PagedChildBuilderDelegate<FaultRecordModel>(
+                    itemBuilder: (context, fault, index) =>
+                        FaultRecordListItem(fault: fault)
+                            .animate()
+                            .fadeIn(
+                              delay: (100 + (index % 10 * 50)).ms,
+                              duration: 400.ms,
+                            )
+                            .slideY(begin: 0.1, curve: Curves.easeOutQuad),
+                    noItemsFoundIndicatorBuilder: (_) =>
+                        EmptyWidget(message: t.maintenance.noFaultRecords),
+                    newPageErrorIndicatorBuilder: (_) => Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(AppDesignTokens.spacingM),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              t.maintenance.loadFailed,
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: colorScheme.onSurfaceVariant,
+                              ),
+                            ),
+                            SizedBox(height: 12.h),
+                            FilledButton.tonal(
+                              onPressed: () => fetchNextPage(),
+                              child: Text(t.common.retry),
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 12.h),
-                        FilledButton.tonal(
-                          onPressed: () => fetchNextPage(),
-                          child: Text(t.common.retry),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
+          ),
+        ),
       ),
     );
   }

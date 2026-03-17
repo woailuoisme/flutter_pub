@@ -20,22 +20,58 @@ class AppDesignTokens {
   static final double radiusXL = 24.r;
   static const double radiusFull = 999;
 
-  // 阴影 (Shadows)
-  static List<BoxShadow> shadowSoft = [
-    BoxShadow(
-      color: Colors.black.withValues(alpha: 0.04),
-      blurRadius: 10,
-      offset: const Offset(0, 4),
-    ),
-  ];
+  // 阴影 (Shadows) - 动态高度阴影
+  static List<BoxShadow> shadowSoft(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return [
+      BoxShadow(
+        color: isDark
+            ? Colors.black.withValues(alpha: 0.3)
+            : Colors.black.withValues(alpha: 0.05),
+        blurRadius: 10,
+        offset: const Offset(0, 4),
+      ),
+    ];
+  }
 
-  static List<BoxShadow> shadowMedium = [
-    BoxShadow(
-      color: Colors.black.withValues(alpha: 0.08),
-      blurRadius: 20,
-      offset: const Offset(0, 8),
-    ),
-  ];
+  static List<BoxShadow> shadowMedium(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return [
+      BoxShadow(
+        color: isDark
+            ? Colors.black.withValues(alpha: 0.4)
+            : Colors.black.withValues(alpha: 0.08),
+        blurRadius: 20,
+        offset: const Offset(0, 8),
+      ),
+    ];
+  }
+
+  // 玻璃拟态 (Glassmorphism)
+  static const double glassOpacity = 0.1;
+  static const double glassBlur = 12.0;
+
+  // 渐变 (Gradients)
+  static LinearGradient primaryGradient(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [colorScheme.primary, colorScheme.primary.withValues(alpha: 0.8)],
+    );
+  }
+
+  static LinearGradient surfaceGradient(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: isDark
+          ? [colorScheme.surfaceContainerHigh, colorScheme.surface]
+          : [Colors.white, colorScheme.surfaceContainerLow],
+    );
+  }
 
   // 动画时长 (Durations)
   static const Duration durationFast = Duration(milliseconds: 200);

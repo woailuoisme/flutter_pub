@@ -40,6 +40,7 @@ sealed class RevenueStatsModel with _$RevenueStatsModel {
     @JsonKey(name: 'total_orders') @Default(0) int totalOrders,
     @JsonKey(name: 'daily_avg_revenue') @Default('0.00') String dailyAvgRevenue,
     @JsonKey(name: 'growth_rate') @Default(0.0) double growthRate,
+    @JsonKey(name: 'total_machines') @Default(0) int totalMachines,
     @JsonKey(name: 'revenue_trend')
     @Default([])
     List<TimeSeriesPoint> revenueTrend,

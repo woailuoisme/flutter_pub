@@ -10,6 +10,7 @@
   "totalOrders": "Total Orders",
   "dailyAvgRevenue": "Daily Avg Revenue",
   "growthRate": "Growth Rate",
+  "totalMachines": "Total Machines",
   "noChartData": "No Data",
   "loading": "Loading",
   "currencyPrefix": "¥",

@@ -37,6 +37,7 @@ class SlotListItem extends StatelessWidget {
     }
 
     return PremiumCard(
+      glass: true,
       margin: EdgeInsets.symmetric(
         horizontal: AppDesignTokens.spacingM,
         vertical: AppDesignTokens.spacingXS,

@@ -1,0 +1,12 @@
+{
+  "title": "消息通知",
+  "markAllRead": "全部標記为已讀",
+  "empty": "暫無通知",
+  "unread": "未讀消息",
+  "read": "已讀消息",
+  "priority": {
+    "high": "高優先級",
+    "medium": "普通",
+    "low": "低優先級"
+  }
+}

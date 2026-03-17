@@ -10,6 +10,7 @@
   "totalOrders": "總訂單數",
   "dailyAvgRevenue": "日均營收",
   "growthRate": "環比增長率",
+  "totalMachines": "總設備數量",
   "noChartData": "暫無數據",
   "loading": "載入中",
   "currencyPrefix": "¥",

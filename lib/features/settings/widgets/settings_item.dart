@@ -5,7 +5,7 @@ class SettingsItem extends StatelessWidget {
   const SettingsItem({
     super.key,
     required this.icon,
-    required this.iconColor,
+    this.iconColor,
     required this.title,
     this.trailing,
     this.onTap,
@@ -13,7 +13,7 @@ class SettingsItem extends StatelessWidget {
   });
 
   final IconData icon;
-  final Color iconColor;
+  final Color? iconColor;
   final String title;
   final Widget? trailing;
   final VoidCallback? onTap;
@@ -34,7 +34,11 @@ class SettingsItem extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               child: Row(
                 children: [
-                  Icon(icon, color: iconColor, size: 24.sp),
+                  Icon(
+                    icon,
+                    color: iconColor ?? colorScheme.primary,
+                    size: 24.sp,
+                  ),
                   SizedBox(width: 16.w),
                   Expanded(
                     child: Text(

@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/features/auth/providers/auth_provider.dart';
 import 'package:lunchbox_hub/features/auth/widgets/signup_button.dart';
 import 'package:lunchbox_hub/features/auth/widgets/signup_form.dart';
@@ -94,53 +95,62 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
     });
 
     return Scaffold(
-      backgroundColor: colorScheme.surface,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
         foregroundColor: colorScheme.onSurface,
       ),
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                child: FormBuilder(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children:
-                        [
-                              SignUpHeader(colorScheme: colorScheme),
-                              SizedBox(height: 40.h),
-                              SignUpForm(
-                                colorScheme: colorScheme,
-                                obscurePassword: _obscurePassword,
-                                onTogglePasswordVisibility:
-                                    _togglePasswordVisibility,
-                                onSubmit: _handleSignUp,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: AppDesignTokens.surfaceGradient(context),
+        ),
+        child: SafeArea(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                  child: FormBuilder(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children:
+                          [
+                                SignUpHeader(colorScheme: colorScheme),
+                                SizedBox(height: 40.h),
+                                SignUpForm(
+                                  colorScheme: colorScheme,
+                                  obscurePassword: _obscurePassword,
+                                  onTogglePasswordVisibility:
+                                      _togglePasswordVisibility,
+                                  onSubmit: _handleSignUp,
+                                ),
+                                SizedBox(height: 32.h),
+                                SignUpButton(
+                                  colorScheme: colorScheme,
+                                  isLoading: isLoading,
+                                  onPressed: _handleSignUp,
+                                ),
+                                SizedBox(height: 24.h),
+                              ]
+                              .animate(interval: 50.ms)
+                              .fadeIn(duration: 400.ms, curve: Curves.easeOut)
+                              .slideY(
+                                begin: 0.1,
+                                end: 0,
+                                curve: Curves.easeOut,
                               ),
-                              SizedBox(height: 32.h),
-                              SignUpButton(
-                                colorScheme: colorScheme,
-                                isLoading: isLoading,
-                                onPressed: _handleSignUp,
-                              ),
-                              SizedBox(height: 24.h),
-                            ]
-                            .animate(interval: 50.ms)
-                            .fadeIn(duration: 400.ms, curve: Curves.easeOut)
-                            .slideY(begin: 0.1, end: 0, curve: Curves.easeOut),
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

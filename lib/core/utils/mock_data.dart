@@ -6,8 +6,52 @@ import 'package:lunchbox_hub/features/agent/entities/product_sales_model.dart';
 import 'package:lunchbox_hub/features/agent/entities/revenue_stats_model.dart';
 import 'package:lunchbox_hub/features/maintenance/entities/fault_record_model.dart';
 import 'package:lunchbox_hub/features/maintenance/entities/maintainer_machine_model.dart';
+import 'package:lunchbox_hub/features/notifications/entities/notification_model.dart';
 
 class MockData {
+  // Notifications
+  static List<NotificationModel> getNotifications() {
+    final now = DateTime.now();
+    return [
+      NotificationModel(
+        id: 1,
+        appid: 1,
+        title: '库存预警',
+        message: '### 机器编号：M-001\n**广式腊味饭** 库存不足 2 份，请及时补货。',
+        priority: 8,
+        date: now.subtract(const Duration(minutes: 5)),
+        isRead: false,
+      ),
+      NotificationModel(
+        id: 2,
+        appid: 1,
+        title: '系统升级通知',
+        message: '服务器将于今日 **23:00** 进行例行维护，维护时间约 30 分钟。期间远程控制功能可能受影响。',
+        priority: 4,
+        date: now.subtract(const Duration(hours: 2)),
+        isRead: true,
+      ),
+      NotificationModel(
+        id: 3,
+        appid: 1,
+        title: '异常断电提醒',
+        message: '### 机器编号：M-005\n由于外部线路故障，机器已切换至备用电源，请尽快核实。',
+        priority: 10,
+        date: now.subtract(const Duration(hours: 12)),
+        isRead: false,
+      ),
+      NotificationModel(
+        id: 4,
+        appid: 1,
+        title: '结算成功',
+        message: '昨日（03-17）全线营业额已统计完成，总销额：**￥58,420.50**。',
+        priority: 2,
+        date: now.subtract(const Duration(days: 1)),
+        isRead: true,
+      ),
+    ];
+  }
+
   // Machines
   static List<AgentMachineModel> getAgentMachines() {
     return List.generate(
@@ -42,6 +86,7 @@ class MockData {
       totalOrders: 2840,
       dailyAvgRevenue: '1947.35',
       growthRate: 15.8,
+      totalMachines: 65,
       revenueTrend: [
         TimeSeriesPoint(label: '03.10', value: 1200),
         TimeSeriesPoint(label: '03.11', value: 1500),

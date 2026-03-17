@@ -13,7 +13,9 @@ List<RouteBase> get $appRoutes => [
   $signUpRoute,
   $forgotPasswordRoute,
   $resetPasswordRoute,
+  $settingsRoute,
   $agentMachineListRoute,
+  $notificationListRoute,
 ];
 
 RouteBase get $mainShellRouteData => StatefulShellRouteData.$route(
@@ -57,7 +59,20 @@ RouteBase get $mainShellRouteData => StatefulShellRouteData.$route(
     ),
     StatefulShellBranchData.$branch(
       routes: [
-        GoRouteData.$route(path: '/profile', factory: $ProfileRoute._fromState),
+        GoRouteData.$route(
+          path: '/profile',
+          factory: $ProfileRoute._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'personal-info',
+              factory: $PersonalInfoRoute._fromState,
+            ),
+            GoRouteData.$route(
+              path: 'feedback',
+              factory: $FeedbackRoute._fromState,
+            ),
+          ],
+        ),
       ],
     ),
   ],
@@ -201,6 +216,47 @@ mixin $ProfileRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+mixin $PersonalInfoRoute on GoRouteData {
+  static PersonalInfoRoute _fromState(GoRouterState state) =>
+      const PersonalInfoRoute();
+
+  @override
+  String get location => GoRouteData.$location('/profile/personal-info');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $FeedbackRoute on GoRouteData {
+  static FeedbackRoute _fromState(GoRouterState state) => const FeedbackRoute();
+
+  @override
+  String get location => GoRouteData.$location('/profile/feedback');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $signInRoute =>
     GoRouteData.$route(path: '/signin', factory: $SignInRoute._fromState);
 
@@ -325,6 +381,100 @@ mixin $ResetPasswordRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $settingsRoute => GoRouteData.$route(
+  path: '/settings',
+  factory: $SettingsRoute._fromState,
+  routes: [
+    GoRouteData.$route(
+      path: 'device-info',
+      factory: $DeviceInfoRoute._fromState,
+    ),
+    GoRouteData.$route(path: 'about', factory: $AboutUsRoute._fromState),
+    GoRouteData.$route(path: 'debug', factory: $DebugRoute._fromState),
+  ],
+);
+
+mixin $SettingsRoute on GoRouteData {
+  static SettingsRoute _fromState(GoRouterState state) => const SettingsRoute();
+
+  @override
+  String get location => GoRouteData.$location('/settings');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $DeviceInfoRoute on GoRouteData {
+  static DeviceInfoRoute _fromState(GoRouterState state) =>
+      const DeviceInfoRoute();
+
+  @override
+  String get location => GoRouteData.$location('/settings/device-info');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $AboutUsRoute on GoRouteData {
+  static AboutUsRoute _fromState(GoRouterState state) => const AboutUsRoute();
+
+  @override
+  String get location => GoRouteData.$location('/settings/about');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $DebugRoute on GoRouteData {
+  static DebugRoute _fromState(GoRouterState state) => const DebugRoute();
+
+  @override
+  String get location => GoRouteData.$location('/settings/debug');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $agentMachineListRoute => GoRouteData.$route(
   path: '/agent/machines',
   factory: $AgentMachineListRoute._fromState,
@@ -396,6 +546,32 @@ mixin $AgentMachineDetailRoute on GoRouteData {
   String get location => GoRouteData.$location(
     '/agent/machines/${Uri.encodeComponent(_self.machineId)}/detail',
   );
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $notificationListRoute => GoRouteData.$route(
+  path: '/notifications',
+  factory: $NotificationListRoute._fromState,
+);
+
+mixin $NotificationListRoute on GoRouteData {
+  static NotificationListRoute _fromState(GoRouterState state) =>
+      const NotificationListRoute();
+
+  @override
+  String get location => GoRouteData.$location('/notifications');
 
   @override
   void go(BuildContext context) => context.go(location);

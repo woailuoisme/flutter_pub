@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/features/agent/entities/agent_machine_model.dart';
 import 'package:lunchbox_hub/features/agent/entities/order_model.dart';
 import 'package:lunchbox_hub/features/agent/providers/agent_machine_list_provider.dart';
@@ -62,39 +64,60 @@ class _AgentOrderListScreenState extends ConsumerState<AgentOrderListScreen> {
     final totalRevenue = _getTotalRevenue();
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.machines.orderList)),
-      body: Column(
-        children: [
-          RevenueSummaryCard(totalRevenue: totalRevenue),
-          Expanded(
-            child: PagingListener(
-              controller: _pagingController,
-              builder: (context, state, fetchNextPage) =>
-                  PagedListView<int, OrderModel>(
-                    state: state,
-                    fetchNextPage: fetchNextPage,
-                    builderDelegate: PagedChildBuilderDelegate<OrderModel>(
-                      itemBuilder: (context, order, index) =>
-                          OrderListItem(order: order),
-                      noItemsFoundIndicatorBuilder: (_) => Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(32.w),
-                          child: Text(
-                            t.machines.emptyOrders,
-                            style: Theme.of(context).textTheme.bodyMedium
-                                ?.copyWith(
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onSurfaceVariant,
-                                ),
+      backgroundColor: Colors.transparent,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: Text(t.machines.orderList),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: AppDesignTokens.surfaceGradient(context),
+        ),
+        child: Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).padding.top + kToolbarHeight,
+            ),
+            RevenueSummaryCard(
+              totalRevenue: totalRevenue,
+            ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0),
+            Expanded(
+              child: PagingListener(
+                controller: _pagingController,
+                builder: (context, state, fetchNextPage) =>
+                    PagedListView<int, OrderModel>(
+                      state: state,
+                      fetchNextPage: fetchNextPage,
+                      padding: EdgeInsets.only(bottom: 24.h),
+                      builderDelegate: PagedChildBuilderDelegate<OrderModel>(
+                        itemBuilder: (context, order, index) =>
+                            OrderListItem(order: order)
+                                .animate(delay: (50 * (index % 10)).ms)
+                                .fadeIn(duration: 400.ms)
+                                .slideY(begin: 0.1, end: 0),
+                        noItemsFoundIndicatorBuilder: (_) => Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(32.w),
+                            child: Text(
+                              t.machines.emptyOrders,
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurfaceVariant,
+                                  ),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

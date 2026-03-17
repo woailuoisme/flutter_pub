@@ -23,9 +23,10 @@ class AgentMachineCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return PremiumCard(
+      glass: true,
       margin: EdgeInsets.symmetric(
         horizontal: AppDesignTokens.spacingM,
-        vertical: AppDesignTokens.spacingXS,
+        vertical: AppDesignTokens.spacingS,
       ),
       onTap: onTap,
       child: Padding(
@@ -46,22 +47,22 @@ class AgentMachineCard extends StatelessWidget {
                           color: colorScheme.onSurface,
                         ),
                       ),
-                      SizedBox(height: 4.h),
+                      SizedBox(height: 6.h),
                       Row(
                         children: [
                           Icon(
                             Symbols.location_on,
                             size: 14.sp,
-                            color: colorScheme.primary.withValues(alpha: 0.7),
-                            weight: 500,
+                            color: colorScheme.primary,
+                            weight: 600,
                           ),
-                          SizedBox(width: 4.w),
+                          SizedBox(width: 6.w),
                           Expanded(
                             child: Text(
                               machine.location,
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: colorScheme.onSurfaceVariant.withValues(
-                                  alpha: 0.7,
+                                  alpha: 0.8,
                                 ),
                               ),
                               maxLines: 1,
@@ -73,21 +74,32 @@ class AgentMachineCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Icon(
-                  Symbols.chevron_right,
-                  size: 20.sp,
-                  color: colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
+                Container(
+                  padding: EdgeInsets.all(4.r),
+                  decoration: BoxDecoration(
+                    color: colorScheme.primary.withValues(alpha: 0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Symbols.chevron_right,
+                    size: 18.sp,
+                    color: colorScheme.primary,
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: AppDesignTokens.spacingM),
+            SizedBox(height: AppDesignTokens.spacingL),
             Container(
               padding: EdgeInsets.all(AppDesignTokens.spacingM),
               decoration: BoxDecoration(
                 color: colorScheme.surfaceContainerHighest.withValues(
-                  alpha: 0.3,
+                  alpha: 0.4,
                 ),
                 borderRadius: BorderRadius.circular(AppDesignTokens.radiusM),
+                border: Border.all(
+                  color: colorScheme.outlineVariant.withValues(alpha: 0.3),
+                  width: 0.5,
+                ),
               ),
               child: Row(
                 children: [
@@ -99,7 +111,7 @@ class AgentMachineCard extends StatelessWidget {
                     theme: theme,
                   ),
                   Container(
-                    height: 24.h,
+                    height: 28.h,
                     width: 1,
                     margin: EdgeInsets.symmetric(
                       horizontal: AppDesignTokens.spacingM,
@@ -145,27 +157,46 @@ class _StatItem extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 18.sp, color: colorScheme.primary, weight: 300),
-          SizedBox(width: AppDesignTokens.spacingS),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
-                  fontSize: 10.sp,
+          Container(
+            padding: EdgeInsets.all(6.r),
+            decoration: BoxDecoration(
+              color: colorScheme.primary.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(8.r),
+            ),
+            child: Icon(
+              icon,
+              size: 16.sp,
+              color: colorScheme.primary,
+              weight: 500,
+            ),
+          ),
+          SizedBox(width: AppDesignTokens.spacingM),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  label,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
+                    fontSize: 10.sp,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-              Text(
-                value,
-                style: theme.textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: colorScheme.onSurface,
-                  letterSpacing: -0.5,
+                Text(
+                  value,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.onSurface,
+                    letterSpacing: -0.2,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

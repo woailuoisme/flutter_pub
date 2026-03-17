@@ -11,9 +11,16 @@ import 'package:lunchbox_hub/features/agent/screens/agent_order_list_screen.dart
 import 'package:lunchbox_hub/features/maintenance/screens/maintainer_fault_list_screen.dart';
 import 'package:lunchbox_hub/features/maintenance/screens/maintainer_machine_list_screen.dart';
 
+import 'package:lunchbox_hub/features/personal_info/screens/user_profile_edit_view.dart';
+import 'package:lunchbox_hub/features/feedback/screens/feedback_view.dart';
 import 'package:lunchbox_hub/features/profile/screens/profile_view.dart';
+import 'package:lunchbox_hub/features/settings/screens/settings_view.dart';
+import 'package:lunchbox_hub/features/settings/screens/device_info_view.dart';
+import 'package:lunchbox_hub/features/settings/screens/about_view.dart';
+import 'package:lunchbox_hub/features/settings/screens/debug_view.dart';
 import 'package:lunchbox_hub/core/widgets/gnav_scaffold.dart';
 import 'package:lunchbox_hub/routes/app_routes.dart';
+import 'package:lunchbox_hub/features/notifications/screens/notification_list_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
 part 'routes.g.dart';
@@ -55,7 +62,13 @@ part 'routes.g.dart';
     ),
     TypedStatefulShellBranch<ProfileBranchData>(
       routes: <TypedRoute<RouteData>>[
-        TypedGoRoute<ProfileRoute>(path: AppRoutes.profile),
+        TypedGoRoute<ProfileRoute>(
+          path: AppRoutes.profile,
+          routes: [
+            TypedGoRoute<PersonalInfoRoute>(path: AppRoutes.personalInfo),
+            TypedGoRoute<FeedbackRoute>(path: AppRoutes.feedback),
+          ],
+        ),
       ],
     ),
   ],
@@ -151,6 +164,45 @@ class ResetPasswordRoute extends GoRouteData with $ResetPasswordRoute {
       const ResetPasswordView();
 }
 
+// 设置与系统
+@TypedGoRoute<SettingsRoute>(
+  path: AppRoutes.settings,
+  routes: [
+    TypedGoRoute<DeviceInfoRoute>(path: AppRoutes.deviceInfo),
+    TypedGoRoute<AboutUsRoute>(path: AppRoutes.about),
+    TypedGoRoute<DebugRoute>(path: AppRoutes.debug),
+  ],
+)
+class SettingsRoute extends GoRouteData with $SettingsRoute {
+  const SettingsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SettingsView();
+}
+
+class DeviceInfoRoute extends GoRouteData with $DeviceInfoRoute {
+  const DeviceInfoRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const DeviceInfoView();
+}
+
+class AboutUsRoute extends GoRouteData with $AboutUsRoute {
+  const AboutUsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const AboutView();
+}
+
+class DebugRoute extends GoRouteData with $DebugRoute {
+  const DebugRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const DebugView();
+}
+
 // 代理商：仪表盘（登录后默认落地页）
 class AgentDashboardRoute extends GoRouteData with $AgentDashboardRoute {
   const AgentDashboardRoute();
@@ -238,6 +290,22 @@ class ProfileRoute extends GoRouteData with $ProfileRoute {
       const ProfileView();
 }
 
+class PersonalInfoRoute extends GoRouteData with $PersonalInfoRoute {
+  const PersonalInfoRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ProfileEditView();
+}
+
+class FeedbackRoute extends GoRouteData with $FeedbackRoute {
+  const FeedbackRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const FeedbackView();
+}
+
 class MaintainerFaultListRoute extends GoRouteData
     with $MaintainerFaultListRoute {
   const MaintainerFaultListRoute({required this.machineId});
@@ -247,4 +315,13 @@ class MaintainerFaultListRoute extends GoRouteData
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       MaintainerFaultListScreen(machineId: machineId);
+}
+
+@TypedGoRoute<NotificationListRoute>(path: AppRoutes.notifications)
+class NotificationListRoute extends GoRouteData with $NotificationListRoute {
+  const NotificationListRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const NotificationListScreen();
 }
