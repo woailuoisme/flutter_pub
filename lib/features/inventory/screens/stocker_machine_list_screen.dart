@@ -22,7 +22,6 @@ class StockerMachineListScreen extends ConsumerWidget {
     final machinesAsync = ref.watch(stockerMachineListProvider);
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
       body: Container(
         decoration: BoxDecoration(
@@ -33,8 +32,8 @@ class StockerMachineListScreen extends ConsumerWidget {
             children: [
               const WelcomeHeader()
                   .animate()
-                  .fadeIn(duration: 600.ms)
-                  .slideY(begin: -0.2, end: 0),
+                  .fadeIn(duration: 400.ms)
+                  .slideY(begin: -0.2, curve: Curves.easeOutQuad),
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: AppDesignTokens.spacingM,
@@ -50,8 +49,8 @@ class StockerMachineListScreen extends ConsumerWidget {
                       ),
                     ),
                   ],
-                ),
-              ).animate().fadeIn(delay: 200.ms).slideX(begin: -0.1, end: 0),
+                ).animate().fadeIn(delay: 100.ms).slideX(begin: -0.1),
+              ),
               Expanded(
                 child: machinesAsync.when(
                   loading: () => _buildSkeleton(),
@@ -94,9 +93,12 @@ class StockerMachineListScreen extends ConsumerWidget {
                                   machineId: machine.id,
                                 ).go(context),
                               )
-                              .animate(delay: (100 * index).ms)
-                              .fadeIn(duration: 500.ms)
-                              .slideY(begin: 0.2, end: 0);
+                              .animate()
+                              .fadeIn(
+                                delay: (100 + (index * 50)).ms,
+                                duration: 400.ms,
+                              )
+                              .slideY(begin: 0.1, curve: Curves.easeOutQuad);
                         },
                       ),
                     );

@@ -18,12 +18,14 @@ class PremiumCard extends StatelessWidget {
     this.hasShadow = true,
     this.animate = true,
     this.glass = false,
+    this.borderColor,
   });
   final Widget child;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final VoidCallback? onTap;
   final Color? color;
+  final Color? borderColor;
   final double? borderRadius;
   final bool hasShadow;
   final bool animate;
@@ -48,9 +50,11 @@ class PremiumCard extends StatelessWidget {
             ? AppDesignTokens.shadowSoft(context)
             : null,
         border: Border.all(
-          color: glass
-              ? theme.colorScheme.onSurface.withValues(alpha: 0.1)
-              : theme.colorScheme.outlineVariant.withValues(alpha: 0.4),
+          color:
+              borderColor ??
+              (glass
+                  ? theme.colorScheme.onSurface.withValues(alpha: 0.1)
+                  : theme.colorScheme.outlineVariant.withValues(alpha: 0.4)),
           width: 0.5,
         ),
       ),

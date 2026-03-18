@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -62,36 +63,53 @@ class _AgentOrderListScreenState extends ConsumerState<AgentOrderListScreen> {
   @override
   Widget build(BuildContext context) {
     final totalRevenue = _getTotalRevenue();
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text(t.machines.orderList),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        scrolledUnderElevation: 0,
-      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: AppDesignTokens.surfaceGradient(context),
         ),
-        child: Column(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).padding.top + kToolbarHeight,
+        child: CustomScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          slivers: [
+            SliverAppBar(
+              floating: true,
+              pinned: true,
+              backgroundColor: colorScheme.surface.withValues(alpha: 0.7),
+              title: Text(
+                t.machines.orderList,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  color: colorScheme.onSurface,
+                  letterSpacing: -0.2,
+                ),
+              ),
+              flexibleSpace: ClipRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+                  child: Container(color: Colors.transparent),
+                ),
+              ),
+              centerTitle: true,
+              elevation: 0,
+              scrolledUnderElevation: 0,
             ),
-            RevenueSummaryCard(
-              totalRevenue: totalRevenue,
-            ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0),
-            Expanded(
-              child: PagingListener(
+            SliverToBoxAdapter(
+              child: RevenueSummaryCard(
+                totalRevenue: totalRevenue,
+              ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.only(bottom: 24.h),
+              sliver: PagingListener(
                 controller: _pagingController,
                 builder: (context, state, fetchNextPage) =>
-                    PagedListView<int, OrderModel>(
+                    PagedSliverList<int, OrderModel>(
                       state: state,
                       fetchNextPage: fetchNextPage,
-                      padding: EdgeInsets.only(bottom: 24.h),
                       builderDelegate: PagedChildBuilderDelegate<OrderModel>(
                         itemBuilder: (context, order, index) =>
                             OrderListItem(order: order)
@@ -103,12 +121,9 @@ class _AgentOrderListScreenState extends ConsumerState<AgentOrderListScreen> {
                             padding: EdgeInsets.all(32.w),
                             child: Text(
                               t.machines.emptyOrders,
-                              style: Theme.of(context).textTheme.bodyMedium
-                                  ?.copyWith(
-                                    color: Theme.of(
-                                      context,
-                                    ).colorScheme.onSurfaceVariant,
-                                  ),
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: colorScheme.onSurfaceVariant,
+                              ),
                             ),
                           ),
                         ),

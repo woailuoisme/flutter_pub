@@ -9,6 +9,7 @@ import 'package:lunchbox_hub/features/maintenance/entities/fault_record_model.da
 import 'package:lunchbox_hub/features/maintenance/repositories/maintenance_repository.dart';
 import 'package:lunchbox_hub/features/maintenance/widgets/fault_record_list_item.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class MaintainerFaultListScreen extends ConsumerStatefulWidget {
   const MaintainerFaultListScreen({super.key, required this.machineId});
@@ -81,6 +82,7 @@ class _MaintainerFaultListScreenState
                             .slideY(begin: 0.1, curve: Curves.easeOutQuad),
                     noItemsFoundIndicatorBuilder: (_) =>
                         EmptyWidget(message: t.maintenance.noFaultRecords),
+                    firstPageProgressIndicatorBuilder: (_) => _buildSkeleton(),
                     newPageErrorIndicatorBuilder: (_) => Center(
                       child: Padding(
                         padding: EdgeInsets.all(AppDesignTokens.spacingM),
@@ -104,6 +106,26 @@ class _MaintainerFaultListScreenState
                     ),
                   ),
                 ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSkeleton() {
+    return Skeletonizer(
+      child: Column(
+        children: List.generate(
+          8,
+          (index) => FaultRecordListItem(
+            fault: FaultRecordModel(
+              id: 'skeleton-$index',
+              machineId: '',
+              faultType: 'Fault Type Name',
+              description: 'This is a description of the fault record.',
+              status: FaultStatus.pending,
+              occurredAt: '2024-03-24 10:00:00',
+            ),
           ),
         ),
       ),

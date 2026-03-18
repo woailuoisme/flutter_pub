@@ -42,26 +42,21 @@ class AgentMachineListScreen extends ConsumerWidget {
                   SliverAppBar(
                     floating: true,
                     pinned: true,
-                    expandedHeight: 120.h,
                     backgroundColor: theme.colorScheme.surface.withValues(
                       alpha: 0.7,
                     ),
+                    title: Text(
+                      t.machines.machineList,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w900,
+                        color: theme.colorScheme.onSurface,
+                        letterSpacing: -0.2,
+                      ),
+                    ),
                     flexibleSpace: ClipRect(
                       child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                        child: FlexibleSpaceBar(
-                          title: Text(
-                            t.machines.machineList,
-                            style: theme.textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w900,
-                              color: theme.colorScheme.onSurface,
-                              letterSpacing: 1.2,
-                            ),
-                          ),
-                          centerTitle: true,
-                          titlePadding: EdgeInsets.only(bottom: 16.h),
-                          background: Container(color: Colors.transparent),
-                        ),
+                        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+                        child: Container(color: Colors.transparent),
                       ),
                     ),
                     centerTitle: true,
@@ -84,7 +79,10 @@ class AgentMachineListScreen extends ConsumerWidget {
                         final machine = machines[index];
                         return AgentMachineCard(
                               machine: machine,
-                              onTap: () => AgentOrderListRoute(
+                              onHeaderTap: () => AgentMachineDetailRoute(
+                                machineId: machine.id,
+                              ).push<void>(context),
+                              onStatsTap: () => AgentOrderListRoute(
                                 machineId: machine.id,
                               ).push<void>(context),
                             )

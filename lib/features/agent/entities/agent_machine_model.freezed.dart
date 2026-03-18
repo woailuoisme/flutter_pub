@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AgentMachineModel {
 
- String get id; String get name; String get location;@JsonKey(name: 'total_orders') int get totalOrders;@JsonKey(name: 'total_revenue') String get totalRevenue;
+ String get id; String get name; String get location;@JsonKey(name: 'total_orders') int get totalOrders;@JsonKey(name: 'total_revenue') String get totalRevenue;@JsonKey(name: 'image_url') String? get imageUrl; double? get latitude; double? get longitude; String? get sn; String? get status; String? get description;
 /// Create a copy of AgentMachineModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $AgentMachineModelCopyWith<AgentMachineModel> get copyWith => _$AgentMachineMode
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AgentMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AgentMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.sn, sn) || other.sn == sn)&&(identical(other.status, status) || other.status == status)&&(identical(other.description, description) || other.description == description));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,location,totalOrders,totalRevenue);
+int get hashCode => Object.hash(runtimeType,id,name,location,totalOrders,totalRevenue,imageUrl,latitude,longitude,sn,status,description);
 
 @override
 String toString() {
-  return 'AgentMachineModel(id: $id, name: $name, location: $location, totalOrders: $totalOrders, totalRevenue: $totalRevenue)';
+  return 'AgentMachineModel(id: $id, name: $name, location: $location, totalOrders: $totalOrders, totalRevenue: $totalRevenue, imageUrl: $imageUrl, latitude: $latitude, longitude: $longitude, sn: $sn, status: $status, description: $description)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $AgentMachineModelCopyWith<$Res>  {
   factory $AgentMachineModelCopyWith(AgentMachineModel value, $Res Function(AgentMachineModel) _then) = _$AgentMachineModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String location,@JsonKey(name: 'total_orders') int totalOrders,@JsonKey(name: 'total_revenue') String totalRevenue
+ String id, String name, String location,@JsonKey(name: 'total_orders') int totalOrders,@JsonKey(name: 'total_revenue') String totalRevenue,@JsonKey(name: 'image_url') String? imageUrl, double? latitude, double? longitude, String? sn, String? status, String? description
 });
 
 
@@ -65,14 +65,20 @@ class _$AgentMachineModelCopyWithImpl<$Res>
 
 /// Create a copy of AgentMachineModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? location = null,Object? totalOrders = null,Object? totalRevenue = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? location = null,Object? totalOrders = null,Object? totalRevenue = null,Object? imageUrl = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? sn = freezed,Object? status = freezed,Object? description = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String,totalOrders: null == totalOrders ? _self.totalOrders : totalOrders // ignore: cast_nullable_to_non_nullable
 as int,totalRevenue: null == totalRevenue ? _self.totalRevenue : totalRevenue // ignore: cast_nullable_to_non_nullable
-as String,
+as String,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double?,sn: freezed == sn ? _self.sn : sn // ignore: cast_nullable_to_non_nullable
+as String?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -154,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String location, @JsonKey(name: 'total_orders')  int totalOrders, @JsonKey(name: 'total_revenue')  String totalRevenue)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String location, @JsonKey(name: 'total_orders')  int totalOrders, @JsonKey(name: 'total_revenue')  String totalRevenue, @JsonKey(name: 'image_url')  String? imageUrl,  double? latitude,  double? longitude,  String? sn,  String? status,  String? description)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AgentMachineModel() when $default != null:
-return $default(_that.id,_that.name,_that.location,_that.totalOrders,_that.totalRevenue);case _:
+return $default(_that.id,_that.name,_that.location,_that.totalOrders,_that.totalRevenue,_that.imageUrl,_that.latitude,_that.longitude,_that.sn,_that.status,_that.description);case _:
   return orElse();
 
 }
@@ -175,10 +181,10 @@ return $default(_that.id,_that.name,_that.location,_that.totalOrders,_that.total
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String location, @JsonKey(name: 'total_orders')  int totalOrders, @JsonKey(name: 'total_revenue')  String totalRevenue)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String location, @JsonKey(name: 'total_orders')  int totalOrders, @JsonKey(name: 'total_revenue')  String totalRevenue, @JsonKey(name: 'image_url')  String? imageUrl,  double? latitude,  double? longitude,  String? sn,  String? status,  String? description)  $default,) {final _that = this;
 switch (_that) {
 case _AgentMachineModel():
-return $default(_that.id,_that.name,_that.location,_that.totalOrders,_that.totalRevenue);}
+return $default(_that.id,_that.name,_that.location,_that.totalOrders,_that.totalRevenue,_that.imageUrl,_that.latitude,_that.longitude,_that.sn,_that.status,_that.description);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -192,10 +198,10 @@ return $default(_that.id,_that.name,_that.location,_that.totalOrders,_that.total
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String location, @JsonKey(name: 'total_orders')  int totalOrders, @JsonKey(name: 'total_revenue')  String totalRevenue)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String location, @JsonKey(name: 'total_orders')  int totalOrders, @JsonKey(name: 'total_revenue')  String totalRevenue, @JsonKey(name: 'image_url')  String? imageUrl,  double? latitude,  double? longitude,  String? sn,  String? status,  String? description)?  $default,) {final _that = this;
 switch (_that) {
 case _AgentMachineModel() when $default != null:
-return $default(_that.id,_that.name,_that.location,_that.totalOrders,_that.totalRevenue);case _:
+return $default(_that.id,_that.name,_that.location,_that.totalOrders,_that.totalRevenue,_that.imageUrl,_that.latitude,_that.longitude,_that.sn,_that.status,_that.description);case _:
   return null;
 
 }
@@ -207,7 +213,7 @@ return $default(_that.id,_that.name,_that.location,_that.totalOrders,_that.total
 @JsonSerializable()
 
 class _AgentMachineModel implements AgentMachineModel {
-  const _AgentMachineModel({required this.id, required this.name, required this.location, @JsonKey(name: 'total_orders') this.totalOrders = 0, @JsonKey(name: 'total_revenue') this.totalRevenue = '0.00'});
+  const _AgentMachineModel({required this.id, required this.name, required this.location, @JsonKey(name: 'total_orders') this.totalOrders = 0, @JsonKey(name: 'total_revenue') this.totalRevenue = '0.00', @JsonKey(name: 'image_url') this.imageUrl, this.latitude, this.longitude, this.sn, this.status, this.description});
   factory _AgentMachineModel.fromJson(Map<String, dynamic> json) => _$AgentMachineModelFromJson(json);
 
 @override final  String id;
@@ -215,6 +221,12 @@ class _AgentMachineModel implements AgentMachineModel {
 @override final  String location;
 @override@JsonKey(name: 'total_orders') final  int totalOrders;
 @override@JsonKey(name: 'total_revenue') final  String totalRevenue;
+@override@JsonKey(name: 'image_url') final  String? imageUrl;
+@override final  double? latitude;
+@override final  double? longitude;
+@override final  String? sn;
+@override final  String? status;
+@override final  String? description;
 
 /// Create a copy of AgentMachineModel
 /// with the given fields replaced by the non-null parameter values.
@@ -229,16 +241,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AgentMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AgentMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.sn, sn) || other.sn == sn)&&(identical(other.status, status) || other.status == status)&&(identical(other.description, description) || other.description == description));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,location,totalOrders,totalRevenue);
+int get hashCode => Object.hash(runtimeType,id,name,location,totalOrders,totalRevenue,imageUrl,latitude,longitude,sn,status,description);
 
 @override
 String toString() {
-  return 'AgentMachineModel(id: $id, name: $name, location: $location, totalOrders: $totalOrders, totalRevenue: $totalRevenue)';
+  return 'AgentMachineModel(id: $id, name: $name, location: $location, totalOrders: $totalOrders, totalRevenue: $totalRevenue, imageUrl: $imageUrl, latitude: $latitude, longitude: $longitude, sn: $sn, status: $status, description: $description)';
 }
 
 
@@ -249,7 +261,7 @@ abstract mixin class _$AgentMachineModelCopyWith<$Res> implements $AgentMachineM
   factory _$AgentMachineModelCopyWith(_AgentMachineModel value, $Res Function(_AgentMachineModel) _then) = __$AgentMachineModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String location,@JsonKey(name: 'total_orders') int totalOrders,@JsonKey(name: 'total_revenue') String totalRevenue
+ String id, String name, String location,@JsonKey(name: 'total_orders') int totalOrders,@JsonKey(name: 'total_revenue') String totalRevenue,@JsonKey(name: 'image_url') String? imageUrl, double? latitude, double? longitude, String? sn, String? status, String? description
 });
 
 
@@ -266,14 +278,20 @@ class __$AgentMachineModelCopyWithImpl<$Res>
 
 /// Create a copy of AgentMachineModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? location = null,Object? totalOrders = null,Object? totalRevenue = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? location = null,Object? totalOrders = null,Object? totalRevenue = null,Object? imageUrl = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? sn = freezed,Object? status = freezed,Object? description = freezed,}) {
   return _then(_AgentMachineModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String,totalOrders: null == totalOrders ? _self.totalOrders : totalOrders // ignore: cast_nullable_to_non_nullable
 as int,totalRevenue: null == totalRevenue ? _self.totalRevenue : totalRevenue // ignore: cast_nullable_to_non_nullable
-as String,
+as String,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double?,sn: freezed == sn ? _self.sn : sn // ignore: cast_nullable_to_non_nullable
+as String?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

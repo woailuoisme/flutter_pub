@@ -7,6 +7,8 @@ import 'package:lunchbox_hub/features/maintenance/entities/maintainer_machine_mo
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import 'package:intl/intl.dart';
+
 class MaintainerMachineCard extends StatelessWidget {
   const MaintainerMachineCard({super.key, required this.machine, this.onTap});
 
@@ -23,7 +25,7 @@ class MaintainerMachineCard extends StatelessWidget {
     final statusColor = hasFaults
         ? AppDesignTokens.error
         : AppDesignTokens.success;
-    final statusText = hasFaults ? 'FAULT' : 'ONLINE';
+    final statusText = hasFaults ? t.maintenance.statusFault : t.maintenance.statusOnline;
 
     return PremiumCard(
       onTap: onTap,
@@ -103,7 +105,9 @@ class MaintainerMachineCard extends StatelessWidget {
                 child: _buildInfoItem(
                   context,
                   Symbols.history,
-                  '${t.maintenance.lastFaultAt}: ${machine.lastFaultAt ?? "-"}',
+                  machine.lastFaultAt != null
+                      ? DateFormat('yyyy-MM-dd HH:mm').format(DateTime.parse(machine.lastFaultAt!))
+                      : "-",
                   colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
                 ),
               ),
@@ -120,54 +124,53 @@ class MaintainerMachineCard extends StatelessWidget {
     String statusText,
   ) {
     final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Container(
-              width: 8.w,
-              height: 8.w,
-              decoration: BoxDecoration(
-                color: statusColor,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: statusColor.withValues(alpha: 0.4),
-                    blurRadius: 10,
-                    spreadRadius: 2,
-                  ),
-                ],
-              ),
-            )
-            .animate(onPlay: (controller) => controller.repeat(reverse: true))
-            .scale(
-              duration: 800.ms,
-              begin: const Offset(1, 1),
-              end: const Offset(1.4, 1.4),
-              curve: Curves.easeInOut,
-            )
-            .boxShadow(
-              duration: 800.ms,
-              begin: BoxShadow(
-                color: statusColor.withValues(alpha: 0.2),
-                blurRadius: 4,
-              ),
-              end: BoxShadow(
-                color: statusColor.withValues(alpha: 0.6),
-                blurRadius: 12,
-                spreadRadius: 4,
-              ),
-            ),
-        SizedBox(height: 6.h),
-        Text(
-          statusText,
-          style: theme.textTheme.labelSmall?.copyWith(
-            color: statusColor,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.2,
-            fontSize: 9.sp,
-          ),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+      decoration: BoxDecoration(
+        color: statusColor.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(AppDesignTokens.radiusFull),
+        border: Border.all(
+          color: statusColor.withValues(alpha: 0.12),
+          width: 1,
         ),
-      ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 7.w,
+            height: 7.w,
+            decoration: BoxDecoration(
+              color: statusColor,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: statusColor.withValues(alpha: 0.3),
+                  blurRadius: 8,
+                  spreadRadius: 1,
+                ),
+              ],
+            ),
+          )
+              .animate(onPlay: (controller) => controller.repeat(reverse: true))
+              .scale(
+                duration: 1000.ms,
+                begin: const Offset(1, 1),
+                end: const Offset(1.3, 1.3),
+                curve: Curves.easeInOut,
+              ),
+          SizedBox(width: 8.w),
+          Text(
+            statusText,
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: statusColor,
+              fontWeight: FontWeight.w900,
+              letterSpacing: 0.5,
+              fontSize: 10.sp,
+            ),
+          ),
+        ],
+      ),
     );
   }
 

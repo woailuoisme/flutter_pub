@@ -23,12 +23,22 @@ _AgentMachineModel _$AgentMachineModelFromJson(Map<String, dynamic> json) =>
             'total_revenue',
             (v) => v as String? ?? '0.00',
           ),
+          imageUrl: $checkedConvert('image_url', (v) => v as String?),
+          latitude: $checkedConvert('latitude', (v) => (v as num?)?.toDouble()),
+          longitude: $checkedConvert(
+            'longitude',
+            (v) => (v as num?)?.toDouble(),
+          ),
+          sn: $checkedConvert('sn', (v) => v as String?),
+          status: $checkedConvert('status', (v) => v as String?),
+          description: $checkedConvert('description', (v) => v as String?),
         );
         return val;
       },
       fieldKeyMap: const {
         'totalOrders': 'total_orders',
         'totalRevenue': 'total_revenue',
+        'imageUrl': 'image_url',
       },
     );
 
@@ -39,4 +49,10 @@ Map<String, dynamic> _$AgentMachineModelToJson(_AgentMachineModel instance) =>
       'location': instance.location,
       'total_orders': instance.totalOrders,
       'total_revenue': instance.totalRevenue,
+      'image_url': ?instance.imageUrl,
+      'latitude': ?instance.latitude,
+      'longitude': ?instance.longitude,
+      'sn': ?instance.sn,
+      'status': ?instance.status,
+      'description': ?instance.description,
     };

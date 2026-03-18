@@ -37,7 +37,7 @@ class SlotListItem extends StatelessWidget {
     }
 
     return PremiumCard(
-      glass: true,
+      glass: false,
       margin: EdgeInsets.symmetric(
         horizontal: AppDesignTokens.spacingM,
         vertical: AppDesignTokens.spacingXS,
@@ -64,10 +64,10 @@ class SlotListItem extends StatelessWidget {
             children: [
               Skeleton.ignore(
                 child: Container(
-                  width: 44.w,
-                  height: 44.w,
+                  width: 52.w,
+                  height: 48.h,
                   decoration: BoxDecoration(
-                    color: colorScheme.primaryContainer.withValues(alpha: 0.5),
+                    color: colorScheme.primary.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(
                       AppDesignTokens.radiusS,
                     ),
@@ -76,8 +76,8 @@ class SlotListItem extends StatelessWidget {
                   child: Text(
                     slot.slotNumber,
                     style: theme.textTheme.titleMedium?.copyWith(
-                      color: colorScheme.onPrimaryContainer,
-                      fontWeight: FontWeight.bold,
+                      color: colorScheme.primary,
+                      fontWeight: FontWeight.w900,
                     ),
                   ),
                 ),
@@ -98,19 +98,19 @@ class SlotListItem extends StatelessWidget {
                     Row(
                       children: [
                         Container(
-                          width: 6.w,
-                          height: 6.w,
+                          width: 8.w,
+                          height: 8.w,
                           decoration: BoxDecoration(
                             color: quantityColor,
                             shape: BoxShape.circle,
                           ),
                         ),
-                        SizedBox(width: 6.w),
+                        SizedBox(width: 8.w),
                         Text(
                           stockStatus,
-                          style: theme.textTheme.labelSmall?.copyWith(
+                          style: theme.textTheme.labelMedium?.copyWith(
                             color: colorScheme.onSurfaceVariant.withValues(
-                              alpha: 0.8,
+                              alpha: 0.7,
                             ),
                             fontWeight: FontWeight.w500,
                           ),
@@ -125,7 +125,7 @@ class SlotListItem extends StatelessWidget {
                 children: [
                   Text(
                     '${slot.quantity}',
-                    style: theme.textTheme.headlineSmall?.copyWith(
+                    style: theme.textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.w900,
                       color: quantityColor,
                       letterSpacing: -1,
@@ -135,7 +135,7 @@ class SlotListItem extends StatelessWidget {
                     t.inventory.quantity,
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: colorScheme.onSurfaceVariant.withValues(
-                        alpha: 0.6,
+                        alpha: 0.5,
                       ),
                       fontWeight: FontWeight.w500,
                     ),

@@ -13,7 +13,8 @@
   "confirm": "Confirm",
   "cancel": "Cancel",
   "updateSuccess": "Update Successful",
-  "updateFailed": "Update Failed",
-  "quantityMustBeNonNegative": "Quantity must be a non-negative integer",
-  "emptyState": "No Slots"
+    "updateFailed": "Update Failed",
+    "quantityMustBeNonNegative": "Quantity must be a non-negative integer",
+    "maxStockReached": "Max stock reached (${max})",
+    "emptyState": "No Slots"
 }

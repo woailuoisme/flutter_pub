@@ -419,6 +419,10 @@ class _TranslationsInventoryEn extends TranslationsInventoryZhCn {
       TranslationOverrides.string(_root.$meta, 'inventory.quantityMustBeNonNegative', {}) ??
       'Quantity must be a non-negative integer';
   @override
+  String maxStockReached({required Object max}) =>
+      TranslationOverrides.string(_root.$meta, 'inventory.maxStockReached', {'max': max}) ??
+      'Max stock reached (${max})';
+  @override
   String get emptyState => TranslationOverrides.string(_root.$meta, 'inventory.emptyState', {}) ?? 'No Slots';
 }
 
@@ -508,6 +512,10 @@ class _TranslationsMaintenanceEn extends TranslationsMaintenanceZhCn {
   String get statusPending => TranslationOverrides.string(_root.$meta, 'maintenance.statusPending', {}) ?? 'Pending';
   @override
   String get statusResolved => TranslationOverrides.string(_root.$meta, 'maintenance.statusResolved', {}) ?? 'Resolved';
+  @override
+  String get statusFault => TranslationOverrides.string(_root.$meta, 'maintenance.statusFault', {}) ?? 'Fault';
+  @override
+  String get statusOnline => TranslationOverrides.string(_root.$meta, 'maintenance.statusOnline', {}) ?? 'Online';
   @override
   String get noFaultRecords =>
       TranslationOverrides.string(_root.$meta, 'maintenance.noFaultRecords', {}) ?? 'No Fault Records';
@@ -1175,6 +1183,10 @@ extension on TranslationsEn {
       'inventory.quantityMustBeNonNegative' =>
         TranslationOverrides.string(_root.$meta, 'inventory.quantityMustBeNonNegative', {}) ??
             'Quantity must be a non-negative integer',
+      'inventory.maxStockReached' =>
+        ({required Object max}) =>
+            TranslationOverrides.string(_root.$meta, 'inventory.maxStockReached', {'max': max}) ??
+            'Max stock reached (${max})',
       'inventory.emptyState' => TranslationOverrides.string(_root.$meta, 'inventory.emptyState', {}) ?? 'No Slots',
       'machines.dashboard' => TranslationOverrides.string(_root.$meta, 'machines.dashboard', {}) ?? 'Dashboard',
       'machines.machineList' => TranslationOverrides.string(_root.$meta, 'machines.machineList', {}) ?? 'Machine List',
@@ -1229,6 +1241,9 @@ extension on TranslationsEn {
         TranslationOverrides.string(_root.$meta, 'maintenance.statusPending', {}) ?? 'Pending',
       'maintenance.statusResolved' =>
         TranslationOverrides.string(_root.$meta, 'maintenance.statusResolved', {}) ?? 'Resolved',
+      'maintenance.statusFault' => TranslationOverrides.string(_root.$meta, 'maintenance.statusFault', {}) ?? 'Fault',
+      'maintenance.statusOnline' =>
+        TranslationOverrides.string(_root.$meta, 'maintenance.statusOnline', {}) ?? 'Online',
       'maintenance.noFaultRecords' =>
         TranslationOverrides.string(_root.$meta, 'maintenance.noFaultRecords', {}) ?? 'No Fault Records',
       'maintenance.emptyState' =>

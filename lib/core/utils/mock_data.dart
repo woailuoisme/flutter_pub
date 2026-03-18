@@ -62,6 +62,12 @@ class MockData {
         location: '广州市天河区软件园 $i 座',
         totalOrders: 100 + i * 20,
         totalRevenue: (1500.50 + i * 300).toStringAsFixed(2),
+        imageUrl: 'https://picsum.photos/seed/machine$i/600/400',
+        sn: 'SN2024031800$i',
+        status: i == 0 ? '正常运行' : (i == 1 ? '离线' : '补货中'),
+        latitude: 23.1291 + i * 0.001,
+        longitude: 113.2644 + i * 0.001,
+        description: '位于软件园 $i 座大堂，主要服务于办公楼层员工。',
       ),
     );
   }

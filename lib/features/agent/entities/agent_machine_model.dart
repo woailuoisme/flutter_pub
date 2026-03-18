@@ -11,6 +11,12 @@ sealed class AgentMachineModel with _$AgentMachineModel {
     required String location,
     @JsonKey(name: 'total_orders') @Default(0) int totalOrders,
     @JsonKey(name: 'total_revenue') @Default('0.00') String totalRevenue,
+    @JsonKey(name: 'image_url') String? imageUrl,
+    double? latitude,
+    double? longitude,
+    String? sn,
+    String? status,
+    String? description,
   }) = _AgentMachineModel;
 
   factory AgentMachineModel.fromJson(Map<String, dynamic> json) =>

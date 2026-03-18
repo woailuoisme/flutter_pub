@@ -65,41 +65,36 @@ class ProfileView extends ConsumerWidget {
   /// 构建功能列表菜单
   Widget _buildMenuSection(BuildContext context, WidgetRef ref) {
     return Column(
-      children:
-          [
-                // 个人相关
-                ProfileMenuTile(
-                  icon: Symbols.person,
-                  title: t.profile.personalInfo,
-                  onTap: () async => await context.push(
-                    '${AppRoutes.profile}/${AppRoutes.personalInfo}',
-                  ),
-                ),
+      children: [
+        // 个人相关
+        ProfileMenuTile(
+          icon: Symbols.person,
+          title: t.profile.personalInfo,
+          onTap: () async => await context.push(
+            '${AppRoutes.profile}/${AppRoutes.personalInfo}',
+          ),
+        ),
 
-                ProfileMenuTile(
-                  icon: Symbols.help,
-                  title: t.profile.feedback,
-                  onTap: () async => await context.push(
-                    '${AppRoutes.profile}/${AppRoutes.feedback}',
-                  ),
-                ),
+        ProfileMenuTile(
+          icon: Symbols.help,
+          title: t.profile.feedback,
+          onTap: () async =>
+              await context.push('${AppRoutes.profile}/${AppRoutes.feedback}'),
+        ),
 
-                ProfileMenuTile(
-                  icon: Symbols.settings,
-                  title: t.profile.settings,
-                  onTap: () async => const SettingsRoute().push<void>(context),
-                ),
+        ProfileMenuTile(
+          icon: Symbols.settings,
+          title: t.profile.settings,
+          onTap: () async => const SettingsRoute().push<void>(context),
+        ),
 
-                ProfileMenuTile(
-                  icon: Symbols.info,
-                  title: t.profile.about,
-                  onTap: () async => const AboutUsRoute().push<void>(context),
-                  showDivider: false,
-                ),
-              ]
-              .animate(interval: 50.ms)
-              .fadeIn(duration: 400.ms, delay: 200.ms)
-              .slideX(begin: 0.05, end: 0),
+        ProfileMenuTile(
+          icon: Symbols.info,
+          title: t.profile.about,
+          onTap: () async => const AboutUsRoute().push<void>(context),
+          showDivider: false,
+        ),
+      ].animate(interval: 50.ms).fadeIn(duration: 400.ms, delay: 200.ms),
     );
   }
 

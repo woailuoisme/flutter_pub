@@ -13,7 +13,8 @@
   "confirm": "确认",
   "cancel": "取消",
   "updateSuccess": "更新成功",
-  "updateFailed": "更新失败",
-  "quantityMustBeNonNegative": "数量必须为非负整数",
-  "emptyState": "暂无货道"
+    "updateFailed": "更新失败",
+    "quantityMustBeNonNegative": "数量必须为非负整数",
+    "maxStockReached": "已达到最大库存 (${max})",
+    "emptyState": "暂无货道"
 }

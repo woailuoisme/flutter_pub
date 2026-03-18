@@ -370,6 +370,9 @@ class _TranslationsInventoryZhTw extends TranslationsInventoryZhCn {
   String get quantityMustBeNonNegative =>
       TranslationOverrides.string(_root.$meta, 'inventory.quantityMustBeNonNegative', {}) ?? '數量必須為非負整數';
   @override
+  String maxStockReached({required Object max}) =>
+      TranslationOverrides.string(_root.$meta, 'inventory.maxStockReached', {'max': max}) ?? '已達到最大庫存 (${max})';
+  @override
   String get emptyState => TranslationOverrides.string(_root.$meta, 'inventory.emptyState', {}) ?? '暫無貨道';
 }
 
@@ -455,6 +458,10 @@ class _TranslationsMaintenanceZhTw extends TranslationsMaintenanceZhCn {
   String get statusPending => TranslationOverrides.string(_root.$meta, 'maintenance.statusPending', {}) ?? '待處理';
   @override
   String get statusResolved => TranslationOverrides.string(_root.$meta, 'maintenance.statusResolved', {}) ?? '已解決';
+  @override
+  String get statusFault => TranslationOverrides.string(_root.$meta, 'maintenance.statusFault', {}) ?? '故障';
+  @override
+  String get statusOnline => TranslationOverrides.string(_root.$meta, 'maintenance.statusOnline', {}) ?? '正常';
   @override
   String get noFaultRecords => TranslationOverrides.string(_root.$meta, 'maintenance.noFaultRecords', {}) ?? '暫無故障記錄';
   @override
@@ -1004,6 +1011,9 @@ extension on TranslationsZhTw {
       'inventory.updateFailed' => TranslationOverrides.string(_root.$meta, 'inventory.updateFailed', {}) ?? '更新失敗',
       'inventory.quantityMustBeNonNegative' =>
         TranslationOverrides.string(_root.$meta, 'inventory.quantityMustBeNonNegative', {}) ?? '數量必須為非負整數',
+      'inventory.maxStockReached' =>
+        ({required Object max}) =>
+            TranslationOverrides.string(_root.$meta, 'inventory.maxStockReached', {'max': max}) ?? '已達到最大庫存 (${max})',
       'inventory.emptyState' => TranslationOverrides.string(_root.$meta, 'inventory.emptyState', {}) ?? '暫無貨道',
       'machines.dashboard' => TranslationOverrides.string(_root.$meta, 'machines.dashboard', {}) ?? '營運儀表板',
       'machines.machineList' => TranslationOverrides.string(_root.$meta, 'machines.machineList', {}) ?? '機器列表',
@@ -1045,6 +1055,8 @@ extension on TranslationsZhTw {
       'maintenance.statusPending' => TranslationOverrides.string(_root.$meta, 'maintenance.statusPending', {}) ?? '待處理',
       'maintenance.statusResolved' =>
         TranslationOverrides.string(_root.$meta, 'maintenance.statusResolved', {}) ?? '已解決',
+      'maintenance.statusFault' => TranslationOverrides.string(_root.$meta, 'maintenance.statusFault', {}) ?? '故障',
+      'maintenance.statusOnline' => TranslationOverrides.string(_root.$meta, 'maintenance.statusOnline', {}) ?? '正常',
       'maintenance.noFaultRecords' =>
         TranslationOverrides.string(_root.$meta, 'maintenance.noFaultRecords', {}) ?? '暫無故障記錄',
       'maintenance.emptyState' => TranslationOverrides.string(_root.$meta, 'maintenance.emptyState', {}) ?? '暫無機器',
