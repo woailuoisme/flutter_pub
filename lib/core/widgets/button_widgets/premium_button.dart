@@ -39,8 +39,8 @@ class PremiumButton extends StatelessWidget {
     final Color baseColor = color ?? colorScheme.primary;
     final Color onBaseColor = color != null
         ? (ThemeData.estimateBrightnessForColor(baseColor) == Brightness.dark
-            ? Colors.white
-            : Colors.black)
+              ? Colors.white
+              : Colors.black)
         : colorScheme.onPrimary;
 
     Color backgroundColor;

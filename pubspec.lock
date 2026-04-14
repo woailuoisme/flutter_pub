@@ -1966,10 +1966,10 @@ packages:
     dependency: "direct main"
     description:
       name: upgrader
-      sha256: abc25eb28c7df3815ce35f1cd2ac9e50d159c85d80dd3eaf7b2b5bfadc59fc05
+      sha256: "3fae4eb861c7e8567f91412d9ca4a287e024e58d6f79f98da79e3f6d78da74ba"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "13.0.0"
+    version: "12.5.0"
   url_launcher:
     dependency: "direct main"
     description:
