@@ -877,6 +877,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.2.8"
+  home_widget:
+    dependency: "direct main"
+    description:
+      name: home_widget
+      sha256: b04f99438ad6c5aad80fc9fca1e2e3471bf2a15028f614e4814d2552e13bc2a3
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.9.1"
   hooks:
     dependency: transitive
     description:
@@ -1899,7 +1907,7 @@ packages:
     source: hosted
     version: "1.2.2"
   test:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: test
       sha256: "280d6d890011ca966ad08df7e8a4ddfab0fb3aa49f96ed6de56e3521347a9ae7"

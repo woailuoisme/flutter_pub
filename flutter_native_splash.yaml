@@ -1,23 +1,23 @@
 flutter_native_splash:
-  # 颜色配置 (ShadGreen 主色调)
+  # Launch background.
   color: "#4CAF50"
-#  color_dark: "#1B1B1B"
+  # color_dark: "#1B1B1B"
 
-  # 启动图标
+  # Main splash asset.
   image: assets/icons/icon.png
 
-  # 居中显示
+  # Platform placement.
   android_gravity: center
   ios_content_mode: center
   web_image_mode: center
 
-  # 全屏显示 (隐藏状态栏)
+  # Hide the system status bar while the native splash is visible.
   fullscreen: true
 
-  # Android 12+ 适配 (API 31+)
+  # Android 12+ uses a separate icon treatment.
   android_12:
     color: "#4CAF50"
-#    color_dark: "#1B1B1B"
+    # color_dark: "#1B1B1B"
     image: assets/images/logo/logo.png
     icon_background_color: "#4CAF50"
     icon_background_color_dark: "#1B1B1B"

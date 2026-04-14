@@ -1,99 +1,76 @@
-# AGENTS
+# CLAUDE.md
 
-Lunchbox 项目大模型协作简版规范。
+本文件用于指导 Claude Code 在此仓库中工作。
 
-## 指令优先级
+## 项目概览
 
-- 冲突时按以下顺序执行：`AGENTS.md` > `README.md` > 代码现状与既有约定 > 临时口头说明。
-- 若仍有冲突，优先选择更保守、影响面更小的方案，并在交付说明中标注取舍。
+Lunchbox Hub 是一个用于售货机管理的 Flutter 应用。
+项目采用 feature-first 结构：业务功能放在 `lib/features`，共享能力放在 `lib/core`（必要时放到 `lib/shared`）。
 
-## 项目上下文
+## 目录重点
 
-- 技术栈（基于当前 `pubspec.yaml`）：
-- 核心：Flutter (SDK `^3.10.8`)、Dart
-- 状态管理：`flutter_riverpod`、`riverpod_annotation`
-- 路由与网络：`go_router`、`dio`、`dio_http2_adapter`、`retrofit`、`connectivity_plus`
-- 本地存储：`shared_preferences`、`flutter_secure_storage`、`drift`、`drift_flutter`、`sqlite3_flutter_libs`
-- UI 与动效：`flutter_screenutil`、`flex_color_scheme`、`flutter_svg`、`flutter_animate`、`animations`、`cached_network_image`、`skeletonizer`
-- 地图与定位：`flutter_map`、`geolocator`、`latlong2`
-- 业务能力：`flutter_stripe`、`google_sign_in`、`firebase_core`、`firebase_analytics`、`slang_flutter`、`flutter_form_builder`
-- 监控与日志：`sentry_flutter`、`sentry_dio`、`talker_flutter`、`talker_dio_logger`
-- 模型与序列化：`freezed_annotation`、`json_annotation`、`fpdart`
-- 代码生成：`build_runner`、`riverpod_generator`、`retrofit_generator`、`freezed`、`json_serializable`、`drift_dev`、`go_router_builder`
-- 结构：Feature-First（`lib/features`）
-- 关键目录：`lib/`、`test/`、`docs/`、`scripts/`
+- `lib/core/`：网络、服务、主题、组件、全局工具
+- `lib/features/`：各业务功能模块，新增业务优先放这里
+- `test/`：Flutter 单元测试和组件测试
+- `assets/`：图片、图标、动画、HTML 资源
+- `config/`：`--dart-define-from-file` 使用的环境配置
+- `scripts/`：`Makefile` 调用的脚本
 
-## 推荐 Skills
+## 主要技术
 
-优先按场景启用以下 skills：
+- Riverpod：状态管理
+- GoRouter：路由
+- Dio / Retrofit：网络请求
+- Drift / SQLite：本地存储
+- `build_runner`、`riverpod_generator`、`freezed`、`json_serializable`、`retrofit_generator`、`drift_dev`、`go_router_builder`、`slang`、`envied`：常规代码生成
 
-- 默认 Flutter 开发：`flutter-expert`、`dart-expert`
-- 状态管理/Riverpod：`flutter-riverpod-expert`
-- 架构与模块拆分：`flutter-architecture`、`refactor:flutter`
-- 测试相关：`flutter-testing`、`flutter-testing-apps`
-- 调试问题：`debugger`、`systematic-debugging`
+## 推荐技能
 
-## 开发规则
-
-- 只做与任务直接相关的最小改动。
-- 功能代码放对应 `feature`，公共能力放 `lib/shared` 或 `lib/core`。
-- 保持现有命名与代码风格，不做无关重构。
-- 非必要不改构建脚本、CI、支付主流程和全局路由。
-
-## 依赖升级策略
-
-- `Patch`（补丁版本）：可直接升级，但必须通过 `make analyze` + `make test`。
-- `Minor`（小版本）：允许升级，需补充受影响模块的功能回归说明。
-- `Major`（大版本）：默认不在业务需求中顺带升级，需单独任务和回滚预案。
-
-高风险依赖（升级需重点回归）：
-
-- 支付链路：`flutter_stripe`
-- 路由链路：`go_router`
-- 状态管理：`flutter_riverpod`、`riverpod_annotation`
-- 数据层：`drift`、`retrofit`、`dio`
-- 登录与账号：`google_sign_in`
-- 可观测性：`sentry_flutter`、`sentry_dio`
-
-## 回归检查清单
-
-- 启动与基础导航：冷启动、首页、核心路由跳转。
-- 登录与会话：登录、登出、会话恢复、鉴权拦截。
-- 下单与支付：购物车、下单、支付发起、支付失败处理。
-- 数据一致性：本地存储读写、列表刷新、错误重试。
-- 稳定性：关键页面异常捕获与日志上报是否正常。
-
-## 版本变更流程
-
-- 先更新 `pubspec.yaml`，再执行 `make deps`。
-- 涉及代码生成的依赖变更后执行 `make build`。
-- 执行 `make analyze` 与 `make test`，记录结果。
-- 在交付说明中明确：变更依赖、影响面、回归范围、风险点。
-
-## 常用命令
-
-默认使用 `make` 命令；`./scripts/lunchbox.sh` 作为 fallback（`make` 不可用或 CI 场景需脚本化时）。
+以下 skill 与本仓库 `pubspec.yaml` 的技术栈最相关，优先参考：
+- `flutter-expert`：Flutter 通用专家。
+  优先使用 `make`。
 
 ```bash
-make deps
-make build
-make analyze
-make test
-make ready
+make deps        # 拉取依赖
+make build       # 生成代码
+make full-build  # clean + deps + build
+make gen-i18n    # 生成国际化
+make gen-icons   # 生成应用图标
+make gen-splash  # 生成启动页
+make gen-key     # 生成 Android 签名文件
+make run         # 默认启动
+make run-dev     # 使用 config/env_dev.json 启动
+make run-prod    # 使用 config/env_prod.json 启动
+make test        # 运行全部测试
+make test-unit   # 仅单元测试
+make test-widget  # 仅组件测试
+make analyze     # 静态检查
+make format      # 格式化
+make fix         # 自动修复
+make ready       # fix + format + analyze
+make clean       # 清理生成文件
+make watch       # 监听生成
+make doctor      # 环境检查
 ```
 
-或：
+需要更细粒度时，可直接用 Flutter 命令：
 
 ```bash
-./scripts/lunchbox.sh prepare
-./scripts/lunchbox.sh ready
-./scripts/lunchbox.sh test
+flutter test test/unit/<file>.dart
+flutter test test/widget/<file>.dart
+flutter test --coverage
+flutter analyze
+flutter run --dart-define-from-file=config/env_dev.json
 ```
 
-## 交付要求
+## 工作约定
 
-- 说明：改了什么、为什么改。
-- 列出受影响文件。
-- 标注验证结果：`make analyze` / `make test`（通过、失败或未执行原因）。
+- 只做和任务直接相关的最小改动。
+- 不要手改生成文件（如 `*.g.dart`、`*.freezed.dart`、`*.gr.dart`、`lib/generated/**`），需要重新生成。
+- 新业务逻辑优先放到对应 feature 内，只有真正共享的部分才放到 `lib/core`。
+- 避免无关重构和大范围整理。
+- Shell 命令按仓库约定优先使用 `rtk <command>`。
 
-@RTK.md
+## 代码结构提醒
+
+如果改动会影响路由、登录/会话、网络、本地存储或全局主题，先看 `lib/core` 里的对应实现，再改 feature 代码。
