@@ -3,11 +3,10 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
-import 'package:lunchbox_hub/core/widgets/card_widgets/premium_card.dart';
 import 'package:lunchbox_hub/features/agent/entities/product_sales_model.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 
-class ProductPieChart extends StatelessWidget {
+class ProductPieChart extends StatefulWidget {
   const ProductPieChart({super.key, required this.data});
 
   final List<ProductSalesModel> data;
@@ -25,13 +24,34 @@ class ProductPieChart extends StatelessWidget {
   ];
 
   @override
+  State<ProductPieChart> createState() => _ProductPieChartState();
+}
+
+class _ProductPieChartState extends State<ProductPieChart> {
+  int _touchedIndex = -1;
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    if (data.isEmpty) {
-      return PremiumCard(
+    if (widget.data.isEmpty) {
+      return Container(
         margin: EdgeInsets.symmetric(horizontal: AppDesignTokens.spacingM),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(AppDesignTokens.radiusL),
+          border: Border.all(
+            color: theme.colorScheme.outlineVariant.withValues(alpha: 0.2),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: theme.colorScheme.shadow.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
         child: SizedBox(
           height: 200.h,
           child: Center(
@@ -46,67 +66,86 @@ class ProductPieChart extends StatelessWidget {
       );
     }
 
-    final sections = data.mapIndexed((index, item) {
-      final color = _chartColors[index % _chartColors.length];
+    final sections = widget.data.mapIndexed((index, item) {
+      final isTouched = index == _touchedIndex;
+      final fontSize = isTouched ? 16.0 : 12.0;
+      final radius = isTouched ? 50.r : 40.r;
+      final color = ProductPieChart
+          ._chartColors[index % ProductPieChart._chartColors.length];
+
+      final percentageText =
+          item.percentage.truncateToDouble() == item.percentage
+          ? '${item.percentage.toInt()}%'
+          : '${item.percentage.toStringAsFixed(1)}%';
+
       return PieChartSectionData(
         value: item.percentage,
         color: color,
-        radius: 40.r,
-        title: '',
-        showTitle: false,
-        badgeWidget: null, // Could add icons here if needed
+        radius: radius,
+        title: percentageText,
+        showTitle: true,
+        titleStyle: TextStyle(
+          fontSize: fontSize,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+        badgeWidget: null,
       );
     }).toList();
 
-    return PremiumCard(
+    return Container(
       margin: EdgeInsets.symmetric(horizontal: AppDesignTokens.spacingM),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(AppDesignTokens.radiusL),
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.2),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: theme.colorScheme.shadow.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
       child: Padding(
         padding: EdgeInsets.all(AppDesignTokens.spacingM),
         child: Column(
           children: [
             SizedBox(
               height: 180.h,
-              child: Stack(
-                children: [
-                  PieChart(
-                    PieChartData(
-                      sections: sections,
-                      centerSpaceRadius: 50.r,
-                      sectionsSpace: 4,
-                      startDegreeOffset: 270,
-                    ),
+              child: PieChart(
+                PieChartData(
+                  pieTouchData: PieTouchData(
+                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                      setState(() {
+                        if (!event.isInterestedForInteractions ||
+                            pieTouchResponse == null ||
+                            pieTouchResponse.touchedSection == null) {
+                          _touchedIndex = -1;
+                          return;
+                        }
+                        _touchedIndex = pieTouchResponse
+                            .touchedSection!
+                            .touchedSectionIndex;
+                      });
+                    },
                   ),
-                  Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          t.machines.total,
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: colorScheme.onSurfaceVariant.withValues(
-                              alpha: 0.6,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          '100%',
-                          style: theme.textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: colorScheme.onSurface,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                  sections: sections,
+                  centerSpaceRadius: 50.r,
+                  sectionsSpace: 4,
+                  startDegreeOffset: 270,
+                ),
               ),
             ),
             SizedBox(height: AppDesignTokens.spacingL),
             Wrap(
               spacing: AppDesignTokens.spacingM,
               runSpacing: AppDesignTokens.spacingS,
-              children: data.mapIndexed((index, item) {
-                final color = _chartColors[index % _chartColors.length];
+              children: widget.data.mapIndexed((index, item) {
+                final color = ProductPieChart
+                    ._chartColors[index % ProductPieChart._chartColors.length];
                 return Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [

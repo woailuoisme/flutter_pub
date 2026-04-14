@@ -2,19 +2,13 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
-import 'package:lunchbox_hub/core/widgets/card_widgets/premium_card.dart';
 import 'package:lunchbox_hub/features/agent/entities/revenue_stats_model.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 
-class MachineComparisonBarChart extends StatelessWidget {
-  const MachineComparisonBarChart({
-    super.key,
-    required this.data,
-    required this.onMachineTap,
-  });
+class OrderBarChart extends StatelessWidget {
+  const OrderBarChart({super.key, required this.data});
 
-  final List<MachineRevenuePoint> data;
-  final ValueChanged<String> onMachineTap;
+  final List<TimeSeriesPoint> data;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +16,22 @@ class MachineComparisonBarChart extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     if (data.isEmpty) {
-      return PremiumCard(
+      return Container(
         margin: EdgeInsets.symmetric(horizontal: AppDesignTokens.spacingM),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(AppDesignTokens.radiusL),
+          border: Border.all(
+            color: theme.colorScheme.outlineVariant.withValues(alpha: 0.2),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: theme.colorScheme.shadow.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
         child: SizedBox(
           height: 200.h,
           child: Center(
@@ -39,10 +47,24 @@ class MachineComparisonBarChart extends StatelessWidget {
     }
 
     final primary = colorScheme.primary;
-    final maxY = data.map((p) => p.revenue).reduce((a, b) => a > b ? a : b);
+    final maxY = data.map((p) => p.value).reduce((a, b) => a > b ? a : b);
 
-    return PremiumCard(
+    return Container(
       margin: EdgeInsets.symmetric(horizontal: AppDesignTokens.spacingM),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(AppDesignTokens.radiusL),
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.2),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: theme.colorScheme.shadow.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
       child: Padding(
         padding: EdgeInsets.fromLTRB(
           AppDesignTokens.spacingM,
@@ -54,7 +76,7 @@ class MachineComparisonBarChart extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 220.h,
+              height: 200.h,
               child: BarChart(
                 BarChartData(
                   maxY: maxY * 1.2,
@@ -69,8 +91,36 @@ class MachineComparisonBarChart extends StatelessWidget {
                   ),
                   borderData: FlBorderData(show: false),
                   titlesData: FlTitlesData(
-                    leftTitles: const AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
+                    leftTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 40.w,
+                        getTitlesWidget: (value, meta) {
+                          if (value == meta.min || value == meta.max) {
+                            return const SizedBox.shrink();
+                          }
+                          final text = value >= 1000
+                              ? '${(value / 1000).toStringAsFixed(1)}k'
+                              : value.toStringAsFixed(0);
+
+                          return SideTitleWidget(
+                            meta: meta,
+                            space: 8.w,
+                            child: SizedBox(
+                              width: 32.w,
+                              child: Text(
+                                text,
+                                textAlign: TextAlign.right,
+                                style: theme.textTheme.labelSmall?.copyWith(
+                                  fontSize: 10.sp,
+                                  color: colorScheme.onSurfaceVariant
+                                      .withValues(alpha: 0.6),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                     rightTitles: const AxisTitles(
                       sideTitles: SideTitles(showTitles: false),
@@ -87,14 +137,18 @@ class MachineComparisonBarChart extends StatelessWidget {
                           if (index < 0 || index >= data.length) {
                             return const SizedBox.shrink();
                           }
-                          final name = data[index].machineName;
-                          final truncated = name.length > 5
-                              ? '${name.substring(0, 5)}…'
-                              : name;
+                          // Show every nth label to avoid crowding
+                          final step = (data.length / 4).ceil().clamp(
+                            1,
+                            data.length,
+                          );
+                          if (index % step != 0 && index != data.length - 1) {
+                            return const SizedBox.shrink();
+                          }
                           return Padding(
                             padding: EdgeInsets.only(top: 8.h),
                             child: Text(
-                              truncated,
+                              data[index].label,
                               style: theme.textTheme.labelSmall?.copyWith(
                                 fontSize: 10.sp,
                                 color: colorScheme.onSurfaceVariant.withValues(
@@ -108,14 +162,6 @@ class MachineComparisonBarChart extends StatelessWidget {
                     ),
                   ),
                   barTouchData: BarTouchData(
-                    touchCallback: (event, response) {
-                      if (event is FlTapUpEvent && response?.spot != null) {
-                        final index = response!.spot!.touchedBarGroupIndex;
-                        if (index >= 0 && index < data.length) {
-                          onMachineTap(data[index].machineId);
-                        }
-                      }
-                    },
                     touchTooltipData: BarTouchTooltipData(
                       getTooltipColor: (_) =>
                           colorScheme.surfaceContainerHighest,
@@ -124,7 +170,7 @@ class MachineComparisonBarChart extends StatelessWidget {
                       ),
                       getTooltipItem: (group, groupIndex, rod, rodIndex) =>
                           BarTooltipItem(
-                            '${t.machines.currencyPrefix}${rod.toY.toStringAsFixed(2)}',
+                            '${rod.toY.toInt()} ${t.machines.orders}',
                             theme.textTheme.labelMedium!.copyWith(
                               color: colorScheme.onSurfaceVariant,
                               fontWeight: FontWeight.bold,
@@ -140,7 +186,7 @@ class MachineComparisonBarChart extends StatelessWidget {
                           x: e.key,
                           barRods: [
                             BarChartRodData(
-                              toY: e.value.revenue,
+                              toY: e.value.value,
                               gradient: LinearGradient(
                                 colors: [
                                   primary,
@@ -149,7 +195,7 @@ class MachineComparisonBarChart extends StatelessWidget {
                                 begin: Alignment.bottomCenter,
                                 end: Alignment.topCenter,
                               ),
-                              width: (220.w / data.length).clamp(8.0, 32.0),
+                              width: (220.w / data.length).clamp(4.0, 16.0),
                               borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(AppDesignTokens.radiusS),
                               ),

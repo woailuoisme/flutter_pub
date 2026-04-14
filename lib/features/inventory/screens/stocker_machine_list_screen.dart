@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/core/widgets/card_widgets/premium_card.dart';
 import 'package:lunchbox_hub/core/widgets/empty_widget.dart';
-import 'package:lunchbox_hub/features/agent/widgets/welcome_header.dart';
+import 'package:lunchbox_hub/features/agent/widgets/dashboard/welcome_header.dart';
 import 'package:lunchbox_hub/features/inventory/providers/stocker_machine_list_provider.dart';
 import 'package:lunchbox_hub/features/inventory/widgets/stocker_machine_card.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';

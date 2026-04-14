@@ -5,6 +5,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 
+import 'package:lunchbox_hub/core/widgets/card_widgets/premium_card.dart';
+import 'package:lunchbox_hub/core/widgets/button_widgets/premium_button.dart';
+
 /// 个人中心红色渐变头部组件
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({
@@ -21,165 +24,116 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: AppDesignTokens.primaryGradient(context),
-        boxShadow: AppDesignTokens.shadowSoft(context),
       ),
       child: Column(
         children: [
-          SizedBox(height: 50.h),
-          // Title Bar with animation
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  t.profile.title,
-                  style: TextStyle(
-                    color: theme.colorScheme.onPrimary,
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-              ],
+          SizedBox(height: 54.h),
+          // Title Bar
+          Text(
+            t.profile.title,
+            style: theme.textTheme.titleMedium?.copyWith(
+              color: colorScheme.onPrimary,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
             ),
           ).animate().fadeIn(duration: 400.ms),
-          SizedBox(height: 30.h),
-          // User Info Container with glass-like effect
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: Container(
-              padding: EdgeInsets.all(16.w),
-              decoration: BoxDecoration(
-                color: theme.colorScheme.onPrimary.withValues(
-                  alpha: AppDesignTokens.glassOpacity,
-                ),
-                borderRadius: BorderRadius.circular(AppDesignTokens.radiusL),
-                border: Border.all(
-                  color: theme.colorScheme.onPrimary.withValues(alpha: 0.2),
-                  width: 1,
-                ),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    width: 68.w,
-                    height: 68.w,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: theme.colorScheme.onPrimary.withValues(alpha: 0.1),
-                      border: Border.all(
-                        color: theme.colorScheme.onPrimary.withValues(
-                          alpha: 0.5,
-                        ),
-                        width: 2.5,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.1),
-                          blurRadius: 10,
-                          spreadRadius: 2,
-                        ),
-                      ],
+
+          SizedBox(height: 32.h),
+
+          // User Info Card
+          PremiumCard(
+            margin: EdgeInsets.symmetric(horizontal: 20.w),
+            padding: EdgeInsets.all(16.w),
+            glass: true,
+            enableAnimation:
+                false, // Handle animation externally for the whole header if needed
+            child: Row(
+              children: [
+                // Avatar with premium border
+                Container(
+                  width: 64.w,
+                  height: 64.w,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: colorScheme.onPrimary.withValues(alpha: 0.4),
+                      width: 2,
                     ),
-                    child: _buildAvatar(avatarUrl),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.1),
+                        blurRadius: 8,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
                   ),
-                  SizedBox(width: 16.w),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Hi! $username',
-                          style: TextStyle(
-                            color: theme.colorScheme.onPrimary,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold,
+                  child: ClipOval(child: _buildAvatar(avatarUrl)),
+                ),
+
+                SizedBox(width: 16.w),
+
+                // Name and Badge
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Hi! $username',
+                        style: theme.textTheme.titleLarge?.copyWith(
+                          color: colorScheme.onPrimary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(height: 4.h),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8.w,
+                          vertical: 2.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: colorScheme.onPrimary.withValues(alpha: 0.15),
+                          borderRadius: BorderRadius.circular(
+                            AppDesignTokens.radiusFull,
+                          ),
+                        ),
+                        child: Text(
+                          'PRO MEMBER',
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: colorScheme.onPrimary,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 9.sp,
                             letterSpacing: 0.5,
                           ),
                         ),
-                        SizedBox(height: 4.h),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 8.w,
-                            vertical: 2.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: theme.colorScheme.secondaryContainer
-                                .withValues(alpha: 0.3),
-                            borderRadius: BorderRadius.circular(
-                              AppDesignTokens.radiusS,
-                            ),
-                          ),
-                          child: Text(
-                            'PRO MEMBER', // Example tag
-                            style: TextStyle(
-                              color: theme.colorScheme.onPrimary,
-                              fontSize: 10.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  if (onLogout != null)
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: onLogout,
-                        borderRadius: BorderRadius.circular(
-                          AppDesignTokens.radiusM,
-                        ),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 14.w,
-                            vertical: 8.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: theme.colorScheme.errorContainer.withValues(
-                              alpha: 0.3,
-                            ),
-                            borderRadius: BorderRadius.circular(
-                              AppDesignTokens.radiusM,
-                            ),
-                            border: Border.all(
-                              color: theme.colorScheme.onErrorContainer
-                                  .withValues(alpha: 0.2),
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Symbols.logout,
-                                size: 16.sp,
-                                color: theme.colorScheme.onPrimary,
-                              ),
-                              SizedBox(width: 4.w),
-                              Text(
-                                t.common.logout,
-                                style: TextStyle(
-                                  color: theme.colorScheme.onPrimary,
-                                  fontSize: 13.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       ),
-                    ),
-                ],
-              ),
+                    ],
+                  ),
+                ),
+
+                // Logout Button
+                if (onLogout != null)
+                  PremiumButton(
+                    onPressed: onLogout,
+                    text: t.common.logout,
+                    variant: PremiumButtonVariant.outline,
+                    color: colorScheme.error,
+                    icon: Symbols.logout,
+                    height: 34.h,
+                  ),
+              ],
             ),
           ).animate().fadeIn(duration: 500.ms, delay: 100.ms),
-          SizedBox(height: 24.h),
+
+          SizedBox(height: 28.h),
         ],
       ),
     );
@@ -187,17 +141,17 @@ class ProfileHeader extends StatelessWidget {
 
   Widget _buildAvatar(String? url) {
     if (url == null || url.trim().isEmpty) {
-      return const Center(child: Icon(Symbols.person, color: Colors.white));
+      return const Center(
+        child: Icon(Symbols.person, color: Colors.white, size: 32),
+      );
     }
 
-    final cleanUrl = url.trim();
-    // 不再使用 SvgPicture 渲染 SVG，如果 URL 包含 .svg 也会尝试通过 Image.network 加载
-    // 如果加载失败（由于格式不支持），会回退到 Symbols.person 图标
     return Image.network(
-      cleanUrl,
+      url.trim(),
       fit: BoxFit.cover,
-      errorBuilder: (context, error, stackTrace) =>
-          const Center(child: Icon(Symbols.person, color: Colors.white)),
+      errorBuilder: (_, _, _) => const Center(
+        child: Icon(Symbols.person, color: Colors.white, size: 32),
+      ),
       loadingBuilder: (context, child, loadingProgress) {
         if (loadingProgress == null) return child;
         return const Center(

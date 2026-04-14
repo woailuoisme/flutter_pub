@@ -14,13 +14,14 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 
+import 'package:lunchbox_hub/core/widgets/card_widgets/premium_card.dart';
+
 /// 用户中心视图 (我的)
 class ProfileView extends ConsumerWidget {
   const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
     final profileState = ref.watch(profileProvider);
     final user = profileState.value?.currentUser;
     final isLoading = profileState.isLoading;
@@ -33,6 +34,7 @@ class ProfileView extends ConsumerWidget {
         child: RefreshIndicator(
           onRefresh: () => ref.read(profileProvider.notifier).loadUserInfo(),
           child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
               // 红色渐变背景头部
               SliverToBoxAdapter(
@@ -48,9 +50,45 @@ class ProfileView extends ConsumerWidget {
 
               // 功能列表菜单
               SliverPadding(
-                padding: EdgeInsets.only(top: 12.h),
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
                 sliver: SliverToBoxAdapter(
-                  child: _buildMenuSection(context, ref),
+                  child: PremiumCard(
+                    padding: EdgeInsets.zero, // Keep zero for menu tiles
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ProfileMenuTile(
+                          icon: Symbols.person,
+                          title: t.profile.personalInfo,
+                          onTap: () => context.push(
+                            '${AppRoutes.profile}/${AppRoutes.personalInfo}',
+                          ),
+                          showDivider: true,
+                        ),
+                        ProfileMenuTile(
+                          icon: Symbols.feedback,
+                          title: t.profile.feedback,
+                          onTap: () => context.push(
+                            '${AppRoutes.profile}/${AppRoutes.feedback}',
+                          ),
+                          showDivider: true,
+                        ),
+                        ProfileMenuTile(
+                          icon: Symbols.settings,
+                          title: t.profile.settings,
+                          onTap: () =>
+                              const SettingsRoute().push<void>(context),
+                          showDivider: true,
+                        ),
+                        ProfileMenuTile(
+                          icon: Symbols.info,
+                          title: t.profile.about,
+                          onTap: () => const AboutUsRoute().push<void>(context),
+                          showDivider: false,
+                        ),
+                      ],
+                    ),
+                  ).animate().fadeIn(duration: 400.ms, delay: 200.ms),
                 ),
               ),
 
@@ -59,42 +97,6 @@ class ProfileView extends ConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-
-  /// 构建功能列表菜单
-  Widget _buildMenuSection(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        // 个人相关
-        ProfileMenuTile(
-          icon: Symbols.person,
-          title: t.profile.personalInfo,
-          onTap: () async => await context.push(
-            '${AppRoutes.profile}/${AppRoutes.personalInfo}',
-          ),
-        ),
-
-        ProfileMenuTile(
-          icon: Symbols.help,
-          title: t.profile.feedback,
-          onTap: () async =>
-              await context.push('${AppRoutes.profile}/${AppRoutes.feedback}'),
-        ),
-
-        ProfileMenuTile(
-          icon: Symbols.settings,
-          title: t.profile.settings,
-          onTap: () async => const SettingsRoute().push<void>(context),
-        ),
-
-        ProfileMenuTile(
-          icon: Symbols.info,
-          title: t.profile.about,
-          onTap: () async => const AboutUsRoute().push<void>(context),
-          showDivider: false,
-        ),
-      ].animate(interval: 50.ms).fadeIn(duration: 400.ms, delay: 200.ms),
     );
   }
 
@@ -110,10 +112,8 @@ class ProfileView extends ConsumerWidget {
 
     if (confirmed == true) {
       await ref.read(profileProvider.notifier).logout();
-      // GoRouter 会根据 AuthProvider 的状态自动重定向到登录页
-      // 但为了保险起见，如果还在当前页，可以手动跳转
       if (context.mounted) {
-        await context.push(AppRoutes.signin);
+        context.go(AppRoutes.signin); // Use go instead of push for logout
       }
     }
   }

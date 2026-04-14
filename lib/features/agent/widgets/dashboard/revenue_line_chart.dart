@@ -2,7 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
-import 'package:lunchbox_hub/core/widgets/card_widgets/premium_card.dart';
 import 'package:lunchbox_hub/features/agent/entities/revenue_stats_model.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 
@@ -17,8 +16,22 @@ class RevenueTrendLineChart extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     if (data.isEmpty) {
-      return PremiumCard(
+      return Container(
         margin: EdgeInsets.symmetric(horizontal: AppDesignTokens.spacingM),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(AppDesignTokens.radiusL),
+          border: Border.all(
+            color: theme.colorScheme.outlineVariant.withValues(alpha: 0.2),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: theme.colorScheme.shadow.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
         child: SizedBox(
           height: 200.h,
           child: Center(
@@ -43,8 +56,22 @@ class RevenueTrendLineChart extends StatelessWidget {
     final maxY = data.map((p) => p.value).reduce((a, b) => a > b ? a : b);
     final minY = data.map((p) => p.value).reduce((a, b) => a < b ? a : b);
 
-    return PremiumCard(
+    return Container(
       margin: EdgeInsets.symmetric(horizontal: AppDesignTokens.spacingM),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(AppDesignTokens.radiusL),
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.2),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: theme.colorScheme.shadow.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
       child: Padding(
         padding: EdgeInsets.fromLTRB(
           AppDesignTokens.spacingM,
@@ -56,8 +83,10 @@ class RevenueTrendLineChart extends StatelessWidget {
           height: 200.h,
           child: LineChart(
             LineChartData(
-              minY: minY * 0.95,
-              maxY: maxY * 1.05,
+              minX: -0.5,
+              maxX: data.length - 0.5,
+              minY: minY * 0.9,
+              maxY: maxY * 1.1,
               gridData: FlGridData(
                 show: true,
                 drawVerticalLine: false,
@@ -69,8 +98,39 @@ class RevenueTrendLineChart extends StatelessWidget {
               ),
               borderData: FlBorderData(show: false),
               titlesData: FlTitlesData(
-                leftTitles: const AxisTitles(
-                  sideTitles: SideTitles(showTitles: false),
+                leftTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    reservedSize: 40.w,
+                    getTitlesWidget: (value, meta) {
+                      // Prevent overlapping labels at the absolute extremes
+                      if (value == meta.min || value == meta.max) {
+                        return const SizedBox.shrink();
+                      }
+
+                      final text = value >= 1000
+                          ? '${(value / 1000).toStringAsFixed(1)}k'
+                          : value.toStringAsFixed(0);
+
+                      return SideTitleWidget(
+                        meta: meta,
+                        space: 8.w,
+                        child: SizedBox(
+                          width: 32.w,
+                          child: Text(
+                            text,
+                            textAlign: TextAlign.right,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              fontSize: 10.sp,
+                              color: colorScheme.onSurfaceVariant.withValues(
+                                alpha: 0.6,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
                 rightTitles: const AxisTitles(
                   sideTitles: SideTitles(showTitles: false),
@@ -81,20 +141,22 @@ class RevenueTrendLineChart extends StatelessWidget {
                 bottomTitles: AxisTitles(
                   sideTitles: SideTitles(
                     showTitles: true,
-                    reservedSize: 32.h,
-                    interval: (data.length / 4).ceilToDouble().clamp(
-                      1,
-                      double.infinity,
-                    ),
+                    reservedSize: 42.h,
+                    interval: 1,
                     getTitlesWidget: (value, meta) {
                       final index = value.toInt();
-                      if (index < 0 || index >= data.length) {
+                      if (index < 0 || index >= data.length || index != value) {
                         return const SizedBox.shrink();
                       }
-                      return Padding(
-                        padding: EdgeInsets.only(top: 10.h),
+
+                      final labelText = data[index].label.replaceAll('.', '-');
+
+                      return SideTitleWidget(
+                        meta: meta,
+                        angle: -0.785398,
+                        space: 10.h,
                         child: Text(
-                          data[index].label,
+                          labelText,
                           style: theme.textTheme.labelSmall?.copyWith(
                             fontSize: 10.sp,
                             color: colorScheme.onSurfaceVariant.withValues(

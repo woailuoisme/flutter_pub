@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:lunchbox_hub/core/widgets/card_widgets/premium_card.dart';
+
 /// 关于我们页面中的功能点项
 class AboutFeatureItem extends StatelessWidget {
   const AboutFeatureItem({
@@ -19,56 +21,38 @@ class AboutFeatureItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      padding: EdgeInsets.all(16.w),
-      decoration: BoxDecoration(
-        color: theme.cardColor,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: theme.shadowColor.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+
+    return PremiumCard(
+      padding: EdgeInsets.all(12.w),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.all(8.w),
+            padding: EdgeInsets.all(10.w),
             decoration: BoxDecoration(
               color: color.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(8.r),
+              borderRadius: BorderRadius.circular(12.r),
             ),
-            child: Icon(icon, size: 20.sp, color: color),
+            child: Icon(icon, size: 24.sp, color: color),
           ),
-          const Spacer(),
+          SizedBox(height: 12.h),
           Text(
             title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14.sp,
+            style: theme.textTheme.titleSmall?.copyWith(
               fontWeight: FontWeight.bold,
-              color: theme.textTheme.titleMedium?.color,
             ),
           ),
-          const Spacer(),
-          SizedBox(
-            height: (11.sp * 1.4 * 2) + 2.h, // 固定两行高度
-            child: Text(
-              desc,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 11.sp,
-                color: theme.textTheme.bodySmall?.color,
-                height: 1.4,
-              ),
+          SizedBox(height: 4.h),
+          Text(
+            desc,
+            maxLines: 2,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: theme.hintColor,
+              height: 1.4,
             ),
           ),
         ],

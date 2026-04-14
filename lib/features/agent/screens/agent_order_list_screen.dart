@@ -9,8 +9,8 @@ import 'package:lunchbox_hub/features/agent/entities/agent_machine_model.dart';
 import 'package:lunchbox_hub/features/agent/entities/order_model.dart';
 import 'package:lunchbox_hub/features/agent/providers/agent_machine_list_provider.dart';
 import 'package:lunchbox_hub/features/agent/repositories/agent_repository.dart';
-import 'package:lunchbox_hub/features/agent/widgets/order_list_item.dart';
-import 'package:lunchbox_hub/features/agent/widgets/revenue_summary_card.dart';
+import 'package:lunchbox_hub/features/agent/widgets/order_list/order_list_item.dart';
+import 'package:lunchbox_hub/features/agent/widgets/order_list/revenue_summary_card.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 
 class AgentOrderListScreen extends ConsumerStatefulWidget {
@@ -100,7 +100,7 @@ class _AgentOrderListScreenState extends ConsumerState<AgentOrderListScreen> {
             SliverToBoxAdapter(
               child: RevenueSummaryCard(
                 totalRevenue: totalRevenue,
-              ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.2, end: 0),
+              ).animate().fadeIn(duration: 400.ms),
             ),
             SliverPadding(
               padding: EdgeInsets.only(bottom: 24.h),
@@ -114,8 +114,7 @@ class _AgentOrderListScreenState extends ConsumerState<AgentOrderListScreen> {
                         itemBuilder: (context, order, index) =>
                             OrderListItem(order: order)
                                 .animate(delay: (50 * (index % 10)).ms)
-                                .fadeIn(duration: 400.ms)
-                                .slideY(begin: 0.1, end: 0),
+                                .fadeIn(duration: 400.ms),
                         noItemsFoundIndicatorBuilder: (_) => Center(
                           child: Padding(
                             padding: EdgeInsets.all(32.w),

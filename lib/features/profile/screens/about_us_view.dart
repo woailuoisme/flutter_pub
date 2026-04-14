@@ -15,6 +15,8 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:lunchbox_hub/core/widgets/button_widgets/premium_button.dart';
+
 class AboutUsView extends ConsumerStatefulWidget {
   const AboutUsView({super.key});
 
@@ -23,80 +25,52 @@ class AboutUsView extends ConsumerStatefulWidget {
 }
 
 class _AboutUsViewState extends ConsumerState<AboutUsView> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   void _showPolicyDialog() {
     showDialog<void>(
       context: context,
       builder: (context) {
         final theme = Theme.of(context);
         return Dialog(
-          insetPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 40.h),
+          insetPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 60.h),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.r),
+            borderRadius: BorderRadius.circular(20.r),
           ),
           clipBehavior: Clip.antiAlias,
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // 标题
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.h),
-                  child: Text(
-                    t.about.userAgreementAndPrivacy,
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.h),
+                child: Text(
+                  t.about.userAgreementAndPrivacy,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                // 内容
-                Flexible(
-                  child: FutureBuilder<String>(
-                    future: rootBundle.loadString('assets/html/xieyi.html'),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return SizedBox(
-                          height: 200.h,
-                          child: const Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
-                      }
-                      return HtmlWebView(
-                        htmlContent: snapshot.data ?? '',
-                        backgroundColor: theme.colorScheme.surface,
-                      );
-                    },
-                  ),
+              ),
+              Expanded(
+                child: FutureBuilder<String>(
+                  future: rootBundle.loadString('assets/html/xieyi.html'),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return HtmlWebView(
+                      htmlContent: snapshot.data ?? '',
+                      backgroundColor: theme.colorScheme.surface,
+                    );
+                  },
                 ),
-                // 底部确认按钮 - 简单的填充按钮
-                Padding(
-                  padding: EdgeInsets.all(20.w),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 48.h,
-                    child: FilledButton(
-                      style: FilledButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.r),
-                        ),
-                      ),
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text(
-                        t.common.confirm,
-                        style: TextStyle(fontSize: 16.sp),
-                      ),
-                    ),
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(20.w),
+                child: PremiumButton(
+                  width: double.infinity,
+                  onPressed: () => Navigator.of(context).pop(),
+                  text: t.common.confirm,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },
@@ -106,15 +80,12 @@ class _AboutUsViewState extends ConsumerState<AboutUsView> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text(t.about.title),
         centerTitle: true,
-        backgroundColor:
-            theme.appBarTheme.backgroundColor ?? theme.colorScheme.surface,
         elevation: 0,
-        scrolledUnderElevation: 0,
       ),
       body: CustomScrollView(
         slivers: [
@@ -133,33 +104,16 @@ class _AboutUsViewState extends ConsumerState<AboutUsView> {
               onTapAddress: _launchMap,
             ),
           ),
-          SliverToBoxAdapter(child: SizedBox(height: 32.h)),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-              child: SizedBox(
-                width: double.infinity,
-                height: 50.h,
-                child: FilledButton.icon(
-                  onPressed: _shareApp,
-                  icon: const Icon(Symbols.share, size: 20),
-                  label: Text(
-                    t.about.shareWithFriends,
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  style: FilledButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                  ),
-                ),
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 32.h),
+            sliver: SliverToBoxAdapter(
+              child: PremiumButton(
+                onPressed: _shareApp,
+                icon: Symbols.share,
+                text: t.about.shareWithFriends,
               ),
             ),
           ),
-          SliverToBoxAdapter(child: SizedBox(height: 32.h)),
         ],
       ),
     );

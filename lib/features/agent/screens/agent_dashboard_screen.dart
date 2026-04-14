@@ -5,13 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/features/agent/providers/agent_dashboard_provider.dart';
 import 'package:lunchbox_hub/features/agent/providers/agent_dashboard_state.dart';
-import 'package:lunchbox_hub/features/agent/widgets/kpi_card.dart';
-import 'package:lunchbox_hub/features/agent/widgets/machine_comparison_bar_chart.dart';
-import 'package:lunchbox_hub/features/agent/widgets/order_bar_chart.dart';
-import 'package:lunchbox_hub/features/agent/widgets/product_pie_chart.dart';
-import 'package:lunchbox_hub/features/agent/widgets/revenue_line_chart.dart';
-import 'package:lunchbox_hub/features/agent/widgets/time_period_selector.dart';
-import 'package:lunchbox_hub/features/agent/widgets/welcome_header.dart';
+import 'package:lunchbox_hub/features/agent/widgets/dashboard/kpi_card.dart';
+import 'package:lunchbox_hub/features/agent/widgets/dashboard/machine_comparison_bar_chart.dart';
+import 'package:lunchbox_hub/features/agent/widgets/dashboard/order_bar_chart.dart';
+import 'package:lunchbox_hub/features/agent/widgets/dashboard/product_pie_chart.dart';
+import 'package:lunchbox_hub/features/agent/widgets/dashboard/revenue_line_chart.dart';
+import 'package:lunchbox_hub/features/agent/widgets/dashboard/time_period_selector.dart';
+import 'package:lunchbox_hub/features/agent/widgets/dashboard/welcome_header.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 import 'package:lunchbox_hub/routes/routes.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -64,10 +64,7 @@ class _AgentDashboardScreenState extends ConsumerState<AgentDashboardScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              const WelcomeHeader()
-                  .animate()
-                  .fadeIn(duration: 600.ms)
-                  .slideY(begin: -0.2, end: 0),
+              const WelcomeHeader().animate().fadeIn(duration: 600.ms),
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: AppDesignTokens.spacingM,
@@ -92,7 +89,7 @@ class _AgentDashboardScreenState extends ConsumerState<AgentDashboardScreen> {
                     ),
                   ],
                 ),
-              ).animate().fadeIn(delay: 200.ms).slideX(begin: -0.1, end: 0),
+              ).animate().fadeIn(delay: 200.ms),
               Expanded(
                 child: Skeletonizer(
                   enabled: isLoading,
@@ -105,19 +102,16 @@ class _AgentDashboardScreenState extends ConsumerState<AgentDashboardScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: AppDesignTokens.spacingM,
-                                ),
-                                child: TimePeriodSelector(
-                                  selected: dashboardState.selectedPeriod,
-                                  onChanged: (period) => ref
-                                      .read(agentDashboardProvider.notifier)
-                                      .changePeriod(period),
-                                ),
-                              )
-                              .animate()
-                              .fadeIn(delay: 100.ms)
-                              .slideX(begin: -0.05),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: AppDesignTokens.spacingM,
+                            ),
+                            child: TimePeriodSelector(
+                              selected: dashboardState.selectedPeriod,
+                              onChanged: (period) => ref
+                                  .read(agentDashboardProvider.notifier)
+                                  .changePeriod(period),
+                            ),
+                          ).animate().fadeIn(delay: 100.ms),
                           _buildContent(context, dashboardState),
                         ],
                       ),

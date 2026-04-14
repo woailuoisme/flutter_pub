@@ -24,12 +24,13 @@ export 'screens/agent_machine_list_screen.dart';
 export 'screens/agent_order_list_screen.dart';
 
 // Widgets
-export 'widgets/agent_machine_card.dart';
-export 'widgets/kpi_card.dart';
-export 'widgets/machine_comparison_bar_chart.dart';
-export 'widgets/order_bar_chart.dart';
-export 'widgets/order_list_item.dart';
-export 'widgets/product_pie_chart.dart';
-export 'widgets/revenue_line_chart.dart';
-export 'widgets/revenue_summary_card.dart';
-export 'widgets/time_period_selector.dart';
+export 'widgets/machine_list/agent_machine_card.dart';
+export 'widgets/dashboard/kpi_card.dart';
+export 'widgets/dashboard/machine_comparison_bar_chart.dart';
+export 'widgets/dashboard/order_bar_chart.dart';
+export 'widgets/order_list/order_list_item.dart';
+export 'widgets/dashboard/product_pie_chart.dart';
+export 'widgets/dashboard/revenue_line_chart.dart';
+export 'widgets/order_list/revenue_summary_card.dart';
+export 'widgets/dashboard/time_period_selector.dart';
+export 'widgets/dashboard/welcome_header.dart';

@@ -15,7 +15,7 @@ class ThemeNotifier extends _$ThemeNotifier {
   ThemeState build() {
     final prefs = ref.watch(sharedPreferencesProvider);
     final modeIndex = prefs.getInt(_themeModeKey) ?? ThemeMode.system.index;
-    final schemeIndex = prefs.getInt(_schemeKey) ?? FlexScheme.shadGreen.index;
+    final schemeIndex = prefs.getInt(_schemeKey) ?? FlexScheme.bahamaBlue.index;
 
     return ThemeState(
       mode: ThemeMode.values[modeIndex],

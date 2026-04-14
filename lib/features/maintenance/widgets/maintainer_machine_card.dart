@@ -25,7 +25,9 @@ class MaintainerMachineCard extends StatelessWidget {
     final statusColor = hasFaults
         ? AppDesignTokens.error
         : AppDesignTokens.success;
-    final statusText = hasFaults ? t.maintenance.statusFault : t.maintenance.statusOnline;
+    final statusText = hasFaults
+        ? t.maintenance.statusFault
+        : t.maintenance.statusOnline;
 
     return PremiumCard(
       onTap: onTap,
@@ -106,7 +108,9 @@ class MaintainerMachineCard extends StatelessWidget {
                   context,
                   Symbols.history,
                   machine.lastFaultAt != null
-                      ? DateFormat('yyyy-MM-dd HH:mm').format(DateTime.parse(machine.lastFaultAt!))
+                      ? DateFormat(
+                          'yyyy-MM-dd HH:mm',
+                        ).format(DateTime.parse(machine.lastFaultAt!))
                       : "-",
                   colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
                 ),
@@ -138,20 +142,20 @@ class MaintainerMachineCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 7.w,
-            height: 7.w,
-            decoration: BoxDecoration(
-              color: statusColor,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: statusColor.withValues(alpha: 0.3),
-                  blurRadius: 8,
-                  spreadRadius: 1,
+                width: 7.w,
+                height: 7.w,
+                decoration: BoxDecoration(
+                  color: statusColor,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: statusColor.withValues(alpha: 0.3),
+                      blurRadius: 8,
+                      spreadRadius: 1,
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          )
+              )
               .animate(onPlay: (controller) => controller.repeat(reverse: true))
               .scale(
                 duration: 1000.ms,

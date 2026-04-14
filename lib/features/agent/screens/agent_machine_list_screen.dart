@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/core/widgets/empty_widget.dart';
 import 'package:lunchbox_hub/features/agent/providers/agent_machine_list_provider.dart';
-import 'package:lunchbox_hub/features/agent/widgets/agent_machine_card.dart';
+import 'package:lunchbox_hub/features/agent/widgets/machine_list/agent_machine_card.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 import 'package:lunchbox_hub/routes/routes.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -87,8 +87,7 @@ class AgentMachineListScreen extends ConsumerWidget {
                               ).push<void>(context),
                             )
                             .animate(delay: (50 * index).ms)
-                            .fadeIn(duration: 400.ms)
-                            .slideY(begin: 0.1, end: 0);
+                            .fadeIn(duration: 400.ms);
                       }, childCount: machines.length),
                     ),
                   ),

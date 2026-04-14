@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lunchbox_hub/core/theme/design_tokens.dart';
 import 'package:lunchbox_hub/core/widgets/card_widgets/premium_card.dart';
 import 'package:lunchbox_hub/features/maintenance/entities/fault_record_model.dart';
+import 'package:lunchbox_hub/features/maintenance/widgets/fault_detail_bottom_sheet.dart';
 import 'package:lunchbox_hub/features/maintenance/widgets/fault_status_badge.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -18,6 +19,7 @@ class FaultRecordListItem extends StatelessWidget {
     final isPending = fault.status == FaultStatus.pending;
 
     return PremiumCard(
+      onTap: () => showFaultDetailBottomSheet(context, fault),
       margin: EdgeInsets.symmetric(
         horizontal: AppDesignTokens.spacingM,
         vertical: AppDesignTokens.spacingXS,
@@ -76,6 +78,8 @@ class FaultRecordListItem extends StatelessWidget {
                   SizedBox(height: 6.h),
                   Text(
                     fault.description,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: colorScheme.onSurfaceVariant.withValues(
                         alpha: 0.8,

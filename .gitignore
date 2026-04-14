@@ -44,6 +44,8 @@ migrate_working_dir/
 /.specify
 # Symbolication related
 app.*.symbols
+/.ai
+/.claude
 
 # Obfuscation related
 app.*.map.json
