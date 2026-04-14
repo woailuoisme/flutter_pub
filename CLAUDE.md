@@ -1,7 +1,3 @@
-# CLAUDE.md
-
-本文件用于指导 Claude Code 在此仓库中工作。
-
 ## 项目概览
 
 Lunchbox Hub 是一个用于售货机管理的 Flutter 应用。
@@ -67,6 +63,7 @@ flutter run --dart-define-from-file=config/env_dev.json
 
 - 只做和任务直接相关的最小改动。
 - 不要手改生成文件（如 `*.g.dart`、`*.freezed.dart`、`*.gr.dart`、`lib/generated/**`），需要重新生成。
+- 资源路径统一使用 `lib/core/constants/app_assets.dart`；`lib/generated/assets.dart` 仅作为生成产物，不作为业务代码的主入口。
 - 新业务逻辑优先放到对应 feature 内，只有真正共享的部分才放到 `lib/core`。
 - 避免无关重构和大范围整理。
 - Shell 命令按仓库约定优先使用 `rtk <command>`。
