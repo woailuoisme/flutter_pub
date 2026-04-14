@@ -59,15 +59,18 @@ flutter analyze
 flutter run --dart-define-from-file=config/env_dev.json
 ```
 
-## 工作约定
-
 - 只做和任务直接相关的最小改动。
 - 不要手改生成文件（如 `*.g.dart`、`*.freezed.dart`、`*.gr.dart`、`lib/generated/**`），需要重新生成。
 - 资源路径统一使用 `lib/core/constants/app_assets.dart`；`lib/generated/assets.dart` 仅作为生成产物，不作为业务代码的主入口。
 - 新业务逻辑优先放到对应 feature 内，只有真正共享的部分才放到 `lib/core`。
 - 避免无关重构和大范围整理。
 - Shell 命令按仓库约定优先使用 `rtk <command>`。
-
+- Flutter UI 优先使用 `flutter_screenutil` 做布局。
+- 样式优先复用 `Theme.of(context)` 中已有的类型常量。
+- 文案优先使用 `slang` 中的定义。
+- Form 优先使用 `flutter_form_builder` 和 `form_builder_validators`。
+- 页面只负责 UI 组合和事件转发；状态、请求、校验放到对应 feature 的 `provider` / `notifier` / `repository`。
+- 组件拆分优先参考现有 feature 结构：通常按 `screens/`、`widgets/`、`providers/`、`repositories/`、`datasources/`、`entities/` 分层，页面保持薄层，像 `auth` feature 那样由页面组装 widget 并通过 provider 驱动状态。
 ## 代码结构提醒
 
 如果改动会影响路由、登录/会话、网络、本地存储或全局主题，先看 `lib/core` 里的对应实现，再改 feature 代码。
