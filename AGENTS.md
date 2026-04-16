@@ -76,3 +76,12 @@ flutter run --dart-define-from-file=config/env_dev.json
 如果改动会影响路由、登录/会话、网络、本地存储或全局主题，先看 `lib/core` 里的对应实现，再改 feature 代码。
 
 @RTK.md
+
+
+<claude-mem-context>
+# Memory Context
+
+# $CMEM lunchbox_hub 2026-04-16 1:21pm GMT+8
+
+No previous sessions found.
+</claude-mem-context>

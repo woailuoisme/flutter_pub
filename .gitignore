@@ -41,7 +41,9 @@ migrate_working_dir/
 /.agent-task-slugs
 /.codex
 /.gemini
-/.specify
+/.specify/*
+!/.specify/memory/
+!/.specify/memory/**
 # Symbolication related
 app.*.symbols
 /.ai
