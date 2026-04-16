@@ -21,13 +21,10 @@ else
     fi
 fi
 
-# Ensure running in project root
 cd "$PROJECT_ROOT"
 
-# Check for GitHub CLI dependency
 require_cmd "gh"
 
-# Define environment files as pairs: "SECRET_NAME:FILE_PATH"
 SECRETS=(
     "ENV_DEV:.env.dev"
     "ENV_PROD:.env.prod"
@@ -38,7 +35,7 @@ log_info "Syncing environment files to GitHub Secrets..."
 for ENTRY in "${SECRETS[@]}"; do
     NAME="${ENTRY%%:*}"
     FILE="${ENTRY#*:}"
-    
+
     if [[ -f "$FILE" ]]; then
         log_info "Setting secret $NAME from $FILE..."
         gh secret set "$NAME" < "$FILE"

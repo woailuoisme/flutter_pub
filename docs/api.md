@@ -1,8 +1,8 @@
 # Vending Machine Operations — REST API 文档
 
-> **Base URL**: `https://api.example.com`  
-> **API Version**: `v1`  
-> **Data Format**: `application/json`  
+> **Base URL**: `https://api.example.com`
+> **API Version**: `v1`
+> **Data Format**: `application/json`
 > **Auth**: Bearer Token（JWT）
 
 ---
@@ -27,7 +27,7 @@
   "success": true,
   "code": 200,
   "message": "OK",
-  "data": { ... },
+  "data": {  },
   "errors": null
 }
 ```
