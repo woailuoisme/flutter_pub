@@ -43,7 +43,7 @@ Screen / Widget
 - 状态管理统一使用 Riverpod
 - 路由统一使用 GoRouter
 - 网络统一使用 Dio + Retrofit
-- 本地结构化存储统一使用 Drift + SQLite
+- 本地结构化存储统一使用 ObjectBox
 - 用户可见文案统一走 Slang
 - 样式优先复用主题与现有共享组件
 - 复杂表单优先 `flutter_form_builder` + `form_builder_validators`
@@ -51,7 +51,7 @@ Screen / Widget
 ### 4. 生成与资源约束
 
 - 不手改 `*.g.dart`、`*.freezed.dart`、`*.gr.dart`
-- 需要改注解、路由、i18n、Retrofit、Drift 时，必须补生成任务
+- 需要改注解、路由、i18n、Retrofit、ObjectBox 实体时，必须补生成任务
 - 资源路径优先通过 `lib/core/constants/app_assets.dart`
 
 ### 5. 验证要求

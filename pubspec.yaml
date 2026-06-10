@@ -121,6 +121,13 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_native_splash: ^2.4.7
 
+dependency_overrides:
+  # 临时拉高 analyzer 生态；需等待生成器正式支持后移除。
+  meta: ^1.18.3
+  test_api: ^0.7.12
+  analyzer: ^10.0.0
+  dart_style: 3.1.7
+
 flutter:
   uses-material-design: true
 

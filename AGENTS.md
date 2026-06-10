@@ -1,4 +1,4 @@
-## 项目概览
+# 项目概览
 
 Lunchbox Hub 是一个用于售货机管理的 Flutter 应用。
 项目采用 feature-first 结构：业务功能放在 `lib/features`，共享能力放在 `lib/core`（必要时放到 `lib/shared`）。
@@ -17,8 +17,8 @@ Lunchbox Hub 是一个用于售货机管理的 Flutter 应用。
 - Riverpod：状态管理
 - GoRouter：路由
 - Dio / Retrofit：网络请求
-- Drift / SQLite：本地存储
-- `build_runner`、`riverpod_generator`、`freezed`、`json_serializable`、`retrofit_generator`、`drift_dev`、`go_router_builder`、`slang`、`envied`：常规代码生成
+- ObjectBox：本地结构化存储
+- `build_runner`、`riverpod_generator`、`freezed`、`json_serializable`、`retrofit_generator`、`objectbox_generator`、`go_router_builder`、`slang`、`envied`：常规代码生成
 
 ## 推荐技能
 

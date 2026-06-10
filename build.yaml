@@ -37,13 +37,6 @@ targets:
           field_rename: snake # 字段命名策略：snake_case (例如 userName -> user_name)
           include_if_null: false #生成的 JSON 中不包含 null 值字段
 
-      drift_dev:
-        enabled: true
-        generate_for:
-          - lib/core/services/*.dart
-        options:
-          store_date_time_values_as_text: true # 将 DateTime 存储为文本 (ISO-8601)，而不是 Unix 时间戳
-
       retrofit_generator:
         enabled: true
         generate_for:
