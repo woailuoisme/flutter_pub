@@ -6,6 +6,7 @@ import 'package:lunchbox_hub/core/utils/mock_data.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:lunchbox_hub/objectbox.g.dart';
 import 'dart:convert';
+import 'dart:async';
 
 part 'notification_repository.g.dart';
 
@@ -20,6 +21,10 @@ class NotificationRepository {
   final Box<NotificationEntity> _box;
   final GotifyRestClient restClient;
   final GotifyWebSocketService wsService;
+
+  // 异步写入缓冲区与定时器
+  final List<NotificationEntity> _writeBuffer = [];
+  Timer? _bufferTimer;
 
   Stream<List<NotificationModel>> watchNotifications() {
     final builder = _box.query()
@@ -47,9 +52,31 @@ class NotificationRepository {
 
   void startListening() {
     wsService.connect();
-    wsService.stream.listen((message) async {
-      _box.put(_mapModelToEntity(message));
+    wsService.stream.listen((message) {
+      final entity = _mapModelToEntity(message);
+      
+      // 合并缓冲区内相同 ID 的消息进行去重
+      _writeBuffer.removeWhere((item) => item.id == entity.id);
+      _writeBuffer.add(entity);
+
+      _bufferTimer?.cancel();
+      if (_writeBuffer.length >= 10) {
+        _flushBuffer();
+      } else {
+        _bufferTimer = Timer(const Duration(milliseconds: 200), _flushBuffer);
+      }
     });
+  }
+
+  void _flushBuffer() {
+    if (_writeBuffer.isEmpty) return;
+    _box.putMany(List.from(_writeBuffer));
+    _writeBuffer.clear();
+  }
+
+  void dispose() {
+    _bufferTimer?.cancel();
+    _flushBuffer();
   }
 
   Stream<int> watchUnreadNotificationsCount() {
@@ -111,9 +138,11 @@ NotificationRepository notificationRepository(Ref ref) {
   final db = ref.watch(databaseServiceProvider);
   final restClient = ref.watch(gotifyRestClientProvider);
   final wsService = ref.watch(gotifyWebSocketServiceProvider);
-  return NotificationRepository(
+  final repository = NotificationRepository(
     store: db,
     restClient: restClient,
     wsService: wsService,
   );
+  ref.onDispose(repository.dispose);
+  return repository;
 }

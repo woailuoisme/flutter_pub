@@ -1,0 +1,31 @@
+{
+  "config": {
+    "default": true,
+    // 1. 之前已忽略的特定文档警告规则
+    "MD022": false, // blanks-around-headings: 标题前后必须留有空行
+    "MD030": false, // list-marker-space: 列表前导符（如 *、-）后的空格数限制
+    "MD032": false, // blanks-around-lists: 列表的前后必须留有空行
+
+    // 2. 业界主流、符合开发体验（Developer Experience）的推荐实践规则
+    "MD013": false, // line-length: 限制单行字符长度（现代编辑器多采用软换行，硬换行反而破坏排版）
+    "MD033": false, // no-inline-html: 允许在 Markdown 内嵌套原生 HTML（如 details/summary 折叠、自定义图片居中等）
+    "MD034": false, // no-bare-urls: 允许使用纯 URL 地址（现代渲染引擎已支持自动识别裸链接）
+    "MD024": {
+      "siblings_only": true // no-duplicate-heading: 仅限制同级标题不能重名（允许不同大标题下包含相同的子标题，如“Context”）
+    },
+    "MD026": false, // no-trailing-punctuation: 允许标题以标点符号结尾（例如在标题中使用“？”或“！”）
+    "MD036": false, // no-emphasis-as-heading: 允许加粗单行文本作为轻量级段落引导标题
+    "MD029": {
+      "style": "ordered" // ol-prefix: 强制有序列表前缀使用 1. 2. 3. 顺序递增样式
+    }
+  },
+  "ignores": [
+    "**/node_modules/**",
+    "**/build/**",
+    ".dart_tool/**",
+    "docs/adr/0003-objectbox-initialization-and-recovery.md",
+    "docs/adr/0004-websocket-message-buffering.md",
+    "CONTEXT.md"
+  ]
+}
+

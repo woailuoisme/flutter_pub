@@ -10,13 +10,35 @@ import 'package:lunchbox_hub/core/theme/theme.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 import 'package:lunchbox_hub/objectbox.g.dart';
 import 'package:lunchbox_hub/routes/app_router.dart';
+import 'dart:io';
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toastification/toastification.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final sharedPreferences = await SharedPreferences.getInstance();
-  final store = await openStore();
+  
+  late final Store store;
+  try {
+    store = await openStore();
+  } catch (e) {
+    debugPrint('Failed to open ObjectBox store: $e. Attempting recovery...');
+    try {
+      final docsDir = await getApplicationDocumentsDirectory();
+      final dbDir = Directory(p.join(docsDir.path, 'objectbox'));
+      if (await dbDir.exists()) {
+        await dbDir.delete(recursive: true);
+        debugPrint('Corrupted ObjectBox directory deleted. Re-opening store...');
+      }
+      store = await openStore();
+    } catch (retryError) {
+      debugPrint('Fatal error initializing ObjectBox after recovery: $retryError');
+      // 仍然rethrow，保证底层异常能被Sentry/Bugly等日志框架捕获
+      rethrow;
+    }
+  }
 
   // 初始化语言设置
   final savedLocale = sharedPreferences.getString('selected_locale');

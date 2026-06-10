@@ -74,4 +74,9 @@ android/key.properties
 **/*.so
 **/*.dll
 
+# Local documentation and ADRs
+/docs/adr/
+/CONTEXT.md
+
+
 
