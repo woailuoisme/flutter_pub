@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "lunchbox_hub (Default)",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "lunchbox_hub (Dev Config)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define-from-file=config/env_dev.json"
+            ]
+        },
+        {
+            "name": "lunchbox_hub (Prod Config)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define-from-file=config/env_prod.json"
+            ]
+        }
+    ]
+}

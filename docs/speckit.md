@@ -58,10 +58,10 @@ Screen / Widget
 
 实现完成前至少明确以下验证项：
 
-- 代码生成是否需要执行 `make build`
-- 静态检查是否需要执行 `make analyze`
-- 测试是否需要执行 `flutter test` 或 `make test`
-- 是否需要 `make ready` 做收口
+- 代码生成是否需要执行 `just build`
+- 静态检查是否需要执行 `just analyze`
+- 测试是否需要执行 `flutter test` 或 `just test`
+- 是否需要 `just ready` 做收口
 
 ## Speckit 在本项目中的正确落点
 

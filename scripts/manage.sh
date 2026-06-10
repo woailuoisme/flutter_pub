@@ -65,7 +65,19 @@ function get_deps() {
 function cmd_analyze() {
     log_info "Running static code analysis..."
     cd "$PROJECT_ROOT"
-    flutter analyze | grep -v "info •" || true
+    local analyze_output
+    local analyze_status
+
+    set +e
+    analyze_output="$(flutter analyze 2>&1)"
+    analyze_status=$?
+    set -e
+
+    printf '%s\n' "$analyze_output" | rg -v "info \u2022" || true
+    if [ "$analyze_status" -ne 0 ]; then
+        log_error "Code analysis failed"
+        return "$analyze_status"
+    fi
     log_success "Code analysis completed"
 }
 
@@ -79,18 +91,20 @@ function cmd_analyze_strict() {
 function cmd_format() {
     log_info "Formatting code (excluding generated files)..."
     cd "$PROJECT_ROOT"
-    # Find files excluding .g.dart, .freezed.dart, etc. and format them
-    # Use -print0 and xargs -0 to handle filenames with spaces or special characters
-    find lib test -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -name "*.config.dart" ! -name "*.gr.dart" -print0 | xargs -0 dart format
+    # fd 排除生成文件，-E 匹配 glob。
+    fd -t f -e dart \
+        -E '*.g.dart' -E '*.freezed.dart' -E '*.config.dart' -E '*.gr.dart' \
+        lib test \
+        -X dart format
     log_success "Code formatting completed"
 }
 
 function cmd_fix() {
     log_info "Automatically fixing code issues (excluding generated files)..."
     cd "$PROJECT_ROOT"
-    # dart fix --apply doesn't support direct file lists easily for filtering, 
+    # dart fix --apply doesn't support direct file lists easily for filtering,
     # but we can use the same logic if needed or rely on analysis_options.yaml exclusion.
-    # Here we apply it to the whole project as it's the standard way, 
+    # Here we apply it to the whole project as it's the standard way,
     # but we'll use find to be explicit if you prefer.
     dart fix --apply
     log_success "Automatic code fix completed"
@@ -141,9 +155,9 @@ function cmd_gen_icons() {
 function cmd_clean() {
     log_info "Cleaning build artifacts..."
     cd "$PROJECT_ROOT"
-    dart run build_runner clean 2>/dev/null || true
-    find lib -name "*.g.dart" -type f -delete 2>/dev/null || true
-    find lib -name "*.freezed.dart" -type f -delete 2>/dev/null || true
+    dart run build_runner clean 2> /dev/null || true
+    fd -t f -e g.dart lib -X rm -f 2> /dev/null || true
+    fd -t f -e freezed.dart lib -X rm -f 2> /dev/null || true
     flutter clean
     log_success "Cleaning completed"
 }
@@ -201,7 +215,7 @@ function cmd_build_apk() {
     if [[ "$MODE" == "split" ]]; then
         log_info "Packaging split-ABI APKs..."
         flutter build apk --release $DART_DEFINE --split-per-abi --obfuscate --split-debug-info=build/app/outputs/symbols
-        cp build/app/outputs/flutter-apk/app-*-release.apk "$OUTPUT_DIR/" 2>/dev/null || true
+        cp build/app/outputs/flutter-apk/app-*-release.apk "$OUTPUT_DIR/" 2> /dev/null || true
     fi
 
     log_success "Build successful! Mode: $MODE"
@@ -345,7 +359,7 @@ case "$COMMAND" in
     run:offline)
         cmd_run_offline
         ;;
-    help|--help|-h)
+    help | --help | -h)
         show_help
         ;;
     *)

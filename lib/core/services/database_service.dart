@@ -1,63 +1,41 @@
-import 'package:drift/drift.dart';
-import 'package:drift_flutter/drift_flutter.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'database_service.g.dart';
 
-/// 通知消息表
-class Notifications extends Table {
-  IntColumn get id => integer()();
-  IntColumn get appId => integer()();
-  TextColumn get message => text()();
-  TextColumn get title => text()();
-  IntColumn get priority => integer()();
-  DateTimeColumn get date => dateTime()();
-  TextColumn get extras => text().nullable()(); // JSON String
-  BoolColumn get isRead => boolean().withDefault(const Constant(false))();
-
-  @override
-  Set<Column> get primaryKey => {id};
-}
-
-/// 数据库类
-@DriftDatabase(tables: [Notifications])
-class AppDatabase extends _$AppDatabase {
-  AppDatabase() : super(_openConnection());
-
-  @override
-  int get schemaVersion => 5; // Increment schema version after removing table
-
-  @override
-  MigrationStrategy get migration {
-    return MigrationStrategy(
-      onCreate: (m) async {
-        await m.createAll();
-      },
-      onUpgrade: (m, from, to) async {
-        if (from < 5) {
-          // Simplest approach: just ensure notifications table exists if it wasn't there
-          // Since we are removing carts, we don't strictly need to drop it unless
-          // we want to be very clean, but typically removing from @DriftDatabase
-          // and incrementing version is enough for the generated code.
-          // For a clean state, we can try to drop if it exists.
-        }
-      },
-    );
-  }
-}
-
-/// 打开数据库连接
-LazyDatabase _openConnection() {
-  return LazyDatabase(() async {
-    return driftDatabase(
-      name: 'db',
-      native: const DriftNativeOptions(shareAcrossIsolates: true),
-    );
+/// 通知消息实体
+@Entity()
+class NotificationEntity {
+  NotificationEntity({
+    this.id = 0,
+    required this.appId,
+    required this.message,
+    required this.title,
+    required this.priority,
+    required this.date,
+    required this.isRead,
+    this.extras,
   });
+
+  @Id(assignable: true)
+  int id; // 对应 Gotify 的消息 ID
+
+  int appId;
+  String message;
+  String title;
+  int priority;
+
+  @Property(type: PropertyType.date)
+  DateTime date;
+
+  String? extras; // JSON String
+
+  bool isRead;
 }
 
-/// 数据库服务 Provider
+/// ObjectBox Store Provider
+/// 该 Provider 在 main.dart 中被 override 注入初始化后的实例
 @Riverpod(keepAlive: true)
-AppDatabase databaseService(Ref ref) {
-  return AppDatabase();
+Store databaseService(Ref ref) {
+  throw UnimplementedError('databaseService has not been overridden');
 }

@@ -1,0 +1,9 @@
+# 项目脚本统一按 bash 检查。
+shell=bash
+
+# 允许跟随 source，并优先从脚本所在目录解析。
+external-sources=true
+source-path=SCRIPTDIR
+
+# utils.sh 中有供其他脚本 source 后使用的变量。
+disable=SC2034

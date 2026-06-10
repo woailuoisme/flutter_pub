@@ -48,26 +48,26 @@ class Translations with BaseTranslations<AppLocale, Translations> {
       Translations(meta: meta ?? this.$meta);
 
   // Translations
-  late final TranslationsAboutZhCn about = TranslationsAboutZhCn.internal(_root);
-  late final TranslationsAuthZhCn auth = TranslationsAuthZhCn.internal(_root);
-  late final TranslationsCommonZhCn common = TranslationsCommonZhCn.internal(_root);
-  late final TranslationsDeviceInfoZhCn device_info = TranslationsDeviceInfoZhCn.internal(_root);
-  late final TranslationsFeedbackZhCn feedback = TranslationsFeedbackZhCn.internal(_root);
-  late final TranslationsInventoryZhCn inventory = TranslationsInventoryZhCn.internal(_root);
-  late final TranslationsMachinesZhCn machines = TranslationsMachinesZhCn.internal(_root);
-  late final TranslationsMaintenanceZhCn maintenance = TranslationsMaintenanceZhCn.internal(_root);
-  late final TranslationsNavigationZhCn navigation = TranslationsNavigationZhCn.internal(_root);
-  late final TranslationsNetworkZhCn network = TranslationsNetworkZhCn.internal(_root);
-  late final TranslationsNotificationsZhCn notifications = TranslationsNotificationsZhCn.internal(_root);
-  late final TranslationsProfileZhCn profile = TranslationsProfileZhCn.internal(_root);
-  late final TranslationsSettingsZhCn settings = TranslationsSettingsZhCn.internal(_root);
-  late final TranslationsTimeZhCn time = TranslationsTimeZhCn.internal(_root);
-  late final TranslationsWelcomeGiftZhCn welcome_gift = TranslationsWelcomeGiftZhCn.internal(_root);
+  late final Translations$about$zh_CN about = Translations$about$zh_CN.internal(_root);
+  late final Translations$auth$zh_CN auth = Translations$auth$zh_CN.internal(_root);
+  late final Translations$common$zh_CN common = Translations$common$zh_CN.internal(_root);
+  late final Translations$device_info$zh_CN device_info = Translations$device_info$zh_CN.internal(_root);
+  late final Translations$feedback$zh_CN feedback = Translations$feedback$zh_CN.internal(_root);
+  late final Translations$inventory$zh_CN inventory = Translations$inventory$zh_CN.internal(_root);
+  late final Translations$machines$zh_CN machines = Translations$machines$zh_CN.internal(_root);
+  late final Translations$maintenance$zh_CN maintenance = Translations$maintenance$zh_CN.internal(_root);
+  late final Translations$navigation$zh_CN navigation = Translations$navigation$zh_CN.internal(_root);
+  late final Translations$network$zh_CN network = Translations$network$zh_CN.internal(_root);
+  late final Translations$notifications$zh_CN notifications = Translations$notifications$zh_CN.internal(_root);
+  late final Translations$profile$zh_CN profile = Translations$profile$zh_CN.internal(_root);
+  late final Translations$settings$zh_CN settings = Translations$settings$zh_CN.internal(_root);
+  late final Translations$time$zh_CN time = Translations$time$zh_CN.internal(_root);
+  late final Translations$welcome_gift$zh_CN welcome_gift = Translations$welcome_gift$zh_CN.internal(_root);
 }
 
 // Path: about
-class TranslationsAboutZhCn {
-  TranslationsAboutZhCn.internal(this._root);
+class Translations$about$zh_CN {
+  Translations$about$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -135,8 +135,8 @@ class TranslationsAboutZhCn {
 }
 
 // Path: auth
-class TranslationsAuthZhCn {
-  TranslationsAuthZhCn.internal(this._root);
+class Translations$auth$zh_CN {
+  Translations$auth$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -286,8 +286,8 @@ class TranslationsAuthZhCn {
 }
 
 // Path: common
-class TranslationsCommonZhCn {
-  TranslationsCommonZhCn.internal(this._root);
+class Translations$common$zh_CN {
+  Translations$common$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -438,8 +438,8 @@ class TranslationsCommonZhCn {
 }
 
 // Path: device_info
-class TranslationsDeviceInfoZhCn {
-  TranslationsDeviceInfoZhCn.internal(this._root);
+class Translations$device_info$zh_CN {
+  Translations$device_info$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -501,8 +501,8 @@ class TranslationsDeviceInfoZhCn {
 }
 
 // Path: feedback
-class TranslationsFeedbackZhCn {
-  TranslationsFeedbackZhCn.internal(this._root);
+class Translations$feedback$zh_CN {
+  Translations$feedback$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -568,8 +568,8 @@ class TranslationsFeedbackZhCn {
 }
 
 // Path: inventory
-class TranslationsInventoryZhCn {
-  TranslationsInventoryZhCn.internal(this._root);
+class Translations$inventory$zh_CN {
+  Translations$inventory$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -633,8 +633,8 @@ class TranslationsInventoryZhCn {
 }
 
 // Path: machines
-class TranslationsMachinesZhCn {
-  TranslationsMachinesZhCn.internal(this._root);
+class Translations$machines$zh_CN {
+  Translations$machines$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -693,7 +693,7 @@ class TranslationsMachinesZhCn {
   /// zh-CN: '暂无订单'
   String get emptyOrders => TranslationOverrides.string(_root.$meta, 'machines.emptyOrders', {}) ?? '暂无订单';
 
-  late final TranslationsMachinesTimePeriodZhCn timePeriod = TranslationsMachinesTimePeriodZhCn.internal(_root);
+  late final Translations$machines$timePeriod$zh_CN timePeriod = Translations$machines$timePeriod$zh_CN.internal(_root);
 
   /// zh-CN: '合计'
   String get total => TranslationOverrides.string(_root.$meta, 'machines.total', {}) ?? '合计';
@@ -703,8 +703,8 @@ class TranslationsMachinesZhCn {
 }
 
 // Path: maintenance
-class TranslationsMaintenanceZhCn {
-  TranslationsMaintenanceZhCn.internal(this._root);
+class Translations$maintenance$zh_CN {
+  Translations$maintenance$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -766,8 +766,8 @@ class TranslationsMaintenanceZhCn {
 }
 
 // Path: navigation
-class TranslationsNavigationZhCn {
-  TranslationsNavigationZhCn.internal(this._root);
+class Translations$navigation$zh_CN {
+  Translations$navigation$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -787,18 +787,18 @@ class TranslationsNavigationZhCn {
 }
 
 // Path: network
-class TranslationsNetworkZhCn {
-  TranslationsNetworkZhCn.internal(this._root);
+class Translations$network$zh_CN {
+  Translations$network$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
   // Translations
-  late final TranslationsNetworkErrorsZhCn errors = TranslationsNetworkErrorsZhCn.internal(_root);
+  late final Translations$network$errors$zh_CN errors = Translations$network$errors$zh_CN.internal(_root);
 }
 
 // Path: notifications
-class TranslationsNotificationsZhCn {
-  TranslationsNotificationsZhCn.internal(this._root);
+class Translations$notifications$zh_CN {
+  Translations$notifications$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -819,12 +819,14 @@ class TranslationsNotificationsZhCn {
   /// zh-CN: '已读消息'
   String get read => TranslationOverrides.string(_root.$meta, 'notifications.read', {}) ?? '已读消息';
 
-  late final TranslationsNotificationsPriorityZhCn priority = TranslationsNotificationsPriorityZhCn.internal(_root);
+  late final Translations$notifications$priority$zh_CN priority = Translations$notifications$priority$zh_CN.internal(
+    _root,
+  );
 }
 
 // Path: profile
-class TranslationsProfileZhCn {
-  TranslationsProfileZhCn.internal(this._root);
+class Translations$profile$zh_CN {
+  Translations$profile$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -895,9 +897,9 @@ class TranslationsProfileZhCn {
   /// zh-CN: '设置'
   String get settings => TranslationOverrides.string(_root.$meta, 'profile.settings', {}) ?? '设置';
 
-  late final TranslationsProfileGenderZhCn gender = TranslationsProfileGenderZhCn.internal(_root);
-  late final TranslationsProfileInfoZhCn info = TranslationsProfileInfoZhCn.internal(_root);
-  late final TranslationsProfileAvatarZhCn avatar = TranslationsProfileAvatarZhCn.internal(_root);
+  late final Translations$profile$gender$zh_CN gender = Translations$profile$gender$zh_CN.internal(_root);
+  late final Translations$profile$info$zh_CN info = Translations$profile$info$zh_CN.internal(_root);
+  late final Translations$profile$avatar$zh_CN avatar = Translations$profile$avatar$zh_CN.internal(_root);
 
   /// zh-CN: '保存成功'
   String get saveSuccess => TranslationOverrides.string(_root.$meta, 'profile.saveSuccess', {}) ?? '保存成功';
@@ -921,12 +923,12 @@ class TranslationsProfileZhCn {
   /// zh-CN: '积分兑换'
   String get pointsMall => TranslationOverrides.string(_root.$meta, 'profile.pointsMall', {}) ?? '积分兑换';
 
-  late final TranslationsProfileWalletPageZhCn walletPage = TranslationsProfileWalletPageZhCn.internal(_root);
+  late final Translations$profile$walletPage$zh_CN walletPage = Translations$profile$walletPage$zh_CN.internal(_root);
 }
 
 // Path: settings
-class TranslationsSettingsZhCn {
-  TranslationsSettingsZhCn.internal(this._root);
+class Translations$settings$zh_CN {
+  Translations$settings$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -987,7 +989,7 @@ class TranslationsSettingsZhCn {
   /// zh-CN: '主题配色'
   String get themeScheme => TranslationOverrides.string(_root.$meta, 'settings.themeScheme', {}) ?? '主题配色';
 
-  late final TranslationsSettingsSchemesZhCn schemes = TranslationsSettingsSchemesZhCn.internal(_root);
+  late final Translations$settings$schemes$zh_CN schemes = Translations$settings$schemes$zh_CN.internal(_root);
 
   /// zh-CN: '应用名称'
   String get appName => TranslationOverrides.string(_root.$meta, 'settings.appName', {}) ?? '应用名称';
@@ -1006,8 +1008,8 @@ class TranslationsSettingsZhCn {
 }
 
 // Path: time
-class TranslationsTimeZhCn {
-  TranslationsTimeZhCn.internal(this._root);
+class Translations$time$zh_CN {
+  Translations$time$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -1030,8 +1032,8 @@ class TranslationsTimeZhCn {
 }
 
 // Path: welcome_gift
-class TranslationsWelcomeGiftZhCn {
-  TranslationsWelcomeGiftZhCn.internal(this._root);
+class Translations$welcome_gift$zh_CN {
+  Translations$welcome_gift$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -1042,8 +1044,8 @@ class TranslationsWelcomeGiftZhCn {
 }
 
 // Path: machines.timePeriod
-class TranslationsMachinesTimePeriodZhCn {
-  TranslationsMachinesTimePeriodZhCn.internal(this._root);
+class Translations$machines$timePeriod$zh_CN {
+  Translations$machines$timePeriod$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -1066,8 +1068,8 @@ class TranslationsMachinesTimePeriodZhCn {
 }
 
 // Path: network.errors
-class TranslationsNetworkErrorsZhCn {
-  TranslationsNetworkErrorsZhCn.internal(this._root);
+class Translations$network$errors$zh_CN {
+  Translations$network$errors$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -1156,8 +1158,8 @@ class TranslationsNetworkErrorsZhCn {
 }
 
 // Path: notifications.priority
-class TranslationsNotificationsPriorityZhCn {
-  TranslationsNotificationsPriorityZhCn.internal(this._root);
+class Translations$notifications$priority$zh_CN {
+  Translations$notifications$priority$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -1174,8 +1176,8 @@ class TranslationsNotificationsPriorityZhCn {
 }
 
 // Path: profile.gender
-class TranslationsProfileGenderZhCn {
-  TranslationsProfileGenderZhCn.internal(this._root);
+class Translations$profile$gender$zh_CN {
+  Translations$profile$gender$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -1192,8 +1194,8 @@ class TranslationsProfileGenderZhCn {
 }
 
 // Path: profile.info
-class TranslationsProfileInfoZhCn {
-  TranslationsProfileInfoZhCn.internal(this._root);
+class Translations$profile$info$zh_CN {
+  Translations$profile$info$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -1222,8 +1224,8 @@ class TranslationsProfileInfoZhCn {
 }
 
 // Path: profile.avatar
-class TranslationsProfileAvatarZhCn {
-  TranslationsProfileAvatarZhCn.internal(this._root);
+class Translations$profile$avatar$zh_CN {
+  Translations$profile$avatar$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -1237,8 +1239,8 @@ class TranslationsProfileAvatarZhCn {
 }
 
 // Path: profile.walletPage
-class TranslationsProfileWalletPageZhCn {
-  TranslationsProfileWalletPageZhCn.internal(this._root);
+class Translations$profile$walletPage$zh_CN {
+  Translations$profile$walletPage$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -1292,12 +1294,14 @@ class TranslationsProfileWalletPageZhCn {
   /// zh-CN: '暂无充值记录'
   String get noHistory => TranslationOverrides.string(_root.$meta, 'profile.walletPage.noHistory', {}) ?? '暂无充值记录';
 
-  late final TranslationsProfileWalletPageRulesZhCn rules = TranslationsProfileWalletPageRulesZhCn.internal(_root);
+  late final Translations$profile$walletPage$rules$zh_CN rules = Translations$profile$walletPage$rules$zh_CN.internal(
+    _root,
+  );
 }
 
 // Path: settings.schemes
-class TranslationsSettingsSchemesZhCn {
-  TranslationsSettingsSchemesZhCn.internal(this._root);
+class Translations$settings$schemes$zh_CN {
+  Translations$settings$schemes$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -1320,8 +1324,8 @@ class TranslationsSettingsSchemesZhCn {
 }
 
 // Path: profile.walletPage.rules
-class TranslationsProfileWalletPageRulesZhCn {
-  TranslationsProfileWalletPageRulesZhCn.internal(this._root);
+class Translations$profile$walletPage$rules$zh_CN {
+  Translations$profile$walletPage$rules$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -1338,15 +1342,15 @@ class TranslationsProfileWalletPageRulesZhCn {
   String get headerDesc =>
       TranslationOverrides.string(_root.$meta, 'profile.walletPage.rules.headerDesc', {}) ?? '请仔细阅读规则后进行充值';
 
-  late final TranslationsProfileWalletPageRulesRechargeRulesZhCn rechargeRules =
-      TranslationsProfileWalletPageRulesRechargeRulesZhCn.internal(_root);
-  late final TranslationsProfileWalletPageRulesUsageInstructionsZhCn usageInstructions =
-      TranslationsProfileWalletPageRulesUsageInstructionsZhCn.internal(_root);
+  late final Translations$profile$walletPage$rules$rechargeRules$zh_CN rechargeRules =
+      Translations$profile$walletPage$rules$rechargeRules$zh_CN.internal(_root);
+  late final Translations$profile$walletPage$rules$usageInstructions$zh_CN usageInstructions =
+      Translations$profile$walletPage$rules$usageInstructions$zh_CN.internal(_root);
 }
 
 // Path: profile.walletPage.rules.rechargeRules
-class TranslationsProfileWalletPageRulesRechargeRulesZhCn {
-  TranslationsProfileWalletPageRulesRechargeRulesZhCn.internal(this._root);
+class Translations$profile$walletPage$rules$rechargeRules$zh_CN {
+  Translations$profile$walletPage$rules$rechargeRules$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 
@@ -1362,8 +1366,8 @@ class TranslationsProfileWalletPageRulesRechargeRulesZhCn {
 }
 
 // Path: profile.walletPage.rules.usageInstructions
-class TranslationsProfileWalletPageRulesUsageInstructionsZhCn {
-  TranslationsProfileWalletPageRulesUsageInstructionsZhCn.internal(this._root);
+class Translations$profile$walletPage$rules$usageInstructions$zh_CN {
+  Translations$profile$walletPage$rules$usageInstructions$zh_CN.internal(this._root);
 
   final Translations _root; // ignore: unused_field
 

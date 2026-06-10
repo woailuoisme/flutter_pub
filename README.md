@@ -26,7 +26,7 @@ lib/
 test/            # 单元测试、组件测试
 assets/          # 图片、图标、动画、HTML
 config/          # dart-define 配置
-scripts/         # Makefile 调用脚本
+scripts/         # justfile 调用脚本
 ```
 
 ## 开发约定
@@ -40,12 +40,12 @@ scripts/         # Makefile 调用脚本
 ## 常用命令
 
 ```bash
-make deps
-make build
-make run-dev
-make test
-make analyze
-make ready
+just deps
+just build
+just run-dev
+just test
+just analyze
+just ready
 ```
 
 更细粒度命令见 [AGENTS.md](./AGENTS.md)。

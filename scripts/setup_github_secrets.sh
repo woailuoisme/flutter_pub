@@ -14,6 +14,7 @@ if [ -f "$SCRIPT_DIR/utils.sh" ]; then
 else
     PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
     if [ -f "$PROJECT_ROOT/scripts/utils.sh" ]; then
+        # shellcheck disable=SC1091
         source "$PROJECT_ROOT/scripts/utils.sh"
     else
         echo "Error: utils.sh not found."

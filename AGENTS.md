@@ -10,7 +10,7 @@ Lunchbox Hub 是一个用于售货机管理的 Flutter 应用。
 - `test/`：Flutter 单元测试和组件测试
 - `assets/`：图片、图标、动画、HTML 资源
 - `config/`：`--dart-define-from-file` 使用的环境配置
-- `scripts/`：`Makefile` 调用的脚本
+- `scripts/`：`justfile` 调用的脚本
 
 ## 主要技术
 
@@ -24,29 +24,35 @@ Lunchbox Hub 是一个用于售货机管理的 Flutter 应用。
 
 以下 skill 与本仓库 `pubspec.yaml` 的技术栈最相关，优先参考：
 - `flutter-expert`：Flutter 通用专家。
-  优先使用 `make`。
+  优先使用 `just`。
 
 ```bash
-make deps        # 拉取依赖
-make build       # 生成代码
-make full-build  # clean + deps + build
-make gen-i18n    # 生成国际化
-make gen-icons   # 生成应用图标
-make gen-splash  # 生成启动页
-make gen-key     # 生成 Android 签名文件
-make run         # 默认启动
-make run-dev     # 使用 config/env_dev.json 启动
-make run-prod    # 使用 config/env_prod.json 启动
-make test        # 运行全部测试
-make test-unit   # 仅单元测试
-make test-widget  # 仅组件测试
-make analyze     # 静态检查
-make format      # 格式化
-make fix         # 自动修复
-make ready       # fix + format + analyze
-make clean       # 清理生成文件
-make watch       # 监听生成
-make doctor      # 环境检查
+just deps        # 拉取依赖
+just outdated    # 检查过期依赖
+just upgrade     # 升级依赖（安全范围）
+just upgrade-major # 升级依赖（跨大版本）
+just gen         # 生成所有代码 (i18n + build_runner)
+just build       # 仅运行 build_runner 生成代码
+just full-build  # clean + deps + gen
+just gen-i18n    # 生成国际化
+just gen-icons   # 生成应用图标
+just gen-splash  # 生成启动页
+just gen-key     # 生成 Android 签名文件
+just run         # 默认启动
+just run-dev     # 使用 config/env_dev.json 启动
+just run-prod    # 使用 config/env_prod.json 启动
+just test        # 运行全部测试
+just test-unit   # 仅单元测试
+just test-widget  # 仅组件测试
+just analyze     # 静态检查
+just format      # 格式化
+just fix         # 自动修复
+just ready       # fix + format + analyze
+just clean       # 清理生成文件
+just watch       # 监听 build_runner 生成
+just watch-i18n  # 监听国际化翻译变化并重新生成
+just build-ios   # 构建 iOS IPA 包
+just doctor      # 环境检查
 ```
 
 需要更细粒度时，可直接用 Flutter 命令：
@@ -77,11 +83,7 @@ flutter run --dart-define-from-file=config/env_dev.json
 
 @RTK.md
 
-
-<claude-mem-context>
-# Memory Context
-
-# $CMEM lunchbox_hub 2026-04-16 1:21pm GMT+8
-
-No previous sessions found.
-</claude-mem-context>
+<!-- SPECKIT START -->
+For additional context about technologies to be used, project structure,
+shell commands, and other important information, read the current plan
+<!-- SPECKIT END -->

@@ -4,9 +4,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:lunchbox_hub/core/services/database_service.dart';
 import 'package:lunchbox_hub/core/services/storage_service.dart';
 import 'package:lunchbox_hub/core/theme/theme.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
+import 'package:lunchbox_hub/objectbox.g.dart';
 import 'package:lunchbox_hub/routes/app_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toastification/toastification.dart';
@@ -14,6 +16,7 @@ import 'package:toastification/toastification.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final sharedPreferences = await SharedPreferences.getInstance();
+  final store = await openStore();
 
   // 初始化语言设置
   final savedLocale = sharedPreferences.getString('selected_locale');
@@ -29,6 +32,7 @@ void main() async {
       observers: [],
       overrides: [
         sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+        databaseServiceProvider.overrideWithValue(store),
       ],
       child: TranslationProvider(child: const MyApp()),
     ),

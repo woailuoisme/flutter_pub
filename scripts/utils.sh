@@ -22,17 +22,32 @@ _log_to_file() {
     printf "[$(date '+%Y-%m-%d %H:%M:%S %z')] [%s] %s\n" "$level" "$msg" >> "$LOG_FILE"
 }
 
-log_info()    { printf "${C_C}[$(date '+%Y-%m-%d %H:%M:%S %z')]${C_0} ${C_B}[INFO]${C_0} %s\n" "$1"; _log_to_file "INFO" "$1"; }
-log_success() { printf "${C_C}[$(date '+%Y-%m-%d %H:%M:%S %z')]${C_0} ${C_G}[SUCCESS]${C_0} %s\n" "$1"; _log_to_file "SUCCESS" "$1"; }
-log_warning() { printf "${C_C}[$(date '+%Y-%m-%d %H:%M:%S %z')]${C_0} ${C_Y}[WARNING]${C_0} %s\n" "$1"; _log_to_file "WARNING" "$1"; }
-log_error()   { printf "${C_C}[$(date '+%Y-%m-%d %H:%M:%S %z')]${C_0} ${C_R}[ERROR]${C_0} %s\n" "$1"; _log_to_file "ERROR" "$1"; }
+log_info() {
+    printf "${C_C}[$(date '+%Y-%m-%d %H:%M:%S %z')]${C_0} ${C_B}[INFO]${C_0} %s\n" "$1"
+    _log_to_file "INFO" "$1"
+}
+log_success() {
+    printf "${C_C}[$(date '+%Y-%m-%d %H:%M:%S %z')]${C_0} ${C_G}[SUCCESS]${C_0} %s\n" "$1"
+    _log_to_file "SUCCESS" "$1"
+}
+log_warning() {
+    printf "${C_C}[$(date '+%Y-%m-%d %H:%M:%S %z')]${C_0} ${C_Y}[WARNING]${C_0} %s\n" "$1"
+    _log_to_file "WARNING" "$1"
+}
+log_error() {
+    printf "${C_C}[$(date '+%Y-%m-%d %H:%M:%S %z')]${C_0} ${C_R}[ERROR]${C_0} %s\n" "$1"
+    _log_to_file "ERROR" "$1"
+}
 
 ensure_dir() {
     mkdir -p "$1"
 }
 
 require_cmd() {
-    command -v "$1" &>/dev/null || { log_error "Command not found: $1"; exit 1; }
+    command -v "$1" &> /dev/null || {
+        log_error "Command not found: $1"
+        exit 1
+    }
 }
 
 # Export functions for use in sub-processes (if needed)

@@ -29,23 +29,21 @@ dependencies:
   # 存储
   shared_preferences: ^2.5.5
   flutter_secure_storage: ^10.0.0
-  # Keep the Drift toolchain on an analyzer-9-compatible set until
-  # Riverpod/drift generator compatibility is upgraded together.
-  drift: 2.31.0
-  drift_flutter: 0.2.7
-  sqlite3_flutter_libs: ^0.5.42
+  objectbox: ^5.3.2
+  objectbox_flutter_libs: ^5.3.2
+
 
   # 基础 UI
   flutter_screenutil: ^5.9.3
   flex_color_scheme: ^8.4.0
-  material_symbols_icons: ^4.2906.0
-  google_fonts: ^8.0.2
+  material_symbols_icons: ^4.2928.1
+  google_fonts: ^8.1.0
   flutter_animate: ^4.5.2
   flutter_svg: ^2.2.4
 
 
   # 扩展 UI 组件
-  toastification: ^3.1.0
+  toastification: ^3.2.0
   cached_network_image: ^3.4.1
   infinite_scroll_pagination: ^5.1.1
   custom_refresh_indicator: ^4.0.1
@@ -66,9 +64,9 @@ dependencies:
   latlong2: ^0.9.1
 
   # 系统与设备功能
-  device_info_plus: ^12.3.0
-  package_info_plus: ^9.0.0
-  share_plus: ^12.0.1
+  device_info_plus: ^13.1.0
+  package_info_plus: ^10.1.0
+  share_plus: ^13.1.0
   permission_handler: ^12.0.1
   path_provider: ^2.1.5
   image_picker: ^1.2.1
@@ -112,7 +110,7 @@ dev_dependencies:
   retrofit_generator: ^10.2.3
   freezed: ^3.2.5
   json_serializable: ^6.13.0
-  drift_dev: 2.31.0
+  objectbox_generator: ^5.3.2
   envied_generator: ^1.3.4
   go_router_builder: ^4.2.1
 

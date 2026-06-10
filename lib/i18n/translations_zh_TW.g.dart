@@ -49,34 +49,34 @@ class TranslationsZhTw extends Translations with BaseTranslations<AppLocale, Tra
 
   // Translations
   @override
-  late final _TranslationsAuthZhTw auth = _TranslationsAuthZhTw._(_root);
+  late final Translations$auth$zh_TW auth = Translations$auth$zh_TW.internal(_root);
   @override
-  late final _TranslationsCommonZhTw common = _TranslationsCommonZhTw._(_root);
+  late final Translations$common$zh_TW common = Translations$common$zh_TW.internal(_root);
   @override
-  late final _TranslationsFeedbackZhTw feedback = _TranslationsFeedbackZhTw._(_root);
+  late final Translations$feedback$zh_TW feedback = Translations$feedback$zh_TW.internal(_root);
   @override
-  late final _TranslationsInventoryZhTw inventory = _TranslationsInventoryZhTw._(_root);
+  late final Translations$inventory$zh_TW inventory = Translations$inventory$zh_TW.internal(_root);
   @override
-  late final _TranslationsMachinesZhTw machines = _TranslationsMachinesZhTw._(_root);
+  late final Translations$machines$zh_TW machines = Translations$machines$zh_TW.internal(_root);
   @override
-  late final _TranslationsMaintenanceZhTw maintenance = _TranslationsMaintenanceZhTw._(_root);
+  late final Translations$maintenance$zh_TW maintenance = Translations$maintenance$zh_TW.internal(_root);
   @override
-  late final _TranslationsNavigationZhTw navigation = _TranslationsNavigationZhTw._(_root);
+  late final Translations$navigation$zh_TW navigation = Translations$navigation$zh_TW.internal(_root);
   @override
-  late final _TranslationsNetworkZhTw network = _TranslationsNetworkZhTw._(_root);
+  late final Translations$network$zh_TW network = Translations$network$zh_TW.internal(_root);
   @override
-  late final _TranslationsNotificationsZhTw notifications = _TranslationsNotificationsZhTw._(_root);
+  late final Translations$notifications$zh_TW notifications = Translations$notifications$zh_TW.internal(_root);
   @override
-  late final _TranslationsProfileZhTw profile = _TranslationsProfileZhTw._(_root);
+  late final Translations$profile$zh_TW profile = Translations$profile$zh_TW.internal(_root);
   @override
-  late final _TranslationsSettingsZhTw settings = _TranslationsSettingsZhTw._(_root);
+  late final Translations$settings$zh_TW settings = Translations$settings$zh_TW.internal(_root);
   @override
-  late final _TranslationsTimeZhTw time = _TranslationsTimeZhTw._(_root);
+  late final Translations$time$zh_TW time = Translations$time$zh_TW.internal(_root);
 }
 
 // Path: auth
-class _TranslationsAuthZhTw extends TranslationsAuthZhCn {
-  _TranslationsAuthZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$auth$zh_TW extends Translations$auth$zh_CN {
+  Translations$auth$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -179,8 +179,8 @@ class _TranslationsAuthZhTw extends TranslationsAuthZhCn {
 }
 
 // Path: common
-class _TranslationsCommonZhTw extends TranslationsCommonZhCn {
-  _TranslationsCommonZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$common$zh_TW extends Translations$common$zh_CN {
+  Translations$common$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -281,8 +281,8 @@ class _TranslationsCommonZhTw extends TranslationsCommonZhCn {
 }
 
 // Path: feedback
-class _TranslationsFeedbackZhTw extends TranslationsFeedbackZhCn {
-  _TranslationsFeedbackZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$feedback$zh_TW extends Translations$feedback$zh_CN {
+  Translations$feedback$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -330,8 +330,8 @@ class _TranslationsFeedbackZhTw extends TranslationsFeedbackZhCn {
 }
 
 // Path: inventory
-class _TranslationsInventoryZhTw extends TranslationsInventoryZhCn {
-  _TranslationsInventoryZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$inventory$zh_TW extends Translations$inventory$zh_CN {
+  Translations$inventory$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -377,8 +377,8 @@ class _TranslationsInventoryZhTw extends TranslationsInventoryZhCn {
 }
 
 // Path: machines
-class _TranslationsMachinesZhTw extends TranslationsMachinesZhCn {
-  _TranslationsMachinesZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$machines$zh_TW extends Translations$machines$zh_CN {
+  Translations$machines$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -420,7 +420,7 @@ class _TranslationsMachinesZhTw extends TranslationsMachinesZhCn {
   @override
   String get emptyOrders => TranslationOverrides.string(_root.$meta, 'machines.emptyOrders', {}) ?? '暫無訂單';
   @override
-  late final _TranslationsMachinesTimePeriodZhTw timePeriod = _TranslationsMachinesTimePeriodZhTw._(_root);
+  late final Translations$machines$timePeriod$zh_TW timePeriod = Translations$machines$timePeriod$zh_TW.internal(_root);
   @override
   String get total => TranslationOverrides.string(_root.$meta, 'machines.total', {}) ?? '合計';
   @override
@@ -428,8 +428,8 @@ class _TranslationsMachinesZhTw extends TranslationsMachinesZhCn {
 }
 
 // Path: maintenance
-class _TranslationsMaintenanceZhTw extends TranslationsMaintenanceZhCn {
-  _TranslationsMaintenanceZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$maintenance$zh_TW extends Translations$maintenance$zh_CN {
+  Translations$maintenance$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -473,8 +473,8 @@ class _TranslationsMaintenanceZhTw extends TranslationsMaintenanceZhCn {
 }
 
 // Path: navigation
-class _TranslationsNavigationZhTw extends TranslationsNavigationZhCn {
-  _TranslationsNavigationZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$navigation$zh_TW extends Translations$navigation$zh_CN {
+  Translations$navigation$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -490,19 +490,19 @@ class _TranslationsNavigationZhTw extends TranslationsNavigationZhCn {
 }
 
 // Path: network
-class _TranslationsNetworkZhTw extends TranslationsNetworkZhCn {
-  _TranslationsNetworkZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$network$zh_TW extends Translations$network$zh_CN {
+  Translations$network$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
   // Translations
   @override
-  late final _TranslationsNetworkErrorsZhTw errors = _TranslationsNetworkErrorsZhTw._(_root);
+  late final Translations$network$errors$zh_TW errors = Translations$network$errors$zh_TW.internal(_root);
 }
 
 // Path: notifications
-class _TranslationsNotificationsZhTw extends TranslationsNotificationsZhCn {
-  _TranslationsNotificationsZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$notifications$zh_TW extends Translations$notifications$zh_CN {
+  Translations$notifications$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -518,12 +518,14 @@ class _TranslationsNotificationsZhTw extends TranslationsNotificationsZhCn {
   @override
   String get read => TranslationOverrides.string(_root.$meta, 'notifications.read', {}) ?? '已讀消息';
   @override
-  late final _TranslationsNotificationsPriorityZhTw priority = _TranslationsNotificationsPriorityZhTw._(_root);
+  late final Translations$notifications$priority$zh_TW priority = Translations$notifications$priority$zh_TW.internal(
+    _root,
+  );
 }
 
 // Path: profile
-class _TranslationsProfileZhTw extends TranslationsProfileZhCn {
-  _TranslationsProfileZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$profile$zh_TW extends Translations$profile$zh_CN {
+  Translations$profile$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -574,11 +576,11 @@ class _TranslationsProfileZhTw extends TranslationsProfileZhCn {
   @override
   String get settings => TranslationOverrides.string(_root.$meta, 'profile.settings', {}) ?? '設置';
   @override
-  late final _TranslationsProfileGenderZhTw gender = _TranslationsProfileGenderZhTw._(_root);
+  late final Translations$profile$gender$zh_TW gender = Translations$profile$gender$zh_TW.internal(_root);
   @override
-  late final _TranslationsProfileInfoZhTw info = _TranslationsProfileInfoZhTw._(_root);
+  late final Translations$profile$info$zh_TW info = Translations$profile$info$zh_TW.internal(_root);
   @override
-  late final _TranslationsProfileAvatarZhTw avatar = _TranslationsProfileAvatarZhTw._(_root);
+  late final Translations$profile$avatar$zh_TW avatar = Translations$profile$avatar$zh_TW.internal(_root);
   @override
   String get saveSuccess => TranslationOverrides.string(_root.$meta, 'profile.saveSuccess', {}) ?? '保存成功';
   @override
@@ -597,8 +599,8 @@ class _TranslationsProfileZhTw extends TranslationsProfileZhCn {
 }
 
 // Path: settings
-class _TranslationsSettingsZhTw extends TranslationsSettingsZhCn {
-  _TranslationsSettingsZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$settings$zh_TW extends Translations$settings$zh_CN {
+  Translations$settings$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -635,7 +637,7 @@ class _TranslationsSettingsZhTw extends TranslationsSettingsZhCn {
   @override
   String get themeScheme => TranslationOverrides.string(_root.$meta, 'settings.themeScheme', {}) ?? '主題配色';
   @override
-  late final _TranslationsSettingsSchemesZhTw schemes = _TranslationsSettingsSchemesZhTw._(_root);
+  late final Translations$settings$schemes$zh_TW schemes = Translations$settings$schemes$zh_TW.internal(_root);
   @override
   String get appName => TranslationOverrides.string(_root.$meta, 'settings.appName', {}) ?? '應用名稱';
   @override
@@ -649,8 +651,8 @@ class _TranslationsSettingsZhTw extends TranslationsSettingsZhCn {
 }
 
 // Path: time
-class _TranslationsTimeZhTw extends TranslationsTimeZhCn {
-  _TranslationsTimeZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$time$zh_TW extends Translations$time$zh_CN {
+  Translations$time$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -669,8 +671,8 @@ class _TranslationsTimeZhTw extends TranslationsTimeZhCn {
 }
 
 // Path: machines.timePeriod
-class _TranslationsMachinesTimePeriodZhTw extends TranslationsMachinesTimePeriodZhCn {
-  _TranslationsMachinesTimePeriodZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$machines$timePeriod$zh_TW extends Translations$machines$timePeriod$zh_CN {
+  Translations$machines$timePeriod$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -688,8 +690,8 @@ class _TranslationsMachinesTimePeriodZhTw extends TranslationsMachinesTimePeriod
 }
 
 // Path: network.errors
-class _TranslationsNetworkErrorsZhTw extends TranslationsNetworkErrorsZhCn {
-  _TranslationsNetworkErrorsZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$network$errors$zh_TW extends Translations$network$errors$zh_CN {
+  Translations$network$errors$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -755,8 +757,8 @@ class _TranslationsNetworkErrorsZhTw extends TranslationsNetworkErrorsZhCn {
 }
 
 // Path: notifications.priority
-class _TranslationsNotificationsPriorityZhTw extends TranslationsNotificationsPriorityZhCn {
-  _TranslationsNotificationsPriorityZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$notifications$priority$zh_TW extends Translations$notifications$priority$zh_CN {
+  Translations$notifications$priority$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -770,8 +772,8 @@ class _TranslationsNotificationsPriorityZhTw extends TranslationsNotificationsPr
 }
 
 // Path: profile.gender
-class _TranslationsProfileGenderZhTw extends TranslationsProfileGenderZhCn {
-  _TranslationsProfileGenderZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$profile$gender$zh_TW extends Translations$profile$gender$zh_CN {
+  Translations$profile$gender$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -785,8 +787,8 @@ class _TranslationsProfileGenderZhTw extends TranslationsProfileGenderZhCn {
 }
 
 // Path: profile.info
-class _TranslationsProfileInfoZhTw extends TranslationsProfileInfoZhCn {
-  _TranslationsProfileInfoZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$profile$info$zh_TW extends Translations$profile$info$zh_CN {
+  Translations$profile$info$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -808,8 +810,8 @@ class _TranslationsProfileInfoZhTw extends TranslationsProfileInfoZhCn {
 }
 
 // Path: profile.avatar
-class _TranslationsProfileAvatarZhTw extends TranslationsProfileAvatarZhCn {
-  _TranslationsProfileAvatarZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$profile$avatar$zh_TW extends Translations$profile$avatar$zh_CN {
+  Translations$profile$avatar$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 
@@ -821,8 +823,8 @@ class _TranslationsProfileAvatarZhTw extends TranslationsProfileAvatarZhCn {
 }
 
 // Path: settings.schemes
-class _TranslationsSettingsSchemesZhTw extends TranslationsSettingsSchemesZhCn {
-  _TranslationsSettingsSchemesZhTw._(TranslationsZhTw root) : this._root = root, super.internal(root);
+class Translations$settings$schemes$zh_TW extends Translations$settings$schemes$zh_CN {
+  Translations$settings$schemes$zh_TW.internal(TranslationsZhTw root) : this._root = root, super.internal(root);
 
   final TranslationsZhTw _root; // ignore: unused_field
 

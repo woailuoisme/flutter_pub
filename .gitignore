@@ -33,7 +33,6 @@ migrate_working_dir/
 /build/
 /coverage/
 
-/.vscode
 /.kiro
 /.trae
 /.agents
@@ -68,3 +67,11 @@ android/key.properties
 .env.dev
 .env.test
 ! .env.example
+
+# ObjectBox temporary downloads and native binaries
+/download/
+**/*.dylib
+**/*.so
+**/*.dll
+
+
