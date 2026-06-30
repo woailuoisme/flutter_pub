@@ -15,8 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$OrderModel {
 
- String get id;@JsonKey(name: 'machine_id') String get machineId;@JsonKey(name: 'product_name') String get productName; String get amount;// Decimal 以字符串传输，如 "3.50"
-@JsonKey(name: 'created_at') String get createdAt;
+ String get id;@JsonKey(name: 'machine_id') String get machineId;@JsonKey(name: 'product_name') String get productName; String get amount;@JsonKey(name: 'created_at') String get createdAt;
 /// Create a copy of OrderModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -215,7 +214,6 @@ class _OrderModel implements OrderModel {
 @override@JsonKey(name: 'machine_id') final  String machineId;
 @override@JsonKey(name: 'product_name') final  String productName;
 @override final  String amount;
-// Decimal 以字符串传输，如 "3.50"
 @override@JsonKey(name: 'created_at') final  String createdAt;
 
 /// Create a copy of OrderModel

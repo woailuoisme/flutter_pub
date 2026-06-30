@@ -87,7 +87,7 @@ abstract class _$AgentOrderListNotifier
   FutureOr<List<OrderModel>> build(String machineId);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref =
         this.ref as $Ref<AsyncValue<List<OrderModel>>, List<OrderModel>>;
     final element =
@@ -98,6 +98,6 @@ abstract class _$AgentOrderListNotifier
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }

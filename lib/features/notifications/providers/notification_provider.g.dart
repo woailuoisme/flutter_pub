@@ -42,7 +42,7 @@ abstract class _$NotificationNotifier
   Stream<List<NotificationModel>> build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref =
         this.ref
             as $Ref<
@@ -60,7 +60,7 @@ abstract class _$NotificationNotifier
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 

@@ -15,8 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TimeSeriesPoint {
 
- String get label;// X 轴标签，如 "01/15"、"1月"
- double get value;
+ String get label; double get value;
 /// Create a copy of TimeSeriesPoint
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -209,7 +208,6 @@ class _TimeSeriesPoint implements TimeSeriesPoint {
   factory _TimeSeriesPoint.fromJson(Map<String, dynamic> json) => _$TimeSeriesPointFromJson(json);
 
 @override final  String label;
-// X 轴标签，如 "01/15"、"1月"
 @override final  double value;
 
 /// Create a copy of TimeSeriesPoint

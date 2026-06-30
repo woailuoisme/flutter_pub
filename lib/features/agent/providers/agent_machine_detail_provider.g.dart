@@ -95,7 +95,7 @@ abstract class _$AgentMachineDetailNotifier
   AgentDashboardState build(String machineId);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AgentDashboardState, AgentDashboardState>;
     final element =
         ref.element
@@ -105,6 +105,6 @@ abstract class _$AgentMachineDetailNotifier
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }

@@ -15,8 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProductSalesModel {
 
-@JsonKey(name: 'product_name') String get productName; double get percentage;// 0.0 ~ 100.0
- String get revenue;
+@JsonKey(name: 'product_name') String get productName; double get percentage; String get revenue;
 /// Create a copy of ProductSalesModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -211,7 +210,6 @@ class _ProductSalesModel implements ProductSalesModel {
 
 @override@JsonKey(name: 'product_name') final  String productName;
 @override final  double percentage;
-// 0.0 ~ 100.0
 @override final  String revenue;
 
 /// Create a copy of ProductSalesModel

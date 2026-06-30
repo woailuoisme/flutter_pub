@@ -14,8 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ForgotPasswordState {
 
- String get identifier;// Email
- String get oldPassword; String get newPassword; String get confirmPassword; ForgotPasswordStatus get status; String? get errorMessage;
+ String get identifier; String get oldPassword; String get newPassword; String get confirmPassword; ForgotPasswordStatus get status; String? get errorMessage;
 /// Create a copy of ForgotPasswordState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -216,7 +215,6 @@ class _ForgotPasswordState implements ForgotPasswordState {
   
 
 @override@JsonKey() final  String identifier;
-// Email
 @override@JsonKey() final  String oldPassword;
 @override@JsonKey() final  String newPassword;
 @override@JsonKey() final  String confirmPassword;

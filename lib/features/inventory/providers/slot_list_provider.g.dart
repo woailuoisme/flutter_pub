@@ -84,7 +84,7 @@ abstract class _$SlotListNotifier extends $AsyncNotifier<List<SlotModel>> {
   FutureOr<List<SlotModel>> build(String machineId);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AsyncValue<List<SlotModel>>, List<SlotModel>>;
     final element =
         ref.element
@@ -94,6 +94,6 @@ abstract class _$SlotListNotifier extends $AsyncNotifier<List<SlotModel>> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }
