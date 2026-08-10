@@ -25,6 +25,7 @@ RouteBase get $mainShellRouteData => StatefulShellRouteData.$route(
       routes: [
         GoRouteData.$route(
           path: '/agent/dashboard',
+          hasOverriddenOnExit: false,
           factory: $AgentDashboardRoute._fromState,
         ),
       ],
@@ -33,10 +34,12 @@ RouteBase get $mainShellRouteData => StatefulShellRouteData.$route(
       routes: [
         GoRouteData.$route(
           path: '/stocker/machines',
+          hasOverriddenOnExit: false,
           factory: $StockerMachineListRoute._fromState,
           routes: [
             GoRouteData.$route(
               path: ':machineId/slots',
+              hasOverriddenOnExit: false,
               factory: $StockerSlotListRoute._fromState,
             ),
           ],
@@ -47,10 +50,12 @@ RouteBase get $mainShellRouteData => StatefulShellRouteData.$route(
       routes: [
         GoRouteData.$route(
           path: '/maintainer/machines',
+          hasOverriddenOnExit: false,
           factory: $MaintainerMachineListRoute._fromState,
           routes: [
             GoRouteData.$route(
               path: ':machineId/faults',
+              hasOverriddenOnExit: false,
               factory: $MaintainerFaultListRoute._fromState,
             ),
           ],
@@ -61,14 +66,17 @@ RouteBase get $mainShellRouteData => StatefulShellRouteData.$route(
       routes: [
         GoRouteData.$route(
           path: '/profile',
+          hasOverriddenOnExit: false,
           factory: $ProfileRoute._fromState,
           routes: [
             GoRouteData.$route(
               path: 'personal-info',
+              hasOverriddenOnExit: false,
               factory: $PersonalInfoRoute._fromState,
             ),
             GoRouteData.$route(
               path: 'feedback',
+              hasOverriddenOnExit: false,
               factory: $FeedbackRoute._fromState,
             ),
           ],
@@ -257,8 +265,11 @@ mixin $FeedbackRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $signInRoute =>
-    GoRouteData.$route(path: '/signin', factory: $SignInRoute._fromState);
+RouteBase get $signInRoute => GoRouteData.$route(
+  path: '/signin',
+  hasOverriddenOnExit: false,
+  factory: $SignInRoute._fromState,
+);
 
 mixin $SignInRoute on GoRouteData {
   static SignInRoute _fromState(GoRouterState state) => const SignInRoute();
@@ -282,6 +293,7 @@ mixin $SignInRoute on GoRouteData {
 
 RouteBase get $complexSignInRoute => GoRouteData.$route(
   path: '/complex-signin',
+  hasOverriddenOnExit: false,
   factory: $ComplexSignInRoute._fromState,
 );
 
@@ -306,8 +318,11 @@ mixin $ComplexSignInRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $signUpRoute =>
-    GoRouteData.$route(path: '/signup', factory: $SignUpRoute._fromState);
+RouteBase get $signUpRoute => GoRouteData.$route(
+  path: '/signup',
+  hasOverriddenOnExit: false,
+  factory: $SignUpRoute._fromState,
+);
 
 mixin $SignUpRoute on GoRouteData {
   static SignUpRoute _fromState(GoRouterState state) => const SignUpRoute();
@@ -331,6 +346,7 @@ mixin $SignUpRoute on GoRouteData {
 
 RouteBase get $forgotPasswordRoute => GoRouteData.$route(
   path: '/forgot-password',
+  hasOverriddenOnExit: false,
   factory: $ForgotPasswordRoute._fromState,
 );
 
@@ -357,6 +373,7 @@ mixin $ForgotPasswordRoute on GoRouteData {
 
 RouteBase get $resetPasswordRoute => GoRouteData.$route(
   path: '/reset-password',
+  hasOverriddenOnExit: false,
   factory: $ResetPasswordRoute._fromState,
 );
 
@@ -383,14 +400,24 @@ mixin $ResetPasswordRoute on GoRouteData {
 
 RouteBase get $settingsRoute => GoRouteData.$route(
   path: '/settings',
+  hasOverriddenOnExit: false,
   factory: $SettingsRoute._fromState,
   routes: [
     GoRouteData.$route(
       path: 'device-info',
+      hasOverriddenOnExit: false,
       factory: $DeviceInfoRoute._fromState,
     ),
-    GoRouteData.$route(path: 'about', factory: $AboutUsRoute._fromState),
-    GoRouteData.$route(path: 'debug', factory: $DebugRoute._fromState),
+    GoRouteData.$route(
+      path: 'about',
+      hasOverriddenOnExit: false,
+      factory: $AboutUsRoute._fromState,
+    ),
+    GoRouteData.$route(
+      path: 'debug',
+      hasOverriddenOnExit: false,
+      factory: $DebugRoute._fromState,
+    ),
   ],
 );
 
@@ -477,14 +504,17 @@ mixin $DebugRoute on GoRouteData {
 
 RouteBase get $agentMachineListRoute => GoRouteData.$route(
   path: '/agent/machines',
+  hasOverriddenOnExit: false,
   factory: $AgentMachineListRoute._fromState,
   routes: [
     GoRouteData.$route(
       path: ':machineId/orders',
+      hasOverriddenOnExit: false,
       factory: $AgentOrderListRoute._fromState,
     ),
     GoRouteData.$route(
       path: ':machineId/detail',
+      hasOverriddenOnExit: false,
       factory: $AgentMachineDetailRoute._fromState,
     ),
   ],
@@ -563,6 +593,7 @@ mixin $AgentMachineDetailRoute on GoRouteData {
 
 RouteBase get $notificationListRoute => GoRouteData.$route(
   path: '/notifications',
+  hasOverriddenOnExit: false,
   factory: $NotificationListRoute._fromState,
 );
 

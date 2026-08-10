@@ -1,0 +1,10 @@
+{
+  "DEBUG": true,
+  "BASE_URL": "https://rest.haoxiaoguai.xyz",
+  "STRIPE_PUBLISHABLE_KEY": "pk_test_51K5b84LHzHCCzdgcmAQfSGsl6ik4MawpXrGtWNmvNwKurf9xHk1t3kbBErAc1r87Hzn7rH2inPd63b1qZ7CKYkEN00y0dLoGQ6",
+  "SENTRY_DSN": "https://1246d3e8c39b70919447f701f457887e@o4505111003136000.ingest.us.sentry.io/4510961133813760",
+  "GOOGLE_SERVER_CLIENT_ID": "543085523947-fkkrbe1d4c2b98h59j210r5r5p5g57m5.apps.googleusercontent.com",
+  "USE_TEST_MODE": true,
+  "GOTIFY_BASE_URL": "",
+  "GOTIFY_CLIENT_TOKEN": ""
+}

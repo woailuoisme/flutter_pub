@@ -1,11 +1,10 @@
 {
-    "recommendations": [
-        "Dart-Code.dart-code",
-        "Dart-Code.flutter",
-        "rrousselgit.riverpod-helper",
-        "maciejka.justfile",
-        "usernamehw.errorlens",
-        "hangxie.devdb",
-        "eamodio.gitlens"
-    ]
+  "recommendations": [
+    "Dart-Code.dart-code",
+    "Dart-Code.flutter",
+    "rrousselgit.riverpod-helper",
+    "slang.slang",
+    "usernamehw.errorlens",
+    "alexislozano.flutter-coverage"
+  ]
 }

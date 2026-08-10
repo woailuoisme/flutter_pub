@@ -95,7 +95,7 @@ function cmd_format() {
     fd -t f -e dart \
         -E '*.g.dart' -E '*.freezed.dart' -E '*.config.dart' -E '*.gr.dart' \
         lib test \
-        -X dart format
+        -X dart format -l 120
     log_success "Code formatting completed"
 }
 

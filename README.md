@@ -50,8 +50,4 @@ just ready
 
 更细粒度命令见 [AGENTS.md](./AGENTS.md)。
 
-## Spec Kit
 
-本仓库已接入 `.specify/`。项目级规则定义在
-`.specify/memory/constitution.md`，后续新增特性建议按 Spec Kit 流程维护
-`spec.md`、`plan.md`、`tasks.md`，以保持 Flutter 分层、生成流程和验证标准一致。
