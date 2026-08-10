@@ -1,0 +1,33 @@
+# Lunchbox Hub Web Trigger 手动构建按钮
+
+branch:
+  # main 分支专属按钮
+  - reg: ^main$
+    buttons:
+      - name: 构建全部
+        description: 构建 Android (AAB + 分架构 APK) 和 iOS 包
+        event: web_trigger
+        isDefault: true
+        groupName: 构建
+        env:
+          BUILD_TARGET:
+            name: 构建目标
+            value: all
+
+      - name: 仅构建 Android
+        description: 构建 Android App Bundle + 分架构 APK (arm64-v8a/armeabi-v7a/x86_64)
+        event: web_trigger_android
+        groupName: 构建
+        env:
+          BUILD_TARGET:
+            name: 构建目标
+            value: android
+
+      - name: 仅构建 iOS
+        description: 构建 iOS unsigned .app (需 macOS 运行环境)
+        event: web_trigger_ios
+        groupName: 构建
+        env:
+          BUILD_TARGET:
+            name: 构建目标
+            value: ios

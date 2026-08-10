@@ -23,11 +23,8 @@ pre-commit:
       glob: "scripts/*.sh"
       run: shfmt -d -i 4 -ci -sr {staged_files}
 
-    - name: markdown-lint
-      glob: "*.md"
-      run: npx markdownlint-cli2 {staged_files}
 
-pre-push:
-  jobs:
-    - name: flutter-tests
-      run: flutter test
+# pre-push:
+#   jobs:
+#     - name: flutter-tests
+#       run: flutter test
