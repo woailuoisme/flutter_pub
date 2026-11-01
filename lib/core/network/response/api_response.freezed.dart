@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'api_response.dart';
@@ -9,6 +9,7 @@ part of 'api_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $ApiResponseCopyWith<T, ApiResponse<T>> get copyWith => _$ApiResponseCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApiResponse<T>&&(identical(other.success, success) || other.success == success)&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.data, data)&&const DeepCollectionEquality().equals(other.errors, errors));
+  final _this = this as ApiResponse<T>;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApiResponse<T>&&(identical(other.success, _this.success) || other.success == _this.success)&&(identical(other.code, _this.code) || other.code == _this.code)&&(identical(other.message, _this.message) || other.message == _this.message)&&const DeepCollectionEquality().equals(other.data, _this.data)&&const DeepCollectionEquality().equals(other.errors, _this.errors));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,success,code,message,const DeepCollectionEquality().hash(data),const DeepCollectionEquality().hash(errors));
+int get hashCode {
+  final _this = this as ApiResponse<T>;
+  return Object.hash(runtimeType,_this.success,_this.code,_this.message,const DeepCollectionEquality().hash(_this.data),const DeepCollectionEquality().hash(_this.errors));
+}
 
 @override
 String toString() {
-  return 'ApiResponse<$T>(success: $success, code: $code, message: $message, data: $data, errors: $errors)';
+  final _this = this as ApiResponse<T>;
+  return 'ApiResponse<$T>(success: ${_this.success}, code: ${_this.code}, message: ${_this.message}, data: ${_this.data}, errors: ${_this.errors})';
 }
 
 
@@ -66,7 +72,7 @@ class _$ApiResponseCopyWithImpl<T,$Res>
 /// Create a copy of ApiResponse
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? success = null,Object? code = null,Object? message = null,Object? data = freezed,Object? errors = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ApiResponse(
 success: null == success ? _self.success : success // ignore: cast_nullable_to_non_nullable
 as bool,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as int,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
@@ -207,7 +213,7 @@ return $default(_that.success,_that.code,_that.message,_that.data,_that.errors);
 @JsonSerializable(genericArgumentFactories: true)
 
 class _ApiResponse<T> implements ApiResponse<T> {
-  const _ApiResponse({this.success = false, this.code = 0, this.message = '', this.data, final  Map<String, List<String>>? errors}): _errors = errors;
+  const _ApiResponse({this.success = false, this.code = 0, this.message = '', this.data,  Map<String, List<String>>? errors}): _errors = errors;
   factory _ApiResponse.fromJson(Map<String, dynamic> json,T Function(Object?) fromJsonT) => _$ApiResponseFromJson(json,fromJsonT);
 
 @override@JsonKey() final  bool success;
@@ -237,16 +243,18 @@ Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApiResponse<T>&&(identical(other.success, success) || other.success == success)&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.data, data)&&const DeepCollectionEquality().equals(other._errors, _errors));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApiResponse<T>&&(identical(other.success, success) || other.success == success)&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.data, data)&&const DeepCollectionEquality().equals(other.errors, _errors));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,success,code,message,const DeepCollectionEquality().hash(data),const DeepCollectionEquality().hash(_errors));
+int get hashCode {
+    return Object.hash(runtimeType,success,code,message,const DeepCollectionEquality().hash(data),const DeepCollectionEquality().hash(_errors));
+}
 
 @override
 String toString() {
-  return 'ApiResponse<$T>(success: $success, code: $code, message: $message, data: $data, errors: $errors)';
+    return 'ApiResponse<$T>(success: $success, code: $code, message: $message, data: $data, errors: $errors)';
 }
 
 

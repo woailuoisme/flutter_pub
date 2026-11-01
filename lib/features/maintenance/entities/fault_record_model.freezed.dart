@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'fault_record_model.dart';
@@ -9,6 +9,7 @@ part of 'fault_record_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $FaultRecordModelCopyWith<FaultRecordModel> get copyWith => _$FaultRecordModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FaultRecordModel&&(identical(other.id, id) || other.id == id)&&(identical(other.machineId, machineId) || other.machineId == machineId)&&(identical(other.faultType, faultType) || other.faultType == faultType)&&(identical(other.description, description) || other.description == description)&&(identical(other.status, status) || other.status == status)&&(identical(other.occurredAt, occurredAt) || other.occurredAt == occurredAt));
+  final _this = this as FaultRecordModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FaultRecordModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.machineId, _this.machineId) || other.machineId == _this.machineId)&&(identical(other.faultType, _this.faultType) || other.faultType == _this.faultType)&&(identical(other.description, _this.description) || other.description == _this.description)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.occurredAt, _this.occurredAt) || other.occurredAt == _this.occurredAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,machineId,faultType,description,status,occurredAt);
+int get hashCode {
+  final _this = this as FaultRecordModel;
+  return Object.hash(runtimeType,_this.id,_this.machineId,_this.faultType,_this.description,_this.status,_this.occurredAt);
+}
 
 @override
 String toString() {
-  return 'FaultRecordModel(id: $id, machineId: $machineId, faultType: $faultType, description: $description, status: $status, occurredAt: $occurredAt)';
+  final _this = this as FaultRecordModel;
+  return 'FaultRecordModel(id: ${_this.id}, machineId: ${_this.machineId}, faultType: ${_this.faultType}, description: ${_this.description}, status: ${_this.status}, occurredAt: ${_this.occurredAt})';
 }
 
 
@@ -66,7 +72,7 @@ class _$FaultRecordModelCopyWithImpl<$Res>
 /// Create a copy of FaultRecordModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? machineId = null,Object? faultType = null,Object? description = null,Object? status = null,Object? occurredAt = null,}) {
-  return _then(_self.copyWith(
+  return _then(FaultRecordModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,machineId: null == machineId ? _self.machineId : machineId // ignore: cast_nullable_to_non_nullable
 as String,faultType: null == faultType ? _self.faultType : faultType // ignore: cast_nullable_to_non_nullable
@@ -231,16 +237,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FaultRecordModel&&(identical(other.id, id) || other.id == id)&&(identical(other.machineId, machineId) || other.machineId == machineId)&&(identical(other.faultType, faultType) || other.faultType == faultType)&&(identical(other.description, description) || other.description == description)&&(identical(other.status, status) || other.status == status)&&(identical(other.occurredAt, occurredAt) || other.occurredAt == occurredAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _FaultRecordModel&&(identical(other.id, id) || other.id == id)&&(identical(other.machineId, machineId) || other.machineId == machineId)&&(identical(other.faultType, faultType) || other.faultType == faultType)&&(identical(other.description, description) || other.description == description)&&(identical(other.status, status) || other.status == status)&&(identical(other.occurredAt, occurredAt) || other.occurredAt == occurredAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,machineId,faultType,description,status,occurredAt);
+int get hashCode {
+    return Object.hash(runtimeType,id,machineId,faultType,description,status,occurredAt);
+}
 
 @override
 String toString() {
-  return 'FaultRecordModel(id: $id, machineId: $machineId, faultType: $faultType, description: $description, status: $status, occurredAt: $occurredAt)';
+    return 'FaultRecordModel(id: $id, machineId: $machineId, faultType: $faultType, description: $description, status: $status, occurredAt: $occurredAt)';
 }
 
 

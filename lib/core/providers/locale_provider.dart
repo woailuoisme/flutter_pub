@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:lunchbox_hub/core/services/storage_service.dart';
 import 'package:lunchbox_hub/i18n/translations.g.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

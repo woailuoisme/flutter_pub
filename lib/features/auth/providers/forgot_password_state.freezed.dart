@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'forgot_password_state.dart';
@@ -9,6 +9,7 @@ part of 'forgot_password_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $ForgotPasswordStateCopyWith<ForgotPasswordState> get copyWith => _$ForgotPasswo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPasswordState&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.oldPassword, oldPassword) || other.oldPassword == oldPassword)&&(identical(other.newPassword, newPassword) || other.newPassword == newPassword)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.status, status) || other.status == status)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  final _this = this as ForgotPasswordState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPasswordState&&(identical(other.identifier, _this.identifier) || other.identifier == _this.identifier)&&(identical(other.oldPassword, _this.oldPassword) || other.oldPassword == _this.oldPassword)&&(identical(other.newPassword, _this.newPassword) || other.newPassword == _this.newPassword)&&(identical(other.confirmPassword, _this.confirmPassword) || other.confirmPassword == _this.confirmPassword)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.errorMessage, _this.errorMessage) || other.errorMessage == _this.errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,identifier,oldPassword,newPassword,confirmPassword,status,errorMessage);
+int get hashCode {
+  final _this = this as ForgotPasswordState;
+  return Object.hash(runtimeType,_this.identifier,_this.oldPassword,_this.newPassword,_this.confirmPassword,_this.status,_this.errorMessage);
+}
 
 @override
 String toString() {
-  return 'ForgotPasswordState(identifier: $identifier, oldPassword: $oldPassword, newPassword: $newPassword, confirmPassword: $confirmPassword, status: $status, errorMessage: $errorMessage)';
+  final _this = this as ForgotPasswordState;
+  return 'ForgotPasswordState(identifier: ${_this.identifier}, oldPassword: ${_this.oldPassword}, newPassword: ${_this.newPassword}, confirmPassword: ${_this.confirmPassword}, status: ${_this.status}, errorMessage: ${_this.errorMessage})';
 }
 
 
@@ -63,7 +69,7 @@ class _$ForgotPasswordStateCopyWithImpl<$Res>
 /// Create a copy of ForgotPasswordState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? identifier = null,Object? oldPassword = null,Object? newPassword = null,Object? confirmPassword = null,Object? status = null,Object? errorMessage = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ForgotPasswordState(
 identifier: null == identifier ? _self.identifier : identifier // ignore: cast_nullable_to_non_nullable
 as String,oldPassword: null == oldPassword ? _self.oldPassword : oldPassword // ignore: cast_nullable_to_non_nullable
 as String,newPassword: null == newPassword ? _self.newPassword : newPassword // ignore: cast_nullable_to_non_nullable
@@ -231,16 +237,18 @@ _$ForgotPasswordStateCopyWith<_ForgotPasswordState> get copyWith => __$ForgotPas
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ForgotPasswordState&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.oldPassword, oldPassword) || other.oldPassword == oldPassword)&&(identical(other.newPassword, newPassword) || other.newPassword == newPassword)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.status, status) || other.status == status)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ForgotPasswordState&&(identical(other.identifier, identifier) || other.identifier == identifier)&&(identical(other.oldPassword, oldPassword) || other.oldPassword == oldPassword)&&(identical(other.newPassword, newPassword) || other.newPassword == newPassword)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.status, status) || other.status == status)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,identifier,oldPassword,newPassword,confirmPassword,status,errorMessage);
+int get hashCode {
+    return Object.hash(runtimeType,identifier,oldPassword,newPassword,confirmPassword,status,errorMessage);
+}
 
 @override
 String toString() {
-  return 'ForgotPasswordState(identifier: $identifier, oldPassword: $oldPassword, newPassword: $newPassword, confirmPassword: $confirmPassword, status: $status, errorMessage: $errorMessage)';
+    return 'ForgotPasswordState(identifier: $identifier, oldPassword: $oldPassword, newPassword: $newPassword, confirmPassword: $confirmPassword, status: $status, errorMessage: $errorMessage)';
 }
 
 

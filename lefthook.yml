@@ -1,4 +1,4 @@
-# Lefthook configuration for Flutter/Dart and Shell/Markdown linting.
+# Lefthook configuration for Flutter/Dart and Shell linting.
 # Refer to https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
 
 pre-commit:
@@ -22,7 +22,6 @@ pre-commit:
     - name: shell-format-check
       glob: "scripts/*.sh"
       run: shfmt -d -i 4 -ci -sr {staged_files}
-
 
 # pre-push:
 #   jobs:

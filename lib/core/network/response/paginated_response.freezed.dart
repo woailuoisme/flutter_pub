@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'paginated_response.dart';
@@ -9,6 +9,7 @@ part of 'paginated_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $PaginatedResponseCopyWith<T, PaginatedResponse<T>> get copyWith => _$PaginatedR
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaginatedResponse<T>&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.meta, meta) || other.meta == meta));
+  final _this = this as PaginatedResponse<T>;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaginatedResponse<T>&&const DeepCollectionEquality().equals(other.items, _this.items)&&(identical(other.meta, _this.meta) || other.meta == _this.meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items),meta);
+int get hashCode {
+  final _this = this as PaginatedResponse<T>;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.items),_this.meta);
+}
 
 @override
 String toString() {
-  return 'PaginatedResponse<$T>(items: $items, meta: $meta)';
+  final _this = this as PaginatedResponse<T>;
+  return 'PaginatedResponse<$T>(items: ${_this.items}, meta: ${_this.meta})';
 }
 
 
@@ -66,7 +72,7 @@ class _$PaginatedResponseCopyWithImpl<T,$Res>
 /// Create a copy of PaginatedResponse
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? items = null,Object? meta = null,}) {
-  return _then(_self.copyWith(
+  return _then(PaginatedResponse(
 items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
 as List<T>,meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
 as PaginationMeta,
@@ -213,7 +219,7 @@ return $default(_that.items,_that.meta);case _:
 @JsonSerializable(genericArgumentFactories: true)
 
 class _PaginatedResponse<T> implements PaginatedResponse<T> {
-  const _PaginatedResponse({final  List<T> items = const [], required this.meta}): _items = items;
+  const _PaginatedResponse({ List<T> items = const [], required this.meta}): _items = items;
   factory _PaginatedResponse.fromJson(Map<String, dynamic> json,T Function(Object?) fromJsonT) => _$PaginatedResponseFromJson(json,fromJsonT);
 
  final  List<T> _items;
@@ -238,16 +244,18 @@ Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PaginatedResponse<T>&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.meta, meta) || other.meta == meta));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PaginatedResponse<T>&&const DeepCollectionEquality().equals(other.items, _items)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),meta);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),meta);
+}
 
 @override
 String toString() {
-  return 'PaginatedResponse<$T>(items: $items, meta: $meta)';
+    return 'PaginatedResponse<$T>(items: $items, meta: $meta)';
 }
 
 
@@ -312,16 +320,21 @@ $PaginationMetaCopyWith<PaginationMeta> get copyWith => _$PaginationMetaCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaginationMeta&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.perPage, perPage) || other.perPage == perPage)&&(identical(other.lastPage, lastPage) || other.lastPage == lastPage)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.total, total) || other.total == total)&&(identical(other.from, from) || other.from == from)&&(identical(other.to, to) || other.to == to));
+  final _this = this as PaginationMeta;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaginationMeta&&(identical(other.currentPage, _this.currentPage) || other.currentPage == _this.currentPage)&&(identical(other.perPage, _this.perPage) || other.perPage == _this.perPage)&&(identical(other.lastPage, _this.lastPage) || other.lastPage == _this.lastPage)&&(identical(other.hasMore, _this.hasMore) || other.hasMore == _this.hasMore)&&(identical(other.total, _this.total) || other.total == _this.total)&&(identical(other.from, _this.from) || other.from == _this.from)&&(identical(other.to, _this.to) || other.to == _this.to));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,currentPage,perPage,lastPage,hasMore,total,from,to);
+int get hashCode {
+  final _this = this as PaginationMeta;
+  return Object.hash(runtimeType,_this.currentPage,_this.perPage,_this.lastPage,_this.hasMore,_this.total,_this.from,_this.to);
+}
 
 @override
 String toString() {
-  return 'PaginationMeta(currentPage: $currentPage, perPage: $perPage, lastPage: $lastPage, hasMore: $hasMore, total: $total, from: $from, to: $to)';
+  final _this = this as PaginationMeta;
+  return 'PaginationMeta(currentPage: ${_this.currentPage}, perPage: ${_this.perPage}, lastPage: ${_this.lastPage}, hasMore: ${_this.hasMore}, total: ${_this.total}, from: ${_this.from}, to: ${_this.to})';
 }
 
 
@@ -350,7 +363,7 @@ class _$PaginationMetaCopyWithImpl<$Res>
 /// Create a copy of PaginationMeta
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? currentPage = null,Object? perPage = null,Object? lastPage = null,Object? hasMore = null,Object? total = null,Object? from = freezed,Object? to = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(PaginationMeta(
 currentPage: null == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
 as int,perPage: null == perPage ? _self.perPage : perPage // ignore: cast_nullable_to_non_nullable
 as int,lastPage: null == lastPage ? _self.lastPage : lastPage // ignore: cast_nullable_to_non_nullable
@@ -517,16 +530,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PaginationMeta&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.perPage, perPage) || other.perPage == perPage)&&(identical(other.lastPage, lastPage) || other.lastPage == lastPage)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.total, total) || other.total == total)&&(identical(other.from, from) || other.from == from)&&(identical(other.to, to) || other.to == to));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PaginationMeta&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.perPage, perPage) || other.perPage == perPage)&&(identical(other.lastPage, lastPage) || other.lastPage == lastPage)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.total, total) || other.total == total)&&(identical(other.from, from) || other.from == from)&&(identical(other.to, to) || other.to == to));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,currentPage,perPage,lastPage,hasMore,total,from,to);
+int get hashCode {
+    return Object.hash(runtimeType,currentPage,perPage,lastPage,hasMore,total,from,to);
+}
 
 @override
 String toString() {
-  return 'PaginationMeta(currentPage: $currentPage, perPage: $perPage, lastPage: $lastPage, hasMore: $hasMore, total: $total, from: $from, to: $to)';
+    return 'PaginationMeta(currentPage: $currentPage, perPage: $perPage, lastPage: $lastPage, hasMore: $hasMore, total: $total, from: $from, to: $to)';
 }
 
 

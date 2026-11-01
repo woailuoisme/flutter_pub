@@ -1,37 +1,36 @@
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:drift/drift.dart';
+import 'package:lunchbox_hub/core/services/app_database.dart';
 import 'package:lunchbox_hub/core/services/database_service.dart';
+import 'package:lunchbox_hub/core/utils/mock_data.dart';
 import 'package:lunchbox_hub/features/notifications/datasources/gotify_rest_client.dart';
 import 'package:lunchbox_hub/features/notifications/datasources/gotify_websocket_service.dart';
 import 'package:lunchbox_hub/features/notifications/entities/notification_model.dart';
-import 'package:lunchbox_hub/core/utils/mock_data.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:lunchbox_hub/objectbox.g.dart';
-import 'dart:convert';
-import 'dart:async';
 
 part 'notification_repository.g.dart';
 
 class NotificationRepository {
   NotificationRepository({
-    required this.store,
+    required this.db,
     required this.restClient,
     required this.wsService,
-  }) : _box = store.box<NotificationEntity>();
+  });
 
-  final Store store;
-  final Box<NotificationEntity> _box;
+  final AppDatabase db;
   final GotifyRestClient restClient;
   final GotifyWebSocketService wsService;
 
   // 异步写入缓冲区与定时器
-  final List<NotificationEntity> _writeBuffer = [];
+  final List<NotificationEntry> _writeBuffer = [];
   Timer? _bufferTimer;
 
   Stream<List<NotificationModel>> watchNotifications() {
-    final builder = _box.query()
-      ..order(NotificationEntity_.date, flags: Order.descending);
-    return builder
-        .watch(triggerImmediately: true)
-        .map((query) => query.find().map((entity) => _mapEntityToModel(entity)).toList());
+    final query = db.select(db.notificationEntries)
+      ..orderBy([(t) => OrderingTerm.desc(t.date)]);
+    return query.watch().map((rows) => rows.map(_mapEntryToModel).toList());
   }
 
   Future<void> fetchAndCacheMessages() async {
@@ -46,18 +45,20 @@ class NotificationRepository {
   }
 
   Future<void> _cacheMessages(List<NotificationModel> messages) async {
-    final entities = messages.map((m) => _mapModelToEntity(m)).toList();
-    _box.putMany(entities);
+    final entries = messages.map(_mapModelToCompanion).toList();
+    await db.batch((batch) {
+      batch.insertAllOnConflictUpdate(db.notificationEntries, entries);
+    });
   }
 
   void startListening() {
     wsService.connect();
     wsService.stream.listen((message) {
-      final entity = _mapModelToEntity(message);
-      
+      final entry = _mapModelToEntry(message);
+
       // 合并缓冲区内相同 ID 的消息进行去重
-      _writeBuffer.removeWhere((item) => item.id == entity.id);
-      _writeBuffer.add(entity);
+      _writeBuffer.removeWhere((item) => item.id == entry.id);
+      _writeBuffer.add(entry);
 
       _bufferTimer?.cancel();
       if (_writeBuffer.length >= 10) {
@@ -70,8 +71,11 @@ class NotificationRepository {
 
   void _flushBuffer() {
     if (_writeBuffer.isEmpty) return;
-    _box.putMany(List.from(_writeBuffer));
+    final entries = List<NotificationEntry>.from(_writeBuffer);
     _writeBuffer.clear();
+    db.batch((batch) {
+      batch.insertAllOnConflictUpdate(db.notificationEntries, entries);
+    });
   }
 
   void dispose() {
@@ -80,47 +84,53 @@ class NotificationRepository {
   }
 
   Stream<int> watchUnreadNotificationsCount() {
-    final builder = _box.query(NotificationEntity_.isRead.equals(false));
-    return builder.watch(triggerImmediately: true).map((query) => query.count());
+    final countExpr = db.notificationEntries.id.count();
+    final query = db.selectOnly(db.notificationEntries)
+      ..where(db.notificationEntries.isRead.equals(false))
+      ..addColumns([countExpr]);
+    return query.watchSingle().map((row) => row.read(countExpr) ?? 0);
   }
 
   Future<void> markAsRead(int id) async {
-    final entity = _box.get(id);
-    if (entity != null) {
-      entity.isRead = true;
-      _box.put(entity);
-    }
+    await (db.update(db.notificationEntries)..where((t) => t.id.equals(id)))
+        .write(const NotificationEntriesCompanion(isRead: Value(true)));
   }
 
   Future<void> markAllAsRead() async {
-    final query = _box.query(NotificationEntity_.isRead.equals(false)).build();
-    final unread = query.find();
-    query.close();
-    if (unread.isNotEmpty) {
-      for (final entity in unread) {
-        entity.isRead = true;
-      }
-      _box.putMany(unread);
-    }
+    await (db.update(db.notificationEntries)..where((t) => t.isRead.equals(false)))
+        .write(const NotificationEntriesCompanion(isRead: Value(true)));
   }
 
-  NotificationModel _mapEntityToModel(NotificationEntity entity) {
+  NotificationModel _mapEntryToModel(NotificationEntry entry) {
     return NotificationModel(
-      id: entity.id,
-      appid: entity.appId,
-      message: entity.message,
-      title: entity.title,
-      priority: entity.priority,
-      date: entity.date,
-      isRead: entity.isRead,
-      extras: entity.extras != null
-          ? jsonDecode(entity.extras!) as Map<String, dynamic>
+      id: entry.id,
+      appid: entry.appId,
+      message: entry.message,
+      title: entry.title,
+      priority: entry.priority,
+      date: entry.date,
+      isRead: entry.isRead,
+      extras: entry.extras != null
+          ? jsonDecode(entry.extras!) as Map<String, dynamic>
           : {},
     );
   }
 
-  NotificationEntity _mapModelToEntity(NotificationModel model) {
-    return NotificationEntity(
+  NotificationEntriesCompanion _mapModelToCompanion(NotificationModel model) {
+    return NotificationEntriesCompanion(
+      id: Value(model.id),
+      appId: Value(model.appid),
+      message: Value(model.message),
+      title: Value(model.title),
+      priority: Value(model.priority),
+      date: Value(model.date),
+      isRead: Value(model.isRead),
+      extras: Value(model.extras.isNotEmpty ? jsonEncode(model.extras) : null),
+    );
+  }
+
+  NotificationEntry _mapModelToEntry(NotificationModel model) {
+    return NotificationEntry(
       id: model.id,
       appId: model.appid,
       message: model.message,
@@ -139,7 +149,7 @@ NotificationRepository notificationRepository(Ref ref) {
   final restClient = ref.watch(gotifyRestClientProvider);
   final wsService = ref.watch(gotifyWebSocketServiceProvider);
   final repository = NotificationRepository(
-    store: db,
+    db: db,
     restClient: restClient,
     wsService: wsService,
   );

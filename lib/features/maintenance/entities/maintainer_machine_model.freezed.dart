@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'maintainer_machine_model.dart';
@@ -9,6 +9,7 @@ part of 'maintainer_machine_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $MaintainerMachineModelCopyWith<MaintainerMachineModel> get copyWith => _$Mainta
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MaintainerMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.faultCount, faultCount) || other.faultCount == faultCount)&&(identical(other.lastFaultAt, lastFaultAt) || other.lastFaultAt == lastFaultAt));
+  final _this = this as MaintainerMachineModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MaintainerMachineModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.location, _this.location) || other.location == _this.location)&&(identical(other.faultCount, _this.faultCount) || other.faultCount == _this.faultCount)&&(identical(other.lastFaultAt, _this.lastFaultAt) || other.lastFaultAt == _this.lastFaultAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,location,faultCount,lastFaultAt);
+int get hashCode {
+  final _this = this as MaintainerMachineModel;
+  return Object.hash(runtimeType,_this.id,_this.name,_this.location,_this.faultCount,_this.lastFaultAt);
+}
 
 @override
 String toString() {
-  return 'MaintainerMachineModel(id: $id, name: $name, location: $location, faultCount: $faultCount, lastFaultAt: $lastFaultAt)';
+  final _this = this as MaintainerMachineModel;
+  return 'MaintainerMachineModel(id: ${_this.id}, name: ${_this.name}, location: ${_this.location}, faultCount: ${_this.faultCount}, lastFaultAt: ${_this.lastFaultAt})';
 }
 
 
@@ -66,7 +72,7 @@ class _$MaintainerMachineModelCopyWithImpl<$Res>
 /// Create a copy of MaintainerMachineModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? location = null,Object? faultCount = null,Object? lastFaultAt = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(MaintainerMachineModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
@@ -229,16 +235,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MaintainerMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.faultCount, faultCount) || other.faultCount == faultCount)&&(identical(other.lastFaultAt, lastFaultAt) || other.lastFaultAt == lastFaultAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MaintainerMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.faultCount, faultCount) || other.faultCount == faultCount)&&(identical(other.lastFaultAt, lastFaultAt) || other.lastFaultAt == lastFaultAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,location,faultCount,lastFaultAt);
+int get hashCode {
+    return Object.hash(runtimeType,id,name,location,faultCount,lastFaultAt);
+}
 
 @override
 String toString() {
-  return 'MaintainerMachineModel(id: $id, name: $name, location: $location, faultCount: $faultCount, lastFaultAt: $lastFaultAt)';
+    return 'MaintainerMachineModel(id: $id, name: $name, location: $location, faultCount: $faultCount, lastFaultAt: $lastFaultAt)';
 }
 
 

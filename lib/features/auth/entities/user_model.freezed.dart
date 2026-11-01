@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_model.dart';
@@ -9,6 +9,7 @@ part of 'user_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -42,16 +43,21 @@ $UserModelCopyWith<UserModel> get copyWith => _$UserModelCopyWithImpl<UserModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.registeredAt, registeredAt) || other.registeredAt == registeredAt)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.birthday, birthday) || other.birthday == birthday)&&(identical(other.lastLoginAt, lastLoginAt) || other.lastLoginAt == lastLoginAt)&&(identical(other.points, points) || other.points == points)&&(identical(other.memberLevel, memberLevel) || other.memberLevel == memberLevel)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&const DeepCollectionEquality().equals(other.favoriteDevices, favoriteDevices));
+  final _this = this as UserModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.username, _this.username) || other.username == _this.username)&&(identical(other.registeredAt, _this.registeredAt) || other.registeredAt == _this.registeredAt)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.nickname, _this.nickname) || other.nickname == _this.nickname)&&(identical(other.avatar, _this.avatar) || other.avatar == _this.avatar)&&(identical(other.gender, _this.gender) || other.gender == _this.gender)&&(identical(other.birthday, _this.birthday) || other.birthday == _this.birthday)&&(identical(other.lastLoginAt, _this.lastLoginAt) || other.lastLoginAt == _this.lastLoginAt)&&(identical(other.points, _this.points) || other.points == _this.points)&&(identical(other.memberLevel, _this.memberLevel) || other.memberLevel == _this.memberLevel)&&(identical(other.isVerified, _this.isVerified) || other.isVerified == _this.isVerified)&&const DeepCollectionEquality().equals(other.favoriteDevices, _this.favoriteDevices));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,username,registeredAt,phone,email,nickname,avatar,gender,birthday,lastLoginAt,points,memberLevel,isVerified,const DeepCollectionEquality().hash(favoriteDevices));
+int get hashCode {
+  final _this = this as UserModel;
+  return Object.hash(runtimeType,_this.id,_this.username,_this.registeredAt,_this.phone,_this.email,_this.nickname,_this.avatar,_this.gender,_this.birthday,_this.lastLoginAt,_this.points,_this.memberLevel,_this.isVerified,const DeepCollectionEquality().hash(_this.favoriteDevices));
+}
 
 @override
 String toString() {
-  return 'UserModel(id: $id, username: $username, registeredAt: $registeredAt, phone: $phone, email: $email, nickname: $nickname, avatar: $avatar, gender: $gender, birthday: $birthday, lastLoginAt: $lastLoginAt, points: $points, memberLevel: $memberLevel, isVerified: $isVerified, favoriteDevices: $favoriteDevices)';
+  final _this = this as UserModel;
+  return 'UserModel(id: ${_this.id}, username: ${_this.username}, registeredAt: ${_this.registeredAt}, phone: ${_this.phone}, email: ${_this.email}, nickname: ${_this.nickname}, avatar: ${_this.avatar}, gender: ${_this.gender}, birthday: ${_this.birthday}, lastLoginAt: ${_this.lastLoginAt}, points: ${_this.points}, memberLevel: ${_this.memberLevel}, isVerified: ${_this.isVerified}, favoriteDevices: ${_this.favoriteDevices})';
 }
 
 
@@ -80,7 +86,7 @@ class _$UserModelCopyWithImpl<$Res>
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? username = null,Object? registeredAt = null,Object? phone = freezed,Object? email = freezed,Object? nickname = null,Object? avatar = freezed,Object? gender = null,Object? birthday = freezed,Object? lastLoginAt = freezed,Object? points = null,Object? memberLevel = null,Object? isVerified = null,Object? favoriteDevices = null,}) {
-  return _then(_self.copyWith(
+  return _then(UserModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,registeredAt: null == registeredAt ? _self.registeredAt : registeredAt // ignore: cast_nullable_to_non_nullable
@@ -230,7 +236,7 @@ return $default(_that.id,_that.username,_that.registeredAt,_that.phone,_that.ema
 @JsonSerializable()
 
 class _UserModel extends UserModel {
-  const _UserModel({required this.id, this.username = '', @JsonKey(name: 'registered_at') this.registeredAt = '', this.phone = '', this.email = '', this.nickname = '', this.avatar = '', this.gender = 'unknown', this.birthday = '', @JsonKey(name: 'last_login_at') this.lastLoginAt = '', this.points = 0, this.memberLevel = 'normal', this.isVerified = false, final  List<String> favoriteDevices = const []}): _favoriteDevices = favoriteDevices,super._();
+  const _UserModel({required this.id, this.username = '', @JsonKey(name: 'registered_at') this.registeredAt = '', this.phone = '', this.email = '', this.nickname = '', this.avatar = '', this.gender = 'unknown', this.birthday = '', @JsonKey(name: 'last_login_at') this.lastLoginAt = '', this.points = 0, this.memberLevel = 'normal', this.isVerified = false,  List<String> favoriteDevices = const []}): _favoriteDevices = favoriteDevices,super._();
   factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
 /// 用户ID
@@ -282,16 +288,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.registeredAt, registeredAt) || other.registeredAt == registeredAt)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.birthday, birthday) || other.birthday == birthday)&&(identical(other.lastLoginAt, lastLoginAt) || other.lastLoginAt == lastLoginAt)&&(identical(other.points, points) || other.points == points)&&(identical(other.memberLevel, memberLevel) || other.memberLevel == memberLevel)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&const DeepCollectionEquality().equals(other._favoriteDevices, _favoriteDevices));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.registeredAt, registeredAt) || other.registeredAt == registeredAt)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.birthday, birthday) || other.birthday == birthday)&&(identical(other.lastLoginAt, lastLoginAt) || other.lastLoginAt == lastLoginAt)&&(identical(other.points, points) || other.points == points)&&(identical(other.memberLevel, memberLevel) || other.memberLevel == memberLevel)&&(identical(other.isVerified, isVerified) || other.isVerified == isVerified)&&const DeepCollectionEquality().equals(other.favoriteDevices, _favoriteDevices));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,username,registeredAt,phone,email,nickname,avatar,gender,birthday,lastLoginAt,points,memberLevel,isVerified,const DeepCollectionEquality().hash(_favoriteDevices));
+int get hashCode {
+    return Object.hash(runtimeType,id,username,registeredAt,phone,email,nickname,avatar,gender,birthday,lastLoginAt,points,memberLevel,isVerified,const DeepCollectionEquality().hash(_favoriteDevices));
+}
 
 @override
 String toString() {
-  return 'UserModel(id: $id, username: $username, registeredAt: $registeredAt, phone: $phone, email: $email, nickname: $nickname, avatar: $avatar, gender: $gender, birthday: $birthday, lastLoginAt: $lastLoginAt, points: $points, memberLevel: $memberLevel, isVerified: $isVerified, favoriteDevices: $favoriteDevices)';
+    return 'UserModel(id: $id, username: $username, registeredAt: $registeredAt, phone: $phone, email: $email, nickname: $nickname, avatar: $avatar, gender: $gender, birthday: $birthday, lastLoginAt: $lastLoginAt, points: $points, memberLevel: $memberLevel, isVerified: $isVerified, favoriteDevices: $favoriteDevices)';
 }
 
 

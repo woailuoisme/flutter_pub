@@ -1,18 +1,6 @@
-
 [tools]
-# Flutter / Android
-flutter = "latest"
-java = "latest"
-
-# Task runner
+flutter = "3.47.7"
+java = "21"
 just = "latest"
-
-# Shell scripts
 shfmt = "latest"
 shellcheck = "latest"
-dotenv-linter = "latest"
-
-# CLI helpers
-ripgrep = "latest"
-fd = "latest"
-sd = "latest"

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'api_response_model.dart';
@@ -9,6 +9,7 @@ part of 'api_response_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -32,16 +33,21 @@ $ApiResponseModelCopyWith<T, ApiResponseModel<T>> get copyWith => _$ApiResponseM
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApiResponseModel<T>&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&const DeepCollectionEquality().equals(other.data, data));
+  final _this = this as ApiResponseModel<T>;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApiResponseModel<T>&&(identical(other.code, _this.code) || other.code == _this.code)&&(identical(other.message, _this.message) || other.message == _this.message)&&(identical(other.timestamp, _this.timestamp) || other.timestamp == _this.timestamp)&&const DeepCollectionEquality().equals(other.data, _this.data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,code,message,timestamp,const DeepCollectionEquality().hash(data));
+int get hashCode {
+  final _this = this as ApiResponseModel<T>;
+  return Object.hash(runtimeType,_this.code,_this.message,_this.timestamp,const DeepCollectionEquality().hash(_this.data));
+}
 
 @override
 String toString() {
-  return 'ApiResponseModel<$T>(code: $code, message: $message, timestamp: $timestamp, data: $data)';
+  final _this = this as ApiResponseModel<T>;
+  return 'ApiResponseModel<$T>(code: ${_this.code}, message: ${_this.message}, timestamp: ${_this.timestamp}, data: ${_this.data})';
 }
 
 
@@ -70,7 +76,7 @@ class _$ApiResponseModelCopyWithImpl<T,$Res>
 /// Create a copy of ApiResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? code = null,Object? message = null,Object? timestamp = null,Object? data = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ApiResponseModel(
 code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as int,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
@@ -235,16 +241,18 @@ Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApiResponseModel<T>&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&const DeepCollectionEquality().equals(other.data, data));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApiResponseModel<T>&&(identical(other.code, code) || other.code == code)&&(identical(other.message, message) || other.message == message)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&const DeepCollectionEquality().equals(other.data, data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,code,message,timestamp,const DeepCollectionEquality().hash(data));
+int get hashCode {
+    return Object.hash(runtimeType,code,message,timestamp,const DeepCollectionEquality().hash(data));
+}
 
 @override
 String toString() {
-  return 'ApiResponseModel<$T>(code: $code, message: $message, timestamp: $timestamp, data: $data)';
+    return 'ApiResponseModel<$T>(code: $code, message: $message, timestamp: $timestamp, data: $data)';
 }
 
 
@@ -306,16 +314,21 @@ $PaginatedResponseModelCopyWith<T, PaginatedResponseModel<T>> get copyWith => _$
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaginatedResponseModel<T>&&const DeepCollectionEquality().equals(other.list, list)&&(identical(other.total, total) || other.total == total)&&(identical(other.page, page) || other.page == page)&&(identical(other.pageSize, pageSize) || other.pageSize == pageSize));
+  final _this = this as PaginatedResponseModel<T>;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PaginatedResponseModel<T>&&const DeepCollectionEquality().equals(other.list, _this.list)&&(identical(other.total, _this.total) || other.total == _this.total)&&(identical(other.page, _this.page) || other.page == _this.page)&&(identical(other.pageSize, _this.pageSize) || other.pageSize == _this.pageSize));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(list),total,page,pageSize);
+int get hashCode {
+  final _this = this as PaginatedResponseModel<T>;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.list),_this.total,_this.page,_this.pageSize);
+}
 
 @override
 String toString() {
-  return 'PaginatedResponseModel<$T>(list: $list, total: $total, page: $page, pageSize: $pageSize)';
+  final _this = this as PaginatedResponseModel<T>;
+  return 'PaginatedResponseModel<$T>(list: ${_this.list}, total: ${_this.total}, page: ${_this.page}, pageSize: ${_this.pageSize})';
 }
 
 
@@ -344,7 +357,7 @@ class _$PaginatedResponseModelCopyWithImpl<T,$Res>
 /// Create a copy of PaginatedResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? list = null,Object? total = null,Object? page = null,Object? pageSize = null,}) {
-  return _then(_self.copyWith(
+  return _then(PaginatedResponseModel(
 list: null == list ? _self.list : list // ignore: cast_nullable_to_non_nullable
 as List<T>,total: null == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
 as int,page: null == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
@@ -484,7 +497,7 @@ return $default(_that.list,_that.total,_that.page,_that.pageSize);case _:
 @JsonSerializable(genericArgumentFactories: true)
 
 class _PaginatedResponseModel<T> extends PaginatedResponseModel<T> {
-  const _PaginatedResponseModel({final  List<T> list = const [], this.total = 0, this.page = 1, this.pageSize = 10}): _list = list,super._();
+  const _PaginatedResponseModel({ List<T> list = const [], this.total = 0, this.page = 1, this.pageSize = 10}): _list = list,super._();
   factory _PaginatedResponseModel.fromJson(Map<String, dynamic> json,T Function(Object?) fromJsonT) => _$PaginatedResponseModelFromJson(json,fromJsonT);
 
 /// 数据列表
@@ -516,16 +529,18 @@ Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PaginatedResponseModel<T>&&const DeepCollectionEquality().equals(other._list, _list)&&(identical(other.total, total) || other.total == total)&&(identical(other.page, page) || other.page == page)&&(identical(other.pageSize, pageSize) || other.pageSize == pageSize));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PaginatedResponseModel<T>&&const DeepCollectionEquality().equals(other.list, _list)&&(identical(other.total, total) || other.total == total)&&(identical(other.page, page) || other.page == page)&&(identical(other.pageSize, pageSize) || other.pageSize == pageSize));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_list),total,page,pageSize);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_list),total,page,pageSize);
+}
 
 @override
 String toString() {
-  return 'PaginatedResponseModel<$T>(list: $list, total: $total, page: $page, pageSize: $pageSize)';
+    return 'PaginatedResponseModel<$T>(list: $list, total: $total, page: $page, pageSize: $pageSize)';
 }
 
 

@@ -49,5 +49,3 @@ just ready
 ```
 
 更细粒度命令见 [AGENTS.md](./AGENTS.md)。
-
-

@@ -11,30 +11,13 @@
     ]
   },
   "dart.lineLength": 120,
-  "explorer.fileNesting.enabled": true,
-  "explorer.fileNesting.expand": false,
-  "explorer.fileNesting.patterns": {
-    "*.dart": "$(capture).g.dart, $(capture).freezed.dart, $(capture).mocks.dart, $(capture).gr.dart, $(capture).retrofit.g.dart, $(capture).config.dart, $(capture).template.dart",
-    "pubspec.yaml": "pubspec.lock, pubspec_overrides.yaml, .packages, .flutter-plugins, .flutter-plugins-dependencies, slang.yaml, flutter_launcher_icons.yaml, flutter_native_splash.yaml",
-    "justfile": ".just*, scripts/*",
-    "env*.json": ".env*"
-  },
-  "search.exclude": {
-    "**/*.g.dart": true,
-    "**/*.freezed.dart": true,
-    "**/objectbox.g.dart": true,
-    "**/build/**": true,
-    "**/.dart_tool/**": true,
-    "**/coverage/**": true,
-    "**/ios/Pods/**": true,
-    "**/android/.gradle/**": true
-  },
+  "dart.runPubGetOnPubspecChanges": "always",
   "files.exclude": {
-    "**/.git": true,
     "**/.DS_Store": true,
     "**/.dart_tool": true
   },
-  "dart.previewFlutterUiGuides": true,
-  "dart.openFlutterOutlineAutomatically": true,
-  "dart.runPubGetOnPubspecChanges": "always"
+  "search.exclude": {
+    "**/*.g.dart": true,
+    "**/*.freezed.dart": true
+  }
 }

@@ -27,8 +27,8 @@ cd "$PROJECT_ROOT"
 require_cmd "gh"
 
 SECRETS=(
-    "ENV_DEV:.env.dev"
-    "ENV_PROD:.env.prod"
+    "ENV_DEV:.env.development"
+    "ENV_PROD:.env.production"
 )
 
 log_info "Syncing environment files to GitHub Secrets..."

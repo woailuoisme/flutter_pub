@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'revenue_stats_model.dart';
@@ -9,6 +9,7 @@ part of 'revenue_stats_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $TimeSeriesPointCopyWith<TimeSeriesPoint> get copyWith => _$TimeSeriesPointCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TimeSeriesPoint&&(identical(other.label, label) || other.label == label)&&(identical(other.value, value) || other.value == value));
+  final _this = this as TimeSeriesPoint;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TimeSeriesPoint&&(identical(other.label, _this.label) || other.label == _this.label)&&(identical(other.value, _this.value) || other.value == _this.value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,label,value);
+int get hashCode {
+  final _this = this as TimeSeriesPoint;
+  return Object.hash(runtimeType,_this.label,_this.value);
+}
 
 @override
 String toString() {
-  return 'TimeSeriesPoint(label: $label, value: $value)';
+  final _this = this as TimeSeriesPoint;
+  return 'TimeSeriesPoint(label: ${_this.label}, value: ${_this.value})';
 }
 
 
@@ -66,7 +72,7 @@ class _$TimeSeriesPointCopyWithImpl<$Res>
 /// Create a copy of TimeSeriesPoint
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? label = null,Object? value = null,}) {
-  return _then(_self.copyWith(
+  return _then(TimeSeriesPoint(
 label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
 as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as double,
@@ -223,16 +229,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TimeSeriesPoint&&(identical(other.label, label) || other.label == label)&&(identical(other.value, value) || other.value == value));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _TimeSeriesPoint&&(identical(other.label, label) || other.label == label)&&(identical(other.value, value) || other.value == value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,label,value);
+int get hashCode {
+    return Object.hash(runtimeType,label,value);
+}
 
 @override
 String toString() {
-  return 'TimeSeriesPoint(label: $label, value: $value)';
+    return 'TimeSeriesPoint(label: $label, value: $value)';
 }
 
 
@@ -288,16 +296,21 @@ $MachineRevenuePointCopyWith<MachineRevenuePoint> get copyWith => _$MachineReven
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MachineRevenuePoint&&(identical(other.machineId, machineId) || other.machineId == machineId)&&(identical(other.machineName, machineName) || other.machineName == machineName)&&(identical(other.revenue, revenue) || other.revenue == revenue));
+  final _this = this as MachineRevenuePoint;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MachineRevenuePoint&&(identical(other.machineId, _this.machineId) || other.machineId == _this.machineId)&&(identical(other.machineName, _this.machineName) || other.machineName == _this.machineName)&&(identical(other.revenue, _this.revenue) || other.revenue == _this.revenue));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,machineId,machineName,revenue);
+int get hashCode {
+  final _this = this as MachineRevenuePoint;
+  return Object.hash(runtimeType,_this.machineId,_this.machineName,_this.revenue);
+}
 
 @override
 String toString() {
-  return 'MachineRevenuePoint(machineId: $machineId, machineName: $machineName, revenue: $revenue)';
+  final _this = this as MachineRevenuePoint;
+  return 'MachineRevenuePoint(machineId: ${_this.machineId}, machineName: ${_this.machineName}, revenue: ${_this.revenue})';
 }
 
 
@@ -326,7 +339,7 @@ class _$MachineRevenuePointCopyWithImpl<$Res>
 /// Create a copy of MachineRevenuePoint
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? machineId = null,Object? machineName = null,Object? revenue = null,}) {
-  return _then(_self.copyWith(
+  return _then(MachineRevenuePoint(
 machineId: null == machineId ? _self.machineId : machineId // ignore: cast_nullable_to_non_nullable
 as String,machineName: null == machineName ? _self.machineName : machineName // ignore: cast_nullable_to_non_nullable
 as String,revenue: null == revenue ? _self.revenue : revenue // ignore: cast_nullable_to_non_nullable
@@ -485,16 +498,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MachineRevenuePoint&&(identical(other.machineId, machineId) || other.machineId == machineId)&&(identical(other.machineName, machineName) || other.machineName == machineName)&&(identical(other.revenue, revenue) || other.revenue == revenue));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MachineRevenuePoint&&(identical(other.machineId, machineId) || other.machineId == machineId)&&(identical(other.machineName, machineName) || other.machineName == machineName)&&(identical(other.revenue, revenue) || other.revenue == revenue));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,machineId,machineName,revenue);
+int get hashCode {
+    return Object.hash(runtimeType,machineId,machineName,revenue);
+}
 
 @override
 String toString() {
-  return 'MachineRevenuePoint(machineId: $machineId, machineName: $machineName, revenue: $revenue)';
+    return 'MachineRevenuePoint(machineId: $machineId, machineName: $machineName, revenue: $revenue)';
 }
 
 
@@ -551,16 +566,21 @@ $RevenueStatsModelCopyWith<RevenueStatsModel> get copyWith => _$RevenueStatsMode
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RevenueStatsModel&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.dailyAvgRevenue, dailyAvgRevenue) || other.dailyAvgRevenue == dailyAvgRevenue)&&(identical(other.growthRate, growthRate) || other.growthRate == growthRate)&&(identical(other.totalMachines, totalMachines) || other.totalMachines == totalMachines)&&const DeepCollectionEquality().equals(other.revenueTrend, revenueTrend)&&const DeepCollectionEquality().equals(other.orderTrend, orderTrend)&&const DeepCollectionEquality().equals(other.productSales, productSales)&&const DeepCollectionEquality().equals(other.machineRevenues, machineRevenues));
+  final _this = this as RevenueStatsModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RevenueStatsModel&&(identical(other.totalRevenue, _this.totalRevenue) || other.totalRevenue == _this.totalRevenue)&&(identical(other.totalOrders, _this.totalOrders) || other.totalOrders == _this.totalOrders)&&(identical(other.dailyAvgRevenue, _this.dailyAvgRevenue) || other.dailyAvgRevenue == _this.dailyAvgRevenue)&&(identical(other.growthRate, _this.growthRate) || other.growthRate == _this.growthRate)&&(identical(other.totalMachines, _this.totalMachines) || other.totalMachines == _this.totalMachines)&&const DeepCollectionEquality().equals(other.revenueTrend, _this.revenueTrend)&&const DeepCollectionEquality().equals(other.orderTrend, _this.orderTrend)&&const DeepCollectionEquality().equals(other.productSales, _this.productSales)&&const DeepCollectionEquality().equals(other.machineRevenues, _this.machineRevenues));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,totalRevenue,totalOrders,dailyAvgRevenue,growthRate,totalMachines,const DeepCollectionEquality().hash(revenueTrend),const DeepCollectionEquality().hash(orderTrend),const DeepCollectionEquality().hash(productSales),const DeepCollectionEquality().hash(machineRevenues));
+int get hashCode {
+  final _this = this as RevenueStatsModel;
+  return Object.hash(runtimeType,_this.totalRevenue,_this.totalOrders,_this.dailyAvgRevenue,_this.growthRate,_this.totalMachines,const DeepCollectionEquality().hash(_this.revenueTrend),const DeepCollectionEquality().hash(_this.orderTrend),const DeepCollectionEquality().hash(_this.productSales),const DeepCollectionEquality().hash(_this.machineRevenues));
+}
 
 @override
 String toString() {
-  return 'RevenueStatsModel(totalRevenue: $totalRevenue, totalOrders: $totalOrders, dailyAvgRevenue: $dailyAvgRevenue, growthRate: $growthRate, totalMachines: $totalMachines, revenueTrend: $revenueTrend, orderTrend: $orderTrend, productSales: $productSales, machineRevenues: $machineRevenues)';
+  final _this = this as RevenueStatsModel;
+  return 'RevenueStatsModel(totalRevenue: ${_this.totalRevenue}, totalOrders: ${_this.totalOrders}, dailyAvgRevenue: ${_this.dailyAvgRevenue}, growthRate: ${_this.growthRate}, totalMachines: ${_this.totalMachines}, revenueTrend: ${_this.revenueTrend}, orderTrend: ${_this.orderTrend}, productSales: ${_this.productSales}, machineRevenues: ${_this.machineRevenues})';
 }
 
 
@@ -589,7 +609,7 @@ class _$RevenueStatsModelCopyWithImpl<$Res>
 /// Create a copy of RevenueStatsModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? totalRevenue = null,Object? totalOrders = null,Object? dailyAvgRevenue = null,Object? growthRate = null,Object? totalMachines = null,Object? revenueTrend = null,Object? orderTrend = null,Object? productSales = null,Object? machineRevenues = null,}) {
-  return _then(_self.copyWith(
+  return _then(RevenueStatsModel(
 totalRevenue: null == totalRevenue ? _self.totalRevenue : totalRevenue // ignore: cast_nullable_to_non_nullable
 as String,totalOrders: null == totalOrders ? _self.totalOrders : totalOrders // ignore: cast_nullable_to_non_nullable
 as int,dailyAvgRevenue: null == dailyAvgRevenue ? _self.dailyAvgRevenue : dailyAvgRevenue // ignore: cast_nullable_to_non_nullable
@@ -734,7 +754,7 @@ return $default(_that.totalRevenue,_that.totalOrders,_that.dailyAvgRevenue,_that
 @JsonSerializable()
 
 class _RevenueStatsModel implements RevenueStatsModel {
-  const _RevenueStatsModel({@JsonKey(name: 'total_revenue') this.totalRevenue = '0.00', @JsonKey(name: 'total_orders') this.totalOrders = 0, @JsonKey(name: 'daily_avg_revenue') this.dailyAvgRevenue = '0.00', @JsonKey(name: 'growth_rate') this.growthRate = 0.0, @JsonKey(name: 'total_machines') this.totalMachines = 0, @JsonKey(name: 'revenue_trend') final  List<TimeSeriesPoint> revenueTrend = const [], @JsonKey(name: 'order_trend') final  List<TimeSeriesPoint> orderTrend = const [], @JsonKey(name: 'product_sales') final  List<ProductSalesModel> productSales = const [], @JsonKey(name: 'machine_revenues') final  List<MachineRevenuePoint> machineRevenues = const []}): _revenueTrend = revenueTrend,_orderTrend = orderTrend,_productSales = productSales,_machineRevenues = machineRevenues;
+  const _RevenueStatsModel({@JsonKey(name: 'total_revenue') this.totalRevenue = '0.00', @JsonKey(name: 'total_orders') this.totalOrders = 0, @JsonKey(name: 'daily_avg_revenue') this.dailyAvgRevenue = '0.00', @JsonKey(name: 'growth_rate') this.growthRate = 0.0, @JsonKey(name: 'total_machines') this.totalMachines = 0, @JsonKey(name: 'revenue_trend')  List<TimeSeriesPoint> revenueTrend = const [], @JsonKey(name: 'order_trend')  List<TimeSeriesPoint> orderTrend = const [], @JsonKey(name: 'product_sales')  List<ProductSalesModel> productSales = const [], @JsonKey(name: 'machine_revenues')  List<MachineRevenuePoint> machineRevenues = const []}): _revenueTrend = revenueTrend,_orderTrend = orderTrend,_productSales = productSales,_machineRevenues = machineRevenues;
   factory _RevenueStatsModel.fromJson(Map<String, dynamic> json) => _$RevenueStatsModelFromJson(json);
 
 @override@JsonKey(name: 'total_revenue') final  String totalRevenue;
@@ -784,16 +804,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RevenueStatsModel&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.dailyAvgRevenue, dailyAvgRevenue) || other.dailyAvgRevenue == dailyAvgRevenue)&&(identical(other.growthRate, growthRate) || other.growthRate == growthRate)&&(identical(other.totalMachines, totalMachines) || other.totalMachines == totalMachines)&&const DeepCollectionEquality().equals(other._revenueTrend, _revenueTrend)&&const DeepCollectionEquality().equals(other._orderTrend, _orderTrend)&&const DeepCollectionEquality().equals(other._productSales, _productSales)&&const DeepCollectionEquality().equals(other._machineRevenues, _machineRevenues));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _RevenueStatsModel&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.dailyAvgRevenue, dailyAvgRevenue) || other.dailyAvgRevenue == dailyAvgRevenue)&&(identical(other.growthRate, growthRate) || other.growthRate == growthRate)&&(identical(other.totalMachines, totalMachines) || other.totalMachines == totalMachines)&&const DeepCollectionEquality().equals(other.revenueTrend, _revenueTrend)&&const DeepCollectionEquality().equals(other.orderTrend, _orderTrend)&&const DeepCollectionEquality().equals(other.productSales, _productSales)&&const DeepCollectionEquality().equals(other.machineRevenues, _machineRevenues));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,totalRevenue,totalOrders,dailyAvgRevenue,growthRate,totalMachines,const DeepCollectionEquality().hash(_revenueTrend),const DeepCollectionEquality().hash(_orderTrend),const DeepCollectionEquality().hash(_productSales),const DeepCollectionEquality().hash(_machineRevenues));
+int get hashCode {
+    return Object.hash(runtimeType,totalRevenue,totalOrders,dailyAvgRevenue,growthRate,totalMachines,const DeepCollectionEquality().hash(_revenueTrend),const DeepCollectionEquality().hash(_orderTrend),const DeepCollectionEquality().hash(_productSales),const DeepCollectionEquality().hash(_machineRevenues));
+}
 
 @override
 String toString() {
-  return 'RevenueStatsModel(totalRevenue: $totalRevenue, totalOrders: $totalOrders, dailyAvgRevenue: $dailyAvgRevenue, growthRate: $growthRate, totalMachines: $totalMachines, revenueTrend: $revenueTrend, orderTrend: $orderTrend, productSales: $productSales, machineRevenues: $machineRevenues)';
+    return 'RevenueStatsModel(totalRevenue: $totalRevenue, totalOrders: $totalOrders, dailyAvgRevenue: $dailyAvgRevenue, growthRate: $growthRate, totalMachines: $totalMachines, revenueTrend: $revenueTrend, orderTrend: $orderTrend, productSales: $productSales, machineRevenues: $machineRevenues)';
 }
 
 

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'stocker_machine_model.dart';
@@ -9,6 +9,7 @@ part of 'stocker_machine_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $StockerMachineModelCopyWith<StockerMachineModel> get copyWith => _$StockerMachi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StockerMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.totalSlots, totalSlots) || other.totalSlots == totalSlots)&&(identical(other.lowStockSlots, lowStockSlots) || other.lowStockSlots == lowStockSlots)&&(identical(other.emptySlots, emptySlots) || other.emptySlots == emptySlots));
+  final _this = this as StockerMachineModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StockerMachineModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.location, _this.location) || other.location == _this.location)&&(identical(other.totalSlots, _this.totalSlots) || other.totalSlots == _this.totalSlots)&&(identical(other.lowStockSlots, _this.lowStockSlots) || other.lowStockSlots == _this.lowStockSlots)&&(identical(other.emptySlots, _this.emptySlots) || other.emptySlots == _this.emptySlots));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,location,totalSlots,lowStockSlots,emptySlots);
+int get hashCode {
+  final _this = this as StockerMachineModel;
+  return Object.hash(runtimeType,_this.id,_this.name,_this.location,_this.totalSlots,_this.lowStockSlots,_this.emptySlots);
+}
 
 @override
 String toString() {
-  return 'StockerMachineModel(id: $id, name: $name, location: $location, totalSlots: $totalSlots, lowStockSlots: $lowStockSlots, emptySlots: $emptySlots)';
+  final _this = this as StockerMachineModel;
+  return 'StockerMachineModel(id: ${_this.id}, name: ${_this.name}, location: ${_this.location}, totalSlots: ${_this.totalSlots}, lowStockSlots: ${_this.lowStockSlots}, emptySlots: ${_this.emptySlots})';
 }
 
 
@@ -66,7 +72,7 @@ class _$StockerMachineModelCopyWithImpl<$Res>
 /// Create a copy of StockerMachineModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? location = null,Object? totalSlots = null,Object? lowStockSlots = null,Object? emptySlots = null,}) {
-  return _then(_self.copyWith(
+  return _then(StockerMachineModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
@@ -231,16 +237,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StockerMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.totalSlots, totalSlots) || other.totalSlots == totalSlots)&&(identical(other.lowStockSlots, lowStockSlots) || other.lowStockSlots == lowStockSlots)&&(identical(other.emptySlots, emptySlots) || other.emptySlots == emptySlots));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _StockerMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.totalSlots, totalSlots) || other.totalSlots == totalSlots)&&(identical(other.lowStockSlots, lowStockSlots) || other.lowStockSlots == lowStockSlots)&&(identical(other.emptySlots, emptySlots) || other.emptySlots == emptySlots));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,location,totalSlots,lowStockSlots,emptySlots);
+int get hashCode {
+    return Object.hash(runtimeType,id,name,location,totalSlots,lowStockSlots,emptySlots);
+}
 
 @override
 String toString() {
-  return 'StockerMachineModel(id: $id, name: $name, location: $location, totalSlots: $totalSlots, lowStockSlots: $lowStockSlots, emptySlots: $emptySlots)';
+    return 'StockerMachineModel(id: $id, name: $name, location: $location, totalSlots: $totalSlots, lowStockSlots: $lowStockSlots, emptySlots: $emptySlots)';
 }
 
 

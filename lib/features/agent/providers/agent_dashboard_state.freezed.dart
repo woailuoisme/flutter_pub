@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'agent_dashboard_state.dart';
@@ -9,6 +9,7 @@ part of 'agent_dashboard_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $AgentDashboardStateCopyWith<AgentDashboardState> get copyWith => _$AgentDashboa
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AgentDashboardState&&(identical(other.selectedPeriod, selectedPeriod) || other.selectedPeriod == selectedPeriod)&&(identical(other.stats, stats) || other.stats == stats));
+  final _this = this as AgentDashboardState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AgentDashboardState&&(identical(other.selectedPeriod, _this.selectedPeriod) || other.selectedPeriod == _this.selectedPeriod)&&(identical(other.stats, _this.stats) || other.stats == _this.stats));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,selectedPeriod,stats);
+int get hashCode {
+  final _this = this as AgentDashboardState;
+  return Object.hash(runtimeType,_this.selectedPeriod,_this.stats);
+}
 
 @override
 String toString() {
-  return 'AgentDashboardState(selectedPeriod: $selectedPeriod, stats: $stats)';
+  final _this = this as AgentDashboardState;
+  return 'AgentDashboardState(selectedPeriod: ${_this.selectedPeriod}, stats: ${_this.stats})';
 }
 
 
@@ -63,7 +69,7 @@ class _$AgentDashboardStateCopyWithImpl<$Res>
 /// Create a copy of AgentDashboardState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? selectedPeriod = null,Object? stats = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(AgentDashboardState(
 selectedPeriod: null == selectedPeriod ? _self.selectedPeriod : selectedPeriod // ignore: cast_nullable_to_non_nullable
 as TimePeriod,stats: freezed == stats ? _self.stats : stats // ignore: cast_nullable_to_non_nullable
 as AsyncValue<RevenueStatsModel>?,
@@ -223,16 +229,18 @@ _$AgentDashboardStateCopyWith<_AgentDashboardState> get copyWith => __$AgentDash
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AgentDashboardState&&(identical(other.selectedPeriod, selectedPeriod) || other.selectedPeriod == selectedPeriod)&&(identical(other.stats, stats) || other.stats == stats));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AgentDashboardState&&(identical(other.selectedPeriod, selectedPeriod) || other.selectedPeriod == selectedPeriod)&&(identical(other.stats, stats) || other.stats == stats));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,selectedPeriod,stats);
+int get hashCode {
+    return Object.hash(runtimeType,selectedPeriod,stats);
+}
 
 @override
 String toString() {
-  return 'AgentDashboardState(selectedPeriod: $selectedPeriod, stats: $stats)';
+    return 'AgentDashboardState(selectedPeriod: $selectedPeriod, stats: $stats)';
 }
 
 

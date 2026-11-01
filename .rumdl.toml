@@ -1,0 +1,33 @@
+# rumdl 配置（markdownlint 兼容规则）
+# 使用：rumdl check . / rumdl fmt .
+
+[global]
+# 工具规则与构建产物不做文档规范检查
+exclude = [".git", ".github", ".agents", "build", "node_modules", "vendor", "**/Assets.xcassets/**"]
+respect-gitignore = true
+flavor = "gfm"
+
+# 与 Dart 的 120 列保持一致；代码块和表格不参与行宽检查
+[MD013]
+# chars：中文按 1 字符计宽，否则 CJK 行会被双倍计算而误报
+length-mode = "chars"
+line-length = 120
+code-blocks = false
+tables = false
+headings = false
+
+# 统一用 '-'，与 README/justfile 现有写法一致
+[MD004]
+style = "dash"
+
+[MD007]
+indent = 2
+
+# 有序列表用 1. 2. 3. 递增
+[MD029]
+style = "ordered"
+
+# 允许在正文里用 <br> 等行内 HTML（部分文档用于换行）
+[MD033]
+allowed-elements = ["br", "img", "details", "summary"]
+

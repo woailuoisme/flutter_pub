@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'signin_state.dart';
@@ -9,6 +9,7 @@ part of 'signin_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $SignInStateCopyWith<SignInState> get copyWith => _$SignInStateCopyWithImpl<Sign
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInState&&(identical(other.username, username) || other.username == username)&&(identical(other.password, password) || other.password == password)&&(identical(other.signInType, signInType) || other.signInType == signInType)&&(identical(other.status, status) || other.status == status)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  final _this = this as SignInState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInState&&(identical(other.username, _this.username) || other.username == _this.username)&&(identical(other.password, _this.password) || other.password == _this.password)&&(identical(other.signInType, _this.signInType) || other.signInType == _this.signInType)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.errorMessage, _this.errorMessage) || other.errorMessage == _this.errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,username,password,signInType,status,errorMessage);
+int get hashCode {
+  final _this = this as SignInState;
+  return Object.hash(runtimeType,_this.username,_this.password,_this.signInType,_this.status,_this.errorMessage);
+}
 
 @override
 String toString() {
-  return 'SignInState(username: $username, password: $password, signInType: $signInType, status: $status, errorMessage: $errorMessage)';
+  final _this = this as SignInState;
+  return 'SignInState(username: ${_this.username}, password: ${_this.password}, signInType: ${_this.signInType}, status: ${_this.status}, errorMessage: ${_this.errorMessage})';
 }
 
 
@@ -63,7 +69,7 @@ class _$SignInStateCopyWithImpl<$Res>
 /// Create a copy of SignInState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? password = null,Object? signInType = null,Object? status = null,Object? errorMessage = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(SignInState(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
 as String,signInType: null == signInType ? _self.signInType : signInType // ignore: cast_nullable_to_non_nullable
@@ -229,16 +235,18 @@ _$SignInStateCopyWith<_SignInState> get copyWith => __$SignInStateCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignInState&&(identical(other.username, username) || other.username == username)&&(identical(other.password, password) || other.password == password)&&(identical(other.signInType, signInType) || other.signInType == signInType)&&(identical(other.status, status) || other.status == status)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignInState&&(identical(other.username, username) || other.username == username)&&(identical(other.password, password) || other.password == password)&&(identical(other.signInType, signInType) || other.signInType == signInType)&&(identical(other.status, status) || other.status == status)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,username,password,signInType,status,errorMessage);
+int get hashCode {
+    return Object.hash(runtimeType,username,password,signInType,status,errorMessage);
+}
 
 @override
 String toString() {
-  return 'SignInState(username: $username, password: $password, signInType: $signInType, status: $status, errorMessage: $errorMessage)';
+    return 'SignInState(username: $username, password: $password, signInType: $signInType, status: $status, errorMessage: $errorMessage)';
 }
 
 

@@ -17,12 +17,13 @@ Lunchbox Hub 是一个用于售货机管理的 Flutter 应用。
 - Riverpod：状态管理
 - GoRouter：路由
 - Dio / Retrofit：网络请求
-- ObjectBox：本地结构化存储
-- `build_runner`、`riverpod_generator`、`freezed`、`json_serializable`、`retrofit_generator`、`objectbox_generator`、`go_router_builder`、`slang`、`envied`：常规代码生成
+- Drift：本地结构化存储
+- `build_runner`、`riverpod_generator`、`freezed`、`json_serializable`、`retrofit_generator`、`drift_dev`、`go_router_builder`、`slang`、`envied`：常规代码生成
 
 ## 推荐技能
 
 以下 skill 与本仓库 `pubspec.yaml` 的技术栈最相关，优先参考：
+
 - `flutter-expert`：Flutter 通用专家。
   优先使用 `just`。
 
@@ -76,7 +77,10 @@ flutter run --dart-define-from-file=config/env_dev.json
 - 文案优先使用 `slang` 中的定义。
 - Form 优先使用 `flutter_form_builder` 和 `form_builder_validators`。
 - 页面只负责 UI 组合和事件转发；状态、请求、校验放到对应 feature 的 `provider` / `notifier` / `repository`。
-- 组件拆分优先参考现有 feature 结构：通常按 `screens/`、`widgets/`、`providers/`、`repositories/`、`datasources/`、`entities/` 分层，页面保持薄层，像 `auth` feature 那样由页面组装 widget 并通过 provider 驱动状态。
+- 组件拆分优先参考现有 feature 结构：通常按 `screens/`、`widgets/`、
+  `providers/`、`repositories/`、`datasources/`、`entities/` 分层，
+  页面保持薄层，像 `auth` feature 那样由页面组装 widget 并通过 provider 驱动状态。
+
 ## 代码结构提醒
 
 如果改动会影响路由、登录/会话、网络、本地存储或全局主题，先看 `lib/core` 里的对应实现，再改 feature 代码。

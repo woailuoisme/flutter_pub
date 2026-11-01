@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'product_sales_model.dart';
@@ -9,6 +9,7 @@ part of 'product_sales_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $ProductSalesModelCopyWith<ProductSalesModel> get copyWith => _$ProductSalesMode
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductSalesModel&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.percentage, percentage) || other.percentage == percentage)&&(identical(other.revenue, revenue) || other.revenue == revenue));
+  final _this = this as ProductSalesModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductSalesModel&&(identical(other.productName, _this.productName) || other.productName == _this.productName)&&(identical(other.percentage, _this.percentage) || other.percentage == _this.percentage)&&(identical(other.revenue, _this.revenue) || other.revenue == _this.revenue));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,productName,percentage,revenue);
+int get hashCode {
+  final _this = this as ProductSalesModel;
+  return Object.hash(runtimeType,_this.productName,_this.percentage,_this.revenue);
+}
 
 @override
 String toString() {
-  return 'ProductSalesModel(productName: $productName, percentage: $percentage, revenue: $revenue)';
+  final _this = this as ProductSalesModel;
+  return 'ProductSalesModel(productName: ${_this.productName}, percentage: ${_this.percentage}, revenue: ${_this.revenue})';
 }
 
 
@@ -66,7 +72,7 @@ class _$ProductSalesModelCopyWithImpl<$Res>
 /// Create a copy of ProductSalesModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? productName = null,Object? percentage = null,Object? revenue = null,}) {
-  return _then(_self.copyWith(
+  return _then(ProductSalesModel(
 productName: null == productName ? _self.productName : productName // ignore: cast_nullable_to_non_nullable
 as String,percentage: null == percentage ? _self.percentage : percentage // ignore: cast_nullable_to_non_nullable
 as double,revenue: null == revenue ? _self.revenue : revenue // ignore: cast_nullable_to_non_nullable
@@ -225,16 +231,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductSalesModel&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.percentage, percentage) || other.percentage == percentage)&&(identical(other.revenue, revenue) || other.revenue == revenue));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductSalesModel&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.percentage, percentage) || other.percentage == percentage)&&(identical(other.revenue, revenue) || other.revenue == revenue));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,productName,percentage,revenue);
+int get hashCode {
+    return Object.hash(runtimeType,productName,percentage,revenue);
+}
 
 @override
 String toString() {
-  return 'ProductSalesModel(productName: $productName, percentage: $percentage, revenue: $revenue)';
+    return 'ProductSalesModel(productName: $productName, percentage: $percentage, revenue: $revenue)';
 }
 
 

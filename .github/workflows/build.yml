@@ -1,9 +1,16 @@
 name: Flutter Build & Release app
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: false
 
 on:
+  push:
+    tags:
+      - 'v*'
   workflow_dispatch:
     inputs:
       build_apk:
@@ -33,21 +40,43 @@ on:
 jobs:
   prepare:
     name: Prepare Matrix
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       has_tasks: ${{ steps.set-matrix.outputs.has_tasks }}
-      timestamp: ${{ steps.set-timestamp.outputs.time }}
+      version: ${{ steps.meta.outputs.version }}
+      build_mode: ${{ steps.meta.outputs.build_mode }}
+      tag: ${{ steps.meta.outputs.tag }}
     steps:
-      - id: set-timestamp
-        run: echo "time=$(TZ='Asia/Shanghai' date +'%Y-%m-%d-%H-%M-%S')" >> $GITHUB_OUTPUT
+      - uses: actions/checkout@v7
+      - id: meta
+        run: |
+          VERSION=$(grep '^version:' pubspec.yaml | cut -d' ' -f2 | cut -d'+' -f1)
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            MODE="${{ github.event.inputs.build_mode }}"
+            TAG="v$VERSION"
+          else
+            # tag 推送发版：固定 release，tag 用被推送的 tag
+            MODE=release
+            TAG="${{ github.ref_name }}"
+            [ "${TAG#v}" == "$VERSION" ] || echo "::warning::tag $TAG 与 pubspec 版本 $VERSION 不一致"
+          fi
+          {
+            echo "version=$VERSION"
+            echo "build_mode=$MODE"
+            echo "tag=$TAG"
+          } >> $GITHUB_OUTPUT
       - id: set-matrix
         run: |
           TASKS=()
-          if [ "${{ github.event.inputs.build_apk }}" == "true" ]; then TASKS+=("apk"); fi
-          if [ "${{ github.event.inputs.build_appbundle }}" == "true" ]; then TASKS+=("appbundle"); fi
-          if [ "${{ github.event.inputs.build_ios }}" == "true" ]; then TASKS+=("ios"); fi
-
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            if [ "${{ github.event.inputs.build_apk }}" == "true" ]; then TASKS+=("apk"); fi
+            if [ "${{ github.event.inputs.build_appbundle }}" == "true" ]; then TASKS+=("appbundle"); fi
+            if [ "${{ github.event.inputs.build_ios }}" == "true" ]; then TASKS+=("ios"); fi
+          else
+            # tag 发版：只出 APK + AAB
+            TASKS=("apk" "appbundle")
+          fi
           if [ ${#TASKS[@]} -eq 0 ]; then
             echo "has_tasks=false" >> $GITHUB_OUTPUT
             echo "matrix={\"task\":[]}" >> $GITHUB_OUTPUT
@@ -61,20 +90,49 @@ jobs:
     needs: prepare
     if: needs.prepare.outputs.has_tasks == 'true'
     name: Build ${{ matrix.task }}
-    runs-on: ${{ matrix.task == 'ios' && 'macos-latest' || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.task == 'ios' && 'macos-latest' || 'ubuntu-24.04' }}
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
+
+      - name: Cache pub
+        uses: actions/cache@v6
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('pubspec.lock') }}
+          restore-keys: pub-${{ runner.os }}-
+
+      - name: Cache Gradle
+        if: matrix.task != 'ios'
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('android/**/*.gradle*', 'android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
+
+      - name: Cache SwiftPM
+        if: matrix.task == 'ios'
+        uses: actions/cache@v6
+        with:
+          path: |
+            ~/Library/Caches/org.swift.swiftpm
+            ~/Library/org.swift.swiftpm
+            ~/Library/Developer/Xcode/DerivedData
+          key: spm-${{ runner.os }}-${{ hashFiles('ios/Runner.xcodeproj/project.pbxproj', 'pubspec.lock') }}
+          restore-keys: spm-${{ runner.os }}-
 
       - name: Setup Java
         if: matrix.task != 'ios'
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -82,47 +140,71 @@ jobs:
           channel: 'stable'
           cache: true
 
+      # 插件已全部是 Swift Package（sentry_flutter 无 podspec），必须移除 CocoaPods 集成
+      - name: Drop CocoaPods
+        if: matrix.task == 'ios'
+        run: |
+          cd ios
+          if [ -f Podfile ]; then
+            pod deintegrate
+            rm -f Podfile Podfile.lock
+            rm -rf Pods
+          fi
+
       - name: Get Dependencies
         run: flutter pub get
 
       - name: Restore Environment Files
         run: |
-          echo "${{ secrets.ENV_PROD }}" > .env.prod
-          echo "${{ secrets.ENV_DEV }}" > .env.dev
+          echo "${{ secrets.ENV_PROD }}" > .env.production
+          echo "${{ secrets.ENV_DEV }}" > .env.development
+
+      - name: Restore Keystore
+        if: matrix.task != 'ios' && needs.prepare.outputs.build_mode == 'release'
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ] || [ -z "$KEYSTORE_PASSWORD" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASSWORD" ]; then
+            echo "::error::release 构建需要 KEYSTORE_BASE64 / KEYSTORE_PASSWORD / KEY_ALIAS / KEY_PASSWORD 四个 secrets"
+            exit 1
+          fi
+          echo "$KEYSTORE_BASE64" | base64 -d > android/app/upload-keystore.jks
+          {
+            echo "storeFile=upload-keystore.jks"
+            echo "storePassword=$KEYSTORE_PASSWORD"
+            echo "keyAlias=$KEY_ALIAS"
+            echo "keyPassword=$KEY_PASSWORD"
+          } > android/key.properties
 
       - name: Build Runner
-        run: flutter pub run build_runner build --delete-conflicting-outputs
-
-      - name: Analyze Build Size (Release only)
-        if: github.event.inputs.build_mode == 'release'
-        run: |
-          flutter build apk --release --analyze-size --target-platform android-arm64
-          echo "📊 Build size analysis completed. Check logs above for details."
+        run: dart run build_runner build
 
       - name: Build Task
         run: |
-          BUILD_MODE="${{ github.event.inputs.build_mode }}"
-          TIME="${{ needs.prepare.outputs.timestamp }}"
+          BUILD_MODE="${{ needs.prepare.outputs.build_mode }}"
+          VERSION="${{ needs.prepare.outputs.version }}"
+          OUT=build/app/outputs/flutter-apk
           if [ "${{ matrix.task }}" == "apk" ]; then
             if [ "$BUILD_MODE" == "release" ]; then
-              # 构建所有 ABI（兼容性最好，生成 3 个 APK）
+              # 分 ABI 构建（arm64-v8a / armeabi-v7a）
               flutter build apk --release \
                 --obfuscate \
                 --split-debug-info=build/app/outputs/symbols \
                 --split-per-abi \
+                --target-platform android-arm,android-arm64 \
                 --tree-shake-icons
-              # 重命名所有拆分的 APK
-              for file in build/app/outputs/flutter-apk/app-*-release.apk; do
-                if [ -f "$file" ]; then
-                  filename=$(basename "$file")
-                  # 提取 ABI 名称 (例如: app-armeabi-v7a-release.apk -> armeabi-v7a)
-                  abi=$(echo "$filename" | sed 's/app-\(.*\)-release.apk/\1/')
-                  mv "$file" "build/app/outputs/flutter-apk/apk-$abi-release-$TIME.apk"
-                fi
+              for file in "$OUT"/app-*-release.apk; do
+                [ -f "$file" ] || continue
+                # app-armeabi-v7a-release.apk -> armeabi-v7a
+                abi=$(basename "$file" | sed 's/app-\(.*\)-release.apk/\1/')
+                mv "$file" "$OUT/lunchbox_${VERSION}_${abi}.apk"
               done
             else
               flutter build apk --$BUILD_MODE
-              mv build/app/outputs/flutter-apk/app-$BUILD_MODE.apk build/app/outputs/flutter-apk/apk-$BUILD_MODE-$TIME.apk
+              mv $OUT/app-$BUILD_MODE.apk "$OUT/lunchbox_${VERSION}_debug.apk"
             fi
           elif [ "${{ matrix.task }}" == "appbundle" ]; then
             # 生产构建优化：启用混淆、Tree-shaking
@@ -131,33 +213,44 @@ jobs:
                 --obfuscate \
                 --split-debug-info=build/app/outputs/symbols \
                 --tree-shake-icons
-              mv build/app/outputs/bundle/release/app-release.aab build/app/outputs/bundle/release/aab-release-$TIME.aab
+              mv build/app/outputs/bundle/release/app-release.aab "build/app/outputs/bundle/release/lunchbox_${VERSION}.aab"
             else
               flutter build appbundle --$BUILD_MODE
-              mv build/app/outputs/bundle/debug/app-debug.aab build/app/outputs/bundle/debug/aab-debug-$TIME.aab
+              mv build/app/outputs/bundle/debug/app-debug.aab "build/app/outputs/bundle/debug/lunchbox_${VERSION}_debug.aab"
             fi
           elif [ "${{ matrix.task }}" == "ios" ]; then
             flutter build ios --release --no-codesign \
               --obfuscate \
               --split-debug-info=build/ios/symbols \
               --tree-shake-icons
+            # 无签名只能出 .app，Release 只接受文件，打成 zip
+            ROOT="$PWD"
+            (cd build/ios/iphoneos && zip -qry "$ROOT/build/lunchbox_${VERSION}_ios-unsigned.zip" ./*.app)
           fi
 
+      - name: Verify APK Signature
+        if: matrix.task == 'apk' && needs.prepare.outputs.build_mode == 'release'
+        run: |
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -maxdepth 2 -name apksigner -type f | sort -V | tail -1)
+          for apk in build/app/outputs/flutter-apk/lunchbox_*.apk; do
+            echo "== $apk"
+            "$APKSIGNER" verify --print-certs "$apk" | head -2
+          done
+
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
-          name: ${{ matrix.task }}-${{ github.event.inputs.build_mode }}
+          name: ${{ matrix.task }}-${{ needs.prepare.outputs.build_mode }}
           path: |
             build/app/outputs/flutter-apk/*.apk
             build/app/outputs/bundle/*/*.aab
-            build/ios/iphoneos/*.app
-            build/ios/iphoneos/*.ipa
+            build/lunchbox_*_ios-unsigned.zip
           compression-level: 0
           if-no-files-found: ignore
 
       - name: Upload Debug Symbols (Release only)
-        if: github.event.inputs.build_mode == 'release'
-        uses: actions/upload-artifact@v4
+        if: needs.prepare.outputs.build_mode == 'release'
+        uses: actions/upload-artifact@v7
         with:
           name: symbols-${{ matrix.task }}
           path: |
@@ -168,21 +261,42 @@ jobs:
 
   release:
     needs: [prepare, build]
+    if: needs.prepare.outputs.build_mode == 'release'
     name: Create Unified Release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
     steps:
       - name: Download Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: artifacts
           pattern: "*-*" # Matches all matrix build names (e.g., apk-release, ios-release)
 
+      - name: Pack Symbol Bundles
+        run: |
+          VERSION="${{ needs.prepare.outputs.version }}"
+          ROOT="$PWD"
+          for d in artifacts/symbols-*; do
+            [ -d "$d" ] || continue
+            task=${d##*/symbols-}
+            # 进入目录压缩，避免包内出现 artifacts/ 前缀
+            (cd "$d" && zip -qr "$ROOT/artifacts/lunchbox_${VERSION}_symbols-$task.zip" .)
+          done
+
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
-          tag_name: build-${{ needs.prepare.outputs.timestamp }}
-          name: Build ${{ needs.prepare.outputs.timestamp }}
-          files: artifacts/**/*
+          tag_name: ${{ needs.prepare.outputs.tag }}
+          name: Lunchbox ${{ needs.prepare.outputs.version }}
+          generate_release_notes: true
+          files: |
+            artifacts/**/*.apk
+            artifacts/**/*.aab
+            artifacts/**/*.zip
+            artifacts/*.zip
+            artifacts/**/*.ipa
           draft: false
           prerelease: false
           fail_on_unmatched_files: false

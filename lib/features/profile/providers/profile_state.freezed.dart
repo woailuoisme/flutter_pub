@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'profile_state.dart';
@@ -9,6 +9,7 @@ part of 'profile_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $ProfileStateCopyWith<ProfileState> get copyWith => _$ProfileStateCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileState&&(identical(other.currentUser, currentUser) || other.currentUser == currentUser));
+  final _this = this as ProfileState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileState&&(identical(other.currentUser, _this.currentUser) || other.currentUser == _this.currentUser));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,currentUser);
+int get hashCode {
+  final _this = this as ProfileState;
+  return Object.hash(runtimeType,_this.currentUser);
+}
 
 @override
 String toString() {
-  return 'ProfileState(currentUser: $currentUser)';
+  final _this = this as ProfileState;
+  return 'ProfileState(currentUser: ${_this.currentUser})';
 }
 
 
@@ -63,7 +69,7 @@ class _$ProfileStateCopyWithImpl<$Res>
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? currentUser = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ProfileState(
 currentUser: freezed == currentUser ? _self.currentUser : currentUser // ignore: cast_nullable_to_non_nullable
 as UserProfile?,
   ));
@@ -233,16 +239,18 @@ _$ProfileStateCopyWith<_ProfileState> get copyWith => __$ProfileStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileState&&(identical(other.currentUser, currentUser) || other.currentUser == currentUser));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileState&&(identical(other.currentUser, currentUser) || other.currentUser == currentUser));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,currentUser);
+int get hashCode {
+    return Object.hash(runtimeType,currentUser);
+}
 
 @override
 String toString() {
-  return 'ProfileState(currentUser: $currentUser)';
+    return 'ProfileState(currentUser: $currentUser)';
 }
 
 

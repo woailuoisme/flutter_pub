@@ -10,24 +10,21 @@ part of 'dialog_service.dart';
 // ignore_for_file: type=lint, type=warning
 /// 对话框服务
 ///
-/// 提供统一的对话框功能，支持信息、成功、错误、警告和确认五种类型。
-/// 基于 AwesomeDialog 实现。
+/// 提供信息、成功、错误、警告和确认五类对话框。
 
 @ProviderFor(dialogService)
 final dialogServiceProvider = DialogServiceProvider._();
 
 /// 对话框服务
 ///
-/// 提供统一的对话框功能，支持信息、成功、错误、警告和确认五种类型。
-/// 基于 AwesomeDialog 实现。
+/// 提供信息、成功、错误、警告和确认五类对话框。
 
 final class DialogServiceProvider
     extends $FunctionalProvider<DialogService, DialogService, DialogService>
     with $Provider<DialogService> {
   /// 对话框服务
   ///
-  /// 提供统一的对话框功能，支持信息、成功、错误、警告和确认五种类型。
-  /// 基于 AwesomeDialog 实现。
+  /// 提供信息、成功、错误、警告和确认五类对话框。
   DialogServiceProvider._()
     : super(
         from: null,

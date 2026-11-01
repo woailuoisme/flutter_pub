@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'slot_model.dart';
@@ -9,6 +9,7 @@ part of 'slot_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $SlotModelCopyWith<SlotModel> get copyWith => _$SlotModelCopyWithImpl<SlotModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SlotModel&&(identical(other.id, id) || other.id == id)&&(identical(other.machineId, machineId) || other.machineId == machineId)&&(identical(other.slotNumber, slotNumber) || other.slotNumber == slotNumber)&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  final _this = this as SlotModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SlotModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.machineId, _this.machineId) || other.machineId == _this.machineId)&&(identical(other.slotNumber, _this.slotNumber) || other.slotNumber == _this.slotNumber)&&(identical(other.productName, _this.productName) || other.productName == _this.productName)&&(identical(other.quantity, _this.quantity) || other.quantity == _this.quantity)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,machineId,slotNumber,productName,quantity,updatedAt);
+int get hashCode {
+  final _this = this as SlotModel;
+  return Object.hash(runtimeType,_this.id,_this.machineId,_this.slotNumber,_this.productName,_this.quantity,_this.updatedAt);
+}
 
 @override
 String toString() {
-  return 'SlotModel(id: $id, machineId: $machineId, slotNumber: $slotNumber, productName: $productName, quantity: $quantity, updatedAt: $updatedAt)';
+  final _this = this as SlotModel;
+  return 'SlotModel(id: ${_this.id}, machineId: ${_this.machineId}, slotNumber: ${_this.slotNumber}, productName: ${_this.productName}, quantity: ${_this.quantity}, updatedAt: ${_this.updatedAt})';
 }
 
 
@@ -66,7 +72,7 @@ class _$SlotModelCopyWithImpl<$Res>
 /// Create a copy of SlotModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? machineId = null,Object? slotNumber = null,Object? productName = null,Object? quantity = null,Object? updatedAt = null,}) {
-  return _then(_self.copyWith(
+  return _then(SlotModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,machineId: null == machineId ? _self.machineId : machineId // ignore: cast_nullable_to_non_nullable
 as String,slotNumber: null == slotNumber ? _self.slotNumber : slotNumber // ignore: cast_nullable_to_non_nullable
@@ -231,16 +237,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SlotModel&&(identical(other.id, id) || other.id == id)&&(identical(other.machineId, machineId) || other.machineId == machineId)&&(identical(other.slotNumber, slotNumber) || other.slotNumber == slotNumber)&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SlotModel&&(identical(other.id, id) || other.id == id)&&(identical(other.machineId, machineId) || other.machineId == machineId)&&(identical(other.slotNumber, slotNumber) || other.slotNumber == slotNumber)&&(identical(other.productName, productName) || other.productName == productName)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,machineId,slotNumber,productName,quantity,updatedAt);
+int get hashCode {
+    return Object.hash(runtimeType,id,machineId,slotNumber,productName,quantity,updatedAt);
+}
 
 @override
 String toString() {
-  return 'SlotModel(id: $id, machineId: $machineId, slotNumber: $slotNumber, productName: $productName, quantity: $quantity, updatedAt: $updatedAt)';
+    return 'SlotModel(id: $id, machineId: $machineId, slotNumber: $slotNumber, productName: $productName, quantity: $quantity, updatedAt: $updatedAt)';
 }
 
 

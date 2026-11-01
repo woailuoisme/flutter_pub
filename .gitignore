@@ -35,7 +35,7 @@ migrate_working_dir/
 
 /.kiro
 /.trae
-/.agents
+/.agents/skills
 /.agent
 /.agent-task-slugs
 /.codex

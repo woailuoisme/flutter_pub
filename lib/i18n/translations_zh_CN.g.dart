@@ -24,7 +24,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
     PluralResolver? cardinalResolver,
     PluralResolver? ordinalResolver,
     TranslationMetadata<AppLocale, Translations>? meta,
-  }) : $meta =
+  }) : _meta =
            meta ??
            TranslationMetadata(
              locale: AppLocale.zhCn,
@@ -32,15 +32,16 @@ class Translations with BaseTranslations<AppLocale, Translations> {
              cardinalResolver: cardinalResolver,
              ordinalResolver: ordinalResolver,
            ) {
-    $meta.setFlatMapFunction(_flatMapFunction);
+    _meta.setFlatMapFunction(_flatMapFunction);
   }
 
   /// Metadata for the translations of <zh-CN>.
+  final TranslationMetadata<AppLocale, Translations> _meta;
   @override
-  final TranslationMetadata<AppLocale, Translations> $meta;
+  TranslationMetadata<AppLocale, Translations> get $meta => _meta;
 
   /// Access flat map
-  dynamic operator [](String key) => $meta.getTranslation(key);
+  dynamic operator [](String key) => _meta.getTranslation(key);
 
   late final Translations _root = this; // ignore: unused_field
 

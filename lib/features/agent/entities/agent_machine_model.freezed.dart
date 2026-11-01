@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'agent_machine_model.dart';
@@ -9,6 +9,7 @@ part of 'agent_machine_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $AgentMachineModelCopyWith<AgentMachineModel> get copyWith => _$AgentMachineMode
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AgentMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.sn, sn) || other.sn == sn)&&(identical(other.status, status) || other.status == status)&&(identical(other.description, description) || other.description == description));
+  final _this = this as AgentMachineModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AgentMachineModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.location, _this.location) || other.location == _this.location)&&(identical(other.totalOrders, _this.totalOrders) || other.totalOrders == _this.totalOrders)&&(identical(other.totalRevenue, _this.totalRevenue) || other.totalRevenue == _this.totalRevenue)&&(identical(other.imageUrl, _this.imageUrl) || other.imageUrl == _this.imageUrl)&&(identical(other.latitude, _this.latitude) || other.latitude == _this.latitude)&&(identical(other.longitude, _this.longitude) || other.longitude == _this.longitude)&&(identical(other.sn, _this.sn) || other.sn == _this.sn)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.description, _this.description) || other.description == _this.description));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,location,totalOrders,totalRevenue,imageUrl,latitude,longitude,sn,status,description);
+int get hashCode {
+  final _this = this as AgentMachineModel;
+  return Object.hash(runtimeType,_this.id,_this.name,_this.location,_this.totalOrders,_this.totalRevenue,_this.imageUrl,_this.latitude,_this.longitude,_this.sn,_this.status,_this.description);
+}
 
 @override
 String toString() {
-  return 'AgentMachineModel(id: $id, name: $name, location: $location, totalOrders: $totalOrders, totalRevenue: $totalRevenue, imageUrl: $imageUrl, latitude: $latitude, longitude: $longitude, sn: $sn, status: $status, description: $description)';
+  final _this = this as AgentMachineModel;
+  return 'AgentMachineModel(id: ${_this.id}, name: ${_this.name}, location: ${_this.location}, totalOrders: ${_this.totalOrders}, totalRevenue: ${_this.totalRevenue}, imageUrl: ${_this.imageUrl}, latitude: ${_this.latitude}, longitude: ${_this.longitude}, sn: ${_this.sn}, status: ${_this.status}, description: ${_this.description})';
 }
 
 
@@ -66,7 +72,7 @@ class _$AgentMachineModelCopyWithImpl<$Res>
 /// Create a copy of AgentMachineModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? location = null,Object? totalOrders = null,Object? totalRevenue = null,Object? imageUrl = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? sn = freezed,Object? status = freezed,Object? description = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(AgentMachineModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
@@ -241,16 +247,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AgentMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.sn, sn) || other.sn == sn)&&(identical(other.status, status) || other.status == status)&&(identical(other.description, description) || other.description == description));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AgentMachineModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.totalOrders, totalOrders) || other.totalOrders == totalOrders)&&(identical(other.totalRevenue, totalRevenue) || other.totalRevenue == totalRevenue)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.sn, sn) || other.sn == sn)&&(identical(other.status, status) || other.status == status)&&(identical(other.description, description) || other.description == description));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,location,totalOrders,totalRevenue,imageUrl,latitude,longitude,sn,status,description);
+int get hashCode {
+    return Object.hash(runtimeType,id,name,location,totalOrders,totalRevenue,imageUrl,latitude,longitude,sn,status,description);
+}
 
 @override
 String toString() {
-  return 'AgentMachineModel(id: $id, name: $name, location: $location, totalOrders: $totalOrders, totalRevenue: $totalRevenue, imageUrl: $imageUrl, latitude: $latitude, longitude: $longitude, sn: $sn, status: $status, description: $description)';
+    return 'AgentMachineModel(id: $id, name: $name, location: $location, totalOrders: $totalOrders, totalRevenue: $totalRevenue, imageUrl: $imageUrl, latitude: $latitude, longitude: $longitude, sn: $sn, status: $status, description: $description)';
 }
 
 

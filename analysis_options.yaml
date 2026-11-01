@@ -15,6 +15,9 @@ analyzer:
     - "**/*.config.dart"
     - "**/*.gr.dart"
     - "lib/generated/**" # 针对 i18n 生成的代码
+    - build/**
+    - android/**
+    - ios/**
   errors:
     # 忽略无效的注解目标警告 (通常用于 freezed/json_serializable 等代码生成库)
     invalid_annotation_target: ignore

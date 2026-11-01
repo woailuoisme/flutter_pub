@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'slot_update_state.dart';
@@ -9,6 +9,7 @@ part of 'slot_update_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $SlotUpdateStateCopyWith<SlotUpdateState> get copyWith => _$SlotUpdateStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SlotUpdateState&&(identical(other.status, status) || other.status == status)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  final _this = this as SlotUpdateState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SlotUpdateState&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.errorMessage, _this.errorMessage) || other.errorMessage == _this.errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,errorMessage);
+int get hashCode {
+  final _this = this as SlotUpdateState;
+  return Object.hash(runtimeType,_this.status,_this.errorMessage);
+}
 
 @override
 String toString() {
-  return 'SlotUpdateState(status: $status, errorMessage: $errorMessage)';
+  final _this = this as SlotUpdateState;
+  return 'SlotUpdateState(status: ${_this.status}, errorMessage: ${_this.errorMessage})';
 }
 
 
@@ -63,7 +69,7 @@ class _$SlotUpdateStateCopyWithImpl<$Res>
 /// Create a copy of SlotUpdateState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? errorMessage = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(SlotUpdateState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as SlotUpdateStatus,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -223,16 +229,18 @@ _$SlotUpdateStateCopyWith<_SlotUpdateState> get copyWith => __$SlotUpdateStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SlotUpdateState&&(identical(other.status, status) || other.status == status)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SlotUpdateState&&(identical(other.status, status) || other.status == status)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,errorMessage);
+int get hashCode {
+    return Object.hash(runtimeType,status,errorMessage);
+}
 
 @override
 String toString() {
-  return 'SlotUpdateState(status: $status, errorMessage: $errorMessage)';
+    return 'SlotUpdateState(status: $status, errorMessage: $errorMessage)';
 }
 
 
