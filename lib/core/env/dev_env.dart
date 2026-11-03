@@ -3,7 +3,7 @@ import 'package:lunchbox_hub/core/env/app_env.dart';
 
 part 'dev_env.g.dart';
 
-@Envied(path: '.env.dev')
+@Envied(path: '.env.development')
 class DevEnv implements AppEnv {
   @EnviedField(varName: 'BASE_URL')
   static const String _baseUrl = _DevEnv._baseUrl;

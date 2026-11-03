@@ -6,8 +6,6 @@ set -Eeuo pipefail
 # Get script directory & project root
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
-LOG_DIR="$PROJECT_ROOT/logs"
-mkdir -p "$LOG_DIR"
 
 # Source utility script
 source "$SCRIPT_DIR/utils.sh"

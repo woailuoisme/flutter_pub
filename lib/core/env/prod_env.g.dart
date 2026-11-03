@@ -8,7 +8,7 @@ part of 'prod_env.dart';
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// generated_from: .env.prod
+// generated_from: .env.production
 final class _ProdEnv {
   static const String _baseUrl = 'https://rest.haoxiaoguai.xyz';
 

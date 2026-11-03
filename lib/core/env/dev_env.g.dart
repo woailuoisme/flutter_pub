@@ -8,7 +8,7 @@ part of 'dev_env.dart';
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// generated_from: .env.dev
+// generated_from: .env.development
 final class _DevEnv {
   static const String _baseUrl = 'https://rest.haoxiaoguai.xyz';
 

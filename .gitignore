@@ -63,16 +63,7 @@ android/key.properties
 
 # Envied
 .env*
-.env.prod
-.env.dev
-.env.test
-! .env.example
-
-# ObjectBox temporary downloads and native binaries
-/download/
-**/*.dylib
-**/*.so
-**/*.dll
+!.env.example
 
 # Local documentation and ADRs
 /docs/adr/

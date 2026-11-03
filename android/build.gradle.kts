@@ -19,6 +19,12 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+subprojects {
+    configurations.configureEach {
+        exclude(group = "com.google.android.gms", module = "play-services-tapandpay")
+    }
+}
+
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
