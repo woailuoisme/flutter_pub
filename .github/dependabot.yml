@@ -1,0 +1,36 @@
+version: 2
+updates:
+  # 1. 监控 GitHub Actions 工作流依赖
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  # 2. 监控 Flutter / Dart (pub) 依赖
+  - package-ecosystem: "pub"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(deps)"
+    open-pull-requests-limit: 10
+    groups:
+      patch-and-minor:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+          - "minor"
+    # 遵循项目 AGENTS.md 规范：防止自动升级 build_runner >=2.17.0 引发 build 5.x 冲突
+    ignore:
+      - dependency-name: "build_runner"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"
+

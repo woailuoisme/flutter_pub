@@ -57,19 +57,32 @@ jobs:
           ENV_PROD: ${{ secrets.ENV_PROD }}
           ENV_DEV: ${{ secrets.ENV_DEV }}
         run: |
-          if [ -z "$KEYSTORE_BASE64" ] || [ -z "$KEYSTORE_PASSWORD" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASSWORD" ]; then
-            echo "::error::release 构建需要 KEYSTORE_BASE64 / KEYSTORE_PASSWORD / KEY_ALIAS / KEY_PASSWORD 四个 secrets"
-            exit 1
+          if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ] && [ -n "$KEY_ALIAS" ] && [ -n "$KEY_PASSWORD" ]; then
+            echo "==> Restoring release keystore..."
+            echo "$KEYSTORE_BASE64" | base64 -d > android/app/upload-keystore.jks
+            cat <<EOF > android/key.properties
+            storeFile=upload-keystore.jks
+            storePassword=$KEYSTORE_PASSWORD
+            keyAlias=$KEY_ALIAS
+            keyPassword=$KEY_PASSWORD
+            EOF
+          else
+            echo "::warning::未配置完整的 KEYSTORE_* Secrets，跳过 release keystore 注入（将自动降级使用 Debug 证书签名）"
           fi
-          echo "$KEYSTORE_BASE64" | base64 -d > android/app/upload-keystore.jks
-          cat <<EOF > android/key.properties
-          storeFile=upload-keystore.jks
-          storePassword=$KEYSTORE_PASSWORD
-          keyAlias=$KEY_ALIAS
-          keyPassword=$KEY_PASSWORD
-          EOF
-          echo "$ENV_PROD" > .env.production
-          echo "$ENV_DEV" > .env.development
+
+          if [ -n "$ENV_PROD" ]; then
+            echo "$ENV_PROD" > .env.production
+          elif [ -f .env.example ]; then
+            echo "::warning::未配置 ENV_PROD Secret，使用 .env.example 回退生成 .env.production"
+            cp .env.example .env.production
+          fi
+
+          if [ -n "$ENV_DEV" ]; then
+            echo "$ENV_DEV" > .env.development
+          elif [ -f .env.example ]; then
+            echo "::warning::未配置 ENV_DEV Secret，使用 .env.example 回退生成 .env.development"
+            cp .env.example .env.development
+          fi
 
       - name: Prepare & CodeGen
         run: |
@@ -165,8 +178,19 @@ jobs:
           ENV_PROD: ${{ secrets.ENV_PROD }}
           ENV_DEV: ${{ secrets.ENV_DEV }}
         run: |
-          echo "$ENV_PROD" > .env.production
-          echo "$ENV_DEV" > .env.development
+          if [ -n "$ENV_PROD" ]; then
+            echo "$ENV_PROD" > .env.production
+          elif [ -f .env.example ]; then
+            echo "::warning::未配置 ENV_PROD Secret，使用 .env.example 回退生成 .env.production"
+            cp .env.example .env.production
+          fi
+
+          if [ -n "$ENV_DEV" ]; then
+            echo "$ENV_DEV" > .env.development
+          elif [ -f .env.example ]; then
+            echo "::warning::未配置 ENV_DEV Secret，使用 .env.example 回退生成 .env.development"
+            cp .env.example .env.development
+          fi
 
       - name: Prepare & CodeGen
         run: |
