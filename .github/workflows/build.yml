@@ -60,12 +60,12 @@ jobs:
           if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ] && [ -n "$KEY_ALIAS" ] && [ -n "$KEY_PASSWORD" ]; then
             echo "==> Restoring release keystore..."
             echo "$KEYSTORE_BASE64" | base64 -d > android/app/upload-keystore.jks
-            cat <<EOF > android/key.properties
-            storeFile=upload-keystore.jks
-            storePassword=$KEYSTORE_PASSWORD
-            keyAlias=$KEY_ALIAS
-            keyPassword=$KEY_PASSWORD
-            EOF
+            {
+              echo "storeFile=upload-keystore.jks"
+              echo "storePassword=$KEYSTORE_PASSWORD"
+              echo "keyAlias=$KEY_ALIAS"
+              echo "keyPassword=$KEY_PASSWORD"
+            } > android/key.properties
           else
             echo "::warning::未配置完整的 KEYSTORE_* Secrets，跳过 release keystore 注入（将自动降级使用 Debug 证书签名）"
           fi
