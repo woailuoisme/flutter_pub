@@ -104,7 +104,7 @@ dev_dependencies:
   # 代码生成器
   # 2.17+ 要求 build 5.x，而 retrofit_generator/json_serializable 仍锁 build ^4
   build_runner: ">=2.16.2 <2.17.0"
-  riverpod_generator: ^4.0.9
+  riverpod_generator: ^4.0.10
   retrofit_generator: ^10.3.3
   freezed: ^4.0.3
   json_serializable: ^6.15.2
