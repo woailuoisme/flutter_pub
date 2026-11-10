@@ -14,7 +14,7 @@ dependencies:
     sdk: flutter
 
   # 状态管理
-  flutter_riverpod: ^3.4.3
+  flutter_riverpod: ^3.5.0
   riverpod_annotation: ^4.0.7
 
   # 路由与网络
