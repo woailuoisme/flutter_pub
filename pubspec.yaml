@@ -15,7 +15,7 @@ dependencies:
 
   # 状态管理
   flutter_riverpod: ^3.4.3
-  riverpod_annotation: ^4.0.7
+  riverpod_annotation: ^4.0.8
 
   # 路由与网络
   go_router: ^18.1.2
