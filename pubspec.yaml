@@ -55,7 +55,7 @@ dependencies:
   convex_bottom_bar: ^3.2.0
   google_nav_bar: ^5.0.7
   scrollable_positioned_list: ^0.3.8
-  upgrader: ^13.7.0
+  upgrader: ^13.8.0
 
   # 地图与定位
   flutter_map: ^8.3.2
