@@ -95,7 +95,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  riverpod: ^3.4.3
+  riverpod: ^3.5.0
 
   # 环境配置生成
   flutter_lints: ^6.0.0
