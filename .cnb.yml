@@ -1,51 +1,107 @@
-# Lunchbox Hub CI 流水线
-# 多架构 Android + iOS 构建
+# Lunchbox Hub CNB 云原生构建流水线
+# 对齐 .github/workflows/build.yml 最佳实践：仅监听 v* Tag 触发全量构建与发布
+# 注：CNB 公共集群为 Linux 环境，仅构建 Android (APK + AAB)；iOS 构建需接入自托管 macOS 节点
 
-.common: &common
+.android_base: &android_base
   docker:
-    image: ghcr.io/cirruslabs/flutter:stable
-  stages:
-    - flutter --version
-    - flutter pub get
-    - dart run slang
-    - dart run build_runner build --delete-conflicting-outputs
+    image: ghcr.io/cirruslabs/flutter:3.50.0
+    volumes:
+      - /root/.pub-cache:copy-on-write
+      - /root/.gradle:copy-on-write
+  # 建议通过 CNB 密钥仓库统一注入 ENV_PROD / ENV_DEV / KEYSTORE_* 敏感变量：
+  # imports:
+  #   - https://cnb.cool/<your-org>/<secrets-repo>/-/blob/main/lunchbox_hub.yml
 
-.android: &android
-  <<: *common
-  stages:
-    - flutter --version
-    - flutter pub get
-    - dart run slang
-    - dart run build_runner build --delete-conflicting-outputs
-    - flutter build appbundle --release --dart-define-from-file=config/env_prod.json --obfuscate --split-debug-info=build/app/outputs/symbols
-    - flutter build apk --release --dart-define-from-file=config/env_prod.json --split-per-abi --obfuscate --split-debug-info=build/app/outputs/symbols
-
-.ios: &ios
-  <<: *common
-  stages:
-    - flutter --version
-    - flutter pub get
-    - dart run slang
-    - dart run build_runner build --delete-conflicting-outputs
-    - flutter build ios --release --no-codesign --dart-define-from-file=config/env_prod.json --obfuscate --split-debug-info=build/ios/symbols
-
-main:
-  # 手动触发-全部平台（latest）
-  web_trigger:
-    - <<: *android
-    - <<: *ios
-  # 手动触发-仅 Android
-  web_trigger_android:
-    - <<: *android
-  # 手动触发-仅 iOS
-  web_trigger_ios:
-    - <<: *ios
-  # Tag 推送-自动构建全平台
+v*:
   tag_push:
-    - <<: *android
-    - <<: *ios
+    - name: Android Build & Release
+      <<: *android_base
+      stages:
+        - name: Restore Keystore & Env
+          script: |
+            if [ -n "${KEYSTORE_BASE64:-}" ] && [ -n "${KEYSTORE_PASSWORD:-}" ] && [ -n "${KEY_ALIAS:-}" ] && [ -n "${KEY_PASSWORD:-}" ]; then
+              echo "==> Restoring release keystore..."
+              echo "$KEYSTORE_BASE64" | base64 -d > android/app/upload-keystore.jks
+              {
+                echo "storeFile=upload-keystore.jks"
+                echo "storePassword=$KEYSTORE_PASSWORD"
+                echo "keyAlias=$KEY_ALIAS"
+                echo "keyPassword=$KEY_PASSWORD"
+              } > android/key.properties
+            else
+              echo "警告: 未配置完整的 KEYSTORE_* 环境变量，跳过 release keystore 注入（将自动降级使用 Debug 证书签名）"
+            fi
 
-# 兜底分支（无操作）
-$:
-  web_trigger: []
-  tag_push: []
+            if [ -n "${ENV_PROD:-}" ]; then
+              printf '%s\n' "$ENV_PROD" > .env.production
+            elif [ -f .env.example ]; then
+              echo "警告: 未配置 ENV_PROD 环境变量，使用 .env.example 回退生成 .env.production"
+              cp .env.example .env.production
+            fi
+
+            if [ -n "${ENV_DEV:-}" ]; then
+              printf '%s\n' "$ENV_DEV" > .env.development
+            elif [ -f .env.example ]; then
+              echo "警告: 未配置 ENV_DEV 环境变量，使用 .env.example 回退生成 .env.development"
+              cp .env.example .env.development
+            fi
+
+        - name: Prepare & CodeGen
+          script: |
+            flutter pub get
+            dart run build_runner build --delete-conflicting-outputs
+            dart run slang
+
+        - name: Build APK & AAB
+          script: |
+            VERSION="${CNB_BRANCH#v}"
+            mkdir -p dist
+
+            # 1. 分 ABI 构建 APK (arm64-v8a / armeabi-v7a) 并校验签名
+            flutter build apk --release --obfuscate --split-debug-info=build/symbols \
+              --split-per-abi --target-platform android-arm,android-arm64 --tree-shake-icons
+
+            OUT=build/app/outputs/flutter-apk
+            for f in "$OUT"/app-*-release.apk; do
+              [ -f "$f" ] || continue
+              abi=$(basename "$f" | sed 's/app-\(.*\)-release.apk/\1/')
+              mv "$f" "dist/lunchbox_hub_${VERSION}_${abi}.apk"
+            done
+
+            APKSIGNER=$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -1)
+            for apk in dist/lunchbox_hub_*.apk; do
+              echo "== $apk"
+              "$APKSIGNER" verify --print-certs "$apk" | head -2
+            done
+
+            # 2. 构建 AppBundle (AAB)
+            flutter build appbundle --release --obfuscate --split-debug-info=build/symbols --tree-shake-icons
+            mv build/app/outputs/bundle/release/app-release.aab "dist/lunchbox_hub_${VERSION}.aab"
+
+        - name: Package Debug Symbols
+          image: python:3-alpine
+          script: |
+            ROOT="$PWD"
+            (cd build/symbols && python3 -m zipfile -c "$ROOT/dist/lunchbox_hub_${CNB_BRANCH#v}_symbols-android.zip" .)
+
+        - name: Fetch Full Git History
+          image: alpine/git:latest
+          script: git fetch --unshallow --tags 2>/dev/null || git fetch --tags
+
+        - name: Generate Changelog
+          image: ghcr.io/orhun/git-cliff:latest
+          script: git-cliff --latest --strip header -o RELEASE_NOTES.md
+
+        - name: Create Release
+          type: git:release
+          options:
+            title: Lunchbox Hub $CNB_BRANCH
+            descriptionFromFile: RELEASE_NOTES.md
+            preRelease: false
+
+        - name: Upload Release Attachments
+          image: cnbcool/attachments:latest
+          settings:
+            tag: $CNB_BRANCH
+            attachments:
+              - "dist/*"

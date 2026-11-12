@@ -1,65 +1,67 @@
 # Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
 .DS_Store
+Thumbs.db
+*.swp
 .atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
-
-# IntelliJ related
 *.iml
 *.ipr
 *.iws
 .idea/
-
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
 #.vscode/
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
+# Logs & Caches
+*.log
+*.class
+*.pyc
+.rumdl_cache/
+.build/
+.buildlog/
+.history/
+migrate_working_dir/
+
+# Flutter / Dart / Pub
 .dart_tool/
+.flutter-plugins
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
+**/doc/api/
 /build/
 /coverage/
 
-/.kiro
-/.trae
-/.agents/skills
-/.agent
-/.agent-task-slugs
-/.codex
-/.gemini
-/.specify/*
-!/.specify/memory/
-!/.specify/memory/**
-# Symbolication related
-app.*.symbols
-/.ai
-/.claude
-
-# Obfuscation related
-app.*.map.json
-
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
-
-# Android keystore and keys
+# Android (Gradle / Signing / Artifacts)
+/android/.gradle/
+/android/local.properties
+/android/captures/
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
 android/app/*.jks
 android/app/*.keystore
 android/key.properties
+android/build
+
+# iOS (Xcode / SwiftPM / Flutter Generated)
+.swiftpm/
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/flutter_assets/
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/Runner.xcodeproj/xcuserdata/
+**/ios/Runner.xcworkspace/xcuserdata/
+**/ios/.symlinks/
+
+# Obfuscation & Symbolication
+app.*.symbols
+app.*.map.json
+
+# CI / Release Artifacts
+/dist/
+RELEASE_NOTES.md
 
 # Envied
 .env*
@@ -69,5 +71,17 @@ android/key.properties
 /docs/adr/
 /CONTEXT.md
 
-
-
+# AI Agents & Tools
+/.kiro
+/.trae
+/.codebuddy
+/.agents/skills
+/.agent
+/.agent-task-slugs
+/.codex
+/.gemini
+/.ai
+/.claude
+/.specify/*
+!/.specify/memory/
+!/.specify/memory/**

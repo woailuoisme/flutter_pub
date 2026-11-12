@@ -92,6 +92,10 @@ alias check := ready
 apk mode="all":
     ./scripts/manage.sh build:apk {{ mode }}
 
+# 运行 Android Gradle 任务（默认 help，快速校验 AGP/Gradle/KGP 配置，支持透传如: just gradle --stop）
+gradle *args="help":
+    cd android && ./gradlew {{ args }}
+
 # 构建 iOS IPA 包
 ios:
     ./scripts/manage.sh build:ios
